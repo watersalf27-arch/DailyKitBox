@@ -3,178 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pet Care Hub</title>
+<title>Pet Care Hub Pro</title>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    padding:0;
-    background:#f5f5f5;
-}
+    :root {
+        --primary: #ff914d;
+        --secondary: #ff6b00;
+        --light: #fff3eb;
+        --bg: #f5f5f5;
+    }
 
-header{
-    background:#ff914d;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0; padding: 0; background: var(--bg);
+    }
 
-section{
-    background:white;
-    margin:20px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+    /* Navigation Menu */
+    nav {
+        background: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-around;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
 
-h2{
-    color:#ff914d;
-}
+    nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        font-size: 14px;
+    }
 
-input, select, button{
-    padding:10px;
-    margin:10px 0;
-    width:100%;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
+    header {
+        background: var(--primary);
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+    }
 
-button{
-    background:#ff914d;
-    color:white;
-    border:none;
-    cursor:pointer;
-    font-size:16px;
-}
+    .container {
+        max-width: 800px;
+        margin: auto;
+    }
 
-button:hover{
-    background:#ff6b00;
-}
+    section {
+        display: none; /* Hide all sections initially */
+        background: white;
+        margin: 20px;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
 
-.food-card{
-    background:#fff3eb;
-    padding:15px;
-    margin:10px 0;
-    border-radius:10px;
-}
+    section.active {
+        display: block; /* Show only active section */
+    }
+
+    h2 { color: var(--primary); border-bottom: 2px solid var(--light); padding-bottom: 10px; }
+
+    input, select, button {
+        padding: 12px; margin: 10px 0; width: 100%;
+        border-radius: 10px; border: 1px solid #ddd; box-sizing: border-box;
+    }
+
+    button {
+        background: var(--primary); color: white; border: none;
+        cursor: pointer; font-weight: bold; transition: 0.3s;
+    }
+
+    button:hover { background: var(--secondary); }
+
+    .card {
+        background: var(--light); padding: 15px;
+        margin: 10px 0; border-radius: 10px; border-left: 5px solid var(--primary);
+    }
 </style>
 </head>
-
 <body>
 
+<nav>
+    <a href="#" onclick="showSection('home')">🏠 Home</a>
+    <a href="#" onclick="showSection('age')">🦴 Age Calc</a>
+    <a href="#" onclick="showSection('diet')">🥩 Diet</a>
+    <a href="#" onclick="showSection('tools')">🛠️ Tools</a>
+</nav>
+
 <header>
-    <h1>🐶 Pet Care Hub 🐱</h1>
-    <p>Pet Calculator, Age Converter & Diet Plans</p>
+    <h1>🐶 Pet Care Hub Pro 🐱</h1>
+    <p>Everything your pet needs in one place</p>
 </header>
 
-<section>
-    <h2>Pet Age Calculator</h2>
+<div class="container">
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <h2>Welcome to Pet Care Hub</h2>
+        <p>Hamara maqsad aapke pets ki sehat aur khushi ka khayal rakhna hai. Upar diye gaye menu se mukhtalif tools istemal karein.</p>
+        <div class="card">
+            <h3>Naya Tool: Water Intake!</h3>
+            <p>Humne naye tools section mein "Water Intake Calculator" add kar diya hai.</p>
+        </div>
+    </section>
 
-    <label>Select Pet</label>
-    <select id="petType">
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-    </select>
+    <!-- Age Calculator -->
+    <section id="age">
+        <h2>Pet Age Converter</h2>
+        <label>Select Pet</label>
+        <select id="petType">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>
+        <input type="number" id="petAge" placeholder="Enter pet age (years)">
+        <button onclick="calculateAge()">Convert to Human Years</button>
+        <h3 id="result" style="color: var(--secondary);"></h3>
+    </section>
 
-    <label>Pet Age</label>
-    <input type="number" id="petAge" placeholder="Enter pet age">
+    <!-- Diet Plans -->
+    <section id="diet">
+        <h2>Expert Diet Plans</h2>
+        <div class="card">
+            <h3>🐕 Dog Plan</h3>
+            <p>High protein meals with fiber.</p>
+        </div>
+        <div class="card">
+            <h3>🐈 Cat Plan</h3>
+            <p>Taurine rich food with plenty of water.</p>
+        </div>
+    </section>
 
-    <button onclick="calculateAge()">Calculate Human Age</button>
+    <!-- New Tools Section -->
+    <section id="tools">
+        <h2>Smart Pet Tools</h2>
+        
+        <div class="card">
+            <h3>💧 Water Intake (Daily)</h3>
+            <input type="number" id="petWeight" placeholder="Pet weight in kg">
+            <button onclick="calcWater()">Calculate Water Needed</button>
+            <p id="waterResult" style="font-weight: bold;"></p>
+        </div>
 
-    <h3 id="result"></h3>
-</section>
-
-<section>
-    <h2>Pet Diet Plans</h2>
-
-    <div class="food-card">
-        <h3>🐶 Dog Diet Plan</h3>
-        <p>
-        Morning: Chicken & Rice<br>
-        Afternoon: Dry Food<br>
-        Evening: Boiled Meat & Vegetables
-        </p>
-    </div>
-
-    <div class="food-card">
-        <h3>🐱 Cat Diet Plan</h3>
-        <p>
-        Morning: Wet Cat Food<br>
-        Afternoon: Fish or Chicken<br>
-        Evening: Dry Cat Food
-        </p>
-    </div>
-</section>
-
-<section>
-    <h2>Top Pet Foods</h2>
-
-    <div class="food-card">
-        <h3>Royal Canin</h3>
-        <p>Good for digestion and breed specific nutrition.</p>
-    </div>
-
-    <div class="food-card">
-        <h3>Whiskas</h3>
-        <p>Popular cat food with tasty flavors.</p>
-    </div>
-
-    <div class="food-card">
-        <h3>Pedigree</h3>
-        <p>Affordable dog food with balanced nutrition.</p>
-    </div>
-
-    <div class="food-card">
-        <h3>Purina</h3>
-        <p>High protein food for active pets.</p>
-    </div>
-
-</section>
-
-<section>
-    <h2>Simple Calculator</h2>
-
-    <input type="number" id="num1" placeholder="First Number">
-    <input type="number" id="num2" placeholder="Second Number">
-
-    <button onclick="addNumbers()">Add Numbers</button>
-
-    <h3 id="calcResult"></h3>
-</section>
+        <div class="card">
+            <h3>➕ Simple Math Tool</h3>
+            <input type="number" id="n1" placeholder="Number 1">
+            <input type="number" id="n2" placeholder="Number 2">
+            <button onclick="add()">Add</button>
+            <p id="mathRes"></p>
+        </div>
+    </section>
+</div>
 
 <script>
-
-function calculateAge(){
-
-    let pet = document.getElementById("petType").value;
-    let age = document.getElementById("petAge").value;
-
-    let humanAge = 0;
-
-    if(pet === "dog"){
-        humanAge = age * 7;
-    }
-    else{
-        humanAge = age * 6;
+    // Navigation Logic
+    function showSection(id) {
+        let sections = document.querySelectorAll('section');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
     }
 
-    document.getElementById("result").innerHTML =
-    "Estimated Human Age: " + humanAge + " years";
-}
+    // Age Calc
+    function calculateAge(){
+        let pet = document.getElementById("petType").value;
+        let age = document.getElementById("petAge").value;
+        let humanAge = (pet === "dog") ? age * 7 : age * 6;
+        document.getElementById("result").innerHTML = "Human equivalent: " + humanAge + " years";
+    }
 
-function addNumbers(){
+    // Water Intake Calc
+    function calcWater() {
+        let weight = document.getElementById("petWeight").value;
+        if(weight > 0) {
+            let ml = weight * 50; // Basic rule: 50ml per kg
+            document.getElementById("waterResult").innerHTML = "Your pet needs approx " + ml + "ml water daily.";
+        }
+    }
 
-    let num1 = parseFloat(document.getElementById("num1").value);
-    let num2 = parseFloat(document.getElementById("num2").value);
-
-    let total = num1 + num2;
-
-    document.getElementById("calcResult").innerHTML =
-    "Result: " + total;
-}
-
+    // Math
+    function add() {
+        let val = parseFloat(document.getElementById("n1").value) + parseFloat(document.getElementById("n2").value);
+        document.getElementById("mathRes").innerHTML = "Result: " + val;
+    }
 </script>
 
 </body>
-  </html>
+            </html>
+    
