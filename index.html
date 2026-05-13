@@ -19,7 +19,6 @@
         overflow-x: hidden;
     }
 
-    /* Top Language Bar */
     .top-nav {
         background: var(--teal); color: white;
         padding: 10px; text-align: center; font-size: 11px;
@@ -28,9 +27,7 @@
     }
 
     .top-nav span { cursor: pointer; text-decoration: underline; transition: 0.3s; }
-    .top-nav span:hover { opacity: 0.7; }
 
-    /* Header & Logo */
     header {
         padding: 20px; text-align: center; border-bottom: 1px solid #f0f0f0;
     }
@@ -40,21 +37,18 @@
         letter-spacing: 4px; text-transform: uppercase;
     }
 
-    /* Search Bar */
     .search-container {
         padding: 15px 20px; display: flex; justify-content: center;
     }
     .search-container input {
         width: 100%; max-width: 500px; padding: 14px; 
         border: 1px solid #ddd; border-radius: 4px 0 0 4px; outline: none;
-        font-size: 14px;
     }
     .search-container button {
         background: var(--teal); color: white; border: none; 
         padding: 0 20px; border-radius: 0 4px 4px 0; cursor: pointer;
     }
 
-    /* Category Grid Layout */
     .grid-container {
         display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 15px;
         max-width: 900px; margin: auto;
@@ -67,86 +61,74 @@
     .category-card img {
         width: 100%; height: 100%; object-fit: cover; position: absolute; transition: 0.6s;
     }
-    .category-card:hover img { transform: scale(1.08); }
 
     .category-label {
         position: relative; z-index: 1; background: rgba(255,255,255,0.95);
         width: 100%; text-align: center; padding: 12px; 
-        font-weight: bold; font-size: 13px; letter-spacing: 0.5px;
+        font-weight: bold; font-size: 13px;
     }
 
-    /* Footer Section */
     footer {
         background: var(--teal); color: white; padding: 50px 30px; margin-top: 50px;
     }
     .footer-content { max-width: 900px; margin: auto; }
     .footer-section { margin-bottom: 35px; }
+    
+    /* Removed white border-bottom lines as requested */
     .footer-section h3 { 
-        font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.2); 
-        padding-bottom: 12px; margin-bottom: 15px; text-transform: uppercase;
+        font-size: 18px; 
+        padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase;
     }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin: 10px 0; font-size: 14px; opacity: 0.8; cursor: pointer; }
-    .footer-links li:hover { opacity: 1; text-decoration: underline; }
 
-    /* Payment & Trust Icons */
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin: 10px 0; font-size: 14px; opacity: 0.8; }
+
     .payment-icons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 25px; }
     .pay-box { 
         background: white; color: var(--teal); padding: 6px 12px; 
         border-radius: 4px; font-weight: bold; font-size: 11px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .copyright {
         text-align: center; margin-top: 40px; font-size: 12px; opacity: 0.6;
-        border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
-    }
-
-    /* Mobile Tweaks */
-    @media (max-width: 480px) {
-        .category-card { height: 180px; }
-        .logo { font-size: 26px; }
+        padding-top: 20px;
     }
 </style>
 </head>
 <body>
 
-<!-- Language Switcher Bar -->
 <div class="top-nav">
     <span onclick="changeLang('en')">ENGLISH</span>
     <span onclick="changeLang('de')">DEUTSCH</span>
     <span onclick="changeLang('fr')">FRANÇAIS</span>
 </div>
 
-<!-- Header with Brand Name -->
 <header>
     <div class="logo">PAWLAXY0</div>
 </header>
 
-<!-- Search Component -->
 <div class="search-container">
     <input type="text" id="searchInput" placeholder="WHAT ARE YOU LOOKING FOR?">
     <button>🔍</button>
 </div>
 
-<!-- Main Categories Grid -->
 <div class="grid-container">
-    <!-- Cats Section -->
+    <!-- Rabbit Section (Angora Giant style) -->
     <div class="category-card">
-        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500" alt="Cats">
-        <div class="category-label" id="cat-label">CAT ACCESSORIES</div>
+        <img src="https://images.unsplash.com/photo-1585110396054-c8112c91b55a?w=500" alt="Rabbit">
+        <div class="category-label" id="small-label">ANGORA RABBITS GEAR</div>
     </div>
     
+    <!-- Parrot Section -->
+    <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1552728089-57bdde30fc3a?w=500" alt="Parrot">
+        <div class="category-label" id="parrot-label">SMALL PARROT CARE</div>
+    </div>
+
     <!-- Dogs Section -->
     <div class="category-card">
         <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500" alt="Dogs">
         <div class="category-label" id="dog-label">DOG ACCESSORIES</div>
-    </div>
-
-    <!-- Small Pets Section -->
-    <div class="category-card">
-        <img src="https://images.unsplash.com/photo-1585110396054-c8112c91b55a?w=500" alt="Small Pets">
-        <div class="category-label" id="small-label">SMALL PETS GEAR</div>
     </div>
 
     <!-- Health Section -->
@@ -156,7 +138,6 @@
     </div>
 </div>
 
-<!-- Footer Area -->
 <footer>
     <div class="footer-content">
         <div class="footer-section">
@@ -164,7 +145,7 @@
             <p style="font-size: 14px; line-height: 1.6;">
                 Pawlaxy0 Europe Hub<br>
                 International Support Team<br>
-                Email: support@pawlaxy0.eu<br>
+                Email: watersalf27@gmail.com<br>
                 Berlin, Germany
             </p>
         </div>
@@ -190,49 +171,42 @@
         </div>
 
         <div class="copyright">
-            &copy; 2026 PAWLAXY0. All rights reserved. Premium Pet Care Solutions.
+            &copy; 2026 PAWLAXY0. All rights reserved.
         </div>
     </div>
 </footer>
 
 <script>
-    // Language Data Object
     const content = {
         en: {
             search: "WHAT ARE YOU LOOKING FOR?",
-            cat: "CAT ACCESSORIES", dog: "DOG ACCESSORIES",
-            small: "SMALL PETS GEAR", health: "HEALTH & HYGIENE",
+            small: "ANGORA RABBITS GEAR", parrot: "SMALL PARROT CARE",
+            dog: "DOG ACCESSORIES", health: "HEALTH & HYGIENE",
             contact: "CONTACT US", info: "INFORMATION"
         },
         de: {
             search: "WAS SUCHEN SIE?",
-            cat: "KATZENZUBEHÖR", dog: "HUNDEZUBEHÖR",
-            small: "KLEINTIERBEDARF", health: "GESUNDHEIT & PFLEGE",
+            small: "ANGORA KANINCHEN", parrot: "SITTICH PFLEGE",
+            dog: "HUNDEZUBEHÖR", health: "GESUNDHEIT & PFLEGE",
             contact: "KONTAKTIEREN SIE UNS", info: "INFORMATIONEN"
         },
         fr: {
             search: "QUE CHERCHEZ-VOUS?",
-            cat: "ACCESSOIRES CHAT", dog: "ACCESSOIRES CHIEN",
-            small: "PETITS ANIMAUX", health: "SANTÉ ET HYGIÈNE",
+            small: "LAPINS ANGORA", parrot: "SOINS PERRUCHE",
+            dog: "ACCESSOIRES CHIEN", health: "SANTÉ ET HYGIÈNE",
             contact: "CONTACTEZ-NOUS", info: "INFORMATIONS"
         }
     };
 
-    // Language Switcher Function
     function changeLang(lang) {
         document.getElementById('searchInput').placeholder = content[lang].search;
-        document.getElementById('cat-label').innerText = content[lang].cat;
-        document.getElementById('dog-label').innerText = content[lang].dog;
         document.getElementById('small-label').innerText = content[lang].small;
+        document.getElementById('parrot-label').innerText = content[lang].parrot;
+        document.getElementById('dog-label').innerText = content[lang].dog;
         document.getElementById('health-label').innerText = content[lang].health;
         document.getElementById('footer-contact').innerText = content[lang].contact;
         document.getElementById('footer-info').innerText = content[lang].info;
-        
-        // Visual Feedback
-        console.log("Language changed to: " + lang);
     }
 </script>
-
 </body>
-            </html>
-    
+</html>
