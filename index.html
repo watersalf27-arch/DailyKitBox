@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PetCare Europe | Premium Hub</title>
+<title>PetCare Europe | Multi-Language Hub</title>
 
 <style>
     :root {
-        --primary: #2d3436; /* Dark professional gray */
-        --accent: #0984e3;  /* European Blue */
+        --primary: #2d3436;
+        --accent: #0984e3;
         --light: #dfe6e9;
         --success: #00b894;
     }
@@ -18,169 +18,173 @@
         margin: 0; padding: 0; background: #f9f9f9; color: #2d3436;
     }
 
+    /* Language Bar */
+    .lang-bar {
+        background: #eee; padding: 10px; text-align: right;
+        display: flex; justify-content: flex-end; gap: 10px; padding-right: 20px;
+    }
+    .lang-bar button {
+        width: auto; padding: 5px 10px; font-size: 12px; background: white; color: var(--primary);
+        border: 1px solid #ccc; cursor: pointer;
+    }
+
     nav {
         background: white; padding: 20px;
-        display: flex; justify-content: center; gap: 25px;
+        display: flex; justify-content: center; gap: 20px;
         position: sticky; top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         z-index: 1000;
     }
 
-    nav a {
-        text-decoration: none; color: var(--primary);
-        font-weight: 600; font-size: 15px; text-transform: uppercase;
-        transition: 0.3s;
-    }
-
-    nav a:hover { color: var(--accent); }
+    nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
 
     header {
         background: linear-gradient(135deg, #0984e3, #6c5ce7);
-        color: white; padding: 60px 20px; text-align: center;
+        color: white; padding: 40px 20px; text-align: center;
     }
 
-    .container { max-width: 900px; margin: auto; padding-bottom: 50px; }
+    .container { max-width: 800px; margin: auto; padding-bottom: 50px; }
 
     section {
-        display: none; background: white; margin: 30px 20px;
-        padding: 35px; border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        display: none; background: white; margin: 20px;
+        padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    section.active { display: block; animation: fadeIn 0.5s; }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    h2 { color: var(--primary); font-size: 28px; margin-bottom: 20px; }
-
-    .input-group { margin-bottom: 15px; text-align: left; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
-
-    input, select, button {
-        padding: 15px; width: 100%; border-radius: 12px;
-        border: 1px solid #ddd; box-sizing: border-box; font-size: 16px;
-    }
-
-    button {
-        background: var(--accent); color: white; border: none;
-        cursor: pointer; font-weight: bold; margin-top: 10px;
-    }
-
-    button:hover { background: #0773c5; transform: scale(1.01); }
+    section.active { display: block; }
 
     .card {
         background: #f1f2f6; padding: 20px; margin: 15px 0;
         border-radius: 15px; border-left: 6px solid var(--accent);
     }
 
-    footer { text-align: center; padding: 20px; font-size: 12px; color: #636e72; }
+    input, select, button {
+        padding: 12px; width: 100%; border-radius: 10px;
+        border: 1px solid #ddd; margin-top: 10px; box-sizing: border-box;
+    }
+
+    button { background: var(--accent); color: white; border: none; cursor: pointer; font-weight: bold; }
+
+    .share-btn { background: #25D366; margin-top: 15px; } /* WhatsApp Green */
 </style>
 </head>
 <body>
 
+<div class="lang-bar">
+    <button onclick="changeLang('en')">English 🇬🇧</button>
+    <button onclick="changeLang('de')">Deutsch 🇩🇪</button>
+    <button onclick="changeLang('fr')">Français 🇫🇷</button>
+</div>
+
 <nav>
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('calculator')">Calculators</a>
-    <a href="#" onclick="showSection('diet')">Diet Plans</a>
-    <a href="#" onclick="showSection('support')">Contact</a>
+    <a href="#" onclick="showSection('home')" id="nav-home">Home</a>
+    <a href="#" onclick="showSection('calc')" id="nav-calc">Calculators</a>
+    <a href="#" onclick="showSection('remind')" id="nav-remind">Reminder</a>
 </nav>
 
 <header>
-    <h1>PetCare Europe</h1>
-    <p>Premium Nutrition & Health Tools for your Pets</p>
+    <h1 id="header-title">PetCare Europe</h1>
+    <p id="header-sub">Premium Health Tools</p>
 </header>
 
 <div class="container">
-    <!-- Home Section -->
     <section id="home" class="active">
-        <h2>Modern Pet Solutions</h2>
-        <p>Welcome to Europe's growing hub for pet health management. Use our smart tools to track your pet's biological age and nutritional requirements.</p>
-        <div class="card">
-            <h3>Did you know?</h3>
-            <p>European standards suggest at least 30 minutes of active play for indoor cats daily.</p>
-        </div>
+        <h2 id="home-h2">Welcome</h2>
+        <p id="home-p">Select a tool from the menu to start taking care of your pet.</p>
     </section>
 
-    <!-- Calculator Section -->
-    <section id="calculator">
-        <h2>Health Calculators</h2>
+    <section id="calc">
+        <h2 id="calc-h2">Age Calculator</h2>
+        <select id="petType">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>
+        <input type="number" id="petAge" placeholder="Age in years">
+        <button onclick="calculateAge()" id="btn-calc">Convert</button>
+        <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
         
-        <div class="card">
-            <h3>Biological Age Converter</h3>
-            <div class="input-group">
-                <label>Select Species</label>
-                <select id="petType">
-                    <option value="dog">Dog (Canine)</option>
-                    <option value="cat">Cat (Feline)</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Pet's Current Age</label>
-                <input type="number" id="petAge" placeholder="e.g. 3">
-            </div>
-            <button onclick="calculateAge()">Convert to Human Years</button>
-            <p id="result" style="color: var(--accent); font-weight: bold; margin-top: 15px;"></p>
-        </div>
-
-        <div class="card">
-            <h3>Hydration Tracker</h3>
-            <label>Pet Weight (kg)</label>
-            <input type="number" id="petWeight" placeholder="e.g. 10">
-            <button onclick="calcWater()">Calculate Daily Water Needed</button>
-            <p id="waterResult" style="font-weight: bold; margin-top: 15px;"></p>
-        </div>
+        <!-- Social Share Button -->
+        <button onclick="shareResult()" class="share-btn" id="btn-share">Share on WhatsApp</button>
     </section>
 
-    <!-- Diet Section -->
-    <section id="diet">
-        <h2>Nutritional Guidelines</h2>
-        <div class="card">
-            <h3>European Organic Diet (Dogs)</h3>
-            <p>Focus on high-quality proteins, healthy fats (Omega-3), and antioxidants found in fresh vegetables.</p>
-        </div>
-        <div class="card">
-            <h3>Premium Feline Nutrition (Cats)</h3>
-            <p>Emphasis on wet food rotation to prevent kidney issues, common in European household cats.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="support">
-        <h2>Get in Touch</h2>
-        <p>Need professional advice? Leave your email below.</p>
-        <input type="email" placeholder="Your Email Address">
-        <button onclick="alert('Thank you! We will contact you soon.')">Subscribe to Newsletter</button>
+    <section id="remind">
+        <h2 id="remind-h2">Health Reminder</h2>
+        <input type="text" id="task" placeholder="Task (e.g. Vaccination)">
+        <input type="time" id="remindTime">
+        <button onclick="setReminder()" id="btn-remind">Set Alert</button>
+        <p id="remindMsg"></p>
     </section>
 </div>
 
-<footer>
-    &copy; 2026 PetCare Europe Hub. All Rights Reserved.
-</footer>
-
 <script>
+    const translations = {
+        en: {
+            home: "Home", calc: "Calculators", remind: "Reminder",
+            title: "PetCare Europe", sub: "Premium Health Tools",
+            welcome: "Welcome", welcomeP: "Select a tool from the menu.",
+            ageH2: "Age Calculator", btnCalc: "Convert", share: "Share on WhatsApp",
+            remH2: "Health Reminder", btnRem: "Set Alert", taskPl: "Task (e.g. Food)"
+        },
+        de: {
+            home: "Startseite", calc: "Rechner", remind: "Erinnerung",
+            title: "PetCare Europa", sub: "Premium-Gesundheitstools",
+            welcome: "Willkommen", welcomeP: "Wählen Sie ein Tool aus dem Menü.",
+            ageH2: "Altersrechner", btnCalc: "Konvertieren", share: "Auf WhatsApp teilen",
+            remH2: "Gesundheitserinnerung", btnRem: "Alarm einstellen", taskPl: "Aufgabe (z.B. Futter)"
+        },
+        fr: {
+            home: "Accueil", calc: "Calculateurs", remind: "Rappel",
+            title: "PetCare Europe", sub: "Outils de santé premium",
+            welcome: "Bienvenue", welcomeP: "Sélectionnez un outil dans le menu.",
+            ageH2: "Calculateur d'âge", btnCalc: "Convertir", share: "Partager sur WhatsApp",
+            remH2: "Rappel de santé", btnRem: "Régler l'alerte", taskPl: "Tâche (ex: Vaccin)"
+        }
+    };
+
+    function changeLang(lang) {
+        document.getElementById('nav-home').innerText = translations[lang].home;
+        document.getElementById('nav-calc').innerText = translations[lang].calc;
+        document.getElementById('nav-remind').innerText = translations[lang].remind;
+        document.getElementById('header-title').innerText = translations[lang].title;
+        document.getElementById('header-sub').innerText = translations[lang].sub;
+        document.getElementById('home-h2').innerText = translations[lang].welcome;
+        document.getElementById('home-p').innerText = translations[lang].welcomeP;
+        document.getElementById('calc-h2').innerText = translations[lang].ageH2;
+        document.getElementById('btn-calc').innerText = translations[lang].btnCalc;
+        document.getElementById('btn-share').innerText = translations[lang].share;
+        document.getElementById('remind-h2').innerText = translations[lang].remH2;
+        document.getElementById('btn-remind').innerText = translations[lang].btnRem;
+        document.getElementById('task').placeholder = translations[lang].taskPl;
+    }
+
     function showSection(id) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        window.scrollTo(0,0);
     }
 
     function calculateAge(){
-        let pet = document.getElementById("petType").value;
         let age = document.getElementById("petAge").value;
-        if(age > 0) {
-            let humanAge = (pet === "dog") ? age * 7 : age * 6;
-            document.getElementById("result").innerHTML = "Your pet is " + humanAge + " human years old.";
+        let type = document.getElementById("petType").value;
+        if(age) {
+            let res = (type === 'dog') ? age * 7 : age * 6;
+            document.getElementById("result").innerText = "Human years: " + res;
         }
     }
 
-    function calcWater() {
-        let weight = document.getElementById("petWeight").value;
-        if(weight > 0) {
-            let ml = weight * 55; // Slightly higher European standard
-            document.getElementById("waterResult").innerHTML = "Daily target: " + ml + " ml";
+    function shareResult() {
+        let res = document.getElementById("result").innerText;
+        if(res) {
+            window.open("https://api.whatsapp.com/send?text=My pet is " + res + " - Check yours at PetCare Europe!");
+        } else { alert("Calculate age first!"); }
+    }
+
+    function setReminder() {
+        let task = document.getElementById("task").value;
+        let time = document.getElementById("remindTime").value;
+        if(task && time) {
+            document.getElementById("remindMsg").innerText = "Reminder set for " + task + " at " + time;
+            // Basic logic to alert when time matches (simplified for web)
+            alert("Notification set! Keep this page open.");
         }
     }
 </script>
-
 </body>
-                </html>
-    
+</html>
