@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pawlaxy0 | Professional Pet Care & Health Guide</title>
+<title>Pawlaxy0 | Premium Pet Hub & Health Tools</title>
 <style>
     :root {
         --teal: #3a7d7e;
@@ -17,49 +17,50 @@
         margin: 0; padding: 0; background: var(--white); color: var(--text);
         line-height: 1.8;
     }
-    header { 
-        padding: 40px 20px; text-align: center; 
-        background: var(--white); border-bottom: 2px solid var(--light-bg);
+    /* Navigation bar for 5 languages */
+    .top-nav {
+        background: var(--teal); color: white;
+        padding: 12px; text-align: center; font-size: 11px;
+        display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-weight: bold;
     }
-    .logo { 
-        font-size: 38px; font-weight: 900; color: var(--teal); 
-        letter-spacing: 6px; text-transform: uppercase; 
-    }
+    .top-nav span { cursor: pointer; text-decoration: underline; transition: 0.3s; padding: 2px 5px; }
+    .top-nav span:hover { color: var(--accent); }
+    
+    header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--light-bg); }
+    .logo { font-size: 38px; font-weight: 900; color: var(--teal); letter-spacing: 6px; text-transform: uppercase; }
+    
     .grid-container {
         display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; 
         padding: 20px; max-width: 1100px; margin: auto;
     }
-    .category-card {
-        height: 200px; overflow: hidden; border-radius: 15px; 
-        position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+    .category-card { height: 200px; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .category-card img { width: 100%; height: 100%; object-fit: cover; }
     
-    .tools-container {
-        max-width: 1000px; margin: 40px auto; padding: 30px;
-        background: var(--light-bg); border-radius: 25px;
-    }
-    .tool-box {
-        background: white; border-radius: 20px; margin-bottom: 40px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.06); overflow: hidden;
-        border: 1px solid #eee;
-    }
+    .tools-container { max-width: 1000px; margin: 40px auto; padding: 30px; background: var(--light-bg); border-radius: 25px; }
+    .tool-box { background: white; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); overflow: hidden; border: 1px solid #eee; }
     .tool-box img { width: 100%; height: 350px; object-fit: cover; }
     .article-content { padding: 30px; }
-    .article-content h3 { 
-        color: var(--teal); font-size: 24px; margin-top: 0;
-        border-bottom: 2px solid var(--light-bg); padding-bottom: 10px;
-    }
-    .article-content p { margin-bottom: 15px; text-align: justify; }
-    
-    h2.section-title { 
-        text-align: center; color: var(--teal); font-size: 32px;
-        text-transform: uppercase; margin: 60px 0 40px; letter-spacing: 3px;
-    }
+    .article-content h3 { color: var(--teal); font-size: 24px; border-bottom: 2px solid var(--light-bg); padding-bottom: 10px; }
+
+    .input-box { padding: 30px; }
+    input, select, button { padding: 15px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px; box-sizing: border-box; font-size: 16px; }
+    button { background: var(--teal); color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    button:hover { background: #2d6162; transform: translateY(-2px); }
+    .result-text { margin-top: 20px; font-weight: bold; color: var(--accent); font-size: 18px; text-align: center; }
+
+    h2.section-title { text-align: center; color: var(--teal); font-size: 32px; text-transform: uppercase; margin: 60px 0 40px; letter-spacing: 3px; }
     footer { background: var(--teal); color: white; padding: 60px 20px; text-align: center; }
 </style>
 </head>
 <body>
+
+<div class="top-nav">
+    <span onclick="changeLang('en')">ENGLISH</span>
+    <span onclick="changeLang('de')">DEUTSCH</span>
+    <span onclick="changeLang('fr')">FRANÇAIS</span>
+    <span onclick="changeLang('es')">ESPAÑOL</span>
+    <span onclick="changeLang('pt')">PORTUGUÊS</span>
+</div>
 
 <header><div class="logo">PAWLAXY0</div></header>
 
@@ -69,15 +70,42 @@
 </div>
 
 <div class="tools-container">
-    <h2 class="section-title">Comprehensive Pet Knowledge Base</h2>
+    
+    <h2 class="section-title" id="tools-title">Pet Health Suite</h2>
+    
+    <!-- Age Converter Tool -->
+    <div class="tool-box">
+        <div class="input-box">
+            <h3 id="tool-age">Age Converter</h3>
+            <select id="petType">
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="rabbit">Rabbit</option>
+            </select>
+            <input type="number" id="petAgeInput" placeholder="Age in years">
+            <button onclick="calcAge()" id="btn-age">Convert to Human Years</button>
+            <p id="ageResult" class="result-text"></p>
+        </div>
+    </div>
 
-    <!-- CATS SECTION (1-10) -->
+    <!-- Hydration Tool -->
+    <div class="tool-box">
+        <div class="input-box">
+            <h3 id="tool-water">Daily Hydration</h3>
+            <input type="number" id="petWeight" placeholder="Pet Weight (kg)">
+            <button onclick="calcWater()" id="btn-water">Calculate Required ml</button>
+            <p id="waterResult" class="result-text"></p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Pet Knowledge Base (30 Articles)</h2>
+
+    <!-- Start of 30 Articles -->
     <article class="tool-box">
         <img src="https://images.pexels.com/photos/156934/pexels-photo-156934.jpeg" alt="Scottish Fold">
         <div class="article-content">
             <h3>1. The Scottish Fold: Advanced Ear Care</h3>
-            <p>Scottish Folds are renowned for their unique folded ears, a result of a genetic mutation. While adorable, this requires specific care.</p>
-            <p>Owners must perform weekly ear inspections to prevent wax buildup and infections, as the fold can trap moisture. Use a vet-approved cleanser and soft cotton.</p>
+            <p>Scottish Folds are renowned for their unique folded ears. Owners must perform weekly ear inspections to prevent wax buildup and infections.</p>
         </div>
     </article>
 
@@ -85,243 +113,46 @@
         <img src="Munchkin.jpeg" alt="Munchkin Cat">
         <div class="article-content">
             <h3>2. Munchkin Cats: Physical Health & Mobility</h3>
-            <p>The Munchkin's short legs are their defining trait. Despite their stature, they are incredibly fast and agile.</p>
-            <p>To ensure long-term health, focus on weight management. Excess weight puts undue stress on their spine. Regular play sessions are essential to keep them active.</p>
+            <p>The Munchkin's short legs are their defining trait. To ensure long-term health, focus on weight management to protect their spine.</p>
         </div>
     </article>
 
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>3. Indoor Cat Enrichment Strategies</h3>
-            <p>Indoor cats often face boredom, leading to behavioral issues. Mental stimulation is just as important as physical exercise.</p>
-            <p>Incorporate vertical spaces like cat trees and use interactive puzzle feeders to mimic natural hunting instincts.</p>
-        </div>
-    </article>
+    <!-- Content continues... -->
+    <article class="tool-box"><div class="article-content"><h3>3. Indoor Cat Enrichment</h3><p>Use interactive puzzle feeders to mimic natural hunting instincts and keep cats active.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>4. Feline Hydration Essentials</h3><p>Circulating water fountains encourage cats to drink more water, preventing kidney issues.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>5. Recognizing Stress in Cats</h3><p>Changes in litter box habits or excessive hiding often signal feline anxiety.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>6. Long-Hair Grooming</h3><p>Daily brushing is mandatory for breeds like Persians to prevent painful matting.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>7. Senior Cat Nutrition</h3><p>Older cats require higher quality protein but fewer calories to maintain health.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>8. Kitten Socialization</h3><p>The first 12 weeks are crucial for building a confident and social adult cat.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>9. Cat Vocalizations</h3><p>Learn to distinguish between a demand meow and a distress meow for better bonding.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>10. Importance of Taurine</h3><p>This essential amino acid is critical for preventing heart failure in felines.</p></div></article>
 
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>4. Feline Hydration Essentials</h3>
-            <p>Many cats have a low thirst drive, which can lead to kidney issues. Encouraging water intake is vital.</p>
-            <p>Switching to wet food or using a circulating water fountain can significantly increase the amount of water your cat consumes daily.</p>
-        </div>
-    </article>
+    <article class="tool-box"><div class="article-content"><h3>11. German Shepherd Training</h3><p>High-intelligence breeds need consistent mental and physical challenges to stay happy.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>12. Puppy Teething Relief</h3><p>Frozen treats can soothe inflamed gums while a puppy's adult teeth grow in.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>13. Labrador Weight Tips</h3><p>Swimming is a fantastic low-impact exercise to keep heavy breeds fit.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>14. Brachycephalic Dog Care</h3><p>Flat-faced dogs struggle in high heat; always keep them in cool, shaded areas.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>15. Separation Anxiety Solutions</h3><p>Desensitization training helps reduce panic when you leave your dog alone at home.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>16. Dog Dental Hygiene Routine</h3><p>Daily brushing prevents 80% of dental diseases and oral infections in dogs.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>17. Double-Coat Maintenance</h3><p>Never shave breeds like Huskies; their coat is essential for temperature regulation.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>18. Dangerous Toxic Foods</h3><p>Onions, chocolate, and grapes are extremely toxic and should never be fed to dogs.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>19. Positive Reinforcement</h3><p>Rewarding good behavior with treats builds a strong bond of trust with your pet.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>20. Flea & Tick Prevention</h3><p>Year-round protection is necessary to avoid Lyme disease and other parasites.</p></div></article>
 
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>5. Recognizing Stress in Cats</h3>
-            <p>Cats are masters at hiding discomfort. Subtle signs like changes in litter box habits or excessive grooming often signal stress.</p>
-            <p>Creating a "safe zone" with pheromone diffusers can help calm anxious felines during household changes.</p>
-        </div>
-    </article>
+    <article class="tool-box"><div class="article-content"><h3>21. Angora Wool Management</h3><p>Daily 10-minute grooming sessions prevent painful matting in Angora rabbits.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>22. Timothy Hay Importance</h3><p>Hay provides the necessary fiber and should make up 80% of a rabbit's daily diet.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>23. Litter Training Bunnies</h3><p>Place a litter box in their favorite corner with hay to train them quickly.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>24. Bunny Flopping Explained</h3><p>When a rabbit flops on its side, it indicates they feel completely safe and relaxed.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>25. Safe Leafy Greens</h3><p>Cilantro, basil, and Romaine lettuce are excellent, safe choices for a rabbit's diet.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>26. GI Stasis Emergency</h3><p>If a rabbit stops eating or pooping, it is a life-threatening medical emergency.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>27. Rabbit Proofing Wires</h3><p>Cover electrical cords with plastic protectors to prevent rabbits from chewing them.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>28. Rabbit Social Life</h3><p>Rabbits are highly social animals and thrive best with a bonded partner.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>29. Safe Handling Techniques</h3><p>Always support a rabbit's hind legs when picking them up to protect their fragile spine.</p></div></article>
+    <article class="tool-box"><div class="article-content"><h3>30. Seasonal Molting Care</h3><p>Increase fiber intake during shedding seasons to prevent digestive blockages.</p></div></article>
 
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>6. Long-Hair Grooming Techniques</h3>
-            <p>Breeds like Persians require daily maintenance. Without it, their fur quickly becomes matted, leading to skin pain.</p>
-            <p>Use a stainless steel comb to reach the undercoat and prevent "furballs" which can cause digestive blockages.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>7. Senior Cat Wellness Checks</h3>
-            <p>As cats age, their nutritional needs shift. They require higher quality protein but fewer calories.</p>
-            <p>Regular vet visits every 6 months are recommended for senior cats to monitor kidney function and joint health.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>8. Kitten Socialization Period</h3>
-            <p>The first 12 weeks of a kitten's life are crucial for social development.</p>
-            <p>Introduce them to various sounds, people, and gentle handling to ensure they grow into confident adult cats.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>9. Understanding Cat Vocalizations</h3>
-            <p>From chirps to meows, cats communicate specifically with humans through sound.</p>
-            <p>Learning the difference between a "demand meow" and a "distress meow" strengthens the bond with your pet.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>10. Nutritional Benefits of Taurine</h3>
-            <p>Taurine is an essential amino acid for cats. A deficiency can lead to blindness and heart failure.</p>
-            <p>Always ensure your cat is eating specialized cat food, as dog food lacks the necessary taurine levels.</p>
-        </div>
-    </article>
-
-    <!-- DOGS SECTION (11-20) -->
-    <article class="tool-box">
-        <img src="https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg" alt="German Shepherd">
-        <div class="article-content">
-            <h3>11. German Shepherd: Mental Stimulation</h3>
-            <p>German Shepherds are high-drive working dogs. Without a "job" to do, they can become destructive.</p>
-            <p>Obedience training and scent work are excellent ways to tire them out mentally and physically.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>12. Puppy Teething Relief</h3>
-            <p>Between 4 to 6 months, puppies lose their baby teeth. This can be a painful process for them.</p>
-            <p>Provide cold chew toys or frozen carrots to help soothe their inflamed gums and protect your furniture.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>13. Labrador Weight Management</h3>
-            <p>Labradors are prone to obesity, which leads to joint pain and diabetes.</p>
-            <p>Measure their food strictly and limit high-calorie treats. Swimming is a great low-impact exercise for this breed.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>14. Brachycephalic Dog Care</h3>
-            <p>Breeds like Pugs and Bulldogs have shortened airways. They struggle in high heat and humidity.</p>
-            <p>Always walk them in the early morning or late evening and keep them in air-conditioned spaces during summer.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>15. Managing Separation Anxiety</h3>
-            <p>Many dogs struggle when left alone. Desensitization training can help reduce their panic.</p>
-            <p>Start with short absences and provide long-lasting chews to create a positive association with being alone.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>16. Dog Dental Health Routine</h3>
-            <p>80% of dogs show signs of periodontal disease by age three. Daily brushing is the gold standard of care.</p>
-            <p>If brushing isn't possible, use dental chews and water additives to reduce plaque buildup.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>17. Grooming for Double-Coated Breeds</h3>
-            <p>Breeds like Huskies should never be shaved. Their coat protects them from both heat and cold.</p>
-            <p>Regularly "blow out" the undercoat with a high-velocity dryer to manage heavy seasonal shedding.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>18. Toxic Foods for Dogs</h3>
-            <p>Common household foods like onions, chocolate, and xylitol (found in gum) are lethal to dogs.</p>
-            <p>Always check ingredients before sharing human food with your pet to avoid emergency vet trips.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>19. Positive Reinforcement Training</h3>
-            <p>Training should be based on rewards, not punishment. This builds a relationship based on trust.</p>
-            <p>Use high-value treats and praise to encourage desired behaviors like sitting or staying.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>20. Preventing Fleas and Ticks</h3>
-            <p>Parasites carry dangerous diseases like Lyme disease. Year-round prevention is necessary.</p>
-            <p>Consult your vet for the best oral or topical treatments suited for your dog's lifestyle.</p>
-        </div>
-    </article>
-
-    <!-- RABBITS SECTION (21-30) -->
-    <article class="tool-box">
-        <img src="https://images.pexels.com/photos/4001296/pexels-photo-4001296.jpeg" alt="Rabbit">
-        <div class="article-content">
-            <h3>21. Angora Rabbits: Wool Matting Prevention</h3>
-            <p>Angora wool is incredibly fine and mats easily. Once matted, it can pull on the skin and cause sores.</p>
-            <p>A daily 10-minute grooming session is required to keep their coat healthy and prevent wool block in the stomach.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>22. The Importance of Timothy Hay</h3>
-            <p>Hay should make up the vast majority of a rabbit's diet. It provides the fiber needed for gut motility.</p>
-            <p>Chewing tough hay also helps wear down a rabbit's teeth, which grow continuously throughout their life.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>23. Litter Training Your Rabbit</h3>
-            <p>Rabbits naturally choose one corner to do their business. You can use this to litter train them easily.</p>
-            <p>Place a litter box filled with hay in their favorite corner to encourage proper habits.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>24. Bunny Body Language Explained</h3>
-            <p>When a rabbit "flops" on its side, it means it feels completely safe in its environment.</p>
-            <p>A "thump" of the back legs is a warning signal, showing the rabbit is annoyed or senses danger.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>25. Safe Leafy Greens for Bunnies</h3>
-            <p>Introduce new vegetables slowly to avoid upsetting a rabbit's sensitive digestive system.</p>
-            <p>Safe choices include cilantro, basil, and dandelion greens. Avoid iceberg lettuce as it has no nutritional value.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>26. Identifying GI Stasis Early</h3>
-            <p>Gastrointestinal Stasis is a silent killer. If your rabbit stops eating or pooping, it is an emergency.</p>
-            <p>Keep "critical care" food on hand and seek veterinary help immediately if symptoms appear.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>27. Bunny-Proofing Your Home</h3>
-            <p>Rabbits love to chew, especially on electrical cords. This is dangerous for the rabbit and a fire hazard.</p>
-            <p>Use plastic cord protectors and provide plenty of wooden chew toys to redirect their gnawing instincts.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>28. Rabbit Social Needs</h3>
-            <p>Rabbits are extremely social animals and usually thrive best when living with a bonded partner.</p>
-            <p>If keeping a single rabbit, you must spend several hours a day interacting with them on their level (the floor).</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>29. Handling Your Rabbit Safely</h3>
-            <p>Rabbits have very fragile spines. Never pick them up by the ears or scruff.</p>
-            <p>Always support their hind legs to prevent them from kicking and potentially breaking their own back.</p>
-        </div>
-    </article>
-
-    <article class="tool-box">
-        <div class="article-content">
-            <h3>30. Seasonal Molting in Rabbits</h3>
-            <p>Rabbits shed their heavy coats a few times a year. During this time, grooming needs to double.</p>
-            <p>Excessive fur ingestion during molting can lead to blockages, so increase their water and fiber intake.</p>
-        </div>
-    </article>
-
-    <h2 class="section-title">Legal & Information</h2>
+    <h2 class="section-title">Information & Legal</h2>
     <div class="tool-box" style="padding:30px;">
-        <h3>About & Privacy Policy</h3>
-        <p>Pawlaxy0 is dedicated to providing high-quality educational content for pet lovers. We do not store any personal user data. All information is for general guidance; please consult a licensed veterinarian for specific medical concerns.</p>
+        <h3>Privacy & Terms of Use</h3>
+        <p>Pawlaxy0 provides educational content for pet owners. We do not collect or store user data. Always consult a veterinarian for health concerns.</p>
     </div>
 </div>
 
@@ -330,6 +161,40 @@
     <p>&copy; 2026 PAWLAXY0. All rights reserved.</p>
 </footer>
 
+<script>
+    // 5 Language Configuration
+    const langConfig = {
+        en: { title: "Pet Health Suite", age: "Age Converter", water: "Daily Hydration", btnAge: "Convert to Human Years", btnWater: "Calculate Required ml" },
+        de: { title: "Tiergesundheits-Suite", age: "Altersrechner", water: "Hydratation", btnAge: "In Menschenjahre umrechnen", btnWater: "Berechnen ml" },
+        fr: { title: "Suite Santé Animale", age: "Calculateur d'âge", water: "Hydratation", btnAge: "Convertir en années humaines", btnWater: "Calculer ml" },
+        es: { title: "Suite de Salud Animal", age: "Conversor de Edad", water: "Hidratación", btnAge: "Convertir a años humanos", btnWater: "Calcular ml" },
+        pt: { title: "Suíte de Saúde Animal", age: "Conversor de Idade", water: "Hidratação", btnAge: "Converter em anos humanos", btnWater: "Calcular ml" }
+    };
+
+    function changeLang(lang) {
+        document.getElementById('tools-title').innerText = langConfig[lang].title;
+        document.getElementById('tool-age').innerText = langConfig[lang].age;
+        document.getElementById('tool-water').innerText = langConfig[lang].water;
+        document.getElementById('btn-age').innerText = langConfig[lang].btnAge;
+        document.getElementById('btn-water').innerText = langConfig[lang].btnWater;
+    }
+
+    function calcAge() {
+        let age = document.getElementById('petAgeInput').value;
+        let type = document.getElementById('petType').value;
+        if(age > 0) {
+            let factor = (type === 'dog') ? 7 : (type === 'cat') ? 6 : 10;
+            document.getElementById('ageResult').innerText = "Result: " + (age * factor) + " Human Years";
+        }
+    }
+
+    function calcWater() {
+        let weight = document.getElementById('petWeight').value;
+        if(weight > 0) {
+            document.getElementById('waterResult').innerText = "Target: " + (weight * 55) + " ml per day";
+        }
+    }
+</script>
 </body>
     </html>
-                
+    
