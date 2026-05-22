@@ -1,145 +1,95 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyKitBox</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
 
-// ─── jsPDF loader ───────────────────────────────────────────
-function usejsPDF() {
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    if (window.jspdf) { setReady(true); return; }
-    const s = document.createElement("script");
-    s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-    s.onload = () => setReady(true);
-    document.head.appendChild(s);
-  }, []);
-  return ready;
-}
+<script type="text/babel">
+const { useState, useEffect } = React;
 
-// ─── Google Fonts ────────────────────────────────────────────
-const fontLink = document.createElement("link");
-fontLink.rel = "stylesheet";
-fontLink.href = "https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap";
-document.head.appendChild(fontLink);
-
-// ─── WMO Weather codes ───────────────────────────────────────
-const WMO = {
-  0:"☀️ Clear Sky",1:"🌤️ Mainly Clear",2:"⛅ Partly Cloudy",3:"☁️ Overcast",
-  45:"🌫️ Foggy",48:"🌫️ Icy Fog",51:"🌦️ Light Drizzle",53:"🌦️ Drizzle",55:"🌧️ Heavy Drizzle",
-  61:"🌧️ Slight Rain",63:"🌧️ Moderate Rain",65:"🌧️ Heavy Rain",
-  71:"🌨️ Slight Snow",73:"🌨️ Moderate Snow",75:"❄️ Heavy Snow",
-  80:"🌦️ Showers",81:"🌧️ Heavy Showers",82:"⛈️ Violent Showers",
-  95:"⛈️ Thunderstorm",96:"⛈️ Thunderstorm+Hail",99:"⛈️ Severe Thunderstorm",
-};
-
-// ═══════════════════════════════════════════════════════════════
-// STYLES
-// ═══════════════════════════════════════════════════════════════
 const G = {
-  bg:"#F5F4F0", surface:"#fff", accent:"#1A1A2E", red:"#E84545",
-  text:"#1C1C1C", muted:"#787878", border:"#E2E0DA",
+  bg: "#F5F4F0", surface: "#fff", accent: "#1A1A2E",
+  red: "#E84545", text: "#1C1C1C", muted: "#787878", border: "#E2E0DA"
 };
 
-const css = {
-  app:{ display:"flex", minHeight:"100vh", fontFamily:"'DM Sans',sans-serif",
-        background:G.bg, color:G.text },
-
-  // Sidebar
-  aside:{ width:240, minWidth:240, background:G.accent, display:"flex",
-          flexDirection:"column", minHeight:"100vh", position:"sticky",
-          top:0, height:"100vh", overflowY:"auto" },
-  logoArea:{ padding:"28px 24px 20px",
-             borderBottom:"1px solid rgba(255,255,255,.08)", flexShrink:0 },
-  logoH:{ fontFamily:"'Syne',sans-serif", fontSize:22, fontWeight:800,
-          color:"#fff", letterSpacing:-.3, margin:0 },
-  logoSub:{ fontSize:11, color:"rgba(255,255,255,.4)", marginTop:3,
-            textTransform:"uppercase", letterSpacing:1 },
-  nav:{ padding:"16px 12px", display:"flex", flexDirection:"column", gap:4 },
-
-  // Main
-  main:{ flex:1, padding:"40px 48px", minWidth:0 },
-  pageHdr:{ marginBottom:32 },
-  pageH2:{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800,
-           letterSpacing:-.4, margin:0 },
-  pageSub:{ fontSize:14, color:G.muted, marginTop:5 },
-
-  // Card
-  card:{ background:G.surface, border:`1px solid ${G.border}`,
-         borderRadius:14, padding:28, marginBottom:20 },
-
-  // Field
-  field:{ marginBottom:18 },
-  label:{ display:"block", fontSize:13, fontWeight:600, marginBottom:7,
-          letterSpacing:.1 },
-  input:{ width:"100%", padding:"11px 14px",
-          border:`1.5px solid ${G.border}`, borderRadius:9,
-          fontFamily:"'DM Sans',sans-serif", fontSize:14,
-          color:G.text, background:"#FAFAF8", outline:"none",
-          boxSizing:"border-box" },
-  textarea:{ width:"100%", padding:"11px 14px",
-             border:`1.5px solid ${G.border}`, borderRadius:9,
-             fontFamily:"'DM Sans',sans-serif", fontSize:14,
-             color:G.text, background:"#FAFAF8", outline:"none",
-             resize:"vertical", minHeight:180, boxSizing:"border-box" },
-  select:{ width:"100%", padding:"11px 14px",
-           border:`1.5px solid ${G.border}`, borderRadius:9,
-           fontFamily:"'DM Sans',sans-serif", fontSize:14,
-           color:G.text, background:"#FAFAF8", outline:"none" },
-
-  // Buttons
-  btnPrimary:{ display:"flex", alignItems:"center", justifyContent:"center",
-               gap:8, width:"100%", padding:"13px 20px",
-               background:G.accent, color:"#fff", border:"none",
-               borderRadius:10, fontFamily:"'DM Sans',sans-serif",
-               fontSize:14, fontWeight:600, cursor:"pointer", letterSpacing:.2 },
-  btnSmall:{ padding:"11px 22px", width:"auto", flexShrink:0 },
-
-  // Upload
-  uploadZone:{ border:`2px dashed ${G.border}`, borderRadius:14,
-               padding:"40px 20px", textAlign:"center",
-               background:"#FAFAF8", cursor:"pointer", position:"relative",
-               transition:"border-color .2s, background .2s" },
-  uploadInput:{ position:"absolute", inset:0, opacity:0,
-                cursor:"pointer", width:"100%", height:"100%" },
-
-  // Status
-  status:{ marginTop:16, padding:"12px 16px", borderRadius:9,
-           fontSize:13.5, fontWeight:500 },
-  info:{ background:"#EEF2FF", color:"#3730A3" },
-  success:{ background:"#ECFDF5", color:"#065F46" },
-  error:{ background:"#FEF2F2", color:"#991B1B" },
-
-  // Grid helpers
-  grid2:{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 },
-  rowFlex:{ display:"flex", gap:12 },
+const WMO = {
+  0:"☀️ Clear Sky", 1:"🌤️ Mainly Clear", 2:"⛅ Partly Cloudy", 3:"☁️ Overcast",
+  45:"🌫️ Foggy", 48:"🌫️ Icy Fog", 51:"🌦️ Light Drizzle", 53:"🌦️ Drizzle",
+  55:"🌧️ Heavy Drizzle", 61:"🌧️ Slight Rain", 63:"🌧️ Moderate Rain",
+  65:"🌧️ Heavy Rain", 71:"🌨️ Slight Snow", 73:"🌨️ Moderate Snow",
+  75:"❄️ Heavy Snow", 80:"🌦️ Showers", 81:"🌧️ Heavy Showers",
+  82:"⛈️ Violent Showers", 95:"⛈️ Thunderstorm", 99:"⛈️ Severe Thunderstorm"
 };
 
-// ─── Nav Button ─────────────────────────────────────────────
+/* ── Nav Button ── */
 function NavBtn({ icon, label, active, onClick }) {
   return (
     <button onClick={onClick} style={{
       display:"flex", alignItems:"center", gap:10,
-      padding:"11px 14px", borderRadius:10, border:"none",
+      padding:"11px 14px", borderRadius:10, border:"none", width:"100%",
       background: active ? G.red : "transparent",
-      color: active ? "#fff" : "rgba(255,255,255,.55)",
-      fontFamily:"'DM Sans',sans-serif", fontSize:13.5, fontWeight: active ? 600 : 500,
-      cursor:"pointer", textAlign:"left", width:"100%",
+      color: active ? "#fff" : "rgba(255,255,255,.6)",
+      fontFamily:"'DM Sans',sans-serif", fontSize:14,
+      fontWeight: active ? 600 : 400, cursor:"pointer", textAlign:"left"
     }}>
-      <span style={{ width:30, height:30, borderRadius:7,
+      <span style={{
+        width:32, height:32, borderRadius:8, fontSize:16,
         background: active ? "rgba(255,255,255,.2)" : "rgba(255,255,255,.1)",
-        display:"flex", alignItems:"center", justifyContent:"center",
-        fontSize:15, flexShrink:0 }}>{icon}</span>
+        display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0
+      }}>{icon}</span>
       <span>{label}</span>
     </button>
   );
 }
 
-// ─── Status Box ──────────────────────────────────────────────
+/* ── Status ── */
 function Status({ msg, type }) {
   if (!msg) return null;
-  return <div style={{ ...css.status, ...(type === "info" ? css.info : type === "success" ? css.success : css.error) }}>{msg}</div>;
+  const colors = {
+    info: { background:"#EEF2FF", color:"#3730A3" },
+    success: { background:"#ECFDF5", color:"#065F46" },
+    error: { background:"#FEF2F2", color:"#991B1B" }
+  };
+  return (
+    <div style={{ marginTop:14, padding:"12px 16px", borderRadius:9,
+      fontSize:13.5, fontWeight:500, ...colors[type] }}>{msg}</div>
+  );
 }
 
-// ═══════════════════════════════════════════════════════════════
-// TOOL: JPG to PDF
-// ═══════════════════════════════════════════════════════════════
+/* ── Input ── */
+function Input({ type="text", value, onChange, placeholder, step, min }) {
+  return (
+    <input type={type} value={value} onChange={onChange}
+      placeholder={placeholder} step={step} min={min}
+      style={{ width:"100%", padding:"11px 14px",
+        border:`1.5px solid ${G.border}`, borderRadius:9,
+        fontFamily:"'DM Sans',sans-serif", fontSize:14,
+        color:G.text, background:"#FAFAF8", outline:"none", boxSizing:"border-box" }}
+      onFocus={e => e.target.style.borderColor = G.accent}
+      onBlur={e => e.target.style.borderColor = G.border}
+    />
+  );
+}
+
+/* ══════════════════════════════════════════
+   TOOL 1: JPG to PDF
+══════════════════════════════════════════ */
 function JpgToPdf() {
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
@@ -148,28 +98,21 @@ function JpgToPdf() {
   const [statusType, setStatusType] = useState("info");
   const [loading, setLoading] = useState(false);
   const [drag, setDrag] = useState(false);
-  const pdfReady = usejsPDF();
 
   const handleFiles = (fileList) => {
-    const arr = Array.from(fileList).filter(f => f.type.match(/image\/(jpeg|jpg|png)/));
-    if (!arr.length) { setStatus("Please select JPG or PNG images only."); setStatusType("error"); return; }
+    const arr = Array.from(fileList).filter(f => f.type.match(/image\/(jpeg|jpg|png)/i));
+    if (!arr.length) { setStatus("JPG ya PNG images select karein."); setStatusType("error"); return; }
     setFiles(arr);
-    const urls = arr.map(f => URL.createObjectURL(f));
-    setPreviews(urls);
-    setStatus(`${arr.length} image(s) selected.`);
-    setStatusType("info");
+    setPreviews(arr.map(f => URL.createObjectURL(f)));
+    setStatus(arr.length + " image(s) selected ✓"); setStatusType("info");
   };
 
   const convert = async () => {
-    if (!files.length) { setStatus("Please select at least one image."); setStatusType("error"); return; }
-    if (!pdfReady) { setStatus("PDF library loading, please wait…"); setStatusType("info"); return; }
-
-    setLoading(true);
-    setStatus("Processing images…"); setStatusType("info");
-
+    if (!files.length) { setStatus("Pehle images select karein."); setStatusType("error"); return; }
+    if (!window.jspdf) { setStatus("PDF library load ho rahi hai, thoda wait karein…"); setStatusType("info"); return; }
+    setLoading(true); setStatus("Images process ho rahi hain…"); setStatusType("info");
     try {
       const { jsPDF } = window.jspdf;
-
       const loadImg = (file) => new Promise((res, rej) => {
         const reader = new FileReader();
         reader.onload = e => {
@@ -181,107 +124,89 @@ function JpgToPdf() {
         reader.onerror = () => rej(new Error("File read failed"));
         reader.readAsDataURL(file);
       });
-
       const imgs = await Promise.all(files.map(loadImg));
       let pdf = null;
-
       imgs.forEach(({ url, w, h, type }, i) => {
         const orient = w >= h ? "l" : "p";
-        if (i === 0) {
-          pdf = new jsPDF({ orientation: orient, unit: "px", format: [w, h] });
-        } else {
-          pdf.addPage([w, h], orient);
-        }
+        if (i === 0) { pdf = new jsPDF({ orientation: orient, unit: "px", format: [w, h] }); }
+        else { pdf.addPage([w, h], orient); }
         const pw = pdf.internal.pageSize.getWidth();
         const ph = pdf.internal.pageSize.getHeight();
         if (pageFit === "fit") {
           const s = Math.min(pw / w, ph / h);
-          const nw = w * s, nh = h * s;
-          pdf.addImage(url, type, (pw - nw) / 2, (ph - nh) / 2, nw, nh);
+          pdf.addImage(url, type, (pw - w*s)/2, (ph - h*s)/2, w*s, h*s);
         } else {
           pdf.addImage(url, type, 0, 0, pw, ph);
         }
       });
-
       pdf.save("DailyKitBox.pdf");
-      setStatus(`✅ PDF with ${files.length} page(s) downloaded!`);
-      setStatusType("success");
-    } catch (e) {
-      setStatus("❌ Error: " + e.message);
-      setStatusType("error");
-    } finally {
-      setLoading(false);
-    }
+      setStatus("✅ PDF download ho gayi! " + files.length + " page(s)"); setStatusType("success");
+    } catch(e) { setStatus("❌ Error: " + e.message); setStatusType("error"); }
+    setLoading(false);
   };
 
   return (
     <div>
-      <div style={css.pageHdr}>
-        <h2 style={css.pageH2}>JPG to PDF Converter</h2>
-        <p style={css.pageSub}>Combine images into a PDF — processed entirely in your browser.</p>
+      <div style={{ marginBottom:32 }}>
+        <h2 style={{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800, letterSpacing:-.4 }}>JPG to PDF Converter</h2>
+        <p style={{ fontSize:14, color:G.muted, marginTop:5 }}>Multiple images ko ek PDF mein convert karein — browser mein hi.</p>
       </div>
 
-      <div style={css.card}>
-        {/* Upload Zone */}
-        <div style={css.field}>
-          <label style={css.label}>Upload JPG / PNG Images</label>
-          <div
-            style={{ ...css.uploadZone, ...(drag ? { borderColor:G.accent, background:"#f0f0f8" } : {}) }}
-            onDragOver={e => { e.preventDefault(); setDrag(true); }}
-            onDragLeave={() => setDrag(false)}
-            onDrop={e => { e.preventDefault(); setDrag(false); handleFiles(e.dataTransfer.files); }}
-          >
-            <input type="file" accept="image/jpeg,image/jpg,image/png" multiple
-              style={css.uploadInput}
-              onChange={e => handleFiles(e.target.files)} />
-            <div style={{ fontSize:36, marginBottom:10 }}>📁</div>
-            <div style={{ fontSize:14, fontWeight:600 }}>Click to browse or drag & drop</div>
-            <div style={{ fontSize:12, color:G.muted, marginTop:4 }}>Supports JPG, PNG • Multiple files allowed</div>
-          </div>
+      <div style={{ background:G.surface, border:`1px solid ${G.border}`, borderRadius:14, padding:28, marginBottom:20 }}>
+        <label style={{ display:"block", fontSize:13, fontWeight:600, marginBottom:8 }}>Images Upload Karein</label>
+
+        <div
+          onDragOver={e => { e.preventDefault(); setDrag(true); }}
+          onDragLeave={() => setDrag(false)}
+          onDrop={e => { e.preventDefault(); setDrag(false); handleFiles(e.dataTransfer.files); }}
+          style={{ border:`2px dashed ${drag ? G.accent : G.border}`,
+            borderRadius:14, padding:"40px 20px", textAlign:"center",
+            background: drag ? "#f0f0f8" : "#FAFAF8", position:"relative", cursor:"pointer" }}>
+          <input type="file" accept="image/jpeg,image/jpg,image/png" multiple
+            onChange={e => handleFiles(e.target.files)}
+            style={{ position:"absolute", inset:0, opacity:0, cursor:"pointer", width:"100%", height:"100%" }} />
+          <div style={{ fontSize:40, marginBottom:10 }}>📁</div>
+          <div style={{ fontWeight:600, fontSize:15 }}>Click karein ya drag & drop karein</div>
+          <div style={{ fontSize:13, color:G.muted, marginTop:5 }}>JPG, PNG • Multiple files allowed</div>
         </div>
 
-        {/* Previews */}
         {previews.length > 0 && (
-          <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:18 }}>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginTop:14 }}>
             {previews.map((src, i) => (
-              <img key={i} src={src} alt={`preview-${i}`}
-                style={{ width:80, height:80, objectFit:"cover",
-                         borderRadius:8, border:`2px solid ${G.border}` }} />
+              <img key={i} src={src} alt="" style={{ width:80, height:80, objectFit:"cover", borderRadius:8, border:`2px solid ${G.border}` }} />
             ))}
           </div>
         )}
 
-        {/* Page Fit */}
-        <div style={css.field}>
-          <label style={css.label}>Page Fit</label>
-          <select style={css.select} value={pageFit} onChange={e => setPageFit(e.target.value)}>
-            <option value="fit">Fit to page (maintain aspect ratio)</option>
-            <option value="fill">Fill page (stretch to fill)</option>
+        <div style={{ marginTop:18 }}>
+          <label style={{ display:"block", fontSize:13, fontWeight:600, marginBottom:8 }}>Page Fit</label>
+          <select value={pageFit} onChange={e => setPageFit(e.target.value)}
+            style={{ width:"100%", padding:"11px 14px", border:`1.5px solid ${G.border}`,
+              borderRadius:9, fontFamily:"'DM Sans',sans-serif", fontSize:14,
+              color:G.text, background:"#FAFAF8", outline:"none" }}>
+            <option value="fit">Fit to page (aspect ratio maintain)</option>
+            <option value="fill">Fill page (stretch)</option>
           </select>
         </div>
 
-        <button style={{ ...css.btnPrimary, opacity: loading ? .6 : 1 }}
-          onClick={convert} disabled={loading}>
+        <button onClick={convert} disabled={loading}
+          style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8,
+            width:"100%", padding:"13px 20px", marginTop:20,
+            background: loading ? "#555" : G.accent, color:"#fff", border:"none",
+            borderRadius:10, fontFamily:"'DM Sans',sans-serif",
+            fontSize:14, fontWeight:600, cursor: loading ? "not-allowed" : "pointer" }}>
           {loading ? "⏳ Converting…" : "⬇️ Convert & Download PDF"}
         </button>
 
         <Status msg={status} type={statusType} />
       </div>
-
-      <div style={css.card}>
-        <h3 style={{ fontFamily:"'Syne',sans-serif", fontWeight:700, fontSize:15, marginBottom:8 }}>Why PDF format?</h3>
-        <p style={{ fontSize:13.5, color:G.muted, lineHeight:1.7 }}>
-          PDF is the global standard for sharing documents. It preserves layout across all devices,
-          is accepted by every major institution, and is ideal for printing, archiving, and sharing professionally.
-        </p>
-      </div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════════
-// TOOL: Weather
-// ═══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
+   TOOL 2: Weather
+══════════════════════════════════════════ */
 function Weather() {
   const [city, setCity] = useState("");
   const [status, setStatus] = useState(null);
@@ -290,70 +215,66 @@ function Weather() {
   const [loading, setLoading] = useState(false);
 
   const search = async () => {
-    if (!city.trim()) { setStatus("Please enter a city name."); setStatusType("error"); return; }
+    if (!city.trim()) { setStatus("City ka naam likhein."); setStatusType("error"); return; }
     setLoading(true); setWeather(null);
-    setStatus(`🔍 Searching for "${city}"…`); setStatusType("info");
+    setStatus('🔍 "' + city + '" dhundh raha hai…'); setStatusType("info");
     try {
-      const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`);
-      const geoData = await geoRes.json();
-      if (!geoData.results?.length) { setStatus("❌ City not found. Try a different name."); setStatusType("error"); setLoading(false); return; }
-      const { latitude, longitude, name, country } = geoData.results[0];
-      const wxRes = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}` +
-        `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation&wind_speed_unit=mph&timezone=auto`
-      );
-      const wxData = await wxRes.json();
-      const c = wxData.current;
+      const gr = await fetch("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json");
+      const gd = await gr.json();
+      if (!gd.results?.length) { setStatus("❌ City nahi mili. Dobara try karein."); setStatusType("error"); setLoading(false); return; }
+      const { latitude, longitude, name, country } = gd.results[0];
+      const wr = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+        "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation&wind_speed_unit=mph&timezone=auto");
+      const wd = await wr.json();
+      const c = wd.current;
       setWeather({ name, country, temp: Math.round(c.temperature_2m), feels: Math.round(c.apparent_temperature),
         desc: WMO[c.weather_code] || "Unknown", humidity: c.relative_humidity_2m,
         wind: Math.round(c.wind_speed_10m), rain: c.precipitation });
       setStatus(null);
-    } catch {
-      setStatus("❌ Network error. Please try again."); setStatusType("error");
-    }
+    } catch { setStatus("❌ Network error. Internet check karein."); setStatusType("error"); }
     setLoading(false);
   };
 
   return (
     <div>
-      <div style={css.pageHdr}>
-        <h2 style={css.pageH2}>Real-Time Weather</h2>
-        <p style={css.pageSub}>Live weather for any city via Open-Meteo's free API.</p>
+      <div style={{ marginBottom:32 }}>
+        <h2 style={{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800, letterSpacing:-.4 }}>Real-Time Weather</h2>
+        <p style={{ fontSize:14, color:G.muted, marginTop:5 }}>Kisi bhi city ka live weather dekhein.</p>
       </div>
 
-      <div style={css.card}>
-        <div style={css.field}>
-          <label style={css.label}>City Name</label>
-          <div style={css.rowFlex}>
-            <input style={{ ...css.input, flex:1 }} value={city} onChange={e => setCity(e.target.value)}
-              placeholder="e.g. London, Karachi, Tokyo"
-              onKeyDown={e => e.key === "Enter" && search()} />
-            <button style={{ ...css.btnPrimary, ...css.btnSmall, opacity: loading ? .6 : 1 }}
-              onClick={search} disabled={loading}>
-              {loading ? "…" : "Search"}
-            </button>
-          </div>
+      <div style={{ background:G.surface, border:`1px solid ${G.border}`, borderRadius:14, padding:28, marginBottom:20 }}>
+        <label style={{ display:"block", fontSize:13, fontWeight:600, marginBottom:8 }}>City Ka Naam</label>
+        <div style={{ display:"flex", gap:12 }}>
+          <input value={city} onChange={e => setCity(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && search()}
+            placeholder="e.g. Karachi, London, Dubai…"
+            style={{ flex:1, padding:"11px 14px", border:`1.5px solid ${G.border}`, borderRadius:9,
+              fontFamily:"'DM Sans',sans-serif", fontSize:14, color:G.text,
+              background:"#FAFAF8", outline:"none" }} />
+          <button onClick={search} disabled={loading}
+            style={{ padding:"11px 24px", background: loading ? "#555" : G.accent, color:"#fff",
+              border:"none", borderRadius:9, fontFamily:"'DM Sans',sans-serif",
+              fontSize:14, fontWeight:600, cursor: loading ? "not-allowed" : "pointer", flexShrink:0 }}>
+            {loading ? "…" : "Search"}
+          </button>
         </div>
         <Status msg={status} type={statusType} />
       </div>
 
       {weather && (
-        <div style={{ background:"linear-gradient(135deg,#1A1A2E 0%,#16213E 60%,#0F3460 100%)",
-                      borderRadius:14, padding:32, color:"#fff", marginTop:4 }}>
-          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800 }}>{weather.name}</div>
+        <div style={{ background:"linear-gradient(135deg,#1A1A2E,#16213E,#0F3460)",
+          borderRadius:14, padding:32, color:"#fff" }}>
+          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:26, fontWeight:800 }}>{weather.name}</div>
           <div style={{ fontSize:13, color:"rgba(255,255,255,.5)", marginTop:2 }}>{weather.country}</div>
-          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:68, fontWeight:800, lineHeight:1, margin:"16px 0 8px" }}>
-            {weather.temp}°C
-          </div>
-          <div style={{ fontSize:16, color:"rgba(255,255,255,.75)" }}>{weather.desc}</div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10, marginTop:24,
-                        paddingTop:20, borderTop:"1px solid rgba(255,255,255,.1)" }}>
+          <div style={{ fontFamily:"'Syne',sans-serif", fontSize:64, fontWeight:800, lineHeight:1, margin:"16px 0 8px" }}>{weather.temp}°C</div>
+          <div style={{ fontSize:15, color:"rgba(255,255,255,.75)" }}>{weather.desc}</div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:10, marginTop:24, paddingTop:20, borderTop:"1px solid rgba(255,255,255,.1)" }}>
             {[
-              { label:"💧 Humidity", val: weather.humidity + "%" },
-              { label:"💨 Wind", val: weather.wind + " mph" },
-              { label:"🌡️ Feels Like", val: weather.feels + "°C" },
-              { label:"🌧️ Rain (1h)", val: weather.rain + " mm" },
-            ].map(({ label, val }) => (
+              ["💧 Humidity", weather.humidity + "%"],
+              ["💨 Wind Speed", weather.wind + " mph"],
+              ["🌡️ Feels Like", weather.feels + "°C"],
+              ["🌧️ Rain (1h)", weather.rain + " mm"]
+            ].map(([label, val]) => (
               <div key={label} style={{ background:"rgba(255,255,255,.08)", borderRadius:10, padding:"12px 14px" }}>
                 <div style={{ fontSize:11, color:"rgba(255,255,255,.5)", textTransform:"uppercase", letterSpacing:1 }}>{label}</div>
                 <div style={{ fontSize:20, fontWeight:700, marginTop:4 }}>{val}</div>
@@ -366,9 +287,9 @@ function Weather() {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════
-// TOOL: Mortgage
-// ═══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
+   TOOL 3: Mortgage
+══════════════════════════════════════════ */
 function Mortgage() {
   const [price, setPrice] = useState(350000);
   const [deposit, setDeposit] = useState(70000);
@@ -382,58 +303,61 @@ function Mortgage() {
     const r = rate / 100 / 12;
     const n = term * 12;
     const monthly = r === 0 ? P / n : P * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-    const totalPaid = monthly * n;
-    setResult({ monthly, loan: P, totalPaid, interest: totalPaid - P });
+    setResult({ monthly, loan: P, totalPaid: monthly * n, interest: monthly * n - P });
   };
 
   const fmt = v => "£" + Math.round(v).toLocaleString("en-GB");
 
+  const fieldStyle = { marginBottom:18 };
+  const labelStyle = { display:"block", fontSize:13, fontWeight:600, marginBottom:7 };
+  const inputStyle = { width:"100%", padding:"11px 14px", border:`1.5px solid ${G.border}`,
+    borderRadius:9, fontFamily:"'DM Sans',sans-serif", fontSize:14,
+    color:G.text, background:"#FAFAF8", outline:"none", boxSizing:"border-box" };
+
   return (
     <div>
-      <div style={css.pageHdr}>
-        <h2 style={css.pageH2}>Mortgage Calculator</h2>
-        <p style={css.pageSub}>Estimate monthly repayments with UK/US amortisation formula.</p>
+      <div style={{ marginBottom:32 }}>
+        <h2 style={{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800, letterSpacing:-.4 }}>Mortgage Calculator</h2>
+        <p style={{ fontSize:14, color:G.muted, marginTop:5 }}>Monthly repayment estimate karein.</p>
       </div>
 
-      <div style={{ ...css.card, maxWidth:520 }}>
-        <div style={css.field}>
-          <label style={css.label}>Property Price (£/$)</label>
-          <input style={css.input} type="number" value={price} onChange={e => setPrice(+e.target.value)} />
+      <div style={{ background:G.surface, border:`1px solid ${G.border}`, borderRadius:14, padding:28, maxWidth:520 }}>
+        <div style={fieldStyle}>
+          <label style={labelStyle}>Property Price (£/$)</label>
+          <input type="number" value={price} onChange={e => setPrice(+e.target.value)} style={inputStyle} />
         </div>
-        <div style={css.field}>
-          <label style={css.label}>Deposit / Down Payment</label>
-          <input style={css.input} type="number" value={deposit} onChange={e => setDeposit(+e.target.value)} />
+        <div style={fieldStyle}>
+          <label style={labelStyle}>Deposit / Down Payment</label>
+          <input type="number" value={deposit} onChange={e => setDeposit(+e.target.value)} style={inputStyle} />
         </div>
-        <div style={css.grid2}>
-          <div style={css.field}>
-            <label style={css.label}>Annual Interest Rate (%)</label>
-            <input style={css.input} type="number" value={rate} step="0.05" onChange={e => setRate(+e.target.value)} />
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
+          <div style={fieldStyle}>
+            <label style={labelStyle}>Interest Rate (%)</label>
+            <input type="number" value={rate} step="0.05" onChange={e => setRate(+e.target.value)} style={inputStyle} />
           </div>
-          <div style={css.field}>
-            <label style={css.label}>Term (Years)</label>
-            <input style={css.input} type="number" value={term} onChange={e => setTerm(+e.target.value)} />
+          <div style={fieldStyle}>
+            <label style={labelStyle}>Term (Years)</label>
+            <input type="number" value={term} onChange={e => setTerm(+e.target.value)} style={inputStyle} />
           </div>
         </div>
-        <button style={css.btnPrimary} onClick={calc}>Calculate Monthly Payment</button>
+
+        <button onClick={calc}
+          style={{ width:"100%", padding:"13px 20px", background:G.accent, color:"#fff",
+            border:"none", borderRadius:10, fontFamily:"'DM Sans',sans-serif",
+            fontSize:14, fontWeight:600, cursor:"pointer" }}>
+          Monthly Payment Calculate Karein
+        </button>
 
         {result && (
-          <div style={{ background:G.accent, color:"#fff", borderRadius:14, padding:24, marginTop:20, textAlign:"center" }}>
-            <div style={{ fontSize:13, color:"rgba(255,255,255,.6)" }}>Estimated Monthly Repayment</div>
-            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:44, fontWeight:800, marginTop:6 }}>
-              {fmt(result.monthly)}
-            </div>
-            <div style={{ fontSize:12, color:"rgba(255,255,255,.45)", marginTop:4 }}>
-              Over {term} years | Loan: {fmt(result.loan)}
-            </div>
+          <div style={{ background:G.accent, color:"#fff", borderRadius:12, padding:24, marginTop:20, textAlign:"center" }}>
+            <div style={{ fontSize:13, color:"rgba(255,255,255,.6)" }}>Monthly Repayment</div>
+            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:44, fontWeight:800, marginTop:6 }}>{fmt(result.monthly)}</div>
+            <div style={{ fontSize:12, color:"rgba(255,255,255,.45)", marginTop:4 }}>{term} saal | Loan: {fmt(result.loan)}</div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginTop:16 }}>
-              {[
-                { label:"Loan Amount", val: fmt(result.loan) },
-                { label:"Total Paid", val: fmt(result.totalPaid) },
-                { label:"Total Interest", val: fmt(result.interest) },
-              ].map(({ label, val }) => (
-                <div key={label} style={{ background:"rgba(255,255,255,.08)", borderRadius:8, padding:12 }}>
-                  <div style={{ fontSize:15, fontWeight:700 }}>{val}</div>
-                  <div style={{ fontSize:11, color:"rgba(255,255,255,.5)", marginTop:3, textTransform:"uppercase", letterSpacing:.5 }}>{label}</div>
+              {[["Loan Amount", fmt(result.loan)], ["Total Paid", fmt(result.totalPaid)], ["Total Interest", fmt(result.interest)]].map(([l, v]) => (
+                <div key={l} style={{ background:"rgba(255,255,255,.08)", borderRadius:8, padding:12 }}>
+                  <div style={{ fontSize:15, fontWeight:700 }}>{v}</div>
+                  <div style={{ fontSize:10, color:"rgba(255,255,255,.5)", marginTop:3, textTransform:"uppercase" }}>{l}</div>
                 </div>
               ))}
             </div>
@@ -444,13 +368,41 @@ function Mortgage() {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════
-// TOOL: Tip Calculator
-// ═══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
+   TOOL 4: Tip Calculator
+══════════════════════════════════════════ */
 function TipCalc() {
   const [bill, setBill] = useState(50);
   const [tipPct, setTipPct] = useState(15);
   const [people, setPeople] = useState(2);
-  const [activePreset, setActivePreset] = useState(15);
+  const [active, setActive] = useState(15);
 
-  const tipAmt = bill * t
+  const tipAmt = (bill * tipPct / 100) || 0;
+  const total = (bill || 0) + tipAmt;
+  const perPerson = total / (people || 1);
+  const fmt = v => "$" + v.toFixed(2);
+
+  const inputStyle = { width:"100%", padding:"11px 14px", border:`1.5px solid ${G.border}`,
+    borderRadius:9, fontFamily:"'DM Sans',sans-serif", fontSize:14,
+    color:G.text, background:"#FAFAF8", outline:"none", boxSizing:"border-box" };
+
+  return (
+    <div>
+      <div style={{ marginBottom:32 }}>
+        <h2 style={{ fontFamily:"'Syne',sans-serif", fontSize:28, fontWeight:800, letterSpacing:-.4 }}>Tip Calculator</h2>
+        <p style={{ fontSize:14, color:G.muted, marginTop:5 }}>Bill split karein aur tip calculate karein.</p>
+      </div>
+
+      <div style={{ background:G.surface, border:`1px solid ${G.border}`, borderRadius:14, padding:28, maxWidth:480 }}>
+        <div style={{ marginBottom:18 }}>
+          <label style={{ display:"block", fontSize:13, fontWeight:600, marginBottom:8 }}>Bill Amount ($)</label>
+          <input type="number" value={bill} step="0.01" onChange={e => setBill(+e.target.value)} style={inputStyle} />
+        </div>
+
+        <div style={{ marginBottom:18 }}>
+          <label style={{ display:"block", fontSize:13, fontWeight:600, marginBottom:8 }}>Tip Percentage</label>
+          <div style={{ display:"flex", gap:8, marginBottom:10, flexWrap:"wrap" }}>
+            {[10, 15, 18, 20, 25].map(p => (
+              <button key={p} onClick={() => { setTipPct(p); setActive(p); }}
+                style={{ flex:1, minWidth:50, padding:"9px 4px",
+             
