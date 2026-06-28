@@ -1,103 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DailyKitBox</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; background-color: #F5F4F0; color: #1C1C1C; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
-</style>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xd2jpbrnfi");
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DailyKitBox - Free Online PDF, Calculator & Utility Tools</title>
+
+  <meta name="description" content="DailyKitBox provides free online PDF tools, calculators, weather, converters and productivity tools.">
+
+  <meta name="keywords" content="PDF Tools, Mortgage Calculator, Tip Calculator, Weather, Online Tools">
+
+  <meta name="robots" content="index,follow">
+
+  <link rel="icon" href="assets/images/favicon.png">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-<div id="root"></div>
 
-<script type="text/babel">
-const { useState, useEffect } = React;
+<div class="container">
 
-const G = {
-  bg: "#F5F4F0", surface: "#fff", accent: "#1A1A2E",
-  red: "#E84545", text: "#1C1C1C", muted: "#787878", border: "#E2E0DA"
-};
+    <!-- Sidebar -->
 
-const WMO = {
-  0:"☀️ Clear Sky", 1:"🌤️ Mainly Clear", 2:"⛅ Partly Cloudy", 3:"☁️ Overcast",
-  45:"🌫️ Foggy", 48:"🌫️ Icy Fog", 51:"🌦️ Light Drizzle", 53:"🌦️ Drizzle",
-  55:"🌧️ Heavy Drizzle", 61:"🌧️ Slight Rain", 63:"🌧️ Moderate Rain",
-  65:"🌧️ Heavy Rain", 71:"🌨️ Slight Snow", 73:"🌨️ Moderate Snow",
-  75:"❄️ Heavy Snow", 80:"🌦️ Showers", 81:"🌧️ Heavy Showers",
-  82:"⛈️ Violent Showers", 95:"⛈️ Thunderstorm", 99:"⛈️ Severe Thunderstorm"
-};
+    <aside class="sidebar">
 
-/* ── Nav Button ── */
-function NavBtn({ icon, label, active, onClick }) {
-  return (
-    <button onClick={onClick} style={{
-      display:"flex", alignItems:"center", gap:10,
-      padding:"11px 14px", borderRadius:10, border:"none", width:"100%",
-      background: active ? G.red : "transparent",
-      color: active ? "#fff" : "rgba(255,255,255,.6)",
-      fontFamily:"'DM Sans',sans-serif", fontSize:14,
-      fontWeight: active ? 600 : 400, cursor:"pointer", textAlign:"left",
-      marginBottom: 6
-    }}>
-      <span style={{
-        width:32, height:32, borderRadius:8, fontSize:16,
-        background: active ? "rgba(255,255,255,.2)" : "rgba(255,255,255,.1)",
-        display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0
-      }}>{icon}</span>
-      <span>{label}</span>
-    </button>
-  );
-}
+        <div class="logo">
 
-/* ── Status ── */
-function Status({ msg, type }) {
-  if (!msg) return null;
-  const colors = {
-    info: { background:"#EEF2FF", color:"#3730A3" },
-    success: { background:"#ECFDF5", color:"#065F46" },
-    error: { background:"#FEF2F2", color:"#991B1B" }
-  };
-  return (
-    <div style={{ marginTop:14, padding:"12px 16px", borderRadius:9,
-      fontSize:13.5, fontWeight:500, ...colors[type] }}>{msg}</div>
-  );
-}
+            <img src="assets/images/logo.png" alt="DailyKitBox Logo">
 
-/* ── TOOL 1: JPG to PDF ── */
-function JpgToPdf() {
-  const [files, setFiles] = useState([]);
-  const [previews, setPreviews] = useState([]);
-  const [pageFit, setPageFit] = useState("fit");
-  const [status, setStatus] = useState(null);
-  const [statusType, setStatusType] = useState("info");
-  const [loading, setLoading] = useState(false);
-  const [drag, setDrag] = useState(false);
+            <h2>DailyKitBox</h2>
 
-  const handleFiles = (fileList) => {
-    const arr = Array.from(fileList).filter(f => f.type.match(/image\/(jpeg|jpg|png)/i));
-    if (!arr.length) { setStatus("JPG ya PNG images select karein."); setStatusType("error"); return; }
-    setFiles(arr);
-    setPreviews(arr.map(f => URL.createObjectURL(f)));
-    setStatus(arr.length + " image(s) selected ✓"); setStatusType("info");
-  };
+        </div>
 
+        <nav>
+
+            <a href="index.html" class="active">🏠 Home</a>
+
+            <a href="jpg-to-pdf/">📄 JPG to PDF</a>
+
+            <a href="weather/">🌤 Weather</a>
+
+            <a href="mortgage-calculator/">🏦 Mortgage</a>
+
+            <a href="tip-calculator/">💰 Tip Calculator</a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main>
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <h1>All Your Daily Tools in One Place</h1>
+
+            <p>
+
+                Free online PDF tools, calculators,
+
+                weather, converters and more.
+
+            </p>
+
+            <input
+                id="toolSearch"
+                type="text"
+                placeholder="Search a tool..."
+            >
+
+        </section>
+
+        <!-- Featured -->
+
+        <section>
+
+            <h2>Featured Tools</h2>
+
+            <div class="cards">
+
+                <a class="card" href="jpg-to-pdf/">
+
+                    📄
+
+                    <h3>JPG to PDF</h3>
+
+                    <p>Convert images into PDF instantly.</p>
+
+                </a>
+
+                <a class="card" href="weather/">
+
+                    🌤
+
+                    <h3>Weather</h3>
+
+                    <p>Real time weather forecast.</p>
+
+                </a>
+
+                <a class="card" href="mortgage-calculator/">
+
+                    🏦
+
+                    <h3>Mortgage</h3>
+
+                    <p>Calculate monthly payments.</p>
+
+                </a>
+
+                <a class="card" href="tip-calculator/">
+
+                    💰
+
+                    <h3>Tip Calculator</h3>
+
+                    <p>Split bills quickly.</p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Categories -->
+
+        <section>
+
+            <h2>Categories</h2>
+
+            <div class="categories">
+
+                <div>📄 PDF Tools</div>
+
+                <div>🧮 Calculators</div>
+
+                <div>💵 Finance</div>
+
+                <div>🌤 Weather</div>
+
+                <div>🔄 Converters</div>
+
+                <div>🖼 Image Tools</div>
+
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+
+        <footer>
+
+            <p>
+
+                © 2026 DailyKitBox
+
+                All Rights Reserved.
+
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
   const convert = async () => {
     if (!files.length) { setStatus("Pehle images select karein."); setStatusType("error"); return; }
     if (!window.jspdf) { setStatus("PDF library load ho rahi hai, thoda wait karein…"); setStatusType("info"); return; }
