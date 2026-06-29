@@ -117,10 +117,15 @@ const y = (pageHeight - height) / 2;
 if (i > 0) pdf.addPage();
 
 pdf.addImage(dataUrl, "JPEG", x, y, width, height);
+const percent = Math.round(((i + 1) / selectedImages.length) * 100);
 
+progressBar.style.width = percent + "%";
+progressText.textContent = percent + "% Completed";
 }
 
 pdf.save("DailyKitBox.pdf");
+progressBar.style.width = "100%";
+progressText.textContent = "✅ PDF Ready";
 
 status.textContent = "✅ PDF downloaded successfully.";
 
