@@ -49,7 +49,11 @@ card.innerHTML = `
 </div>
 
 <button class="delete-btn">✕</button>
+let total = selectedImages.reduce((sum, file) => sum + file.size, 0);
 
+imageCount.textContent = selectedImages.length + " Images";
+
+totalSize.textContent = (total / 1024 / 1024).toFixed(2) + " MB";
 </div>
 `;
 card.querySelector(".delete-btn").addEventListener("click", () => {
