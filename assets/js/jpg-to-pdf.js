@@ -39,8 +39,11 @@ return;
 
 files.forEach(file=>{
 
-const allowed = ["jpg","jpeg","png"];
+const allowed = ["image/jpeg", "image/png"];
 
+if (!allowed.includes(file.type)) {
+    return;
+}
 const extension =
 file.name.split(".").pop().toLowerCase();
 
