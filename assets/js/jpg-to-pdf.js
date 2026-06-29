@@ -30,10 +30,17 @@ const card = document.createElement("div");
 card.className = "preview-card";
 
 card.innerHTML = `
-<img src="${e.target.result}" alt="">
-<p>${file.name}</p>
-`;
+<div class="preview-item">
 
+<img src="${e.target.result}" alt="${file.name}">
+
+<div class="preview-info">
+<strong>${file.name}</strong>
+<small>${Math.round(file.size/1024)} KB</small>
+</div>
+
+</div>
+`;
 preview.appendChild(card);
 
 };
