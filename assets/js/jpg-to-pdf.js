@@ -9,7 +9,7 @@ const convertBtn = document.getElementById("convertBtn");
 const status = document.getElementById("status");
 
 let selectedImages = [];
-
+let imageRotations = new Map();
 function updateStats(){
 
 const total = selectedImages.reduce((sum,file)=>sum+file.size,0);
