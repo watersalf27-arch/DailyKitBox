@@ -17,6 +17,11 @@ selectedImages = [];
 const files = Array.from(input.files);
 
 files.forEach(file => {
+let total = selectedImages.reduce((sum, file) => sum + file.size, 0);
+
+imageCount.textContent = selectedImages.length + " Images";
+
+totalSize.textContent = (total / 1024 / 1024).toFixed(2) + " MB";
 
 const allowed = [".jpg", ".jpeg", ".png"];
 
