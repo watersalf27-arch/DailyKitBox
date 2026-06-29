@@ -2,40 +2,74 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>JPG to PDF | DailyKitBox</title>
+<title>JPG to PDF Converter - DailyKitBox</title>
+<meta name="description" content="Free online JPG to PDF converter. Convert multiple images into one PDF instantly.">
 
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/Style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
-<div class="container">
+<div class="tool-container">
 
-<main style="width:100%;max-width:900px;margin:auto;">
+<a href="../index.html" class="back-btn">
+← Back to Home
+</a>
 
 <h1>JPG to PDF Converter</h1>
 
-<p>Select one or more JPG images and convert them into a PDF.</p>
-
-<input type="file" id="images" accept="image/*" multiple>
-
-<br><br>
-
-<button id="convertBtn">Convert to PDF</button>
-
-<p id="status"></p>
-
-<p>
-<a href="../index.html">⬅ Back to Home</a>
+<p class="subtitle">
+Convert JPG or PNG images into one PDF instantly.
 </p>
 
-</main>
+<div class="upload-box">
+
+<input
+type="file"
+id="images"
+accept="image/jpeg,image/png"
+multiple>
 
 </div>
 
-<<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<div id="preview" class="preview-grid"></div>
+
+<div class="options">
+
+<label>Page Size</label>
+
+<select id="pageSize">
+
+<option value="a4">A4</option>
+
+<option value="letter">Letter</option>
+
+</select>
+
+<label>Orientation</label>
+
+<select id="orientation">
+
+<option value="portrait">Portrait</option>
+
+<option value="landscape">Landscape</option>
+
+</select>
+
+</div>
+
+<button id="convertBtn">
+Convert to PDF
+</button>
+
+<p id="status"></p>
+
+</div>
+
 <script src="../assets/js/jpg-to-pdf.js"></script>
 
 </body>
