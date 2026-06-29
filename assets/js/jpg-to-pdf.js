@@ -44,6 +44,7 @@ const allowed=["image/jpeg","image/png"];
 if(!allowed.includes(file.type)) return;
 
 selectedImages.push(file);
+imageRotations.set(file, 0);
 
 const reader=new FileReader();
 
