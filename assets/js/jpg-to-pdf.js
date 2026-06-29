@@ -92,8 +92,21 @@ card.innerHTML = `
 <div class="preview-info">
 
 <strong>${file.name}</strong>
-
 <small>${Math.round(file.size/1024)} KB</small>
+
+</div>
+
+<button class="delete-btn">✕</button>
+
+<div class="rotate-buttons">
+<button class="rotate-left">↺</button>
+<button class="rotate-right">↻</button>
+</div>
+
+</div>
+
+`;
+
 
 </div>
 
