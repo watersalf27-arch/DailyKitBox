@@ -1,3 +1,5 @@
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
 const input = document.getElementById("images");
 const preview = document.getElementById("preview");
 const convertBtn = document.getElementById("convertBtn");
