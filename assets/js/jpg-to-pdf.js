@@ -86,19 +86,25 @@ const image=card.querySelector("img");
 
 let rotation=0;
 
-card.querySelector(".rotate-left").onclick=()=>{
+card.querySelector(".rotate-left").onclick = ()=>{
 
-rotation-=90;
+let angle = imageRotations.get(file) - 90;
 
-image.style.transform=`rotate(${rotation}deg)`;
+imageRotations.set(file, angle);
+
+image.style.transform = `rotate(${angle}deg)`;
 
 };
 
-card.querySelector(".rotate-right").onclick=()=>{
+card.querySelector(".rotate-right").onclick = ()=>{
 
-rotation+=90;
+let angle = imageRotations.get(file) + 90;
 
-image.style.transform=`rotate(${rotation}deg)`;
+imageRotations.set(file, angle);
+
+image.style.transform = `rotate(${angle}deg)`;
+
+};
 
 };
 
