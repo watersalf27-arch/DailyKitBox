@@ -10,7 +10,11 @@
 
 <meta name="description" content="DailyKitBox provides free PDF tools, calculators, weather tools and online utilities.">
 
-<meta name="keywords" content="PDF Tools, JPG to PDF, Merge PDF, Weather, Calculator">
+<meta name="keywords" content="PDF Tools, JPG to PDF, Merge PDF, Split PDF, Compress PDF, Weather, Mortgage Calculator">
+
+<meta name="author" content="DailyKitBox">
+
+<meta name="theme-color" content="#2563EB">
 
 <link rel="icon" href="logo.png">
 
@@ -38,27 +42,41 @@
 
 </a>
 
-<button id="menuBtn">
+<button id="menuBtn" class="menu-btn">
 
 ☰
 
 </button>
 
+<nav id="desktopMenu" class="desktop-menu">
+
+<a class="active" href="index.html">Home</a>
+
+<a href="#tools">Tools</a>
+
+<a href="#categories">Categories</a>
+
+<a href="#about">About</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
 </div>
 
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
+<div id="mobileMenu" class="mobile-menu">
 
-<a href="index.html" class="active">🏠 Home</a>
+<a href="index.html">Home</a>
 
-<a href="jpg-to-pdf/index.html">📄 JPG to PDF</a>
+<a href="#tools">Tools</a>
 
-<a href="weather/index.html">⛅ Weather</a>
+<a href="#categories">Categories</a>
 
-<a href="mortgage-calculator/index.html">🏦 Mortgage</a>
+<a href="#about">About</a>
 
-<a href="tip-calculator/index.html">💰 Tip Calculator</a>
+<a href="#contact">Contact</a>
 
 </div>
 
@@ -68,95 +86,56 @@
 
 <div class="hero-box">
 
-<h1>
-
-All Your Daily Tools in One Place
-
-</h1>
+<h1>All Your Daily Tools In One Place</h1>
 
 <p>
 
-Free online PDF tools, calculators, weather, converters and more.
+Free PDF tools, calculators, weather tools and many more utilities.
 
 </p>
+
+<div class="search-box">
 
 <input
 type="search"
 id="searchBox"
-placeholder="Search a tool...">
-
-</div>
-
-</div>
-
-</section>
-
-<section class="featured">
+placeholder="Search
+<section id="tools" class="featured-tools">
 
 <div class="container">
 
-<h2>
+<div class="section-title">
 
-Featured Tools
+<h2>Featured Tools</h2>
 
-</h2>
+<p>Our most popular online tools.</p>
+
+</div>
 
 <div class="tools-grid">
 
-<a class="tool-card" href="jpg-to-pdf/index.html">
-
-<span>📄</span>
-
+<a href="jpg-to-pdf/index.html" class="tool-card">
+<div class="tool-icon">🖼</div>
 <h3>JPG to PDF</h3>
-
-<p>
-
-Convert images into PDF instantly.
-
-</p>
-
+<p>Convert JPG images into PDF.</p>
 </a>
 
-<a class="tool-card" href="weather/index.html">
-
-<span>⛅</span>
-
-<h3>Weather</h3>
-
-<p>
-
-Real time weather forecast.
-
-</p>
-
+<a href="merge-pdf/index.html" class="tool-card">
+<div class="tool-icon">📑</div>
+<h3>Merge PDF</h3>
+<p>Combine multiple PDF files.</p>
 </a>
 
-<a class="tool-card" href="mortgage-calculator/index.html">
-
-<span>🏦</span>
-
-<h3>Mortgage</h3>
-
-<p>
-
-Calculate monthly payments.
-
-</p>
-
+<a href="split-pdf/index.html" class="tool-card">
+<div class="tool-icon">✂</div>
+<h3>Split PDF</h3>
+<p>Extract pages from PDF.</p>
 </a>
 
-<a class="tool-card" href="tip-calculator/index.html">
-
-<span>💰</span>
-
-<h3>Tip Calculator</h3>
-
-<p>
-
-Split restaurant bills quickly.
-
-</p>
-
+<a href="compress-pdf/index.html" class="tool-card">
+<div class="tool-icon">🗜</div>
+<h3>Compress PDF</h3>
+<p>Reduce PDF file size.</p>
 </a>
 
 </div>
@@ -164,25 +143,123 @@ Split restaurant bills quickly.
 </div>
 
 </section>
-<section class="categories">
+
+<section id="categories" class="categories">
 
 <div class="container">
 
-<h2>Categories</h2>
+<div class="section-title">
+
+<h2>Browse Categories</h2>
+
+<p>Select a category to explore tools.</p>
+
+</div>
 
 <div class="category-grid">
 
-<a href="#">📄 PDF Tools</a>
+<div class="category-card">
 
-<a href="#">🧮 Calculators</a>
+<h3>📄 PDF Tools</h3>
 
-<a href="#">💵 Finance</a>
+<p>Complete PDF utilities.</p>
 
-<a href="#">⛅ Weather</a>
+</div>
 
-<a href="#">🔄 Converters</a>
+<div class="category-card">
 
-<a href="#">🖼 Image Tools</a>
+<h3>🧮 Calculators</h3>
+
+<p>Finance and daily
+<section id="tools" class="featured-tools">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Featured Tools</h2>
+
+<p>Our most popular online tools.</p>
+
+</div>
+
+<div class="tools-grid">
+
+<a href="jpg-to-pdf/index.html" class="tool-card">
+<div class="tool-icon">🖼</div>
+<h3>JPG to PDF</h3>
+<p>Convert JPG images into PDF.</p>
+</a>
+
+<a href="merge-pdf/index.html" class="tool-card">
+<div class="tool-icon">📑</div>
+<h3>Merge PDF</h3>
+<p>Combine multiple PDF files.</p>
+</a>
+
+<a href="split-pdf/index.html" class="tool-card">
+<div class="tool-icon">✂</div>
+<h3>Split PDF</h3>
+<p>Extract pages from PDF.</p>
+</a>
+
+<a href="compress-pdf/index.html" class="tool-card">
+<div class="tool-icon">🗜</div>
+<h3>Compress PDF</h3>
+<p>Reduce PDF file size.</p>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="categories" class="categories">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Browse Categories</h2>
+
+<p>Select a category to explore tools.</p>
+
+</div>
+
+<div class="category-grid">
+
+<div class="category-card">
+
+<h3>📄 PDF Tools</h3>
+
+<p>Complete PDF utilities.</p>
+
+</div>
+
+<div class="category-card">
+
+<h3>🧮 Calculators</h3>
+
+<p>Finance and daily calculators.</p>
+
+</div>
+
+<div class="category-card">
+
+<h3>🌦 Weather</h3>
+
+<p>Live forecasts worldwide.</p>
+
+</div>
+
+<div class="category-card">
+
+<h3>🔄 Converters</h3>
+
+<p>Image and document converters.</p>
+
+</div>
 
 </div>
 
@@ -194,80 +271,123 @@ Split restaurant bills quickly.
 
 <div class="container">
 
-<h2>All PDF Tools</h2>
+<div class="section-title">
+
+<h2>PDF Tools</h2>
+
+<p>Choose any tool below.</p>
+
+</div>
 
 <div class="tools-grid">
 
-<a class="tool-card" href="merge-pdf/index.html">
-<span>📑</span>
-<h3>Merge PDF</h3>
-<p>Combine multiple PDF files.</p>
+<a href="merge-pdf/index.html" class="tool-card"><h3>Merge PDF</h3></a>
+
+<a href="split-pdf/index.html" class="tool-card"><h3>Split PDF</h3></a>
+
+<a href="compress-pdf/index.html" class="tool-card"><h3>Compress PDF</h3></a>
+
+<a href="pdf-to-word/index.html" class="tool-card"><h3>PDF to Word</h3></a>
+
+<a href="pdf-to-powerpoint/index.html" class="tool-card"><h3>PDF to PowerPoint</h3></a>
+
+<a href="pdf-to-excel/index.html" class="tool-card"><h3>PDF to Excel</h3></a>
+
+<a href="word-to-pdf/index.html" class="tool-card"><h3>Word to PDF</h3></a>
+
+<a href="powerpoint-to-pdf/index.html" class="tool-card"><h3>PowerPoint to PDF</h3></a>
+
+<a href="excel-to-pdf/index.html" class="tool-card"><h3>Excel to PDF</h3></a>
+
+<a href="edit-pdf/index.html" class="tool-card"><h3>Edit PDF</h3></a>
+
+<a href="pdf-to-jpg/index.html" class="tool-card"><h3>PDF to JPG</h3></a>
+
+<a href="jpg-to-pdf/index.html" class="tool-card"><h3>JPG to PDF</h3></a>
+
+</div>
+
+</div>
+
+</section>
+<section class="utilities-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>More Free Tools</h2>
+
+<p>Explore our additional online utilities.</p>
+
+</div>
+
+<div class="tools-grid">
+
+<a href="watermark-pdf/index.html" class="tool-card">
+<div class="tool-icon">💧</div>
+<h3>Watermark PDF</h3>
+<p>Add custom text or image watermark.</p>
 </a>
 
-<a class="tool-card" href="split-pdf/index.html">
-<span>✂</span>
-<h3>Split PDF</h3>
-<p>Extract PDF pages.</p>
+<a href="rotate-pdf/index.html" class="tool-card">
+<div class="tool-icon">🔄</div>
+<h3>Rotate PDF</h3>
+<p>Rotate PDF pages instantly.</p>
 </a>
 
-<a class="tool-card" href="compress-pdf/index.html">
-<span>🗜</span>
-<h3>Compress PDF</h3>
-<p>Reduce PDF file size.</p>
+<a href="html-to-pdf/index.html" class="tool-card">
+<div class="tool-icon">🌐</div>
+<h3>HTML to PDF</h3>
+<p>Convert webpages into PDF.</p>
 </a>
 
-<a class="tool-card" href="pdf-to-word/index.html">
-<span>📝</span>
-<h3>PDF to Word</h3>
-<p>Convert PDF into DOCX.</p>
-</a>
-
-<a class="tool-card" href="pdf-to-powerpoint/index.html">
-<span>📊</span>
-<h3>PDF to PowerPoint</h3>
-<p>Create editable slides.</p>
-</a>
-
-<a class="tool-card" href="pdf-to-excel/index.html">
-<span>📈</span>
-<h3>PDF to Excel</h3>
-<p>Convert tables instantly.</p>
-</a>
-
-<a class="tool-card" href="word-to-pdf/index.html">
-<span>📄</span>
-<h3>Word to PDF</h3>
-<p>Create PDF documents.</p>
-</a>
-
-<a class="tool-card" href="powerpoint-to-pdf/index.html">
-<span>🎞</span>
-<h3>PPT to PDF</h3>
-<p>Convert presentations.</p>
-</a>
-
-<a class="tool-card" href="excel-to-pdf/index.html">
-<span>📑</span>
-<h3>Excel to PDF</h3>
-<p>Export spreadsheets.</p>
-</a>
-
-<a class="tool-card" href="edit-pdf/index.html">
-<span>✏</span>
-<h3>Edit PDF</h3>
-<p>Edit PDF online.</p>
-</a>
-
-<a class="tool-card" href="pdf-to-jpg/index.html">
-<span>🖼</span>
-<h3>PDF to JPG</h3>
-<p>Convert PDF pages to images.</p>
-</a>
-
-<a class="tool-card" href="unlock-pdf/index.html">
-<span>🔓</span>
+<a href="unlock-pdf/index.html" class="tool-card">
+<div class="tool-icon">🔓</div>
 <h3>Unlock PDF</h3>
 <p>Remove PDF password.</p>
+</a>
+
+<a href="protect-pdf/index.html" class="tool-card">
+<div class="tool-icon">🔒</div>
+<h3>Protect PDF</h3>
+<p>Add password protection.</p>
+</a>
+
+<a href="organize-pdf/index.html" class="tool-card">
+<div class="tool-icon">📂</div>
+<h3>Organize PDF</h3>
+<p>Reorder and manage PDF pages.</p>
+</a>
+
+<a href="repair-pdf/index.html" class="tool-card">
+<div class="tool-icon">🛠</div>
+<h3>Repair PDF</h3>
+<p>Fix damaged PDF files.</p>
+</a>
+
+<a href="page-number/index.html" class="tool-card">
+<div class="tool-icon">🔢</div>
+<h3>Page Number</h3>
+<p>Add page numbers to PDF.</p>
+</a>
+
+<a href="scan-pdf/index.html" class="tool-card">
+<div class="tool-icon">📷</div>
+<h3>Scan PDF</h3>
+<p>Create PDF from scanned images.</p>
+</a>
+
+<a href="ocr-pdf/index.html" class="tool-card">
+<div class="tool-icon">📝</div>
+<h3>OCR PDF</h3>
+<p>Extract text from scanned PDFs.</p>
+</a>
+
+<a href="compare-pdf/index.html" class="tool-card">
+<div class="tool-icon">⚖️</div>
+<h3>Compare PDF</h3>
+<p>Compare two PDF documents.</p>
 </a>
 
 </div>
@@ -276,48 +396,52 @@ Split restaurant bills quickly.
 
 </section>
 
-<footer class="footer">
+<section class="featured-services">
 
 <div class="container">
 
-<div class="footer-logo">
+<div class="section-title">
 
-<img src="logo.png" alt="DailyKitBox">
+<h2>Featured Utilities</h2>
 
-<h2>DailyKitBox</h2>
-
-</div>
-
-<p>
-
-Free online PDF tools, calculators, weather and productivity utilities.
-
-</p>
-
-<div class="footer-links">
-
-<a href="#">Privacy Policy</a>
-
-<a href="#">Terms</a>
-
-<a href="#">Contact</a>
-
-<a href="#">About</a>
+<p>Useful tools beyond PDF editing.</p>
 
 </div>
 
-<p class="copyright">
+<div class="tools-grid">
 
-© 2026 DailyKitBox. All Rights Reserved.
+<a href="weather/index.html" class="tool-card">
 
-</p>
+<div class="tool-icon">🌦️</div>
+
+<h3>Weather Forecast</h3>
+
+<p>Check live weather anywhere.</p>
+
+</a>
+
+<a href="mortgage-calculator/index.html" class="tool-card">
+
+<div class="tool-icon">🏠</div>
+
+<h3>Mortgage Calculator</h3>
+
+<p>Calculate monthly home loan payments.</p>
+
+</a>
+
+<a href="tip-calculator/index.html" class="tool-card">
+
+<div class="tool-icon">💰</div>
+
+<h3>Tip Calculator</h3>
+
+<p>Calculate tips and split bills.</p>
+
+</a>
 
 </div>
 
-</footer>
+</div>
 
-<script src="assets/script.js"></script>
-
-</body>
-
-</html>
+</section>
