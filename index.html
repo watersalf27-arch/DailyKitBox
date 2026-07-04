@@ -4,24 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Free JPG to PDF Converter by DailyKitBox. Convert JPG, JPEG and PNG images into high quality PDF files instantly.">
+<title>DailyKitBox | Free Online Tools</title>
 
-<meta name="keywords" content="JPG to PDF, Image to PDF, PNG to PDF, DailyKitBox, PDF Converter">
+<meta name="description" content="DailyKitBox provides free PDF tools, calculators, weather tools and online utilities.">
 
-<meta name="author" content="DailyKitBox">
+<meta name="keywords" content="PDF Tools, JPG to PDF, Merge PDF, Weather, Calculator">
 
-<meta name="robots" content="index,follow">
+<link rel="icon" href="logo.png">
 
-<meta name="theme-color" content="#2563eb">
-
-<link rel="canonical" href="https://dailykitbox.com/tools/jpg-to-pdf">
-
-<link rel="icon" type="image/png" href="assets/favicon.png">
-
-<title>JPG to PDF Converter | DailyKitBox</title>
+<link rel="stylesheet" href="assets/style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -29,1426 +22,140 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body>
 
-<div id="app">
-
-<header class="site-header">
+<header class="header">
 
 <div class="container">
 
-<a href="/" class="logo">
+<a href="index.html" class="logo">
 
-<img src="assets/logo.svg" alt="DailyKitBox Logo">
+<img src="logo.png" alt="DailyKitBox Logo">
 
-<span>DailyKitBox</span>
+<h2>DailyKitBox</h2>
 
 </a>
 
-<nav class="main-nav">
+<button id="menuBtn">
 
-<a href="/">Home</a>
-
-<a href="/tools">Tools</a>
-
-<a href="/blog">Blog</a>
-
-<a href="/contact">Contact</a>
-
-</nav>
-
-<div class="header-actions">
-
-<button id="themeToggle" aria-label="Toggle Dark Mode">
-
-🌙
+☰
 
 </button>
-
-</div>
 
 </div>
 
 </header>
 
-<main>
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="index.html" class="active">🏠 Home</a>
+
+<a href="jpg-to-pdf/index.html">📄 JPG to PDF</a>
+
+<a href="weather/index.html">⛅ Weather</a>
+
+<a href="mortgage-calculator/index.html">🏦 Mortgage</a>
+
+<a href="tip-calculator/index.html">💰 Tip Calculator</a>
+
+</div>
 
 <section class="hero">
 
 <div class="container">
 
-<h1>Convert JPG to PDF Online for Free</h1>
+<div class="hero-box">
+
+<h1>
+
+All Your Daily Tools in One Place
+
+</h1>
 
 <p>
 
-Merge JPG, JPEG and PNG images into a high quality PDF in seconds with no watermark and no registration.
+Free online PDF tools, calculators, weather, converters and more.
 
 </p>
 
-<div class="hero-buttons">
+<input
+type="search"
+id="searchBox"
+placeholder="Search a tool...">
 
-<button id="startConvert">
+</div>
 
-Start Converting
+</div>
 
-</button>
+</section>
 
-<a href="#uploadSection">
+<section class="featured">
 
-Learn More
+<div class="container">
+
+<h2>
+
+Featured Tools
+
+</h2>
+
+<div class="tools-grid">
+
+<a class="tool-card" href="jpg-to-pdf/index.html">
+
+<span>📄</span>
+
+<h3>JPG to PDF</h3>
+
+<p>
+
+Convert images into PDF instantly.
+
+</p>
 
 </a>
 
-</div>
+<a class="tool-card" href="weather/index.html">
 
-</div>
+<span>⛅</span>
 
-</section>
-<section id="uploadSection" class="upload-section">
-
-<div class="container">
-
-<div class="tool-card">
-
-<div class="tool-header">
-
-<h2>Upload Your Images</h2>
+<h3>Weather</h3>
 
 <p>
 
-Drag & Drop your JPG, JPEG or PNG images below or click the upload button.
+Real time weather forecast.
 
 </p>
-
-</div>
-
-<div id="dropZone" class="drop-zone">
-
-<div class="upload-icon">
-
-📁
-
-</div>
-
-<h3>Drag & Drop Images Here</h3>
-
-<p>or</p>
-
-<label for="images" class="upload-btn">
-
-Choose Images
-
-</label>
-
-<input
-type="file"
-id="images"
-accept=".jpg,.jpeg,.png"
-multiple
-hidden>
-
-<p class="supported-files">
-
-Supports JPG • JPEG • PNG
-
-</p>
-
-</div>
-
-<div class="quick-info">
-
-<div class="info-box">
-
-<h4 id="imageCount">
-
-0 Images
-
-</h4>
-
-<p>Selected</p>
-
-</div>
-
-<div class="info-box">
-
-<h4 id="totalSize">
-
-0 MB
-
-</h4>
-
-<p>Total Size</p>
-
-</div>
-
-<div class="info-box">
-
-<h4>
-
-Fast
-
-</h4>
-
-<p>Conversion</p>
-
-</div>
-
-<div class="info-box">
-
-<h4>
-
-Secure
-
-</h4>
-
-<p>No Upload</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="preview-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Selected Images</h2>
-
-<p>
-
-Preview, rotate, remove and organize your images before creating the PDF.
-
-</p>
-
-</div>
-
-<div class="toolbar">
-
-<button id="selectAllBtn">
-
-Select All
-
-</button>
-
-<button id="clearAllBtn">
-
-Clear All
-
-</button>
-
-<button id="sortAZBtn">
-
-Sort A-Z
-
-</button>
-
-<button id="sortZABtn">
-
-Sort Z-A
-
-</button>
-
-<button id="reverseBtn">
-
-Reverse Order
-
-</button>
-
-</div>
-
-<div id="preview" class="preview-grid">
-
-<!-- Image cards will appear here -->
-
-</div>
-
-<div class="preview-summary">
-
-<div class="summary-card">
-
-<h3 id="imageCountPreview">
-
-0
-
-</h3>
-
-<p>Total Images</p>
-
-</div>
-
-<div class="summary-card">
-
-<h3 id="totalSizePreview">
-
-0 MB
-
-</h3>
-
-<p>Total Size</p>
-
-</div>
-
-<div class="summary-card">
-
-<h3 id="estimatedPages">
-
-0
-
-</h3>
-
-<p>Estimated PDF Pages</p>
-
-</div>
-
-<div class="summary-card">
-
-<h3 id="averageImageSize">
-
-0 KB
-
-</h3>
-
-<p>Average Image Size</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="settings-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>PDF Settings</h2>
-
-<p>
-
-Customize your PDF before downloading.
-
-</p>
-
-</div>
-
-<div class="settings-grid">
-
-<div class="setting-card">
-
-<label for="pageSize">
-
-Page Size
-
-</label>
-
-<select id="pageSize">
-
-<option value="a4">A4</option>
-
-<option value="letter">Letter</option>
-
-<option value="legal">Legal</option>
-
-<option value="a3">A3</option>
-
-<option value="a5">A5</option>
-
-</select>
-
-</div>
-
-<div class="setting-card">
-
-<label for="orientation">
-
-Orientation
-
-</label>
-
-<select id="orientation">
-
-<option value="portrait">
-
-Portrait
-
-</option>
-
-<option value="landscape">
-
-Landscape
-
-</option>
-
-</select>
-
-</div>
-
-<div class="setting-card">
-
-<label for="quality">
-
-Image Quality
-
-</label>
-
-<select id="quality">
-
-<option value="FAST">
-
-Fast</option>
-
-<option value="MEDIUM" selected>
-
-Balanced
-
-</option>
-
-<option value="SLOW">
-
-Best Quality
-
-</option>
-
-</select>
-
-</div>
-
-<div class="setting-card">
-
-<label for="pdfName">
-
-PDF File Name
-
-</label>
-
-<input
-type="text"
-id="pdfName"
-placeholder="DailyKitBox">
-
-</div>
-
-<div class="setting-card">
-
-<label for="watermarkText">
-
-Watermark
-
-</label>
-
-<input
-type="text"
-id="watermarkText"
-placeholder="Optional">
-
-</div>
-
-<div class="setting-card">
-
-<label>
-
-Page Numbers
-
-</label>
-
-<label class="switch">
-
-<input
-type="checkbox"
-id="pageNumbers">
-
-<span class="slider"></span>
-
-</label>
-
-</div>
-
-<div class="setting-card">
-
-<label>
-
-Dark Mode
-
-</label>
-
-<label class="switch">
-
-<input
-type="checkbox"
-id="darkMode">
-
-<span class="slider"></span>
-
-</label>
-
-</div>
-
-<div class="setting-card">
-
-<label>
-
-Auto Download
-
-</label>
-
-<label class="switch">
-
-<input
-type="checkbox"
-id="autoDownload"
-checked>
-
-<span class="slider"></span>
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="convert-section">
-
-<div class="container">
-
-<div class="convert-card">
-
-<div class="section-header">
-
-<h2>Convert to PDF</h2>
-
-<p>
-
-Everything is ready. Review your settings and start the conversion.
-
-</p>
-
-</div>
-
-<div class="progress-area">
-
-<div class="progress-wrapper">
-
-<div id="progressBar" class="progress-bar"></div>
-
-</div>
-
-<p id="progressText">
-
-0% Completed
-
-</p>
-
-<p id="status">
-
-Waiting for images...
-
-</p>
-
-</div>
-
-<div class="action-buttons">
-
-<button id="convertBtn" class="primary-btn">
-
-📄 Convert to PDF
-
-</button>
-
-<button id="previewBtn" class="secondary-btn">
-
-👁 Preview PDF
-
-</button>
-
-<button id="downloadBtn" class="secondary-btn">
-
-⬇ Download PDF
-
-</button>
-
-<button id="resetBtn" class="secondary-btn">
-
-🔄 Reset
-
-</button>
-
-</div>
-
-<div class="advanced-actions">
-
-<button id="shareBtn">
-
-📤 Share
-
-</button>
-
-<button id="favoriteBtn">
-
-⭐ Favorite Tool
-
-</button>
-
-<button id="historyBtn">
-
-🕘 History
-
-</button>
-
-<button id="batchBtn">
-
-📚 Batch Mode
-
-</button>
-
-<button id="zipBtn">
-
-🗜 Export ZIP
-
-</button>
-
-<button id="settingsBtn">
-
-⚙ Settings
-
-</button>
-
-</div>
-
-<div class="security-info">
-
-<div class="security-card">
-
-🔒 Files stay in your browser
-
-</div>
-
-<div class="security-card">
-
-⚡ Fast local conversion
-
-</div>
-
-<div class="security-card">
-
-🛡 No image upload required
-
-</div>
-
-<div class="security-card">
-
-📄 Unlimited conversions
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="viewer-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Preview & Viewer</h2>
-
-<p>
-
-Preview your PDF pages and images before downloading.
-
-</p>
-
-</div>
-
-<div id="pdfPreviewContainer" class="pdf-preview-container">
-
-<div class="preview-placeholder">
-
-<div class="preview-icon">
-
-📄
-
-</div>
-
-<h3>PDF Preview</h3>
-
-<p>
-
-Your generated PDF preview will appear here.
-
-</p>
-
-<button id="openPreviewBtn" class="primary-btn">
-
-Open Preview
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<div id="imagePreviewModal" class="modal">
-
-<div class="modal-overlay"></div>
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<h2>Image Preview</h2>
-
-<button id="closeImageModal">
-
-✕
-
-</button>
-
-</div>
-
-<div class="modal-body">
-
-<img
-id="previewImage"
-src=""
-alt="Preview Image">
-
-</div>
-
-<div class="modal-footer">
-
-<button id="prevImageBtn">
-
-⬅ Previous
-
-</button>
-
-<button id="nextImageBtn">
-
-Next ➡
-
-</button>
-
-<button id="rotateLeftBtn">
-
-↺ Rotate Left
-
-</button>
-
-<button id="rotateRightBtn">
-
-↻ Rotate Right
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="pdfPreviewModal" class="modal">
-
-<div class="modal-overlay"></div>
-
-<div class="modal-content modal-large">
-
-<div class="modal-header">
-
-<h2>PDF Preview</h2>
-
-<button id="closePdfModal">
-
-✕
-
-</button>
-
-</div>
-
-<div class="modal-body">
-
-<div id="pdfCanvasContainer">
-
-<!-- PDF pages will render here -->
-
-</div>
-
-</div>
-
-<div class="modal-footer">
-
-<button id="downloadPreviewPdfBtn">
-
-⬇ Download PDF
-
-</button>
-
-<button id="closePreviewBtn">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-<section class="workspace-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Workspace</h2>
-
-<p>
-
-Manage your conversion history, favorite tools and batch jobs from one place.
-
-</p>
-
-</div>
-
-<div class="workspace-grid">
-
-<div class="panel-card">
-
-<h3>
-
-⭐ Favorite Tools
-
-</h3>
-
-<div id="favoriteTools" class="favorite-tools">
-
-<p class="empty-message">
-
-No favorite tools yet.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="panel-card">
-
-<h3>
-
-🕘 Recent Downloads
-
-</h3>
-
-<div id="downloadHistory" class="history-list">
-
-<p class="empty-message">
-
-No downloads available.
-
-</p>
-
-</div>
-
-<button id="clearHistoryBtn">
-
-Clear History
-
-</button>
-
-</div>
-
-<div class="panel-card">
-
-<h3>
-
-📚 Batch Queue
-
-</h3>
-
-<div id="batchQueue" class="batch-list">
-
-<p class="empty-message">
-
-No batch jobs added.
-
-</p>
-
-</div>
-
-<div class="batch-actions">
-
-<button id="startBatchBtn">
-
-Start Batch
-
-</button>
-
-<button id="pauseBatchBtn">
-
-Pause
-
-</button>
-
-<button id="resumeBatchBtn">
-
-Resume
-
-</button>
-
-<button id="cancelBatchBtn">
-
-Cancel
-
-</button>
-
-</div>
-
-</div>
-
-<div class="panel-card">
-
-<h3>
-
-📊 Batch Statistics
-
-</h3>
-
-<div class="stats-grid">
-
-<div class="mini-stat">
-
-<h4 id="batchTotal">
-
-0
-
-</h4>
-
-<p>Total Jobs</p>
-
-</div>
-
-<div class="mini-stat">
-
-<h4 id="batchCompleted">
-
-0
-
-</h4>
-
-<p>Completed</p>
-
-</div>
-
-<div class="mini-stat">
-
-<h4 id="batchFailed">
-
-0
-
-</h4>
-
-<p>Failed</p>
-
-</div>
-
-<div class="mini-stat">
-
-<h4 id="batchPending">
-
-0
-
-</h4>
-
-<p>Pending</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="advanced-settings-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Advanced PDF Options</h2>
-
-<p>
-
-Fine tune every aspect of your PDF before exporting.
-
-</p>
-
-</div>
-
-<div class="advanced-settings-grid">
-
-<div class="advanced-card">
-
-<h3>📦 Export Profile</h3>
-
-<label for="exportProfile">
-
-Choose Profile
-
-</label>
-
-<select id="exportProfile">
-
-<option value="FAST">
-
-Fast Export
-
-</option>
-
-<option value="BALANCED" selected>
-
-Balanced
-
-</option>
-
-<option value="BEST">
-
-Best Quality
-
-</option>
-
-</select>
-
-</div>
-
-<div class="advanced-card">
-
-<h3>🗜 Compression</h3>
-
-<label for="compressionLevel">
-
-Compression Level
-
-</label>
-
-<input
-type="range"
-id="compressionLevel"
-min="0"
-max="100"
-value="80">
-
-<p id="compressionValue">
-
-80%
-
-</p>
-
-</div>
-
-<div class="advanced-card">
-
-<h3>💧 Watermark</h3>
-
-<label for="watermarkToggle">
-
-Enable Watermark
-
-</label>
-
-<label class="switch">
-
-<input
-type="checkbox"
-id="watermarkToggle">
-
-<span class="slider"></span>
-
-</label>
-
-<label for="watermarkPosition">
-
-Position
-
-</label>
-
-<select id="watermarkPosition">
-
-<option value="center">
-
-Center
-
-</option>
-
-<option value="top">
-
-Top
-
-</option>
-
-<option value="bottom">
-
-Bottom
-
-</option>
-
-</select>
-
-</div>
-
-<div class="advanced-card">
-
-<h3>🔒 Security</h3>
-
-<label for="pdfPassword">
-
-PDF Password
-
-</label>
-
-<input
-type="password"
-id="pdfPassword"
-placeholder="Optional">
-
-<label for="confirmPassword">
-
-Confirm Password
-
-</label>
-
-<input
-type="password"
-id="confirmPassword"
-placeholder="Repeat Password">
-
-</div>
-
-<div class="advanced-card">
-
-<h3>📄 PDF Information</h3>
-
-<label for="pdfAuthor">
-
-Author
-
-</label>
-
-<input
-type="text"
-id="pdfAuthor"
-placeholder="DailyKitBox">
-
-<label for="pdfSubject">
-
-Subject
-
-</label>
-
-<input
-type="text"
-id="pdfSubject"
-placeholder="Image to PDF">
-
-</div>
-
-<div class="advanced-card">
-
-<h3>⚙ Advanced Options</h3>
-
-<label>
-
-<input
-type="checkbox"
-id="removeMetadata">
-
- Remove unnecessary metadata
-
-</label>
-
-<label>
-
-<input
-type="checkbox"
-id="optimizeImages"
-checked>
-
- Optimize images
-
-</label>
-
-<label>
-
-<input
-type="checkbox"
-id="keepAspectRatio"
-checked>
-
- Keep aspect ratio
-
-</label>
-
-<label>
-
-<input
-type="checkbox"
-id="autoRotate">
-
- Auto rotate images
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="features-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Why Choose DailyKitBox?</h2>
-
-<p>
-
-Fast, secure and professional JPG to PDF conversion with premium features.
-
-</p>
-
-</div>
-
-<div class="features-grid">
-
-<div class="feature-card">
-<div class="feature-icon">⚡</div>
-<h3>Lightning Fast</h3>
-<p>Convert images into PDF within seconds directly in your browser.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🔒</div>
-<h3>100% Secure</h3>
-<p>Your files stay on your device and are never uploaded to our servers.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📱</div>
-<h3>Mobile Friendly</h3>
-<p>Works perfectly on phones, tablets, laptops and desktop computers.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🖼️</div>
-<h3>High Quality</h3>
-<p>Create sharp PDF files while maintaining excellent image quality.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📄</div>
-<h3>Unlimited Usage</h3>
-<p>Convert as many images as you want without daily limits.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🌍</div>
-<h3>Works Everywhere</h3>
-<p>Compatible with all modern browsers without installing software.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="faq-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Frequently Asked Questions</h2>
-
-<p>
-
-Common questions about our JPG to PDF Converter.
-
-</p>
-
-</div>
-
-<div class="faq-list">
-
-<div class="faq-item">
-
-<h3>Is this JPG to PDF tool free?</h3>
-
-<p>
-
-Yes. You can convert your images to PDF without paying any fee.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Are my images uploaded?</h3>
-
-<p>
-
-No. Image processing happens locally in your browser for better privacy.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Can I combine multiple images?</h3>
-
-<p>
-
-Yes. Select multiple JPG, JPEG or PNG files and merge them into one PDF.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Does it work on mobile?</h3>
-
-<p>
-
-Yes. The converter is fully responsive and works on Android, iPhone, tablets and desktop devices.
-
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>Is there any watermark?</h3>
-
-<p>
-
-No. Your exported PDF is clean unless you enable the custom watermark option yourself.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="related-tools-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>More Free Tools</h2>
-
-<p>
-
-Explore more free online tools from DailyKitBox.
-
-</p>
-
-</div>
-
-<div class="related-tools-grid">
-
-<a href="#" class="tool-card-link">
-
-<div class="tool-icon">📄</div>
-
-<h3>PDF Merge</h3>
-
-<p>Combine multiple PDF files into one document.</p>
 
 </a>
 
-<a href="#" class="tool-card-link">
+<a class="tool-card" href="mortgage-calculator/index.html">
 
-<div class="tool-icon">✂️</div>
+<span>🏦</span>
 
-<h3>PDF Split</h3>
+<h3>Mortgage</h3>
 
-<p>Split a PDF into multiple files quickly.</p>
+<p>
 
-</a>
+Calculate monthly payments.
 
-<a href="#" class="tool-card-link">
-
-<div class="tool-icon">🖼️</div>
-
-<h3>Image Compressor</h3>
-
-<p>Reduce image size without losing quality.</p>
+</p>
 
 </a>
 
-<a href="#" class="tool-card-link">
+<a class="tool-card" href="tip-calculator/index.html">
 
-<div class="tool-icon">🌦️</div>
-
-<h3>Weather Tool</h3>
-
-<p>Check live weather forecasts anywhere.</p>
-
-</a>
-
-<a href="#" class="tool-card-link">
-
-<div class="tool-icon">💰</div>
-
-<h3>Mortgage Calculator</h3>
-
-<p>Calculate monthly mortgage payments easily.</p>
-
-</a>
-
-<a href="#" class="tool-card-link">
-
-<div class="tool-icon">💡</div>
+<span>💰</span>
 
 <h3>Tip Calculator</h3>
 
-<p>Calculate tips and split restaurant bills instantly.</p>
+<p>
+
+Split restaurant bills quickly.
+
+</p>
 
 </a>
 
@@ -1457,35 +164,25 @@ Explore more free online tools from DailyKitBox.
 </div>
 
 </section>
-
-<section class="newsletter-section">
+<section class="categories">
 
 <div class="container">
 
-<div class="newsletter-card">
+<h2>Categories</h2>
 
-<h2>Stay Updated</h2>
+<div class="category-grid">
 
-<p>
+<a href="#">📄 PDF Tools</a>
 
-Get updates about new tools and useful features.
+<a href="#">🧮 Calculators</a>
 
-</p>
+<a href="#">💵 Finance</a>
 
-<form id="newsletterForm">
+<a href="#">⛅ Weather</a>
 
-<input
-type="email"
-id="newsletterEmail"
-placeholder="Enter your email">
+<a href="#">🔄 Converters</a>
 
-<button type="submit">
-
-Subscribe
-
-</button>
-
-</form>
+<a href="#">🖼 Image Tools</a>
 
 </div>
 
@@ -1493,334 +190,134 @@ Subscribe
 
 </section>
 
-<footer class="site-footer">
+<section class="all-tools">
 
 <div class="container">
 
-<div class="footer-grid">
+<h2>All PDF Tools</h2>
 
-<div class="footer-column">
+<div class="tools-grid">
 
-<h3>DailyKitBox</h3>
+<a class="tool-card" href="merge-pdf/index.html">
+<span>📑</span>
+<h3>Merge PDF</h3>
+<p>Combine multiple PDF files.</p>
+</a>
+
+<a class="tool-card" href="split-pdf/index.html">
+<span>✂</span>
+<h3>Split PDF</h3>
+<p>Extract PDF pages.</p>
+</a>
+
+<a class="tool-card" href="compress-pdf/index.html">
+<span>🗜</span>
+<h3>Compress PDF</h3>
+<p>Reduce PDF file size.</p>
+</a>
+
+<a class="tool-card" href="pdf-to-word/index.html">
+<span>📝</span>
+<h3>PDF to Word</h3>
+<p>Convert PDF into DOCX.</p>
+</a>
+
+<a class="tool-card" href="pdf-to-powerpoint/index.html">
+<span>📊</span>
+<h3>PDF to PowerPoint</h3>
+<p>Create editable slides.</p>
+</a>
+
+<a class="tool-card" href="pdf-to-excel/index.html">
+<span>📈</span>
+<h3>PDF to Excel</h3>
+<p>Convert tables instantly.</p>
+</a>
+
+<a class="tool-card" href="word-to-pdf/index.html">
+<span>📄</span>
+<h3>Word to PDF</h3>
+<p>Create PDF documents.</p>
+</a>
+
+<a class="tool-card" href="powerpoint-to-pdf/index.html">
+<span>🎞</span>
+<h3>PPT to PDF</h3>
+<p>Convert presentations.</p>
+</a>
+
+<a class="tool-card" href="excel-to-pdf/index.html">
+<span>📑</span>
+<h3>Excel to PDF</h3>
+<p>Export spreadsheets.</p>
+</a>
+
+<a class="tool-card" href="edit-pdf/index.html">
+<span>✏</span>
+<h3>Edit PDF</h3>
+<p>Edit PDF online.</p>
+</a>
+
+<a class="tool-card" href="pdf-to-jpg/index.html">
+<span>🖼</span>
+<h3>PDF to JPG</h3>
+<p>Convert PDF pages to images.</p>
+</a>
+
+<a class="tool-card" href="unlock-pdf/index.html">
+<span>🔓</span>
+<h3>Unlock PDF</h3>
+<p>Remove PDF password.</p>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-logo">
+
+<img src="logo.png" alt="DailyKitBox">
+
+<h2>DailyKitBox</h2>
+
+</div>
 
 <p>
 
-Free online tools for productivity, PDF editing and image conversion.
+Free online PDF tools, calculators, weather and productivity utilities.
 
 </p>
 
-</div>
+<div class="footer-links">
 
-<div class="footer-column">
+<a href="#">Privacy Policy</a>
 
-<h3>Quick Links</h3>
+<a href="#">Terms</a>
 
-<ul>
+<a href="#">Contact</a>
 
-<li><a href="/">Home</a></li>
-
-<li><a href="/tools">Tools</a></li>
-
-<li><a href="/blog">Blog</a></li>
-
-<li><a href="/contact">Contact</a></li>
-
-</ul>
+<a href="#">About</a>
 
 </div>
 
-<div class="footer-column">
+<p class="copyright">
 
-<h3>Legal</h3>
-
-<ul>
-
-<li><a href="/privacy-policy">Privacy Policy</a></li>
-
-<li><a href="/terms">Terms of Service</a></li>
-
-<li><a href="/disclaimer">Disclaimer</a></li>
-
-</ul>
-
-</div>
-
-<div class="footer-column">
-
-<h3>Follow Us</h3>
-
-<div class="social-links">
-
-<a href="#" aria-label="Facebook">📘</a>
-
-<a href="#" aria-label="Instagram">📷</a>
-
-<a href="#" aria-label="YouTube">▶️</a>
-
-<a href="#" aria-label="X">𝕏</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-
-© 2026 DailyKitBox. All rights reserved.
+© 2026 DailyKitBox. All Rights Reserved.
 
 </p>
-
-</div>
 
 </div>
 
 </footer>
-<section class="productivity-section">
 
-<div class="container">
+<script src="assets/script.js"></script>
 
-<div class="section-header">
+</body>
 
-<h2>Productivity Dashboard</h2>
-
-<p>
-
-Track your PDF conversion activity and quickly access useful actions.
-
-</p>
-
-</div>
-
-<div class="dashboard-grid">
-
-<div class="dashboard-card">
-
-<div class="dashboard-icon">
-
-📄
-
-</div>
-
-<h3>Total PDFs Created</h3>
-
-<h2 id="totalPdfCreated">
-
-0
-
-</h2>
-
-<p>Updated automatically</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<div class="dashboard-icon">
-
-🖼️
-
-</div>
-
-<h3>Total Images Converted</h3>
-
-<h2 id="totalImagesConverted">
-
-0
-
-</h2>
-
-<p>Conversion statistics</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<div class="dashboard-icon">
-
-⏱️
-
-</div>
-
-<h3>Average Processing Time</h3>
-
-<h2 id="averageProcessTime">
-
-0s
-
-</h2>
-
-<p>Estimated conversion speed</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<div class="dashboard-icon">
-
-💾
-
-</div>
-
-<h3>Total Data Processed</h3>
-
-<h2 id="totalProcessedSize">
-
-0 MB
-
-</h2>
-
-<p>Running total</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="quick-actions-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Quick Actions</h2>
-
-<p>
-
-One click access to your most frequently used features.
-
-</p>
-
-</div>
-
-<div class="quick-actions-grid">
-
-<button id="selectImagesAction">
-
-📂 Select Images
-
-</button>
-
-<button id="convertNowAction">
-
-⚡ Convert Now
-
-</button>
-
-<button id="downloadLatestAction">
-
-⬇ Download Latest PDF
-
-</button>
-
-<button id="clearWorkspaceAction">
-
-🗑 Clear Workspace
-
-</button>
-
-<button id="restoreSessionAction">
-
-♻ Restore Session
-
-</button>
-
-<button id="openSettingsAction">
-
-⚙ Open Settings
-
-</button>
-
-<button id="openHistoryAction">
-
-🕘 Open History
-
-</button>
-
-<button id="reportIssueAction">
-
-🐞 Report Issue
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="tips-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Helpful Tips</h2>
-
-<p>
-
-Get better PDF quality with these recommendations.
-
-</p>
-
-</div>
-
-<div class="tips-grid">
-
-<div class="tip-card">
-
-💡 Use high resolution images for clearer PDFs.
-
-</div>
-
-<div class="tip-card">
-
-📄 Keep all images in the same orientation for better results.
-
-</div>
-
-<div class="tip-card">
-
-🗜 Enable compression for smaller file sizes.
-
-</div>
-
-<div class="tip-card">
-
-⭐ Save your favorite settings to speed up future conversions.
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="app-utilities">
-
-<div class="container">
-
-<div class="section-header">
-
-<h2>Application Utilities</h2>
-
-<p>
-
-Quick controls and smart tools for a smoother experience.
-
-</p>
-
-</div>
-
-<div class="utilities-grid">
-
-<div class="utility-card">
-
-<h3>⚡ Quick Tools</h3>
-
-<div class=
+</html>
