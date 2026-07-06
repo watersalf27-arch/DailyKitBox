@@ -1,96 +1,369 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+/* =========================================
+DailyKitBox JPG to PDF Tool
+Part 1A
+========================================= */
 
-<title>JPG to PDF Converter - DailyKitBox</title>
-<meta name="description" content="Free online JPG to PDF converter. Convert multiple images into one PDF instantly.">
+const input = document.getElementById("images");
+const preview = document.getElementById("preview");
+const convertBtn = document.getElementById("convertBtn");
+const status = document.getElementById("status");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const imageCount = document.getElementById("imageCount");
+const totalSize = document.getElementById("totalSize");
+const pageSize = document.getElementById("pageSize");
+const orientation = document.getElementById("orientation");
+const quality = document.getElementById("quality");
 
-<link rel="stylesheet" href="../assets/css/Style.css">
+/* ---------- Global Variables ---------- */
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
+let selectedImages = [];
+let imageRotations = new Map();
+let draggedIndex = null;
 
-<body>
+/* ---------- Update Counter ---------- */
 
-<div class="tool-container">
+function updateStats() {
+  const total = selectedImages.reduce((sum, file) => sum + file.size, 0);
+  imageCount.textContent = selectedImages.length + " Images";
+  totalSize.textContent = (total / 1024 / 1024).toFixed(2) + " MB";
+}
 
-<a href="../index.html" class="back-btn">
-← Back to Home
-</a>
+/* ---------- Reset Progress ---------- */
 
-<h1>JPG to PDF Converter</h1>
-<div class="progress-wrapper">
-    <div id="progressBar"></div>
-</div>
+function resetProgress() {
+  progressBar.style.width = "0%";
+  progressText.textContent = "";
+}
 
-<p id="progressText"></p>
-<p class="subtitle">
-Convert JPG or PNG images into one PDF instantly.
-</p>
+/* ---------- Status ---------- */
 
-<div class="upload-box">
-<div class="tool-stats">
+function setStatus(message) {
+  status.textContent = message;
+}
 
-<span id="imageCount">0 Images</span>
+/* ---------- File Validation ---------- */
 
-<span id="totalSize">0 MB</span>
+function isValidImage(file) {
+  const allowed = ["image/jpeg", "image/png"];
+  return allowed.includes(file.type);
+}
 
-</div>
-<input
-type="file"
-id="images"
-accept=".jpg,.jpeg,.png,image/*"
-multiple>
+/* ---------- Clear Preview ---------- */
 
-</div>
+function clearPreview() {
+  preview.innerHTML = "";
+  selectedImages = [];
+  imageRotations.clear();
+  updateStats();
+  resetProgress();
+}
 
-<div id="preview" class="preview-grid"></div>
+/* ---------- Image Upload ---------- */
 
-<div class="options">
+input.addEventListener("change", () => {
+  clearPreview();
 
-<label>Page Size</label>
+  const files = Array.from(input.files);
 
-<select id="pageSize">
+  if (files.length === 0) {
+    setStatus("Please select images.");
+    return;
+  }
 
-<option value="a4">A4</option>
+  files.forEach(file => {
+    if (!isValidImage(file)) {
+      return;
+    }
+    selectedImages.push(file);
+    imageRotations.set(file, 0);
+  });
 
-<option value="letter">Letter</option>
+  refreshPreview();
+  updateStats();
+  setStatus(selectedImages.length + " image(s) selected.");
+});
 
-</select>
+/* =========================================
+Part 2A
+Preview Card UI
+========================================= */
 
-<label>Orientation</label>
+function buildPreviewCard(card, file, imageSrc, index) {
+  card.dataset.index = index;
 
-<select id="orientation">
+  card.innerHTML = `
+    <div class="preview-item">
+      <img class="preview-image" src="${imageSrc}" alt="${file.name}">
+      <div class="preview-info">
+        <strong>${file.name}</strong>
+        <small>${(file.size / 1024).toFixed(1)} KB</small>
+      </div>
+      <div class="preview-actions">
+        <button class="rotate-left">↺</button>
+        <button class="rotate-right">↻</button>
+        <button class="delete-btn">✕</button>
+      </div>
+    </div>
+  `;
 
-<option value="portrait">Portrait</option>
+  const image = card.querySelector(".preview-image");
+  image.style.transform = `rotate(${imageRotations.get(file) || 0}deg)`;
 
-<option value="landscape">Landscape</option>
+  image.addEventListener("click", () => openImagePreview(imageSrc));
 
-</select>
-<label>PDF Quality</label>
+  bindPreviewEvents(card, file, image);
+  preview.appendChild(card);
+}
 
-<select id="quality">
-<option value="FAST">Low (Small Size)</option>
-<option value="MEDIUM" selected>Medium</option>
-<option value="SLOW">High (Best Quality)</option>
-</select>
-</div>
-<div class="progress-wrapper">
-    <div id="progressBar"></div>
-</div>
+/* =========================================
+Part 2B
+Preview Events (rotate / delete only — drag handled at container level)
+========================================= */
 
-<p id="progressText"></p>
-<button id="convertBtn">
-Convert to PDF
-</button>
+function bindPreviewEvents(card, file, image) {
+  card.querySelector(".delete-btn").onclick = () => {
+    selectedImages = selectedImages.filter(f => f !== file);
+    imageRotations.delete(file);
+    refreshPreview();
+    updateStats();
+    setStatus(selectedImages.length + " image(s) selected.");
 
-<p id="status"></p>
+    if (selectedImages.length === 0) {
+      resetProgress();
+      setStatus("Please select images.");
+    }
+  };
 
-</div>
+  card.querySelector(".rotate-left").onclick = () => {
+    let angle = imageRotations.get(file) - 90;
+    imageRotations.set(file, angle);
+    image.style.transform = `rotate(${angle}deg)`;
+  };
 
-<script src="../assets/js/jpg-to-pdf.js"></script>
+  card.querySelector(".rotate-right").onclick = () => {
+    let angle = imageRotations.get(file) + 90;
+    imageRotations.set(file, angle);
+    image.style.transform = `rotate(${angle}deg)`;
+  };
+}
 
-</body>
-</html>
+/* =========================================
+Part 3A
+PDF Engine
+========================================= */
+
+async function createPDF() {
+  if (selectedImages.length === 0) {
+    setStatus("Please select at least one image.");
+    return;
+  }
+
+  convertBtn.disabled = true;
+  setStatus("Creating PDF...");
+  progressBar.style.width = "0%";
+  progressText.textContent = "0% Completed";
+
+  const { jsPDF } = window.jspdf;
+
+  const pdf = new jsPDF({
+    orientation: orientation.value,
+    unit: "mm",
+    format: pageSize.value
+  });
+
+  for (let i = 0; i < selectedImages.length; i++) {
+    const file = selectedImages[i];
+    const dataUrl = await fileToDataURL(file);
+    const img = await loadImage(dataUrl);
+
+    const rotationDeg = ((imageRotations.get(file) || 0) % 360 + 360) % 360;
+    const rotatedDims = rotationDeg === 90 || rotationDeg === 270
+      ? { width: img.height, height: img.width }
+      : { width: img.width, height: img.height };
+
+    const page = getPageDimensions(pdf, rotatedDims);
+
+    if (i > 0) {
+      pdf.addPage();
+    }
+
+    const type = file.type === "image/png" ? "PNG" : "JPEG";
+
+    pdf.addImage(
+      dataUrl,
+      type,
+      page.x,
+      page.y,
+      page.width,
+      page.height,
+      undefined,
+      "FAST",
+      rotationDeg
+    );
+
+    updateProgress(i + 1, selectedImages.length);
+  }
+
+  pdf.save("DailyKitBox.pdf");
+  progressBar.style.width = "100%";
+  progressText.textContent = "✅ PDF Ready";
+  setStatus("✅ PDF downloaded successfully.");
+  convertBtn.disabled = false;
+}
+
+/* =========================================
+Part 3B
+PDF Helper Functions
+========================================= */
+
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = () => reject("File read failed");
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject("Image load failed");
+    img.src = src;
+  });
+}
+
+function getPageDimensions(pdf, img) {
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const ratio = Math.min(pageWidth / img.width, pageHeight / img.height);
+
+  const width = img.width * ratio;
+  const height = img.height * ratio;
+
+  const x = (pageWidth - width) / 2;
+  const y = (pageHeight - height) / 2;
+
+  return { x, y, width, height };
+}
+
+function updateProgress(current, total) {
+  const percent = Math.round((current / total) * 100);
+  progressBar.style.width = percent + "%";
+  progressText.textContent = percent + "% Completed";
+}
+
+convertBtn.addEventListener("click", createPDF);
+
+/* =========================================
+Part 4
+Drag & Drop Engine (single source of truth — container level)
+========================================= */
+
+function refreshPreview() {
+  preview.innerHTML = "";
+
+  selectedImages.forEach((file, index) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const card = document.createElement("div");
+      card.className = "preview-card";
+      card.draggable = true;
+      buildPreviewCard(card, file, e.target.result, index);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+preview.addEventListener("dragstart", e => {
+  const card = e.target.closest(".preview-card");
+  if (!card) return;
+  draggedIndex = Number(card.dataset.index);
+  card.classList.add("dragging");
+});
+
+preview.addEventListener("dragover", e => {
+  e.preventDefault();
+  const card = e.target.closest(".preview-card");
+  if (!card) return;
+  card.classList.add("drag-over");
+});
+
+preview.addEventListener("dragleave", e => {
+  const card = e.target.closest(".preview-card");
+  if (!card) return;
+  card.classList.remove("drag-over");
+});
+
+preview.addEventListener("drop", e => {
+  e.preventDefault();
+  const card = e.target.closest(".preview-card");
+  if (!card) return;
+
+  const targetIndex = Number(card.dataset.index);
+
+  if (draggedIndex === targetIndex || draggedIndex === null) {
+    return;
+  }
+
+  const moved = selectedImages.splice(draggedIndex, 1)[0];
+  selectedImages.splice(targetIndex, 0, moved);
+  draggedIndex = null;
+
+  refreshPreview();
+});
+
+preview.addEventListener("dragend", () => {
+  document.querySelectorAll(".preview-card").forEach(card => {
+    card.classList.remove("drag-over", "dragging");
+  });
+});
+
+/* =========================================
+Part 5
+Image Zoom Preview Modal
+========================================= */
+
+function openImagePreview(src) {
+  let modal = document.getElementById("imagePreviewModal");
+
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "imagePreviewModal";
+    modal.innerHTML = `
+      <div class="preview-modal">
+        <span class="preview-close">×</span>
+        <img id="previewModalImage">
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector(".preview-close").onclick = () => {
+      modal.style.display = "none";
+    };
+
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
+
+  modal.style.display = "flex";
+
+  const img = document.getElementById("previewModalImage");
+  img.src = src;
+  img.style.transform = "scale(1)";
+
+  let zoom = 1;
+
+  img.onwheel = (e) => {
+    e.preventDefault();
+    zoom += e.deltaY < 0 ? 0.1 : -0.1;
+    zoom = Math.max(0.5, Math.min(zoom, 3));
+    img.style.transform = `scale(${zoom})`;
+  };
+}
