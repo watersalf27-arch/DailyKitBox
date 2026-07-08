@@ -27,7 +27,6 @@
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -35,7 +34,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -44,59 +42,50 @@
             background-color: var(--bg-card);
             border-bottom: 1px solid var(--border-color);
         }
-
         .navbar .logo {
             font-size: 22px;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
         }
-
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 500;
         }
-
         .hero {
             background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0) 100%);
             text-align: center;
             padding: 60px 20px;
             border-bottom: 1px solid var(--border-color);
         }
-
         .hero h1 {
             font-size: 36px;
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 12px;
         }
-
         .hero p {
             color: var(--text-muted);
             font-size: 16px;
             margin-bottom: 25px;
         }
-
         .container {
             max-width: 1140px;
             margin: 40px auto;
             padding: 0 24px;
             flex: 1;
         }
-
         .section-title {
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 24px;
         }
-
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
-
         .tool-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -106,18 +95,15 @@
             flex-direction: column;
             box-shadow: var(--shadow-sm);
         }
-
         .tool-icon {
             font-size: 30px;
             margin-bottom: 12px;
         }
-
         .tool-card h3 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 8px;
         }
-
         .tool-card p {
             color: var(--text-muted);
             font-size: 14px;
@@ -125,7 +111,6 @@
             margin-bottom: 20px;
             flex-grow: 1;
         }
-
         .tool-btn {
             display: block;
             text-align: center;
@@ -137,7 +122,6 @@
             font-weight: 600;
             font-size: 14px;
         }
-
         footer {
             background-color: var(--bg-card);
             color: var(--text-muted);
@@ -150,23 +134,18 @@
     </style>
 </head>
 <body>
-
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">DailyKitBox</a>
         </nav>
     </header>
-
     <section class="hero">
         <h1>Simplify Your Daily Tasks</h1>
         <p>Free, fast, and 100% browser-based tools. Privacy focused.</p>
     </section>
-
     <main class="container">
-        <h2 class="section-title">Available Tools</h2>
-        
-        <div class="tools-grid">
-            
+        <h2 class="section-title">Available Tools</h2>        
+        <div class="tools-grid">            
             <!-- Tool 1 -->
             <div class="tool-card">
                 <div class="tool-icon">📄</div>
@@ -175,7 +154,6 @@
                 <!-- NOTE: Agar folder small letters me hai to ye chlega -->
                 <a href="jpg-to-pdf/index.html" class="tool-btn">Open Tool</a>
             </div>
-
             <!-- Tool 2 -->
             <div class="tool-card">
                 <div class="tool-icon">🏠</div>
@@ -183,7 +161,6 @@
                 <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
                 <a href="mortgage-calculator/index.html" class="tool-btn">Open Tool</a>
             </div>
-
             <!-- Tool 3 -->
             <div class="tool-card">
                 <div class="tool-icon">💰</div>
@@ -191,7 +168,6 @@
                 <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
                 <a href="tip-calculator/index.html" class="tool-btn">Open Tool</a>
             </div>
-
             <!-- Tool 4 -->
             <div class="tool-card">
                 <div class="tool-icon">📝</div>
@@ -199,7 +175,6 @@
                 <p>Count words, characters, and sentences in real-time for your text or essays.</p>
                 <a href="word-counter/index.html" class="tool-btn">Open Tool</a>
             </div>
-
             <!-- Tool 5 -->
             <div class="tool-card">
                 <div class="tool-icon">🌤️</div>
@@ -207,13 +182,10 @@
                 <p>Check the real-time weather and temperature of any city around the world.</p>
                 <a href="weather/index.html" class="tool-btn">Open Tool</a>
             </div>
-
         </div>
     </main>
-
     <footer>
         <p>&copy; 2026 DailyKitBox. All processing happens in your browser.</p>
     </footer>
-
 </body>
 </html>
