@@ -4,114 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Calculator - DailyKitBox</title>
-    <link rel="stylesheet" href="../assets/style.css">
     <style>
-        .tool-container {
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-        .form-group {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .calculator-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: var(--shadow-md);
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .title-container .icon {
+            font-size: 32px;
+        }
+        .title-container h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .description {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+        .input-group {
             margin-bottom: 20px;
         }
-        .form-group label {
+        .input-group label {
             display: block;
-            margin-bottom: 8px;
             font-weight: 600;
-            color: #334155;
+            font-size: 15px;
+            margin-bottom: 8px;
         }
-        .form-group input, .form-group select {
+        .input-group input, .input-group select {
             width: 100%;
-            padding: 12px;
+            padding: 12px 16px;
             border: 1px solid #cbd5e1;
-            border-radius: 6px;
+            border-radius: var(--radius-md);
             font-size: 16px;
+            color: var(--text-main);
             outline: none;
+            transition: border-color 0.2s;
         }
-        .form-group input:focus, .form-group select:focus {
-            border-color: #2563eb;
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary);
         }
-        .result-box {
-            margin-top: 25px;
+        .results-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             padding: 20px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            margin-top: 28px;
         }
         .result-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 16px;
+            align-items: center;
+            margin-bottom: 12px;
         }
         .result-row:last-child {
             margin-bottom: 0;
-            padding-top: 10px;
-            border-top: 1px dashed #cbd5e1;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+        }
+        .result-label {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+        .result-value {
+            font-size: 20px;
             font-weight: 700;
-            font-size: 18px;
+            color: var(--text-main);
+        }
+        .result-row.total .result-label {
             color: #10b981;
+            font-weight: 700;
+        }
+        .result-row.total .result-value {
+            color: #10b981;
+            font-size: 24px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <nav class="navbar">
-            <a href="../index.html" class="logo">DailyKitBox</a>
-            <div class="nav-links">
-                <a href="../index.html">← Back to Home</a>
+    <div class="calculator-card">
+        <a href="../index.html" class="back-btn">&larr; Back to Home</a>        
+        <div class="title-container">
+            <span class="icon">💰</span>
+            <h1>Tip Calculator</h1>
+        </div>        
+        <p class="description">Split bills and calculate tips instantly with friends.</p>
+        <div class="input-group">
+            <label for="billAmount">Bill Amount ($)</label>
+            <input type="number" id="billAmount" placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="tipPercentage">Tip Percentage</label>
+            <select id="tipPercentage">
+                <option value="0.10">10% (Service OK)</option>
+                <option value="0.15" selected>15% (Standard)</option>
+                <option value="0.18">18% (Good)</option>
+                <option value="0.20">20% (Excellent)</option>
+                <option value="0.25">25% (Exceptional)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="numberOfPeople">Number of People</label>
+            <input type="number" id="numberOfPeople" value="1" min="1">
+        </div>
+        <div class="results-box">
+            <div class="result-row">
+                <span class="result-label">Tip Amount (Per Person):</span>
+                <span class="result-value" id="tipAmount">$0.00</span>
             </div>
-        </nav>
-    </header>
-
-    <main class="container">
-        <div class="tool-container">
-            <h1 style="font-size: 26px; margin-bottom: 10px;">💰 Tip Calculator</h1>
-            <p style="color: #64748b; margin-bottom: 25px;">Split bills and calculate tips instantly with friends.</p>
-
-            <div class="form-group">
-                <label for="billAmount">Bill Amount ($)</label>
-                <input type="number" id="billAmount" placeholder="0.00" step="0.01">
-            </div>
-
-            <div class="form-group">
-                <label for="tipPercentage">Tip Percentage</label>
-                <select id="tipPercentage">
-                    <option value="0.15">15% (Standard)</option>
-                    <option value="0.18">18% (Good)</option>
-                    <option value="0.20">20% (Great)</option>
-                    <option value="0.25">25% (Excellent)</option>
-                    <option value="0.10">10% (Budget)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="numPeople">Number of People</label>
-                <input type="number" id="numPeople" value="1" min="1">
-            </div>
-
-            <div class="result-box">
-                <div class="result-row">
-                    <span>Tip Amount (Per Person):</span>
-                    <strong id="tipPerPerson">$0.00</strong>
-                </div>
-                <div class="result-row">
-                    <span>Total Bill (Per Person):</span>
-                    <strong id="totalPerPerson">$0.00</strong>
-                </div>
+            <div class="result-row total">
+                <span class="result-label">Total Bill (Per Person):</span>
+                <span class="result-value" id="totalBill">$0.00</span>
             </div>
         </div>
-    </main>
+    </div>
+    <script>
+        const billInput = document.getElementById('billAmount');
+        const tipInput = document.getElementById('tipPercentage');
+        const peopleInput = document.getElementById('numberOfPeople');
+        const tipAmountResult = document.getElementById('tipAmount');
+        const totalBillResult = document.getElementById('totalBill');
+        function calculateTip() {
+            const bill = parseFloat(billInput.value) || 0;
+            const tipPercent = parseFloat(tipInput.value) || 0;
+            const people = parseInt(peopleInput.value) || 1;
 
-    <footer>
-        <p>&copy; 2026 DailyKitBox. Built for speed and privacy.</p>
-    </footer>
-
-    <script src="../assets/script.js"></script>
-    <script src="tip-calculator.js"></script>
+            if (bill <= 0) {
+                tipAmountResult.textContent = '$0.00';                totalBillResult.textContent = '$0.00';
+                return;
+            }
+            const totalTip = bill * tipPercent;
+            const totalBill = bill + totalTip;
+            const tipPerPerson = totalTip / people;
+            const totalPerPerson = totalBill / people;            tipAmountResult.textContent = `$${tipPerPerson.toFixed(2)}`;            totalBillResult.textContent = `$${totalPerPerson.toFixed(2)}`;
+        }        billInput.addEventListener('input', calculateTip);       tipInput.addEventListener('change', calculateTip);        peopleInput.addEventListener('input', calculateTip);
+    </script>
 </body>
 </html>
