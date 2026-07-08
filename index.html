@@ -4,71 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DailyKitBox - Free Online Tools for Daily Use</title>
-    <meta name="description" content="Access free, fast, and secure online tools like JPG to PDF, PDF tools, Mortgage Calculator, and more on DailyKitBox.">
-    <!-- Fixed Path to small style.css -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Internal CSS: Isse aapka design 100% load hoga chahe folders ka jo bhi path ho -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .hero {
+            background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0) 100%);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 40px auto;
+            padding: 0 24px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tool-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .tool-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tool-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header & Navbar -->
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">DailyKitBox</a>
-            <div class="nav-links">
-                <a href="#all-tools">All Tools</a>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Section with Search -->
     <section class="hero">
         <h1>Simplify Your Daily Tasks</h1>
-        <p>Free, fast, and 100% browser-based tools. No registration required.</p>
-        <div class="search-container">
-            <input type="text" id="toolSearch" placeholder="Search for tools... (e.g., PDF, Calculator, Word)">
-        </div>
+        <p>Free, fast, and 100% browser-based tools. Privacy focused.</p>
     </section>
 
-    <!-- Main Tools Grid Section -->
-    <main class="container" id="all-tools">
+    <main class="container">
         <h2 class="section-title">Available Tools</h2>
         
-        <div class="tools-grid" id="toolsGrid">
+        <div class="tools-grid">
             
-            <!-- Tool 1: JPG to PDF -->
-            <div class="tool-card" data-tags="pdf image jpg converter documents merge files">
+            <!-- Tool 1 -->
+            <div class="tool-card">
                 <div class="tool-icon">📄</div>
                 <h3>JPG to PDF Converter</h3>
                 <p>Convert your JPEG images into a single professional PDF document securely.</p>
+                <!-- NOTE: Agar folder small letters me hai to ye chlega -->
                 <a href="jpg-to-pdf/index.html" class="tool-btn">Open Tool</a>
             </div>
 
-            <!-- Tool 2: Mortgage Calculator -->
-            <div class="tool-card" data-tags="mortgage calculator finance loan home budget">
+            <!-- Tool 2 -->
+            <div class="tool-card">
                 <div class="tool-icon">🏠</div>
                 <h3>Mortgage Calculator</h3>
                 <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
                 <a href="mortgage-calculator/index.html" class="tool-btn">Open Tool</a>
             </div>
 
-            <!-- Tool 3: Tip Calculator -->
-            <div class="tool-card" data-tags="tip calculator bill split food restaurant finance">
+            <!-- Tool 3 -->
+            <div class="tool-card">
                 <div class="tool-icon">💰</div>
                 <h3>Tip Calculator</h3>
                 <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
                 <a href="tip-calculator/index.html" class="tool-btn">Open Tool</a>
             </div>
 
-            <!-- Tool 4: Word Counter -->
-            <div class="tool-card" data-tags="word counter text editor characters writer essay">
+            <!-- Tool 4 -->
+            <div class="tool-card">
                 <div class="tool-icon">📝</div>
                 <h3>Word Counter</h3>
                 <p>Count words, characters, and sentences in real-time for your text or essays.</p>
                 <a href="word-counter/index.html" class="tool-btn">Open Tool</a>
             </div>
 
-            <!-- Tool 5: Weather App -->
-            <div class="tool-card" data-tags="weather forecast temperature rain climate forecast">
+            <!-- Tool 5 -->
+            <div class="tool-card">
                 <div class="tool-icon">🌤️</div>
                 <h3>Weather App</h3>
                 <p>Check the real-time weather and temperature of any city around the world.</p>
@@ -78,11 +211,9 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 DailyKitBox. Built for speed and privacy. All processing happens in your browser.</p>
+        <p>&copy; 2026 DailyKitBox. All processing happens in your browser.</p>
     </footer>
 
-    <script src="assets/css/script.js"></script>
 </body>
 </html>
