@@ -1,135 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DailyKitBox - All Daily Tools in One Place</title>
-
-<meta name="description" content="Free online tools including PDF converters, calculators, weather and more.">
-
-<link rel="stylesheet" href="assets/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyKitBox - Free Online Tools for Daily Use</title>
+    <meta name="description" content="Access free, fast, and secure online tools like JPG to PDF, PDF tools, Mortgage Calculator, and more on DailyKitBox.">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 
-<header class="header">
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">DailyKitBox</a>
+            <div class="nav-links">
+                <a href="#all-tools">All Tools</a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="logo">
-        <span>🌐</span>
-        <h1>DailyKitBox</h1>
-    </div>
+    <section class="hero">
+        <h1>Simplify Your Daily Tasks</h1>
+        <p>Free, fast, and 100% browser-based tools. No registration required.</p>
+        <div class="search-container">
+            <input type="text" id="toolSearch" placeholder="Search for tools... (e.g., PDF, Calculator, Word)">
+        </div>
+    </section>
 
-    <nav>
-        <a class="active" href="index.html">🏠 Home</a>
-        <a href="jpg-to-pdf.html">📄 JPG to PDF</a>
-        <a href="weather.html">🌤 Weather</a>
-        <a href="mortgage.html">🏦 Mortgage</a>
-        <a href="tip-calculator.html">💰 Tip Calculator</a>
-    </nav>
+    <main class="container" id="all-tools">
+        <h2 class="section-title">Available Tools</h2>
+        
+        <div class="tools-grid" id="toolsGrid">
+            
+            <div class="tool-card" data-tags="pdf image jpg converter documents merge files">
+                <div class="tool-icon">📄</div>
+                <h3>JPG to PDF Converter</h3>
+                <p>Convert your JPEG images into a single professional PDF document securely.</p>
+                <a href="jpg-to-pdf.html" class="tool-btn">Open Tool</a>
+            </div>
 
-</header>
+            <div class="tool-card" data-tags="pdf image png converter documents graphics">
+                <div class="tool-icon">🖼️</div>
+                <h3>PNG to PDF Converter</h3>
+                <p>Convert PNG images with transparency into high-quality PDF files instantly.</p>
+                <a href="png-to-pdf.html" class="tool-btn">Open Tool</a>
+            </div>
 
+            <div class="tool-card" data-tags="pdf image jpg converter extract photos pages">
+                <div class="tool-icon">📸</div>
+                <h3>PDF to JPG Extractor</h3>
+                <p>Extract pages from a PDF file and save them as high-quality JPG images.</p>
+                <a href="pdf-to-jpg.html" class="tool-btn">Open Tool</a>
+            </div>
 
-<section class="hero">
+            <div class="tool-card" data-tags="pdf merge combine join split documents files">
+                <div class="tool-icon">🗂️</div>
+                <h3>Merge PDF</h3>
+                <p>Combine multiple PDF files into a single document in your preferred order.</p>
+                <a href="merge-pdf.html" class="tool-btn">Open Tool</a>
+            </div>
 
-<h2>
-All Your Daily Tools<br>
-in One Place
-</h2>
+            <div class="tool-card" data-tags="pdf compress resize size shrink document optimizer">
+                <div class="tool-icon">🗜️</div>
+                <h3>Compress PDF</h3>
+                <p>Reduce the file size of your PDF documents while keeping optimal quality.</p>
+                <a href="compress-pdf.html" class="tool-btn">Open Tool</a>
+            </div>
 
-<p>
-Free online PDF tools, calculators,
-weather, converters and more.
-</p>
+            <div class="tool-card" data-tags="pdf word doc docx converter office text">
+                <div class="tool-icon">📘</div>
+                <h3>Word to PDF Converter</h3>
+                <p>Convert Microsoft Word documents (.docx) into web-friendly PDF layout.</p>
+                <a href="word-to-pdf.html" class="tool-btn">Open Tool</a>
+            </div>
 
-<input type="search" placeholder="Search a tool...">
+            <div class="tool-card" data-tags="mortgage calculator finance loan home budget">
+                <div class="tool-icon">🏠</div>
+                <h3>Mortgage Calculator</h3>
+                <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
+                <a href="mortgage.html" class="tool-btn">Open Tool</a>
+            </div>
 
-</section>
+            <div class="tool-card" data-tags="tip calculator bill split food restaurant finance">
+                <div class="tool-icon">💰</div>
+                <h3>Tip Calculator</h3>
+                <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
+                <a href="tip-calculator.html" class="tool-btn">Open Tool</a>
+            </div>
 
+            <div class="tool-card" data-tags="word counter text editor characters writer essay">
+                <div class="tool-icon">📝</div>
+                <h3>Word Counter</h3>
+                <p>Count words, characters, and sentences in real-time for your text or essays.</p>
+                <a href="word-counter.html" class="tool-btn">Open Tool</a>
+            </div>
 
+            <div class="tool-card" data-tags="weather forecast temperature rain climate forecast">
+                <div class="tool-icon">🌤️</div>
+                <h3>Weather App</h3>
+                <p>Check the real-time weather and temperature of any city around the world.</p>
+                <a href="weather.html" class="tool-btn">Open Tool</a>
+            </div>
 
-<section class="container">
+        </div>
+    </main>
 
-<h2>Featured Tools</h2>
+    <footer>
+        <p>&copy; 2026 DailyKitBox. Built for speed and privacy. All processing happens in your browser.</p>
+    </footer>
 
-
-<div class="tools-grid">
-
-
-<div class="tool-card">
-<span>📄</span>
-<h3>JPG to PDF</h3>
-<p>Convert images into PDF instantly.</p>
-<a href="jpg-to-pdf.html">Open Tool</a>
-</div>
-
-
-<div class="tool-card">
-<span>🌤</span>
-<h3>Weather</h3>
-<p>Real time weather forecast.</p>
-<a href="weather.html">Open Tool</a>
-</div>
-
-
-
-<div class="tool-card">
-<span>🏦</span>
-<h3>Mortgage</h3>
-<p>Calculate monthly payments.</p>
-<a href="mortgage.html">Open Tool</a>
-</div>
-
-
-
-<div class="tool-card">
-<span>💰</span>
-<h3>Tip Calculator</h3>
-<p>Split bills quickly.</p>
-<a href="tip-calculator.html">Open Tool</a>
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<section class="container">
-
-<h2>Categories</h2>
-
-
-<div class="categories">
-
-<button>📄 PDF Tools</button>
-<button>🧮 Calculators</button>
-<button>💵 Finance</button>
-<button>🌤 Weather</button>
-<button>🔄 Converters</button>
-<button>🖼 Image Tools</button>
-
-</div>
-
-
-</section>
-
-
-
-<footer>
-
-<p>
-© 2026 DailyKitBox. All Rights Reserved.
-</p>
-
-</footer>
-
-
-<script src="assets/script.js"></script>
-
+    <script src="assets/script.js"></script>
 </body>
 </html>
