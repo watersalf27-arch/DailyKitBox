@@ -1,1 +1,117 @@
-i
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator - DailyKitBox</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .tool-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #2563eb;
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .result-row:last-child {
+            margin-bottom: 0;
+            padding-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+            font-weight: 700;
+            font-size: 18px;
+            color: #10b981;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">DailyKitBox</a>
+            <div class="nav-links">
+                <a href="../index.html">← Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="tool-container">
+            <h1 style="font-size: 26px; margin-bottom: 10px;">💰 Tip Calculator</h1>
+            <p style="color: #64748b; margin-bottom: 25px;">Split bills and calculate tips instantly with friends.</p>
+
+            <div class="form-group">
+                <label for="billAmount">Bill Amount ($)</label>
+                <input type="number" id="billAmount" placeholder="0.00" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="tipPercentage">Tip Percentage</label>
+                <select id="tipPercentage">
+                    <option value="0.15">15% (Standard)</option>
+                    <option value="0.18">18% (Good)</option>
+                    <option value="0.20">20% (Great)</option>
+                    <option value="0.25">25% (Excellent)</option>
+                    <option value="0.10">10% (Budget)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numPeople">Number of People</label>
+                <input type="number" id="numPeople" value="1" min="1">
+            </div>
+
+            <div class="result-box">
+                <div class="result-row">
+                    <span>Tip Amount (Per Person):</span>
+                    <strong id="tipPerPerson">$0.00</strong>
+                </div>
+                <div class="result-row">
+                    <span>Total Bill (Per Person):</span>
+                    <strong id="totalPerPerson">$0.00</strong>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DailyKitBox. Built for speed and privacy.</p>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+    <script src="tip-calculator.js"></script>
+</body>
+</html>
