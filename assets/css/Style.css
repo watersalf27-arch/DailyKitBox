@@ -1,1 +1,216 @@
-1
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+body{
+    background:#f5f6fa;
+    color:#2d3436;
+    font-family:Inter, sans-serif;
+}
+
+
+h1,h2,h3{
+    font-family:Fraunces,serif;
+}
+
+
+/* Header */
+
+.header{
+    background:#111827;
+    padding:25px 20px;
+    color:white;
+}
+
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+
+.logo h1{
+    font-size:32px;
+}
+
+
+nav{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+nav a{
+    text-decoration:none;
+    color:white;
+    padding:14px;
+    border-radius:8px;
+    font-family:Fraunces,serif;
+}
+
+
+nav a:hover,
+nav .active{
+    background:#2563eb;
+}
+
+
+
+/* Hero */
+
+.hero{
+    margin:20px;
+    padding:35px 25px;
+    border-radius:18px;
+    background:#2563eb;
+    color:white;
+}
+
+
+.hero h2{
+    font-size:30px;
+    line-height:1.2;
+}
+
+
+.hero p{
+    margin:20px 0;
+}
+
+
+.hero input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+
+
+
+/* Container */
+
+.container{
+    padding:20px;
+}
+
+
+.container h2{
+    margin-bottom:20px;
+}
+
+
+
+/* Cards */
+
+.tools-grid{
+    display:grid;
+    gap:20px;
+}
+
+
+.tool-card{
+
+    background:white;
+    padding:25px;
+    border-radius:16px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+.tool-card span{
+    font-size:30px;
+}
+
+
+.tool-card h3{
+    margin:12px 0;
+}
+
+
+.tool-card p{
+    margin-bottom:15px;
+}
+
+
+.tool-card a{
+
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    border-radius:20px;
+    text-decoration:none;
+
+}
+
+
+
+
+/* Categories */
+
+.categories{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+}
+
+
+.categories button{
+
+    border:none;
+    background:#2563eb;
+    color:white;
+
+    padding:12px 18px;
+    border-radius:25px;
+
+    font-family:Fraunces,serif;
+    cursor:pointer;
+
+}
+
+
+
+
+/* Footer */
+
+footer{
+
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+
+}
+
+
+
+/* Desktop */
+
+@media(min-width:768px){
+
+nav{
+    flex-direction:row;
+    justify-content:center;
+}
+
+
+.tools-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+
+}
