@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyKitBox - Free Online Tools for Daily Use</title>
-    
-    <!-- Internal CSS: Isse aapka design 100% load hoga chahe folders ka jo bhi path ho -->
+    <title>Tip Calculator - DailyKitBox</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -20,7 +18,6 @@
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -31,161 +28,145 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 18px 5%;
-            background-color: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
+            min-height: 100vh;
+            padding: 20px;
         }
-        .navbar .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-        .hero {
-            background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0) 100%);
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .hero h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 25px;
-        }
-        .container {
-            max-width: 1140px;
-            margin: 40px auto;
-            padding: 0 24px;
-            flex: 1;
-        }
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .tool-card {
+        .calculator-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
-            padding: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: var(--shadow-md);
+        }
+        .title-container {
             display: flex;
-            flex-direction: column;
-            box-shadow: var(--shadow-sm);
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
-        .tool-icon {
-            font-size: 30px;
-            margin-bottom: 12px;
+        .title-container .icon {
+            font-size: 32px;
         }
-        .tool-card h3 {
-            font-size: 18px;
+        .title-container h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .description {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
             font-weight: 600;
+            font-size: 15px;
             margin-bottom: 8px;
         }
-        .tool-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        .tool-btn {
-            display: block;
-            text-align: center;
-            background-color: var(--primary);
-            color: white;
-            padding: 10px;
-            text-decoration: none;
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
             border-radius: var(--radius-md);
+            font-size: 16px;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary);
+        }
+        .results-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-top: 28px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .result-row:last-child {
+            margin-bottom: 0;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+        }
+        .result-label {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+        .result-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .result-row.total .result-label {
+            color: #10b981;
+            font-weight: 700;
+        }
+        .result-row.total .result-value {
+            color: #10b981;
+            font-size: 24px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary);
             font-weight: 600;
             font-size: 14px;
-        }
-        footer {
-            background-color: var(--bg-card);
-            color: var(--text-muted);
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">DailyKitBox</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <h1>Simplify Your Daily Tasks</h1>
-        <p>Free, fast, and 100% browser-based tools. Privacy focused.</p>
-    </section>
-    <main class="container">
-        <h2 class="section-title">Available Tools</h2>        
-        <div class="tools-grid">            
-            <!-- Tool 1 -->
-            <div class="tool-card">
-                <div class="tool-icon">📄</div>
-                <h3>JPG to PDF Converter</h3>
-                <p>Convert your JPEG images into a single professional PDF document securely.</p>
-                <!-- NOTE: Agar folder small letters me hai to ye chlega -->
-                <a href="jpg-to-pdf/index.html" class="tool-btn">Open Tool</a>
+    <div class="calculator-card">
+        <a href="../index.html" class="back-btn">&larr; Back to Home</a>        
+        <div class="title-container">
+            <span class="icon">💰</span>
+            <h1>Tip Calculator</h1>
+        </div>        
+        <p class="description">Split bills and calculate tips instantly with friends.</p>
+        <div class="input-group">
+            <label for="billAmount">Bill Amount ($)</label>
+            <input type="number" id="billAmount" placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="tipPercentage">Tip Percentage</label>
+            <select id="tipPercentage">
+                <option value="0.10">10% (Service OK)</option>
+                <option value="0.15">15% (Good)</option>
+                <option value="0.18" selected>18% (Very Good)</option>
+                <option value="0.20">20% (Excellent)</option>
+                <option value="0.25">25% (Exceptional)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="numberOfPeople">Number of People</label>
+            <input type="number" id="numberOfPeople" value="1" min="1">
+        </div>
+        <div class="results-box">
+            <div class="result-row">
+                <span class="result-label">Tip Amount (Per Person):</span>
+                <span class="result-value" id="tipAmount">$0.00</span>
             </div>
-            <!-- Tool 2 -->
-            <div class="tool-card">
-                <div class="tool-icon">🏠</div>
-                <h3>Mortgage Calculator</h3>
-                <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
-                <a href="mortgage-calculator/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <!-- Tool 3 -->
-            <div class="tool-card">
-                <div class="tool-icon">💰</div>
-                <h3>Tip Calculator</h3>
-                <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
-                <a href="tip-calculator/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <!-- Tool 4 -->
-            <div class="tool-card">
-                <div class="tool-icon">📝</div>
-                <h3>Word Counter</h3>
-                <p>Count words, characters, and sentences in real-time for your text or essays.</p>
-                <a href="word-counter/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <!-- Tool 5 -->
-            <div class="tool-card">
-                <div class="tool-icon">🌤️</div>
-                <h3>Weather App</h3>
-                <p>Check the real-time weather and temperature of any city around the world.</p>
-                <a href="weather/index.html" class="tool-btn">Open Tool</a>
+            <div class="result-row total">
+                <span class="result-label">Total Bill (Per Person):</span>
+                <span class="result-value" id="totalBill">$0.00</span>
             </div>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 DailyKitBox. All processing happens in your browser.</p>
-    </footer>
+    </div>
+    <!-- Script linked properly to assets/js folder -->
+    <script src="../assets/js/tip-calculator.js"></script>
 </body>
 </html>
