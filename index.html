@@ -3,111 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyKitBox - Free Online Tools for Daily Use</title>
-    <meta name="description" content="Access free, fast, and secure online tools like JPG to PDF, PDF tools, Mortgage Calculator, and more on DailyKitBox.">
-    <link rel="stylesheet" href="assets/style.css">
+    <title>Mortgage Calculator - DailyKitBox</title>
+    <meta name="description" content="Calculate your monthly mortgage payments, interest, and loan timeline instantly with DailyKitBox.">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .tool-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-prefix {
+            position: absolute;
+            left: 12px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 12px 12px 30px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: #2563eb;
+        }
+        .btn-calc {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-calc:hover {
+            background-color: #1d4ed8;
+        }
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            display: none;
+        }
+        .result-title {
+            font-size: 18px;
+            color: #475569;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .result-amount {
+            font-size: 32px;
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .result-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 14px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo">DailyKitBox</a>
+            <a href="../index.html" class="logo">DailyKitBox</a>
             <div class="nav-links">
-                <a href="#all-tools">All Tools</a>
+                <a href="../index.html">← Back to Home</a>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Simplify Your Daily Tasks</h1>
-        <p>Free, fast, and 100% browser-based tools. No registration required.</p>
-        <div class="search-container">
-            <input type="text" id="toolSearch" placeholder="Search for tools... (e.g., PDF, Calculator, Word)">
-        </div>
-    </section>
+    <main class="container">
+        <div class="tool-container">
+            <h1 style="font-size: 28px; margin-bottom: 10px;">🏠 Mortgage Calculator</h1>
+            <p style="color: #64748b; margin-bottom: 25px;">Estimate your monthly loan payments dynamically.</p>
 
-    <main class="container" id="all-tools">
-        <h2 class="section-title">Available Tools</h2>
-        
-        <div class="tools-grid" id="toolsGrid">
-            
-            <div class="tool-card" data-tags="pdf image jpg converter documents merge files">
-                <div class="tool-icon">📄</div>
-                <h3>JPG to PDF Converter</h3>
-                <p>Convert your JPEG images into a single professional PDF document securely.</p>
-                <a href="jpg-to-pdf.html" class="tool-btn">Open Tool</a>
+            <div class="form-group">
+                <label for="homeValue">Home Price</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="homeValue" value="300000">
+                </div>
             </div>
 
-            <div class="tool-card" data-tags="pdf image png converter documents graphics">
-                <div class="tool-icon">🖼️</div>
-                <h3>PNG to PDF Converter</h3>
-                <p>Convert PNG images with transparency into high-quality PDF files instantly.</p>
-                <a href="png-to-pdf.html" class="tool-btn">Open Tool</a>
+            <div class="form-group">
+                <label for="downPayment">Down Payment</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="downPayment" value="60000">
+                </div>
             </div>
 
-            <div class="tool-card" data-tags="pdf image jpg converter extract photos pages">
-                <div class="tool-icon">📸</div>
-                <h3>PDF to JPG Extractor</h3>
-                <p>Extract pages from a PDF file and save them as high-quality JPG images.</p>
-                <a href="pdf-to-jpg.html" class="tool-btn">Open Tool</a>
+            <div class="form-group">
+                <label for="interestRate">Interest Rate (Annual %)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix" style="left:10px">%</span>
+                    <input type="number" id="interestRate" step="0.1" value="4.5" style="padding-left:25px;">
+                </div>
             </div>
 
-            <div class="tool-card" data-tags="pdf merge combine join split documents files">
-                <div class="tool-icon">🗂️</div>
-                <h3>Merge PDF</h3>
-                <p>Combine multiple PDF files into a single document in your preferred order.</p>
-                <a href="merge-pdf.html" class="tool-btn">Open Tool</a>
+            <div class="form-group">
+                <label for="loanTerm">Loan Term (Years)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix" style="left:10px">📅</span>
+                    <input type="number" id="loanTerm" value="30" style="padding-left:35px;">
+                </div>
             </div>
 
-            <div class="tool-card" data-tags="pdf compress resize size shrink document optimizer">
-                <div class="tool-icon">🗜️</div>
-                <h3>Compress PDF</h3>
-                <p>Reduce the file size of your PDF documents while keeping optimal quality.</p>
-                <a href="compress-pdf.html" class="tool-btn">Open Tool</a>
-            </div>
+            <button id="calculateBtn" class="btn-calc">Calculate Payment</button>
 
-            <div class="tool-card" data-tags="pdf word doc docx converter office text">
-                <div class="tool-icon">📘</div>
-                <h3>Word to PDF Converter</h3>
-                <p>Convert Microsoft Word documents (.docx) into web-friendly PDF layout.</p>
-                <a href="word-to-pdf.html" class="tool-btn">Open Tool</a>
+            <div class="result-box" id="resultBox">
+                <div class="result-title">Estimated Monthly Payment</div>
+                <div class="result-amount" id="monthlyPayment">$0.00</div>
+                <div class="result-stats">
+                    <div>Total Principal: <strong id="totalPrincipal">$0</strong></div>
+                    <div>Total Interest: <strong id="totalInterest">$0</strong></div>
+                </div>
             </div>
-
-            <div class="tool-card" data-tags="mortgage calculator finance loan home budget">
-                <div class="tool-icon">🏠</div>
-                <h3>Mortgage Calculator</h3>
-                <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
-                <a href="mortgage.html" class="tool-btn">Open Tool</a>
-            </div>
-
-            <div class="tool-card" data-tags="tip calculator bill split food restaurant finance">
-                <div class="tool-icon">💰</div>
-                <h3>Tip Calculator</h3>
-                <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
-                <a href="tip-calculator.html" class="tool-btn">Open Tool</a>
-            </div>
-
-            <div class="tool-card" data-tags="word counter text editor characters writer essay">
-                <div class="tool-icon">📝</div>
-                <h3>Word Counter</h3>
-                <p>Count words, characters, and sentences in real-time for your text or essays.</p>
-                <a href="word-counter.html" class="tool-btn">Open Tool</a>
-            </div>
-
-            <div class="tool-card" data-tags="weather forecast temperature rain climate forecast">
-                <div class="tool-icon">🌤️</div>
-                <h3>Weather App</h3>
-                <p>Check the real-time weather and temperature of any city around the world.</p>
-                <a href="weather.html" class="tool-btn">Open Tool</a>
-            </div>
-
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 DailyKitBox. Built for speed and privacy. All processing happens in your browser.</p>
+        <p>&copy; 2026 DailyKitBox. Built for speed and privacy.</p>
     </footer>
 
-    <script src="assets/script.js"></script>
+    <script src="../assets/script.js"></script>
+    <script src="mortgage.js"></script>
 </body>
 </html>
