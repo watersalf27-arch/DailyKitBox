@@ -1,1 +1,128 @@
-i
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - DailyKitBox</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .tool-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: #2563eb;
+        }
+        .search-box button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-box button:hover {
+            background: #1d4ed8;
+        }
+        .weather-display {
+            display: none;
+            margin-top: 20px;
+        }
+        .city-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .temp-val {
+            font-size: 48px;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 10px 0;
+        }
+        .weather-desc {
+            font-size: 18px;
+            color: #475569;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .error-msg {
+            color: #ef4444;
+            display: none;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">DailyKitBox</a>
+            <div class="nav-links">
+                <a href="../index.html">← Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="tool-container">
+            <h1 style="font-size: 26px; margin-bottom: 10px;">🌤️ Weather App</h1>
+            <p style="color: #64748b; margin-bottom: 25px;">Check real-time weather details for any city instantly.</p>
+
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Enter city name... (e.g. London, Karachi)">
+                <button id="getWeatherBtn">Search</button>
+            </div>
+
+            <div class="error-msg" id="errorBlock">City not found. Please try again.</div>
+
+            <div class="weather-display" id="weatherDisplay">
+                <div class="city-name" id="cityName">City Name</div>
+                <div class="temp-val" id="tempVal">0°C</div>
+                <div class="weather-desc" id="weatherDesc">Clear Sky</div>
+                
+                <div class="details-grid">
+                    <div>Wind Speed: <strong id="windSpeed">0 km/h</strong></div>
+                    <div>Humidity: <strong id="humidity">0%</strong></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DailyKitBox. Built for speed and privacy.</p>
+    </footer>
+
+    <script src="../assets/script.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>
