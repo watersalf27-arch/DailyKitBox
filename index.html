@@ -137,6 +137,7 @@
             <h1>Tip Calculator</h1>
         </div>        
         <p class="description">Split bills and calculate tips instantly with friends.</p>
+
         <div class="input-group">
             <label for="billAmount">Bill Amount ($)</label>
             <input type="number" id="billAmount" placeholder="0.00" min="0" step="0.01">
@@ -145,8 +146,8 @@
             <label for="tipPercentage">Tip Percentage</label>
             <select id="tipPercentage">
                 <option value="0.10">10% (Service OK)</option>
-                <option value="0.15">15% (Good)</option>
-                <option value="0.18" selected>18% (Very Good)</option>
+                <option value="0.15" selected>15% (Standard)</option>
+                <option value="0.18">18% (Good)</option>
                 <option value="0.20">20% (Excellent)</option>
                 <option value="0.25">25% (Exceptional)</option>
             </select>
@@ -166,7 +167,24 @@
             </div>
         </div>
     </div>
-    <!-- Script linked properly to assets/js folder -->
-    <script src="../assets/js/tip-calculator.js"></script>
+    <script>
+        const billInput = document.getElementById('billAmount');
+        const tipInput = document.getElementById('tipPercentage');
+        const peopleInput = document.getElementById('numberOfPeople');
+        const tipAmountResult = document.getElementById('tipAmount');
+        const totalBillResult = document.getElementById('totalBill');
+        function calculateTip() {
+            const bill = parseFloat(billInput.value) || 0;
+            const tipPercent = parseFloat(tipInput.value) || 0;
+            const people = parseInt(peopleInput.value) || 1;
+            if (bill <= 0) {                tipAmountResult.textContent = '$0.00';                totalBillResult.textContent = '$0.00';
+                return;
+            }
+            const totalTip = bill * tipPercent;
+            const totalBill = bill + totalTip;
+            const tipPerPerson = totalTip / people;
+            const totalPerPerson = totalBill / people;           tipAmountResult.textContent = `$${tipPerPerson.toFixed(2)}`;            totalBillResult.textContent = `$${totalPerPerson.toFixed(2)}`;
+        }        billInput.addEventListener('input', calculateTip);        tipInput.addEventListener('change', calculateTip);        peopleInput.addEventListener('input', calculateTip);
+    </script>
 </body>
 </html>
