@@ -4,99 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Counter - DailyKitBox</title>
-    <link rel="stylesheet" href="../assets/style.css">
     <style>
-        .tool-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-        .text-area-container {
-            margin-bottom: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        textarea {
-            width: 100%;
-            height: 250px;
-            padding: 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 16px;
-            outline: none;
-            resize: vertical;
-            font-family: inherit;
-        }
-        textarea:focus {
-            border-color: #2563eb;
-        }
-        .counter-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
         .counter-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: var(--shadow-md);
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .title-container .icon {
+            font-size: 32px;
+        }
+        .title-container h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .description {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .textarea-group {
+            margin-bottom: 24px;
+        }
+        .textarea-group textarea {
+            width: 100%;
+            height: 200px;
+            padding: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            color: var(--text-main);
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        .textarea-group textarea:focus {
+            border-color: var(--primary);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .stat-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
             text-align: center;
         }
-        .counter-num {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2563eb;
-        }
-        .counter-label {
-            font-size: 13px;
-            color: #64748b;
-            margin-top: 5px;
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        @media (max-width: 600px) {
-            .counter-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <nav class="navbar">
-            <a href="../index.html" class="logo">DailyKitBox</a>
-            <div class="nav-links">
-                <a href="../index.html">← Back to Home</a>
+    <div class="counter-card">
+        <a href="../index.html" class="back-btn">&larr; Back to Home</a>        
+        <div class="title-container">
+            <span class="icon">📝</span>
+            <h1>Word Counter</h1>
+        </div>        
+        <p class="description">Count words and characters in real-time as you type or paste your text.</p>
+        <div class="textarea-group">
+            <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-label">Words</div>
+                <div class="stat-value" id="wordCount">0</div>
             </div>
-        </nav>
-    </header>
-
-    <main class="container">
-        <div class="tool-container">
-            <h1 style="font-size: 26px; margin-bottom: 10px;">📝 Real-Time Word Counter</h1>
-            <p style="color: #64748b; margin-bottom: 25px;">Type or paste your text to count words, characters, sentences, and paragraphs instantly.</p>
-
-            <div class="counter-grid">
-                <div class="counter-card"><div class="counter-num" id="wordCount">0</div><div class="counter-label">Words</div></div>
-                <div class="counter-card"><div class="counter-num" id="charCount">0</div><div class="counter-label">Characters</div></div>
-                <div class="counter-card"><div class="counter-num" id="sentenceCount">0</div><div class="counter-label">Sentences</div></div>
-                <div class="counter-card"><div class="counter-num" id="paragraphCount">0</div><div class="counter-label">Paragraphs</div></div>
-            </div>
-
-            <div class="text-area-container">
-                <textarea id="textInput" placeholder="Start typing or paste your content here..."></textarea>
+            <div class="stat-box">
+                <div class="stat-label">Characters</div>
+                <div class="stat-value" id="charCount">0</div>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 DailyKitBox. Built for speed and privacy. Text is never sent to any server.</p>
-    </footer>
-
-    <script src="../assets/script.js"></script>
-    <script src="word-counter.js"></script>
+    </div>
+    <script>
+        const textInput = document.getElementById('textInput');
+        const wordCount = document.getElementById('wordCount');
+        const charCount = document.getElementById('charCount');        textInput.addEventListener('input', () => {
+            const text = textInput.value;            
+            charCount.textContent = text.length;
+            const trimmedText = text.trim();
+            if (trimmedText === '') {                wordCount.textContent = '0';
+            } else {
+                const words = trimmedText.split(/\s+/);                wordCount.textContent = words.length;
+            }
+        });
+    </script>
 </body>
 </html>
