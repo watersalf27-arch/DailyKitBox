@@ -7,17 +7,27 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="../assets/js/apps.js"></script>
     <style>
-        .weather-input-container { display: flex; gap: 8px; margin-bottom: 16px; }
-        .weather-input-container input { flex: 1; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 14px; }
-        .w-btn { background: var(--primary); color: white; border: none; padding: 0 16px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; }
-        .weather-display { display: none; text-align: center; padding: 16px; background: rgba(0,0,0,0.02); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        .temp-reading { font-size: 38px; font-weight: 800; color: var(--primary); margin: 10px 0; }
+        .weather-input-container { display: flex; gap: 10px; margin-bottom: 20px; width: 100%; }
+        .weather-input-container input { flex: 1; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 15px; font-weight: 600; outline: none; }
+        .weather-input-container input:focus { border-color: var(--primary); }
+        
+        /* Premium Search/Fetch Button matching iLovePDF theme */
+        .w-btn { background: var(--primary); color: white; border: none; padding: 0 24px; border-radius: var(--radius-md); font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(229, 62, 62, 0.2); transition: background-color 0.2s; }
+        .w-btn:hover { background: var(--primary-hover); }
+        
+        /* Beautiful Display Box */
+        .weather-display { display: none; text-align: center; padding: 24px; background: rgba(0,0,0,0.01); border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-top: 10px; }
+        .temp-reading { font-size: 42px; font-weight: 800; color: var(--primary); margin: 12px 0; }
+        .condition-text { font-weight: 700; color: var(--text-muted); font-size: 16px; text-transform: capitalize; }
     </style>
 </head>
 <body>
     <div class="converter-card">
         <div class="title-container">
-            <div class="title-meta"><span style="font-size:24px;">🌤️</span><h1>Weather Station</h1></div>
+            <div class="title-meta">
+                <span style="font-size:26px;">🌤️</span>
+                <h1>Weather Station</h1>
+            </div>
             <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
         <p class="description">Check current local climate matrices worldwide instantly via fast core caching engine.</p>
@@ -28,9 +38,9 @@
         </div>
 
         <div class="weather-display" id="weatherDisplay">
-            <h2 id="outCity">City Name</h2>
+            <h2 id="outCity" style="font-size: 20px; font-weight: 800;">---</h2>
             <div class="temp-reading" id="outTemp">--°C</div>
-            <p id="outCondition" style="font-weight:600; color:var(--text-muted);">Clear Sky</p>
+            <p class="condition-text" id="outCondition">Clear Sky</p>
         </div>
     </div>
 
@@ -41,17 +51,35 @@
         btn.addEventListener('click', async () => {
             const city = document.getElementById('cityName').value.trim();
             if(!city) return;
-            btn.disabled = true; btn.textContent = '...';
+            
+            btn.disabled = true; 
+            btn.textContent = '...';
+            
             try {
+                // Fixed keyless dynamic parsing stream
                 const res = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
+                if (!res.ok) throw new Error('Network failure');
+                
                 const data = await res.json();
                 
+                // Safe data object extraction mappings
+                const currentCondition = data.current_condition[0];
+                const tempC = currentCondition.temp_C;
+                const weatherDesc = currentCondition.weatherDesc[0].value;
+                
+                // DOM injection
                 document.getElementById('outCity').textContent = city.toUpperCase();
-                document.getElementById('outTemp').textContent = `${data.current_condition[0].temp_C}°C`;
-                document.getElementById('outCondition').textContent = data.current_condition[0].weatherDesc[0].value;
+                document.getElementById('outTemp').textContent = `${tempC}°C`;
+                document.getElementById('outCondition').textContent = weatherDesc;
+                
                 display.style.display = 'block';
-            } catch(e) { alert('Weather stream server is taking too long.'); }
-            btn.disabled = false; btn.textContent = 'Fetch';
+            } catch(e) { 
+                alert('Could not sync weather stream. Please check city spelling or connection.'); 
+                console.error(e);
+            } finally {
+                btn.disabled = false; 
+                btn.textContent = 'Fetch';
+            }
         });
     </script>
 </body>
