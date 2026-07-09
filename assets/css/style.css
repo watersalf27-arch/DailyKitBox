@@ -1,222 +1,135 @@
-/* ==========================================
-   DailyKitBox - Premium US/UK Targeted Theme
-   ========================================== */
-/* --- Global Theme & Variables Setup --- */
+/* Custom Red Brand Variables matching iLovePDF premium structure */
 :root {
     --primary: #e53e3e;
     --primary-hover: #c53030;
-    --bg-main: #f7fafc;
+    --bg-main: #fcfcfd;
     --bg-card: #ffffff;
     --text-main: #2d3748;
     --text-muted: #718096;
     --border-color: #e2e8f0;
-    --radius-lg: 16px;
-    --radius-md: 10px;
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 }
 
 [data-theme="dark"] {
-    --bg-main: #1a202c;
-    --bg-card: #2d3748;
+    --bg-main: #141721;
+    --bg-card: #1e2230;
     --text-main: #f7fafc;
     --text-muted: #a0aec0;
-    --border-color: #4a5568;
-}
-/* ------------------------------------- */
-:root {
-    --primary: #2563eb;         /* Royal Blue Accent */
-    --primary-hover: #1d4ed8;   /* Darker Blue for Hovers */
-    --bg-main: #f8fafc;         /* Ultra Clean Off-White */
-    --bg-card: #ffffff;         /* Crisp White for Containers */
-    --text-main: #0f172a;       /* Deep Slate for high readability */
-    --text-muted: #64748b;      /* Soft Gray for secondary text */
-    --border-color: #e2e8f0;    /* Subtle borders */
-    --radius-lg: 12px;
-    --radius-md: 8px;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    --border-color: #2d3244;
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-/* Base Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* Base Body Overrides for Modern Layouts */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    transition: background-color 0.2s, border-color 0.2s; 
 }
 
-body {
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
+body { 
+    background-color: var(--bg-main); 
+    color: var(--text-main); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    padding: 20px; 
 }
 
-/* Header & Navigation */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 5%;
-    background-color: var(--bg-card);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.navbar .logo {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--primary);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 500;
-    font-size: 15px;
-    transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-/* Hero Section (Clean Grid/Gradient Layout) */
-.hero {
-    background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0) 100%);
+/* Premium Card Wrapper Context */
+.converter-card { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color); 
+    border-radius: var(--radius-lg); 
+    padding: 32px 24px; 
+    width: 100%; 
+    max-width: 520px; 
+    box-shadow: var(--shadow-md); 
     text-align: center;
-    padding: 80px 20px;
-    border-bottom: 1px solid var(--border-color);
 }
 
-.hero h1 {
-    font-size: 42px;
-    font-weight: 800;
+.title-container { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: 12px; 
+}
+
+.title-meta { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    text-align: left;
+}
+
+.title-meta h1 { 
+    font-size: 24px; 
+    font-weight: 800; 
     color: var(--text-main);
-    letter-spacing: -1px;
-    margin-bottom: 12px;
 }
 
-.hero p {
-    color: var(--text-muted);
-    font-size: 18px;
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.description { 
+    color: var(--text-muted); 
+    font-size: 14px; 
+    line-height: 1.6; 
+    margin-bottom: 28px; 
+    text-align: left;
 }
 
-/* Global Search Component */
-.search-container {
-    max-width: 520px;
-    margin: 0 auto;
+/* Upload Interface matching 'Select PDF files' UI precisely */
+.upload-box { 
+    border: 2px dashed var(--border-color); 
+    border-radius: var(--radius-lg); 
+    padding: 40px 20px; 
+    text-align: center; 
+    cursor: pointer; 
+    background-color: rgba(0,0,0,0.005); 
+    margin-bottom: 24px; 
+    transition: transform 0.2s, border-color 0.2s;
 }
 
-.search-container input {
-    width: 100%;
-    padding: 14px 24px;
-    border: 1px solid #cbd5e1;
-    border-radius: 50px;
-    font-size: 16px;
-    color: var(--text-main);
-    outline: none;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease;
-}
-
-.search-container input:focus {
+.upload-box:hover {
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: scale(0.01);
 }
 
-/* Main Container */
-.container {
-    max-width: 1140px;
-    margin: 50px auto;
-    padding: 0 24px;
-    flex: 1;
+.upload-text { 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: var(--text-main); 
+    margin-top: 8px;
 }
 
-.section-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 28px;
+/* Premium Red Button Engine Override */
+.action-btn { 
+    width: 100%; 
+    background-color: var(--primary); 
+    color: #ffffff; 
+    border: none; 
+    padding: 16px 24px; 
+    border-radius: var(--radius-md); 
+    font-weight: 700; 
+    font-size: 16px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px -1px rgba(229, 62, 62, 0.2);
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Dashboard Tools Grid */
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+.action-btn:hover { 
+    background-color: var(--primary-hover); 
 }
 
-/* Premium Tool Cards */
-.tool-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+.action-btn:active {
+    transform: scale(0.98);
 }
 
-.tool-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: #cbd5e1;
-}
-
-.tool-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-}
-
-.tool-card h3 {
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 8px;
-}
-
-.tool-card p {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    flex-grow: 1;
-}
-
-/* Standard Premium Buttons */
-.tool-btn {
-    display: block;
-    text-align: center;
-    background-color: var(--primary);
-    color: white;
-    padding: 12px;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 14px;
-    transition: background-color 0.15s ease;
-}
-
-.tool-btn:hover {
-    background-color: var(--primary-hover);
-}
-
-/* Clean Professional Footer */
-footer {
-    background-color: var(--bg-card);
-    color: var(--text-muted);
-    text-align: center;
-    padding: 24px;
-    font-size: 14px;
-    border-top: 1px solid var(--border-color);
-    margin-top: auto;
+.back-btn { 
+    text-decoration: none; 
+    color: var(--primary); 
+    font-weight: 700; 
+    font-size: 14px; 
 }
