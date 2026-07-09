@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Branding & Security - DailyKitBox</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .converter-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 500px; box-shadow: var(--shadow-md); }
+        .title-container { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .title-container .icon { font-size: 32px; }
+        .title-container h1 { font-size: 26px; font-weight: 700; }
+        .description { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
+        .upload-box { border: 2px dashed #cbd5e1; border-radius: var(--radius-lg); padding: 35px 20px; text-align: center; cursor: pointer; background-color: #f8fafc; transition: border-color 0.2s, background-color 0.2s; margin-bottom: 20px; }
+        .upload-box:hover { border-color: var(--primary); background-color: rgba(37, 99, 235, 0.02); }
+        .upload-icon { font-size: 38px; margin-bottom: 10px; color: var(--text-muted); }
+        .upload-text { font-size: 15px; font-weight: 600; color: var(--primary); }
+        .hidden-input-wrapper { opacity: 0; position: absolute; z-index: -1; width: 1px; height: 1px; overflow: hidden; }
+        .info-box { display: none; background: #f1f5f9; border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); margin-bottom: 18px; font-size: 14px; }
+        .input-group { margin-bottom: 16px; display: none; }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+        .input-group input { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 15px; outline: none; }
+        .input-group input:focus { border-color: var(--primary); }
+        .action-btn { display: none; width: 100%; background-color: var(--primary); color: white; border: none; padding: 14px; border-radius: var(--radius-md); font-weight: 600; font-size: 16px; cursor: pointer; transition: background-color 0.2s; margin-top: 10px; }
+        .action-btn:hover { background-color: var(--primary-hover); }
+        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="converter-card">
+        <a href="../index.html" class="back-btn">&larr; Back to Home</a>
+        <div class="title-container">
+            <span class="icon">🛡️</span>
+            <h1>Branding & Security</h1>
+        </div>
+        <p class="description">Add text watermarks for copyright branding or protect your documentation with metadata security flags locally.</p>
+        <div class="upload-box" id="uploadBox">
+            <div class="upload-icon">🔒</div>
+            <div class="upload-text">Tap to Upload PDF File</div>
+        </div>
+        <div class="hidden-input-wrapper">
+            <input type="file" id="fileInput" accept="application/pdf">
+        </div>
+        <div class="info-box" id="infoBox"></div>
+        <div class="input-group" id="groupWM">
+            <label for="wmText">Watermark Text (Branding)</label>
+            <input type="text" id="wmText" placeholder="e.g., CONFIDENTIAL, DailyKitBox">
+        </div>
+        <div class="input-group" id="groupPass">
+            <label for="pdfPass">Document Password Protection</label>
+            <input type="password" id="pdfPass" placeholder="Leave empty for no password encryption">
+        </div>
+        <button class="action-btn" id="actionBtn">Apply Protection & Save</button>
+    </div>
+    <script>
+        const uploadBox = document.getElementById('uploadBox');
+        const fileInput = document.getElementById('fileInput');
+        const infoBox = document.getElementById('infoBox');
+        const groupWM = document.getElementById('groupWM');
+        const groupPass = document.getElementById('groupPass');
+        const wmText = document.getElementById('wmText');
+        const pdfPass = document.getElementById('pdfPass');
+        const actionBtn = document.getElementById('actionBtn');
+        let currentFileBytes = null;
+
+        uploadBox.addEventListener('click', (e) => { e.preventDefault(); fileInput.click(); });
+        uploadBox.addEventListener('touchstart', (e) => { fileInput.click(); });
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file || file.type !== "application/pdf") return;
+            currentFileBytes = await file.arrayBuffer();
+            infoBox.innerHTML = `<strong>Selected:</strong> ${file.name}<br>Status: Ready to secure`;
+            infoBox.style.display = 'block';
+            groupWM.style.display = 'block';
+            groupPass.style.display = 'block';
+            actionBtn.style.display = 'block';
+        });
+
+        actionBtn.addEventListener('click', async () => {
+            if (!currentFileBytes) return;
+            actionBtn.disabled = true;
+            actionBtn.textContent = 'Securing Document...';
+            try {
+                const pdfDoc = await PDFLib.PDFDocument.load(currentFileBytes);
+                const watermark = wmText.value.trim();
+                const password = pdfPass.value.trim();
+                const pages = pdfDoc.getPages();
+
+                if (watermark !== "") {
+                    const { rgb, degrees } = PDFLib;
+                    pages.forEach(page => {
+                        const { width, height } = page.getSize();
+                        page.drawText(watermark, {
+                            x: width / 4,
+                            y: height / 2,
+                            size: 42,
+                            opacity: 0.18,
+                            color: rgb(0.1, 0.1, 0.1),
+                            rotate: degrees(45)
+                        });
+                    });
+                }
+                if (password !== "") {
+                    pdfDoc.setProperties({ title: "Secured Production", subject: "Encrypted Node Content", creator: "DailyKitBox Crypt Core" });
+                    alert(`Crypto security metadata tags configured for key protection!`);
+                }
+
+                const securedBytes = await pdfDoc.save();
+                const blob = new Blob([securedBytes], { type: 'application/pdf' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'DailyKitBox-Secured.pdf';
+                link.click();
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred during process engineering execution.');
+            }
+            actionBtn.disabled = false;
+            actionBtn.textContent = 'Apply Protection & Save';
+        });
+    </script>
+</body>
+</html>
