@@ -8,21 +8,25 @@
     <script src="../assets/js/apps.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
-        .delete-options { margin-bottom: 16px; display: none; background: rgba(0,0,0,0.02); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        .input-group { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; }
-        .input-group input { padding: 8px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); }
+        .delete-options { margin-bottom: 20px; display: none; background: rgba(0,0,0,0.01); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .input-group input { padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 14px; outline: none; }
+        .input-group input:focus { border-color: var(--primary); }
     </style>
 </head>
 <body>
     <div class="converter-card">
         <div class="title-container">
-            <div class="title-meta"><span style="font-size:24px;">🗑️</span><h1>Delete PDF Pages</h1></div>
+            <div class="title-meta">
+                <span style="font-size:26px;">🗑️</span>
+                <h1>Delete PDF Pages</h1>
+            </div>
             <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
         <p class="description">Remove unwanted or corrupted pages out of your document asset pipeline instantly.</p>
         
         <div class="upload-box" id="uploadBox">
-            <div style="font-size:30px; margin-bottom:6px;">📄</div>
+            <div style="font-size:40px; margin-bottom:10px;">📄</div>
             <div class="upload-text">Select or Drop PDF File</div>
             <input type="file" id="fileInput" style="display:none;" accept="application/pdf">
         </div>
@@ -34,7 +38,7 @@
             </div>
         </div>
 
-        <button class="action-btn" id="actionBtn">Remove Pages & Download</button>
+        <button class="action-btn" id="actionBtn" style="display:none;">Remove Pages & Download</button>
     </div>
 
     <script>
@@ -56,13 +60,17 @@
 
         actionBtn.addEventListener('click', async () => {
             if(!srcFile) return;
-            actionBtn.disabled = true; actionBtn.textContent = 'Filtering Structure...';
+            actionBtn.disabled = true; 
+            actionBtn.textContent = 'Filtering Structure...';
             try {
                 const bytes = await srcFile.arrayBuffer();
                 const pdfDoc = await PDFLib.PDFDocument.load(bytes);
                 const totalPages = pdfDoc.getPageCount();
                 
-                const targets = document.getElementById('pagesTarget').value.split(',').map(num => parseInt(num.trim()) - 1);
+                const inputVal = document.getElementById('pagesTarget').value.trim();
+                if(!inputVal) { alert('Please specify which pages to remove.'); return; }
+
+                const targets = inputVal.split(',').map(num => parseInt(num.trim()) - 1);
                 const cleanPdf = await PDFLib.PDFDocument.create();
                 
                 const indices = [];
@@ -73,6 +81,9 @@
                 if(indices.length > 0) {
                     const pages = await cleanPdf.copyPages(pdfDoc, indices);
                     pages.forEach(p => cleanPdf.addPage(p));
+                } else {
+                    alert('Cannot delete all pages from the document.');
+                    return;
                 }
 
                 const outBytes = await cleanPdf.save();
@@ -80,8 +91,12 @@
                 link.href = URL.createObjectURL(new Blob([outBytes], { type: 'application/pdf' }));
                 link.download = 'DailyKitBox-Cleaned.pdf';
                 link.click();
-            } catch(e) { alert('Processing breakdown errored.'); }
-            actionBtn.disabled = false; actionBtn.textContent = 'Remove Pages & Download';
+            } catch(e) { 
+                alert('Processing failure. Check your input formatting.'); 
+            } finally {
+                actionBtn.disabled = false; 
+                actionBtn.textContent = 'Remove Pages & Download';
+            }
         });
     </script>
 </body>
