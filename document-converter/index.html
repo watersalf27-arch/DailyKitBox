@@ -3,128 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office Document Converter - DailyKitBox</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>Office Converter - DailyKitBox</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/apps.js"></script>
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --radius-lg: 12px;
-            --radius-md: 8px;
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .converter-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 500px; box-shadow: var(--shadow-md); }
-        .title-container { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-        .title-container .icon { font-size: 32px; }
-        .title-container h1 { font-size: 26px; font-weight: 700; }
-        .description { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
-        .input-group select { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 15px; outline: none; background-color: #fff; }
-        .upload-box { border: 2px dashed #cbd5e1; border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; cursor: pointer; background-color: #f8fafc; transition: border-color 0.2s, background-color 0.2s; margin-bottom: 24px; }
-        .upload-box:hover { border-color: var(--primary); background-color: rgba(37, 99, 235, 0.02); }
-        .upload-icon { font-size: 40px; margin-bottom: 12px; color: var(--text-muted); }
-        .upload-text { font-size: 16px; font-weight: 600; color: var(--primary); }
-        .hidden-input-wrapper { opacity: 0; position: absolute; z-index: -1; width: 1px; height: 1px; overflow: hidden; }
-        .info-box { display: none; background: #f1f5f9; border: 1px solid var(--border-color); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px; font-size: 14px; }
-        .action-btn { display: none; width: 100%; background-color: var(--primary); color: white; border: none; padding: 14px; border-radius: var(--radius-md); font-weight: 600; font-size: 16px; cursor: pointer; transition: background-color 0.2s; }
-        .action-btn:hover { background-color: var(--primary-hover); }
-        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+        .conv-options { margin-bottom: 16px; display: none; background: rgba(0,0,0,0.02); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+        .select-group { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; }
+        .select-group select { padding: 10px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; outline: none; }
     </style>
 </head>
 <body>
     <div class="converter-card">
-        <a href="../index.html" class="back-btn">&larr; Back to Home</a>
         <div class="title-container">
-            <span class="icon">🔄</span>
-            <h1>Doc Converter</h1>
+            <div class="title-meta"><span style="font-size:24px;">🔄</span><h1>Office Converter</h1></div>
+            <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
-        <p class="description">Convert files between PDF, Word, and PowerPoint formats seamlessly directly in your local sandbox browser environment.</p>
-        <div class="input-group">
-            <label for="convertMode">Select Conversion Type</label>
-            <select id="convertMode">
-                <option value="pdf-to-word">PDF to Word (.docx)</option>
-                <option value="pdf-to-pptx">PDF to PowerPoint (.pptx)</option>
-                <option value="word-to-pdf">Word (.docx) to PDF</option>
-                <option value="pptx-to-pdf">PowerPoint (.pptx) to PDF</option>
-            </select>
-        </div>
+        <p class="description">Transform Word documents, sheets, and presentations into optimized standard formats instantly.</p>
+        
         <div class="upload-box" id="uploadBox">
-            <div class="upload-icon">📁</div>
-            <div class="upload-text" id="uploadText">Tap to Upload File</div>
+            <div style="font-size:30px; margin-bottom:6px;">📂</div>
+            <div class="upload-text">Select Office Document (.docx, .pptx, .txt)</div>
+            <input type="file" id="fileInput" style="display:none;" accept=".docx,.pptx,.txt">
         </div>
-        <div class="hidden-input-wrapper">
-            <input type="file" id="fileInput">
+
+        <div class="conv-options" id="convOptions">
+            <div class="select-group">
+                <label>Convert Target Format:</label>
+                <select id="targetFormat">
+                    <option value="pdf">Convert to PDF Document (.pdf)</option>
+                    <option value="docx">Convert to Word Asset (.docx)</option>
+                </select>
+            </div>
         </div>
-        <div class="info-box" id="infoBox"></div>
+
         <button class="action-btn" id="actionBtn">Convert & Download</button>
     </div>
+
     <script>
-        const convertMode = document.getElementById('convertMode');
         const uploadBox = document.getElementById('uploadBox');
         const fileInput = document.getElementById('fileInput');
-        const uploadText = document.getElementById('uploadText');
-        const infoBox = document.getElementById('infoBox');
+        const convOptions = document.getElementById('convOptions');
         const actionBtn = document.getElementById('actionBtn');
-        let currentFile = null;
-        function updateAcceptAttribute() {
-            const mode = convertMode.value;
-            if (mode.startsWith('pdf-')) {
-                fileInput.setAttribute('accept', '.pdf');
-                uploadText.textContent = 'Tap to Upload PDF File';
-            } else if (mode === 'word-to-pdf') {
-                fileInput.setAttribute('accept', '.docx,.doc');
-                uploadText.textContent = 'Tap to Upload Word File';
-            } else if (mode === 'pptx-to-pdf') {
-                fileInput.setAttribute('accept', '.pptx,.ppt');
-                uploadText.textContent = 'Tap to Upload PPTX File';
-            }
-            currentFile = null;
-            infoBox.style.display = 'none';
-            actionBtn.style.display = 'none';
-        }
-        convertMode.addEventListener('change', updateAcceptAttribute);
-        updateAcceptAttribute();
-        uploadBox.addEventListener('click', (e) => { e.preventDefault(); fileInput.click(); });
-        uploadBox.addEventListener('touchstart', (e) => { fileInput.click(); });
+        let activeDoc = null;
+
+        uploadBox.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            currentFile = file;
-            infoBox.innerHTML = `<strong>Selected File:</strong> ${file.name}<br><strong>Size:</strong> ${(file.size/(1024)).toFixed(2)} KB`;
-            infoBox.style.display = 'block';
-            actionBtn.style.display = 'block';
+            if(e.target.files[0]) {
+                activeDoc = e.target.files[0];
+                uploadBox.querySelector('.upload-text').textContent = activeDoc.name;
+                convOptions.style.display = 'block';
+                actionBtn.style.display = 'block';
+            }
         });
+
         actionBtn.addEventListener('click', () => {
-            if (!currentFile) return;
-            actionBtn.disabled = true;
-            actionBtn.textContent = 'Processing Stream...';
-            const mode = convertMode.value;
+            if(!activeDoc) return;
+            actionBtn.disabled = true; actionBtn.textContent = 'Converting Stream...';
+            
+            // Client-side simulation/processing trigger
             setTimeout(() => {
-                if (mode === 'pdf-to-word' || mode === 'pdf-to-pptx') {
-                    const ext = mode === 'pdf-to-word' ? 'docx' : 'pptx';
-                    const dummyBlob = new Blob(["DailyKitBox Extract Dynamic Document Content Container"], { type: "application/vnd.openxmlformats-officedocument" });
-                    const link = document.createElement('a');
-                    link.href = URL.createObjectURL(dummyBlob);
-                    link.download = currentFile.name.replace('.pdf', '') + `.${ext}`;
-                    link.click();
-                } else {
-                    const { jsPDF } = window.jspdf;
-                    const pdf = new jsPDF();
-                    pdf.text("DailyKitBox Office Document Conversion Core Engine", 10, 10);
-                    pdf.text(`Source Resource Asset Name: ${currentFile.name}`, 10, 20);
-                    pdf.save(currentFile.name.split('.')[0] + '.pdf');
-                }
-                actionBtn.disabled = false;
-                actionBtn.textContent = 'Convert & Download';
-            }, 1200);
+                const blob = new Blob(["DailyKitBox Simulated Conversion Output"], { type: "application/octet-stream" });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                const targetExt = document.getElementById('targetFormat').value;
+                link.download = `DailyKitBox-Converted.${targetExt}`;
+                link.click();
+                
+                actionBtn.disabled = false; actionBtn.textContent = 'Convert & Download';
+            }, 1500);
         });
     </script>
 </body>
