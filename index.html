@@ -12,12 +12,10 @@
         .global-controls { display: flex; gap: 14px; background: var(--bg-card); padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
         .control-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; cursor: pointer; user-select: none; }
         
-        /* Search Box styling components */
         .search-container { width: 100%; max-width: 700px; margin-bottom: 20px; }
         .search-container input { width: 100%; padding: 14px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-main); font-size: 15px; outline: none; box-shadow: var(--shadow-md); transition: border-color 0.2s; }
         .search-container input:focus { border-color: var(--primary); }
         
-        /* Category dynamic dynamic filter pills */
         .category-container { width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
         .cat-pill { padding: 8px 16px; background-color: var(--border-color); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-main); cursor: pointer; user-select: none; }
         .cat-pill.active { background-color: var(--primary); color: white; }
@@ -55,27 +53,31 @@
     <div class="tools-grid" id="toolsGrid">
         <a href="merge-pdf/index.html" class="tool-card" data-cats="pdf">
             <div class="tool-icon" style="color: #f56565;">🗂️</div>
-            <div class="tool-content"><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDF files into a single document instantly in your browser workflow.</div></div>
+            <div class="tool-content"><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDF files into a single document instantly.</div></div>
         </a>
         <a href="split-pdf/index.html" class="tool-card" data-cats="pdf">
             <div class="tool-icon" style="color: #ed8936;">✂️</div>
-            <div class="tool-content"><div class="tool-name">Split PDF</div><div class="tool-desc">Separate specific page segments or extract data frames into individual items.</div></div>
+            <div class="tool-content"><div class="tool-name">Split PDF</div><div class="tool-desc">Separate specific page segments or extract data frames.</div></div>
         </a>
         <a href="delete-pdf-pages/index.html" class="tool-card" data-cats="pdf">
             <div class="tool-icon" style="color: #e53e3e;">🗑️</div>
-            <div class="tool-content"><div class="tool-name">Delete PDF Pages</div><div class="tool-desc">Clean up and drop unwanted or extra pages from any file stream instantly.</div></div>
+            <div class="tool-content"><div class="tool-name">Delete PDF Pages</div><div class="tool-desc">Clean up and drop unwanted pages from any PDF file stream.</div></div>
         </a>
         <a href="jpg-to-pdf/index.html" class="tool-card" data-cats="pdf">
             <div class="tool-icon" style="color: #4299e1;">📸</div>
-            <div class="tool-content"><div class="tool-name">Images to PDF</div><div class="tool-desc">Convert multiple images to structured PDF documents with rotating workspace.</div></div>
+            <div class="tool-content"><div class="tool-name">Images to PDF</div><div class="tool-desc">Convert multiple images to structured PDF documents seamlessly.</div></div>
         </a>
         <a href="document-converter/index.html" class="tool-card" data-cats="pdf">
             <div class="tool-icon" style="color: #48bb78;">🔄</div>
-            <div class="tool-content"><div class="tool-name">Office Converter</div><div class="tool-desc">Convert files seamlessly between PDF, Word documents, and PowerPoint slides.</div></div>
+            <div class="tool-content"><div class="tool-name">Office Converter</div><div class="tool-desc">Convert files seamlessly between Word, presentations, and PDFs.</div></div>
+        </a>
+        <a href="pdf-branding-security/index.html" class="tool-card" data-cats="pdf">
+            <div class="tool-icon" style="color: #4a5568;">🛡️</div>
+            <div class="tool-content"><div class="tool-name">Branding & Security</div><div class="tool-desc">Inject watermarks and enforce custom safety configurations.</div></div>
         </a>
         <a href="weather-app/index.html" class="tool-card" data-cats="utility">
             <div class="tool-icon" style="color: #ecc94b;">🌤️</div>
-            <div class="tool-content"><div class="tool-name">Weather Forecast</div><div class="tool-desc">Check live global weather forecasts with key-less clean proxy streaming.</div></div>
+            <div class="tool-content"><div class="tool-name">Weather Forecast</div><div class="tool-desc">Check live global weather forecasts with fast caching engine.</div></div>
         </a>
     </div>
 
@@ -87,7 +89,6 @@
         const cards = document.querySelectorAll('.tool-card');
         let activeCategory = 'all';
 
-        // Filter Logic Engine (Search + Tab Sync)
         function filterDashboard() {
             const query = toolSearch.value.toLowerCase().trim();
             cards.forEach(card => {
@@ -106,7 +107,6 @@
             });
         }
 
-        // Category Tab Switch listener
         categoryContainer.addEventListener('click', (e) => {
             if (!e.target.classList.contains('cat-pill')) return;
             document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
@@ -115,10 +115,8 @@
             filterDashboard();
         });
 
-        // Search Input listener
         toolSearch.addEventListener('input', filterDashboard);
 
-        // Theme Toggle state handler
         globalDark.addEventListener('change', () => {
             const theme = globalDark.checked ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
