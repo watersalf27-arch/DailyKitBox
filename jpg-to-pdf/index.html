@@ -181,8 +181,7 @@
                     reader.onload = function(e) {
                         const item = document.createElement('div');                        item.classList.add('preview-item');                        
                         const img = document.createElement('img');
-                        img.src = e.target.result;
-                                                item.appendChild(img);                        previewContainer.appendChild(item);
+                        img.src = e.target.result;                                                item.appendChild(img);                        previewContainer.appendChild(item);
                     }                    reader.readAsDataURL(file);
                 }
             }
@@ -202,12 +201,11 @@
                     const fileData = await fileToDataURL(selectedFiles[i]);                    
                     // Native calculation to fit image within proper A4 margins smoothly
                     const pageWidth = pdf.internal.pageSize.getWidth();
-                    const pageHeight = pdf.internal.pageSize.getHeight();
-                                        pdf.addImage(fileData, 'JPEG', 0, 0, pageWidth, pageHeight);
+                    const pageHeight = pdf.internal.pageSize.getHeight();                                        pdf.addImage(fileData, 'JPEG', 0, 0, pageWidth, pageHeight);
                 } catch (err) {
                     console.error("Image loading failed: ", err);
                 }
-            }            pdf.save('DailyKitBox-Converted.pdf');           
+            }            pdf.save('DailyKitBox-Converted.pdf');            
             convertBtn.disabled = false;
             convertBtn.textContent = 'Convert to PDF';
         });
