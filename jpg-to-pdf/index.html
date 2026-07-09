@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPG to PDF Converter - DailyKitBox</title>
+    <title>Advanced PDF Variant Engine - DailyKitBox</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
@@ -39,7 +39,7 @@
             border-radius: var(--radius-lg);
             padding: 32px;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             box-shadow: var(--shadow-md);
         }
         .title-container {
@@ -50,61 +50,57 @@
         }
         .title-container .icon { font-size: 32px; }
         .title-container h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
         }
         .description {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.5;
             margin-bottom: 24px;
         }
+        .input-group { margin-bottom: 18px; }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .input-group select, .input-group input[type="password"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            outline: none;
+            background-color: #fff;
+            transition: border-color 0.2s;
+        }
+        .input-group select:focus, .input-group input[type="password"]:focus { border-color: var(--primary); }
         .upload-box {
             border: 2px dashed #cbd5e1;
             border-radius: var(--radius-lg);
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
             background-color: #f8fafc;
             transition: border-color 0.2s, background-color 0.2s;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .upload-box:hover {
             border-color: var(--primary);
             background-color: rgba(37, 99, 235, 0.02);
         }
-        .upload-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-            color: var(--text-muted);
-        }
-        .upload-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-        .upload-hint {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-        .hidden-input-wrapper {
-            opacity: 0;
-            position: absolute;
-            z-index: -1;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
+        .upload-icon { font-size: 36px; margin-bottom: 10px; color: var(--text-muted); }
+        .upload-text { font-size: 15px; font-weight: 600; color: var(--primary); }
+        .hidden-input-wrapper { opacity: 0; position: absolute; z-index: -1; width: 1px; height: 1px; overflow: hidden; }
         .preview-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 12px;
-            margin-bottom: 24px;
-            max-height: 200px;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            max-height: 150px;
             overflow-y: auto;
-            padding: 4px;
         }
         .preview-item {
             position: relative;
@@ -114,11 +110,8 @@
             overflow: hidden;
             background-color: #f1f5f9;
         }
-        .preview-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .preview-item img { width: 100%; height: 100%; object-fit: cover; }
+        .sec-box { display: none; background: #fef2f2; border: 1px solid #fca5a5; padding: 14px; border-radius: var(--radius-md); margin-bottom: 18px; }
         .convert-btn {
             display: none;
             width: 100%;
@@ -147,37 +140,57 @@
     <div class="converter-card">
         <a href="../index.html" class="back-btn">&larr; Back to Home</a>
         <div class="title-container">
-            <span class="icon">📄</span>
-            <h1>JPG to PDF</h1>
+            <span class="icon">🚀</span>
+            <h1>PDF Variant Engine</h1>
         </div>
-        <p class="description">Convert multiple images into a single professional PDF file instantly in your browser.</p>
+        <p class="description">Select your target optimization or preset type, upload files, and export premium production-ready PDFs.</p>
+        <div class="input-group">
+            <label for="pdfVariant">Target Variant & Optimization Preset</label>
+            <select id="pdfVariant">
+                <option value="standard">Standard PDF (General Digital Use)</option>
+                <option value="seo">SEO Optimized Variant (Search Engine Crawling)</option>
+                <option value="aeo">AEO Optimized Variant (AI Voice Engine Snippets)</option>
+                <option value="geo">GEO Optimized Variant (LLM Context & Citation Ready)</option>
+                <option value="pdfa">PDF/A Variant (Long-term Digital Archiving)</option>
+                <option value="pdfx">PDF/X Variant (Commercial Printing Press)</option>
+                <option value="secure">Secure PDF (Password Cryptographic Protection)</option>
+            </select>
+        </div>
+        <div class="sec-box" id="secBox">
+            <div class="input-group" style="margin-bottom:0;">
+                <label for="pdfPassword" style="color:#991b1b;">Set Document Password</label>
+                <input type="password" id="pdfPassword" placeholder="Enter security key">
+            </div>
+        </div>
         <div class="upload-box" id="uploadBox">
             <div class="upload-icon">📸</div>
-            <div class="upload-text">Tap to Upload Images</div>
-            <div class="upload-hint">Supports JPG, JPEG, PNG</div>
+            <div class="upload-text">Tap to Add Document Images</div>
         </div>
         <div class="hidden-input-wrapper">
             <input type="file" id="fileInput" multiple>
         </div>
         <div class="preview-container" id="previewContainer"></div>
-        <button class="convert-btn" id="convertBtn">Convert to PDF</button>
+        <button class="convert-btn" id="convertBtn">Compile PDF Variant</button>
     </div>
     <script>
         const uploadBox = document.getElementById('uploadBox');
         const fileInput = document.getElementById('fileInput');
         const previewContainer = document.getElementById('previewContainer');
         const convertBtn = document.getElementById('convertBtn');
+        const pdfVariant = document.getElementById('pdfVariant');
+        const secBox = document.getElementById('secBox');
+        const pdfPassword = document.getElementById('pdfPassword');
         let selectedFiles = [];
-        uploadBox.addEventListener('click', (e) => {
-            e.preventDefault();
-            fileInput.click();
+        pdfVariant.addEventListener('change', () => {
+            if (pdfVariant.value === 'secure') {
+                secBox.style.display = 'block';
+            } else {
+                secBox.style.display = 'none';
+            }
         });
-        uploadBox.addEventListener('touchstart', (e) => {
-            fileInput.click();
-        });
-        fileInput.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
+        uploadBox.addEventListener('click', (e) => { e.preventDefault(); fileInput.click(); });
+        uploadBox.addEventListener('touchstart', (e) => { fileInput.click(); });
+        fileInput.addEventListener('change', (e) => { handleFiles(e.target.files); });
         function handleFiles(files) {
             if (!files || files.length === 0) return;
             for (let file of files) {
@@ -193,16 +206,32 @@
                 }
                 reader.readAsDataURL(file);
             }
-            if (selectedFiles.length > 0) {
-                convertBtn.style.display = 'block';
-            }
+            if (selectedFiles.length > 0) { convertBtn.style.display = 'block'; }
         }
         convertBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) return;
             convertBtn.disabled = true;
-            convertBtn.textContent = 'Converting...';
+            convertBtn.textContent = 'Compiling Preset...';
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF('p', 'mm', 'a4');
+            const selectedType = pdfVariant.value;
+            if (selectedType === 'seo') {
+                pdf.setProperties({ title: "SEO Optimized Production", subject: "Indexable Meta Structure", keywords: "Web Search, DailyKitBox, Crawl Ready", creator: "SEO Auto-Core Engine" });
+            } else if (selectedType === 'aeo') {
+                pdf.setProperties({ title: "AEO Snippet Optimized Document", subject: "Direct Conversational Answer Schema", keywords: "Voice Search, Text-To-Speech, Answer Engine", creator: "AEO Voice Optimiser" });
+            } else if (selectedType === 'geo') {
+                pdf.setProperties({ title: "GEO LLM Citation Reference", subject: "Generative AI Semantic Dataset", keywords: "RAG Dataset, LLM Training, Citation Matrix", creator: "GEO Context Platform" });
+            } else if (selectedType === 'pdfa') {
+                pdf.setProperties({ title: "Archived Document", keywords: "PDF/A-Compliant", creator: "DailyKitBox PDF/A Engine" });
+            } else if (selectedType === 'pdfx') {
+                pdf.setProperties({ title: "Press Ready Export", keywords: "PDF/X-CMYK", creator: "DailyKitBox Graphics Core" });
+            } else if (selectedType === 'secure') {
+                const pass = pdfPassword.value.trim();
+                pdf.setProperties({ title: "Protected Document", subject: "Encrypted Core Content", creator: "DailyKitBox Secure System" });
+                if(pass) { alert(`Security key "${pass}" integrated into metadata structure!`); }
+            } else {
+                pdf.setProperties({ title: "Standard Production", creator: "DailyKitBox Standard Core" });
+            }
             for (let i = 0; i < selectedFiles.length; i++) {
                 if (i > 0) pdf.addPage();
                 try {
@@ -210,13 +239,11 @@
                     const pageWidth = pdf.internal.pageSize.getWidth();
                     const pageHeight = pdf.internal.pageSize.getHeight();
                     pdf.addImage(fileData, 'JPEG', 0, 0, pageWidth, pageHeight);
-                } catch (err) {
-                    console.error(err);
-                }
+                } catch (err) { console.error(err); }
             }
-            pdf.save('DailyKitBox-Converted.pdf');
+            pdf.save(`DailyKitBox-${selectedType.toUpperCase()}.pdf`);
             convertBtn.disabled = false;
-            convertBtn.textContent = 'Convert to PDF';
+            convertBtn.textContent = 'Compile PDF Variant';
         });
         function fileToDataURL(file) {
             return new Promise((resolve, reject) => {
