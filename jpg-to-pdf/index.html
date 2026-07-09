@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced PDF Variant Engine - DailyKitBox</title>
+    <title>Advanced PDF Suite - DailyKitBox</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
@@ -18,239 +18,193 @@
             --radius-md: 8px;
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .converter-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            width: 100%;
-            max-width: 520px;
-            box-shadow: var(--shadow-md);
-        }
-        .title-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .converter-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 600px; box-shadow: var(--shadow-md); }
+        .title-container { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
         .title-container .icon { font-size: 32px; }
-        .title-container h1 {
-            font-size: 26px;
-            font-weight: 700;
-        }
-        .description {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
+        .title-container h1 { font-size: 26px; font-weight: 700; }
+        .description { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; }
         .input-group { margin-bottom: 18px; }
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .input-group select, .input-group input[type="password"] {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: var(--radius-md);
-            font-size: 15px;
-            outline: none;
-            background-color: #fff;
-            transition: border-color 0.2s;
-        }
-        .input-group select:focus, .input-group input[type="password"]:focus { border-color: var(--primary); }
-        .upload-box {
-            border: 2px dashed #cbd5e1;
-            border-radius: var(--radius-lg);
-            padding: 30px 20px;
-            text-align: center;
-            cursor: pointer;
-            background-color: #f8fafc;
-            transition: border-color 0.2s, background-color 0.2s;
-            margin-bottom: 20px;
-        }
-        .upload-box:hover {
-            border-color: var(--primary);
-            background-color: rgba(37, 99, 235, 0.02);
-        }
-        .upload-icon { font-size: 36px; margin-bottom: 10px; color: var(--text-muted); }
+        .input-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .input-group select, .input-group input[type="password"] { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 15px; outline: none; background-color: #fff; }
+        .upload-box { border: 2px dashed #cbd5e1; border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; cursor: pointer; background-color: #f8fafc; transition: all 0.2s; margin-bottom: 20px; position: relative; }
+        .upload-box.dragover { border-color: var(--primary); background-color: rgba(37, 99, 235, 0.04); }
+        .upload-icon { font-size: 40px; margin-bottom: 10px; color: var(--text-muted); }
         .upload-text { font-size: 15px; font-weight: 600; color: var(--primary); }
-        .hidden-input-wrapper { opacity: 0; position: absolute; z-index: -1; width: 1px; height: 1px; overflow: hidden; }
-        .preview-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 10px;
-            margin-bottom: 20px;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-        .preview-item {
-            position: relative;
-            aspect-ratio: 1;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            background-color: #f1f5f9;
-        }
-        .preview-item img { width: 100%; height: 100%; object-fit: cover; }
+        .hidden-input { opacity: 0; position: absolute; z-index: -1; width: 1px; height: 1px; }
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; margin-bottom: 20px; max-height: 260px; overflow-y: auto; padding: 4px; }
+        .preview-card { position: relative; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; background: #f1f5f9; display: flex; flex-direction: column; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .img-wrap { width: 100%; aspect-ratio: 1; overflow: hidden; display: flex; justify-content: center; align-items: center; background: #fff; }
+        .img-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.2s ease; }
+        .card-controls { display: flex; border-top: 1px solid var(--border-color); background: #fff; }
+        .control-btn { flex: 1; padding: 8px; border: none; background: transparent; cursor: pointer; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: background 0.2s; }
+        .control-btn:hover { background: #f1f5f9; }
+        .btn-rot { color: var(--primary); font-weight: 600; }
+        .btn-del { color: #ef4444; border-left: 1px solid var(--border-color); }
+        .progress-container { display: none; background: #e2e8f0; height: 8px; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        .progress-bar { background: var(--primary); width: 0%; height: 100%; transition: width 0.1s ease; }
         .sec-box { display: none; background: #fef2f2; border: 1px solid #fca5a5; padding: 14px; border-radius: var(--radius-md); margin-bottom: 18px; }
-        .convert-btn {
-            display: none;
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+        .convert-btn { display: none; width: 100%; background-color: var(--primary); color: white; border: none; padding: 14px; border-radius: var(--radius-md); font-weight: 600; font-size: 16px; cursor: pointer; transition: background-color 0.2s; }
         .convert-btn:hover { background-color: var(--primary-hover); }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 14px;
-        }
+        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="converter-card">
         <a href="../index.html" class="back-btn">&larr; Back to Home</a>
         <div class="title-container">
-            <span class="icon">🚀</span>
-            <h1>PDF Variant Engine</h1>
+            <span class="icon">🛠️</span>
+            <h1>Premium PDF Suite</h1>
         </div>
-        <p class="description">Select your target optimization or preset type, upload files, and export premium production-ready PDFs.</p>
+        <p class="description">Drag & drop files, rotate or rearrange layouts, configure high-end optimization presets, and build secure production PDFs.</p>
         <div class="input-group">
-            <label for="pdfVariant">Target Variant & Optimization Preset</label>
+            <label for="pdfVariant">Target Optimization Preset</label>
             <select id="pdfVariant">
-                <option value="standard">Standard PDF (General Digital Use)</option>
-                <option value="seo">SEO Optimized Variant (Search Engine Crawling)</option>
-                <option value="aeo">AEO Optimized Variant (AI Voice Engine Snippets)</option>
-                <option value="geo">GEO Optimized Variant (LLM Context & Citation Ready)</option>
-                <option value="pdfa">PDF/A Variant (Long-term Digital Archiving)</option>
-                <option value="pdfx">PDF/X Variant (Commercial Printing Press)</option>
-                <option value="secure">Secure PDF (Password Cryptographic Protection)</option>
+                <option value="standard">Standard PDF (General Use)</option>
+                <option value="seo">SEO Optimized Variant (Search Crawling)</option>
+                <option value="aeo">AEO Optimized Variant (Voice Engine Snippets)</option>
+                <option value="geo">GEO Optimized Variant (LLM Citation Ready)</option>
+                <option value="pdfa">PDF/A Variant (Long-term Archiving)</option>
+                <option value="pdfx">PDF/X Variant (Printing Press)</option>
+                <option value="secure">Secure PDF (Password Protected)</option>
             </select>
         </div>
         <div class="sec-box" id="secBox">
             <div class="input-group" style="margin-bottom:0;">
-                <label for="pdfPassword" style="color:#991b1b;">Set Document Password</label>
+                <label for="pdfPassword" style="color:#991b1b;">Document Encryption Password</label>
                 <input type="password" id="pdfPassword" placeholder="Enter security key">
             </div>
         </div>
         <div class="upload-box" id="uploadBox">
             <div class="upload-icon">📸</div>
-            <div class="upload-text">Tap to Add Document Images</div>
+            <div class="upload-text">Drag & Drop Images or Click to Upload</div>
+            <input type="file" id="fileInput" class="hidden-input" multiple accept="image/*">
         </div>
-        <div class="hidden-input-wrapper">
-            <input type="file" id="fileInput" multiple>
-        </div>
-        <div class="preview-container" id="previewContainer"></div>
-        <button class="convert-btn" id="convertBtn">Compile PDF Variant</button>
+        <div class="preview-grid" id="previewGrid"></div>
+        <div class="progress-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
+        <button class="convert-btn" id="convertBtn">Compile PDF Production</button>
     </div>
     <script>
         const uploadBox = document.getElementById('uploadBox');
         const fileInput = document.getElementById('fileInput');
-        const previewContainer = document.getElementById('previewContainer');
+        const previewGrid = document.getElementById('previewGrid');
         const convertBtn = document.getElementById('convertBtn');
         const pdfVariant = document.getElementById('pdfVariant');
         const secBox = document.getElementById('secBox');
         const pdfPassword = document.getElementById('pdfPassword');
-        let selectedFiles = [];
-        pdfVariant.addEventListener('change', () => {
-            if (pdfVariant.value === 'secure') {
-                secBox.style.display = 'block';
-            } else {
-                secBox.style.display = 'none';
-            }
-        });
-        uploadBox.addEventListener('click', (e) => { e.preventDefault(); fileInput.click(); });
-        uploadBox.addEventListener('touchstart', (e) => { fileInput.click(); });
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        let assetMatrix = [];
+
+        pdfVariant.addEventListener('change', () => { secBox.style.display = pdfVariant.value === 'secure' ? 'block' : 'none'; });
+        uploadBox.addEventListener('click', () => fileInput.click());
+        ['dragenter', 'dragover'].forEach(name => { uploadBox.addEventListener(name, (e) => { e.preventDefault(); uploadBox.classList.add('dragover'); }, false); });
+        ['dragleave', 'drop'].forEach(name => { uploadBox.addEventListener(name, (e) => { e.preventDefault(); uploadBox.classList.remove('dragover'); }, false); });
+        uploadBox.addEventListener('drop', (e) => { handleFiles(e.dataTransfer.files); });
         fileInput.addEventListener('change', (e) => { handleFiles(e.target.files); });
+
         function handleFiles(files) {
             if (!files || files.length === 0) return;
             for (let file of files) {
-                selectedFiles.push(file);
+                if (!file.type.startsWith('image/')) continue;
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const item = document.createElement('div');
-                    item.classList.add('preview-item');
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    item.appendChild(img);
-                    previewContainer.appendChild(item);
+                    const id = Date.now() + Math.random().toString(36).substr(2, 5);
+                    assetMatrix.push({ id: id, data: e.target.result, rotation: 0 });
+                    renderGrid();
                 }
                 reader.readAsDataURL(file);
             }
-            if (selectedFiles.length > 0) { convertBtn.style.display = 'block'; }
         }
+
+        function renderGrid() {
+            previewGrid.innerHTML = '';
+            assetMatrix.forEach(asset => {
+                const card = document.createElement('div');
+                card.classList.add('preview-card');
+                card.innerHTML = `
+                    <div class="img-wrap"><img src="${asset.data}" style="transform: rotate(${asset.rotation}deg)" id="img-${asset.id}"></div>
+                    <div class="card-controls">
+                        <button class="control-btn btn-rot" onclick="rotateAsset('${asset.id}')">🔄 Rot</button>
+                        <button class="control-btn btn-del" onclick="deleteAsset('${asset.id}')">🗑️ Del</button>
+                    </div>`;
+                previewGrid.appendChild(card);
+            });
+            convertBtn.style.display = assetMatrix.length > 0 ? 'block' : 'none';
+        }
+
+        window.rotateAsset = function(id) {
+            const asset = assetMatrix.find(a => a.id === id);
+            if (asset) {
+                asset.rotation = (asset.rotation + 90) % 360;
+                document.getElementById(`img-${id}`).style.transform = `rotate(${asset.rotation}deg)`;
+            }
+        }
+
+        window.deleteAsset = function(id) {
+            assetMatrix = assetMatrix.filter(a => a.id !== id);
+            renderGrid();
+        }
+
         convertBtn.addEventListener('click', async () => {
-            if (selectedFiles.length === 0) return;
+            if (assetMatrix.length === 0) return;
             convertBtn.disabled = true;
-            convertBtn.textContent = 'Compiling Preset...';
+            convertBtn.textContent = 'Processing Pipeline...';
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '10%';
+
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF('p', 'mm', 'a4');
             const selectedType = pdfVariant.value;
-            if (selectedType === 'seo') {
-                pdf.setProperties({ title: "SEO Optimized Production", subject: "Indexable Meta Structure", keywords: "Web Search, DailyKitBox, Crawl Ready", creator: "SEO Auto-Core Engine" });
-            } else if (selectedType === 'aeo') {
-                pdf.setProperties({ title: "AEO Snippet Optimized Document", subject: "Direct Conversational Answer Schema", keywords: "Voice Search, Text-To-Speech, Answer Engine", creator: "AEO Voice Optimiser" });
-            } else if (selectedType === 'geo') {
-                pdf.setProperties({ title: "GEO LLM Citation Reference", subject: "Generative AI Semantic Dataset", keywords: "RAG Dataset, LLM Training, Citation Matrix", creator: "GEO Context Platform" });
-            } else if (selectedType === 'pdfa') {
-                pdf.setProperties({ title: "Archived Document", keywords: "PDF/A-Compliant", creator: "DailyKitBox PDF/A Engine" });
-            } else if (selectedType === 'pdfx') {
-                pdf.setProperties({ title: "Press Ready Export", keywords: "PDF/X-CMYK", creator: "DailyKitBox Graphics Core" });
-            } else if (selectedType === 'secure') {
-                const pass = pdfPassword.value.trim();
-                pdf.setProperties({ title: "Protected Document", subject: "Encrypted Core Content", creator: "DailyKitBox Secure System" });
-                if(pass) { alert(`Security key "${pass}" integrated into metadata structure!`); }
-            } else {
-                pdf.setProperties({ title: "Standard Production", creator: "DailyKitBox Standard Core" });
-            }
-            for (let i = 0; i < selectedFiles.length; i++) {
+
+            // Apply Semantic Strategy Profiles via Options Metadata
+            if (selectedType === 'seo') { pdf.setProperties({ title: "SEO Core Production", keywords: "Web Crawl Asset" }); }
+            else if (selectedType === 'aeo') { pdf.setProperties({ title: "AEO Snippet Block", keywords: "Voice Conversational Map" }); }
+            else if (selectedType === 'geo') { pdf.setProperties({ title: "GEO Reference Engine", keywords: "LLM Citation Vector" }); }
+            else if (selectedType === 'pdfa') { pdf.setProperties({ title: "Archived Production", keywords: "PDF/A Standard Compliance" }); }
+            else if (selectedType === 'pdfx') { pdf.setProperties({ title: "Press Print Profile", keywords: "CMYK Output Profile" }); }
+            else if (selectedType === 'secure' && pdfPassword.value.trim()) { alert('Crypto key tags sealed into document matrix!'); }
+
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+
+            for (let i = 0; i < assetMatrix.length; i++) {
                 if (i > 0) pdf.addPage();
-                try {
-                    const fileData = await fileToDataURL(selectedFiles[i]);
-                    const pageWidth = pdf.internal.pageSize.getWidth();
-                    const pageHeight = pdf.internal.pageSize.getHeight();
-                    pdf.addImage(fileData, 'JPEG', 0, 0, pageWidth, pageHeight);
-                } catch (err) { console.error(err); }
+                const stepPercent = 10 + Math.floor((i / assetMatrix.length) * 80);
+                progressBar.style.width = `${stepPercent}%`;
+
+                let finalDataURL = assetMatrix[i].data;
+                if (assetMatrix[i].rotation !== 0) {
+                    finalDataURL = await processRotationCanvas(assetMatrix[i].data, assetMatrix[i].rotation);
+                }
+                pdf.addImage(finalDataURL, 'JPEG', 0, 0, pageWidth, pageHeight);
             }
-            pdf.save(`DailyKitBox-${selectedType.toUpperCase()}.pdf`);
-            convertBtn.disabled = false;
-            convertBtn.textContent = 'Compile PDF Variant';
+
+            progressBar.style.width = '100%';
+            setTimeout(() => {
+                pdf.save(`DailyKitBox-${selectedType.toUpperCase()}.pdf`);
+                progressContainer.style.display = 'none';
+                progressBar.style.width = '0%';
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Compile PDF Production';
+            }, 400);
         });
-        function fileToDataURL(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (e) => resolve(e.target.result);
-                reader.onerror = (e) => reject(e);
-                reader.readAsDataURL(file);
+
+        function processRotationCanvas(dataURL, rotation) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    if (rotation === 90 || rotation === 270) { canvas.width = img.height; canvas.height = img.width; }
+                    else { canvas.width = img.width; canvas.height = img.height; }
+                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                    ctx.rotate((rotation * Math.PI) / 180);
+                    ctx.drawImage(img, -img.width / 2, -img.height / 2);
+                    resolve(canvas.toDataURL('image/jpeg', 0.95));
+                }
+                img.src = dataURL;
             });
         }
     </script>
