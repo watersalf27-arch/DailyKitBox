@@ -3,61 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyKitBox - Premium Tool Suite</title>
+    <title>DailyKitBox - Ultimate PDF & Utility Suite</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-main: #f8fafc;
+            --primary: #e53e3e;
+            --primary-hover: #c53030;
+            --bg-main: #f7fafc;
             --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --text-main: #2d3748;
+            --text-muted: #718096;
             --border-color: #e2e8f0;
-            --radius-lg: 12px;
-            --radius-md: 8px;
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --pill-bg: #edf2f7;
+            --pill-active-bg: #2d3748;
+            --pill-active-text: #ffffff;
         }
         [data-theme="dark"] {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
+            --bg-main: #1a202c;
+            --bg-card: #2d3748;
+            --text-main: #f7fafc;
+            --text-muted: #a0aec0;
+            --border-color: #4a5568;
+            --pill-bg: #4a5568;
+            --pill-active-bg: #f7fafc;
+            --pill-active-text: #1a202c;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: background-color 0.2s, border-color 0.2s; }
-        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding: 24px; display: flex; flex-direction: column; align-items: center; }
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; }
         
-        .header { width: 100%; max-width: 800px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
-        .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .header { width: 100%; max-width: 700px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
         
-        /* Global Settings Panel */
-        .global-controls { display: flex; gap: 16px; background: var(--bg-card); padding: 10px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
-        .control-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .global-controls { display: flex; gap: 14px; background: var(--bg-card); padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
+        .control-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-        /* Search Bar Improvement */
-        .search-container { width: 100%; max-width: 800px; margin-bottom: 24px; }
-        .search-container input { width: 100%; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-main); font-size: 15px; outline: none; box-shadow: var(--shadow-md); }
+        /* Search Bar styling */
+        .search-container { width: 100%; max-width: 700px; margin-bottom: 20px; }
+        .search-container input { width: 100%; padding: 14px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-main); font-size: 15px; outline: none; box-shadow: var(--shadow-md); }
         .search-container input:focus { border-color: var(--primary); }
 
-        /* Grid Framework */
-        .tools-grid { width: 100%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; text-decoration: none; color: inherit; box-shadow: var(--shadow-md); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; gap: 8px; }
-        .tool-card:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
-        .tool-card.hidden { display: none; }
-        .tool-icon { font-size: 28px; }
-        .tool-name { font-size: 16px; font-weight: 700; }
+        /* iLovePDF Style Category Pills Container */
+        .category-container { width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+        .cat-pill { padding: 8px 16px; background-color: var(--pill-bg); border: 1px solid transparent; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: all 0.2s ease; user-select: none; }
+        .cat-pill:hover { border-color: var(--border-color); }
+        .cat-pill.active { background-color: var(--pill-active-bg); color: var(--pill-active-text); }
+
+        /* iLovePDF Stacked Style Cards Grid */
+        .tools-grid { width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 12px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px 20px; text-decoration: none; color: inherit; box-shadow: var(--shadow-md); display: flex; align-items: flex-start; gap: 16px; transition: transform 0.15s ease, border-color 0.15s ease; }
+        .tool-card:hover { transform: translateY(-1px); border-color: var(--primary); }
+        .tool-card.hidden { display: none !important; }
+        
+        .tool-icon { font-size: 32px; background: rgba(0,0,0,0.02); padding: 8px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; min-width: 50px; height: 50px; }
+        [data-theme="dark"] .tool-icon { background: rgba(255,255,255,0.05); }
+        
+        .tool-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .tool-name { font-size: 16px; font-weight: 700; color: var(--text-main); }
         .tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
 
         @media (max-width: 600px) {
-            .header { flex-direction: column; gap: 16px; text-align: center; }
+            .header { flex-direction: column; gap: 12px; text-align: center; }
             .global-controls { width: 100%; justify-content: center; }
+            .tool-card { padding: 14px; gap: 12px; }
+            .tool-icon { font-size: 26px; min-width: 42px; height: 42px; padding: 4px; }
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="logo">🛠️ <span>DailyKitBox</span></div>
+        <a href="#" class="logo">🗂️ <span>DailyKitBox</span></a>
         <div class="global-controls">
             <label class="control-item"><input type="checkbox" id="globalDark"> 🌓 Dark Mode</label>
             <label class="control-item"><input type="checkbox" id="globalStorage" checked> 💾 Save Config</label>
@@ -65,55 +82,113 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="toolSearch" placeholder="Search premium utility tools...">
+        <input type="text" id="toolSearch" placeholder="Search for tools (e.g., merge, split, pdf to word)...">
+    </div>
+
+    <div class="category-container" id="categoryContainer">
+        <div class="cat-pill active" data-category="all">All</div>
+        <div class="cat-pill" data-category="organize">Organize PDF</div>
+        <div class="cat-pill" data-category="optimize">Optimize PDF</div>
+        <div class="cat-pill" data-category="convert">Convert PDF</div>
+        <div class="cat-pill" data-category="edit">Edit PDF</div>
+        <div class="cat-pill" data-category="security">PDF Security</div>
+        <div class="cat-pill" data-category="utility">Other Utilities</div>
     </div>
 
     <div class="tools-grid" id="toolsGrid">
-        <!-- JPG to PDF -->
-        <a href="jpg-to-pdf/index.html" class="tool-card">
-            <div class="tool-icon">📸</div>
-            <div class="tool-name">Images to PDF</div>
-            <div class="tool-desc">Convert multiple images to custom structured PDF documents with workbench editor.</div>
+        
+        <a href="jpg-to-pdf/index.html" class="tool-card" data-cats="convert,edit">
+            <div class="tool-icon" style="color: #4299e1;">📸</div>
+            <div class="tool-content">
+                <div class="tool-name">Images to PDF</div>
+                <div class="tool-desc">Convert multiple images to custom structured PDF documents with professional workbench editor.</div>
+            </div>
         </a>
-        <!-- Merge PDF -->
-        <a href="merge-pdf/index.html" class="tool-card">
-            <div class="tool-icon">🗂️</div>
-            <div class="tool-name">Merge PDF</div>
-            <div class="tool-desc">Combine multiple PDF documents into a single production asset quickly.</div>
+
+        <a href="merge-pdf/index.html" class="tool-card" data-cats="organize">
+            <div class="tool-icon" style="color: #f56565;">🗂️</div>
+            <div class="tool-content">
+                <div class="tool-name">Merge PDF</div>
+                <div class="tool-desc">Combine multiple PDF documents into a single production asset in your chosen order quickly.</div>
+            </div>
         </a>
-        <!-- Split PDF -->
-        <a href="split-pdf/index.html" class="tool-card">
-            <div class="tool-icon">✂️</div>
-            <div class="tool-name">Split PDF</div>
-            <div class="tool-desc">Extract specific page segments or split documents into separate items.</div>
+
+        <a href="split-pdf/index.html" class="tool-card" data-cats="organize">
+            <div class="tool-icon" style="color: #ed8936;">✂️</div>
+            <div class="tool-content">
+                <div class="tool-name">Split PDF</div>
+                <div class="tool-desc">Separate one page or a whole set for easy extraction into independent PDF files.</div>
+            </div>
         </a>
-        <!-- Delete Pages -->
-        <a href="delete-pdf-pages/index.html" class="tool-card">
-            <div class="tool-icon">🗑️</div>
-            <div class="tool-name">Delete PDF Pages</div>
-            <div class="tool-desc">Clean up and remove unwanted pages from any document stream instantly.</div>
+
+        <a href="delete-pdf-pages/index.html" class="tool-card" data-cats="organize">
+            <div class="tool-icon" style="color: #e53e3e;">🗑️</div>
+            <div class="tool-content">
+                <div class="tool-name">Delete PDF Pages</div>
+                <div class="tool-desc">Clean up, filter, and remove unwanted or extra pages from any document stream instantly.</div>
+            </div>
         </a>
-        <!-- Document Converter -->
-        <a href="document-converter/index.html" class="tool-card">
-            <div class="tool-icon">🔄</div>
-            <div class="tool-name">Office Converter</div>
-            <div class="tool-desc">Convert files flawlessly between PDF, Word, and PowerPoint layouts.</div>
+
+        <a href="document-converter/index.html" class="tool-card" data-cats="convert">
+            <div class="tool-icon" style="color: #48bb78;">🔄</div>
+            <div class="tool-content">
+                <div class="tool-name">Office Converter (Word / PPTX)</div>
+                <div class="tool-desc">Convert files seamlessly between PDF, Word documents, and PowerPoint layouts locally.</div>
+            </div>
         </a>
-        <!-- Weather App -->
-        <a href="weather-app/index.html" class="tool-card">
-            <div class="tool-icon">🌤️</div>
-            <div class="tool-name">Weather Station</div>
-            <div class="tool-desc">Check live global weather forecasts with zero security error blocks.</div>
+
+        <a href="weather-app/index.html" class="tool-card" data-cats="utility">
+            <div class="tool-icon" style="color: #ecc94b;">🌤️</div>
+            <div class="tool-content">
+                <div class="tool-name">Weather Station Dashboard</div>
+                <div class="tool-desc">Check live global weather status forecasts with zero configuration errors or blocks.</div>
+            </div>
         </a>
+
     </div>
 
     <script>
         const globalDark = document.getElementById('globalDark');
         const globalStorage = document.getElementById('globalStorage');
         const toolSearch = document.getElementById('toolSearch');
+        const categoryContainer = document.getElementById('categoryContainer');
         const cards = document.querySelectorAll('.tool-card');
+        
+        let currentCategory = 'all';
 
-        // Dark Mode Logic synchronized with LocalStorage
+        // 1. Live Advanced Filtering Logic (Pills + Search Mix)
+        categoryContainer.addEventListener('click', (e) => {
+            if(!e.target.classList.contains('cat-pill')) return;
+            
+            document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            currentCategory = e.target.dataset.category;
+            filterTools();
+        });
+
+        toolSearch.addEventListener('input', filterTools);
+
+        function filterTools() {
+            const query = toolSearch.value.toLowerCase();
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.tool-name').textContent.toLowerCase();
+                const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
+                const cardCats = card.dataset.cats.split(',');
+                
+                const matchesSearch = name.includes(query) || desc.includes(query);
+                const matchesCategory = (currentCategory === 'all') || cardCats.includes(currentCategory);
+                
+                if(matchesSearch && matchesCategory) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // 2. Premium Theme Sync Control
         globalDark.addEventListener('change', () => {
             const theme = globalDark.checked ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
@@ -124,20 +199,6 @@
             globalDark.checked = true;
             document.documentElement.setAttribute('data-theme', 'dark');
         }
-
-        // Live Search Optimization
-        toolSearch.addEventListener('input', () => {
-            const query = toolSearch.value.toLowerCase();
-            cards.forEach(card => {
-                const name = card.querySelector('.tool-name').textContent.toLowerCase();
-                const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
-                if(name.includes(query) || desc.includes(query)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
     </script>
 </body>
 </html>
