@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
         body {
             background-color: var(--bg-main);
@@ -59,7 +59,7 @@
         .search-group {
             display: flex;
             gap: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
         .search-group input {
             flex: 1;
@@ -134,7 +134,8 @@
             display: none;
             color: #ef4444;
             font-weight: 500;
-            margin-top: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
         }
         .back-btn {
             display: inline-block;
@@ -159,7 +160,7 @@
             <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)">
             <button id="searchBtn">Search</button>
         </div>
-        <div class="error-message" id="errorMsg">City not found. Please try again.</div>
+        <div class="error-message" id="errorMsg">City not found. Please check spelling!</div>
         <div class="weather-display" id="weatherDisplay">
             <div class="city-name" id="cityName">London, GB</div>
             <div class="temp" id="temperature">24°C</div>
@@ -188,19 +189,21 @@
         const windSpeed = document.getElementById('windSpeed');
         const apiKey = 'b1b15e88fa797225412429c1c50c122a';
         async function checkWeather(city) {
-            if (!city.trim()) return;            
+            const cleanCity = city.trim();
+            if (!cleanCity) return;            
             errorMsg.style.display = 'none';            
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`);                
-                if (response.status === 404) {
-                    errorMsg.style.display = 'block';                    weatherDisplay.style.display = 'none';
-                    return;
+                // HTTPS dynamically safe URL template
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cleanCity)}&appid=${apiKey}&units=metric`;
+                const response = await fetch(url);                
+                if (!response.ok) {
+                    throw new Error('City not found');
                 }
                 const data = await response.json();
                 cityName.textContent = `${data.name}, ${data.sys.country}`;                temperature.textContent = `${Math.round(data.main.temp)}°C`;                condition.textContent = data.weather[0].description;
-                humidity.textContent = `${data.main.humidity}%`;                windSpeed.textContent = `${data.wind.speed} m/s`;                weatherDisplay.style.display = 'block';
+                humidity.textContent = `${data.main.humidity}%`;                windSpeed.textContent = `${data.wind.speed} m/s`;                weatherDisplay.style.display = 'block';                errorMsg.style.display = 'none';
             } catch (error) {
-                errorMsg.textContent = 'Error fetching weather data.';                errorMsg.style.display = 'block';                weatherDisplay.style.display = 'none';
+                errorMsg.textContent = "City not found. Please check spelling (e.g., London)!";                errorMsg.style.display = 'block';                weatherDisplay.style.display = 'none';
             }
         }        searchBtn.addEventListener('click', () => {
             checkWeather(cityInput.value);
