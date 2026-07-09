@@ -167,12 +167,15 @@
         const fileInput = document.getElementById('fileInput');
         const previewContainer = document.getElementById('previewContainer');
         const convertBtn = document.getElementById('convertBtn');
-        let selectedFiles = [];        uploadBox.addEventListener('click', (e) => {
+        let selectedFiles = [];
+        uploadBox.addEventListener('click', (e) => {
             e.preventDefault();
             fileInput.click();
-        });        uploadBox.addEventListener('touchstart', (e) => {
+        });
+        uploadBox.addEventListener('touchstart', (e) => {
             fileInput.click();
-        });        fileInput.addEventListener('change', (e) => {
+        });
+        fileInput.addEventListener('change', (e) => {
             handleFiles(e.target.files);
         });
         function handleFiles(files) {
@@ -184,20 +187,22 @@
                     const item = document.createElement('div');
                     item.classList.add('preview-item');
                     const img = document.createElement('img');
-                    img.src = e.target.result;                    item.appendChild(img);
+                    img.src = e.target.result;
+                    item.appendChild(img);
                     previewContainer.appendChild(item);
-                }                reader.readAsDataURL(file);
+                }
+                reader.readAsDataURL(file);
             }
             if (selectedFiles.length > 0) {
                 convertBtn.style.display = 'block';
             }
-        }       convertBtn.addEventListener('click', async () => {
+        }
+        convertBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) return;
             convertBtn.disabled = true;
             convertBtn.textContent = 'Converting...';
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF('p', 'mm', 'a4');
-
             for (let i = 0; i < selectedFiles.length; i++) {
                 if (i > 0) pdf.addPage();
                 try {
@@ -208,7 +213,8 @@
                 } catch (err) {
                     console.error(err);
                 }
-            }            pdf.save('DailyKitBox-Converted.pdf');
+            }
+            pdf.save('DailyKitBox-Converted.pdf');
             convertBtn.disabled = false;
             convertBtn.textContent = 'Convert to PDF';
         });
