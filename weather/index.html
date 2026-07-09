@@ -3,103 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard - DailyKitBox</title>
+    <title>Weather Station - DailyKitBox</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/apps.js"></script>
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --radius-lg: 12px;
-            --radius-md: 8px;
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .weather-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 450px; box-shadow: var(--shadow-md); }
-        .title-container { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-        .title-container .icon { font-size: 32px; }
-        .title-container h1 { font-size: 26px; font-weight: 700; }
-        .search-group { display: flex; gap: 8px; margin-bottom: 24px; }
-        .search-group input { flex: 1; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 15px; outline: none; }
-        .search-group input:focus { border-color: var(--primary); }
-        .search-btn { background-color: var(--primary); color: white; border: none; padding: 0 20px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
-        .search-btn:hover { background-color: var(--primary-hover); }
-        .weather-info { display: none; text-align: center; background: #f8fafc; border: 1px solid var(--border-color); padding: 24px; border-radius: var(--radius-lg); }
-        .city-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; text-transform: capitalize; }
-        .temp { font-size: 48px; font-weight: 800; color: var(--primary); margin: 12px 0; }
-        .desc { font-size: 16px; font-weight: 600; color: var(--text-main); text-transform: capitalize; margin-bottom: 12px; }
-        .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px; font-size: 14px; text-align: left; }
-        .details-item { color: var(--text-muted); font-weight: 500; }
-        .details-item span { color: var(--text-main); font-weight: 600; display: block; margin-top: 2px; }
-        .error-msg { display: none; color: #ef4444; text-align: center; font-weight: 500; margin-bottom: 16px; font-size: 14px; }
-        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+        .weather-input-container { display: flex; gap: 8px; margin-bottom: 16px; }
+        .weather-input-container input { flex: 1; padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 14px; }
+        .w-btn { background: var(--primary); color: white; border: none; padding: 0 16px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; }
+        .weather-display { display: none; text-align: center; padding: 16px; background: rgba(0,0,0,0.02); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+        .temp-reading { font-size: 38px; font-weight: 800; color: var(--primary); margin: 10px 0; }
     </style>
 </head>
 <body>
-    <div class="weather-card">
-        <a href="../index.html" class="back-btn">&larr; Back to Home</a>
+    <div class="converter-card">
         <div class="title-container">
-            <span class="icon">🌤️</span>
-            <h1>Weather Status</h1>
+            <div class="title-meta"><span style="font-size:24px;">🌤️</span><h1>Weather Station</h1></div>
+            <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
-        <div class="search-group">
-            <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)">
-            <button class="search-btn" id="searchBtn">Search</button>
+        <p class="description">Check current local climate matrices worldwide instantly via fast core caching engine.</p>
+        
+        <div class="weather-input-container">
+            <input type="text" id="cityName" placeholder="Enter city name (e.g., London)...">
+            <button class="w-btn" id="getWeather">Fetch</button>
         </div>
-        <div class="error-msg" id="errorMsg">Could not fetch data. Please try another city!</div>
-        <div class="weather-info" id="weatherInfo">
-            <div class="city-name" id="cityName">City Name</div>
-            <div class="temp" id="tempValue">--°C</div>
-            <div class="desc" id="weatherDesc">Condition</div>
-            <div class="details">
-                <div class="details-item">Humidity<span id="humidityValue">--%</span></div>
-                <div class="details-item">Wind Speed<span id="windValue">-- km/h</span></div>
-            </div>
+
+        <div class="weather-display" id="weatherDisplay">
+            <h2 id="outCity">City Name</h2>
+            <div class="temp-reading" id="outTemp">--°C</div>
+            <p id="outCondition" style="font-weight:600; color:var(--text-muted);">Clear Sky</p>
         </div>
     </div>
+
     <script>
-        const cityInput = document.getElementById('cityInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const errorMsg = document.getElementById('errorMsg');
-        const weatherInfo = document.getElementById('weatherInfo');
-        const cityName = document.getElementById('cityName');
-        const tempValue = document.getElementById('tempValue');
-        const weatherDesc = document.getElementById('weatherDesc');
-        const humidityValue = document.getElementById('humidityValue');
-        const windValue = document.getElementById('windValue');
-
-        searchBtn.addEventListener('click', fetchWeather);
-        cityInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') fetchWeather(); });
-
-        async do fetchWeather() {
-            const city = cityInput.value.trim();
-            if (!city) return;
-            searchBtn.disabled = true;
-            searchBtn.textContent = '...';
-            errorMsg.style.display = 'none';
+        const btn = document.getElementById('getWeather');
+        const display = document.getElementById('weatherDisplay');
+        
+        btn.addEventListener('click', async () => {
+            const city = document.getElementById('cityName').value.trim();
+            if(!city) return;
+            btn.disabled = true; btn.textContent = '...';
             try {
-                const res = await fetch(`https://wttr.in/${city}?format=j1`);
-                if (!res.ok) throw new Error();
+                const res = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
                 const data = await res.json();
-                const current = data.current_condition[0];
-                const area = data.nearest_area[0];
-                cityName.textContent = `${area.areaName[0].value}, ${area.country[0].value}`;
-                tempValue.textContent = `${current.temp_C}°C`;
-                weatherDesc.textContent = current.weatherDesc[0].value;
-                humidityValue.textContent = `${current.humidity}%`;
-                windValue.textContent = `${current.windspeedKmph} km/h`;
-                weatherInfo.style.display = 'block';
-            } catch (err) {
-                errorMsg.style.display = 'block';
-                weatherInfo.style.display = 'none';
-            }
-            searchBtn.disabled = false;
-            searchBtn.textContent = 'Search';
-        }
+                
+                document.getElementById('outCity').textContent = city.toUpperCase();
+                document.getElementById('outTemp').textContent = `${data.current_condition[0].temp_C}°C`;
+                document.getElementById('outCondition').textContent = data.current_condition[0].weatherDesc[0].value;
+                display.style.display = 'block';
+            } catch(e) { alert('Weather stream server is taking too long.'); }
+            btn.disabled = false; btn.textContent = 'Fetch';
+        });
     </script>
 </body>
 </html>
