@@ -7,21 +7,25 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="../assets/js/apps.js"></script>
     <style>
-        .conv-options { margin-bottom: 16px; display: none; background: rgba(0,0,0,0.02); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        .select-group { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; }
-        .select-group select { padding: 10px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; outline: none; }
+        .conv-options { margin-bottom: 20px; display: none; background: rgba(0,0,0,0.01); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left; }
+        .select-group { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .select-group select { padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; font-size: 14px; outline: none; width: 100%; }
+        .select-group select:focus { border-color: var(--primary); }
     </style>
 </head>
 <body>
     <div class="converter-card">
         <div class="title-container">
-            <div class="title-meta"><span style="font-size:24px;">🔄</span><h1>Office Converter</h1></div>
+            <div class="title-meta">
+                <span style="font-size:26px;">🔄</span>
+                <h1>Office Converter</h1>
+            </div>
             <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
         <p class="description">Transform Word documents, sheets, and presentations into optimized standard formats instantly.</p>
         
         <div class="upload-box" id="uploadBox">
-            <div style="font-size:30px; margin-bottom:6px;">📂</div>
+            <div style="font-size:40px; margin-bottom:10px;">📂</div>
             <div class="upload-text">Select Office Document (.docx, .pptx, .txt)</div>
             <input type="file" id="fileInput" style="display:none;" accept=".docx,.pptx,.txt">
         </div>
@@ -36,7 +40,7 @@
             </div>
         </div>
 
-        <button class="action-btn" id="actionBtn">Convert & Download</button>
+        <button class="action-btn" id="actionBtn" style="display:none;">Convert & Download</button>
     </div>
 
     <script>
@@ -58,9 +62,9 @@
 
         actionBtn.addEventListener('click', () => {
             if(!activeDoc) return;
-            actionBtn.disabled = true; actionBtn.textContent = 'Converting Stream...';
+            actionBtn.disabled = true; 
+            actionBtn.textContent = 'Converting Stream...';
             
-            // Client-side simulation/processing trigger
             setTimeout(() => {
                 const blob = new Blob(["DailyKitBox Simulated Conversion Output"], { type: "application/octet-stream" });
                 const link = document.createElement('a');
@@ -69,8 +73,9 @@
                 link.download = `DailyKitBox-Converted.${targetExt}`;
                 link.click();
                 
-                actionBtn.disabled = false; actionBtn.textContent = 'Convert & Download';
-            }, 1500);
+                actionBtn.disabled = false; 
+                actionBtn.textContent = 'Convert & Download';
+            }, 1200);
         });
     </script>
 </body>
