@@ -6,6 +6,7 @@
     <title>DailyKitBox - Ultimate Tool Hub</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        /* (Aapka existing CSS code yahi rahega) */
         body { flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 32px; }
         .header { width: 100%; max-width: 700px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
         .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
@@ -51,37 +52,23 @@
     </div>
 
     <div class="tools-grid" id="toolsGrid">
-        <a href="merge-pdf/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #f56565;">🗂️</div>
-            <div class="tool-content"><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDF files into a single document instantly.</div></div>
-        </a>
-        <a href="split-pdf/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #ed8936;">✂️</div>
-            <div class="tool-content"><div class="tool-name">Split PDF</div><div class="tool-desc">Separate specific page segments or extract data frames.</div></div>
-        </a>
-        <a href="delete-pdf-pages/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #e53e3e;">🗑️</div>
-            <div class="tool-content"><div class="tool-name">Delete PDF Pages</div><div class="tool-desc">Clean up and drop unwanted pages from any PDF file stream.</div></div>
-        </a>
-        <a href="jpg-to-pdf/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #4299e1;">📸</div>
-            <div class="tool-content"><div class="tool-name">Images to PDF</div><div class="tool-desc">Convert multiple images to structured PDF documents seamlessly.</div></div>
-        </a>
-        <a href="document-converter/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #48bb78;">🔄</div>
-            <div class="tool-content"><div class="tool-name">Office Converter</div><div class="tool-desc">Convert files seamlessly between Word, presentations, and PDFs.</div></div>
-        </a>
-        <a href="pdf-branding-security/index.html" class="tool-card" data-cats="pdf">
-            <div class="tool-icon" style="color: #4a5568;">🛡️</div>
-            <div class="tool-content"><div class="tool-name">Branding & Security</div><div class="tool-desc">Inject watermarks and enforce custom safety configurations.</div></div>
-        </a>
-        <a href="weather-app/index.html" class="tool-card" data-cats="utility">
-            <div class="tool-icon" style="color: #ecc94b;">🌤️</div>
-            <div class="tool-content"><div class="tool-name">Weather Forecast</div><div class="tool-desc">Check live global weather forecasts with fast caching engine.</div></div>
-        </a>
+        <!-- PDF Tools -->
+        <a href="merge-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #f56565;">🗂️</div><div class="tool-content"><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDF files instantly.</div></div></a>
+        <a href="split-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #ed8936;">✂️</div><div class="tool-content"><div class="tool-name">Split PDF</div><div class="tool-desc">Separate specific pages from your PDFs.</div></div></a>
+        <a href="delete-pdf-pages/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #e53e3e;">🗑️</div><div class="tool-content"><div class="tool-name">Delete PDF Pages</div><div class="tool-desc">Drop unwanted pages from any PDF.</div></div></a>
+        <a href="jpg-to-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #4299e1;">📸</div><div class="tool-content"><div class="tool-name">Images to PDF</div><div class="tool-desc">Convert images to structured PDF.</div></div></a>
+        <a href="document-converter/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #48bb78;">🔄</div><div class="tool-content"><div class="tool-name">Office Converter</div><div class="tool-desc">Convert files between Word and PDF.</div></div></a>
+        <a href="pdf-branding-security/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #4a5568;">🛡️</div><div class="tool-content"><div class="tool-name">Branding & Security</div><div class="tool-desc">Watermark and secure your PDF files.</div></div></a>
+        
+        <!-- Utilities -->
+        <a href="weather/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #ecc94b;">🌤️</div><div class="tool-content"><div class="tool-name">Weather Forecast</div><div class="tool-desc">Check live global weather forecasts.</div></div></a>
+        <a href="age-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #667eea;">🎂</div><div class="tool-content"><div class="tool-name">Age Calculator</div><div class="tool-desc">Calculate your exact age segments.</div></div></a>
+        <a href="tip-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #f6ad55;">💡</div><div class="tool-content"><div class="tool-name">Tip Calculator</div><div class="tool-desc">Calculate tips and split bills easily.</div></div></a>
+        <a href="mortgage-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #4fd1c5;">🏠</div><div class="tool-content"><div class="tool-name">Mortgage Calculator</div><div class="tool-desc">Plan your mortgage payments.</div></div></a>
+        <a href="word-counter/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #a0aec0;">📝</div><div class="tool-content"><div class="tool-name">Word Counter</div><div class="tool-desc">Analyze your text length in real-time.</div></div></a>
     </div>
 
-    <script src="assets/js/apps.js"></script>
+    <!-- Script wahi rahega... -->
     <script>
         const globalDark = document.getElementById('globalDark');
         const toolSearch = document.getElementById('toolSearch');
