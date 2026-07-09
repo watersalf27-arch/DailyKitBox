@@ -9,27 +9,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <style>
         .preview-list { max-height: 180px; overflow-y: auto; margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; display: none; background: rgba(0,0,0,0.01); }
-        .preview-item { display: flex; justify-content: space-between; align-items: center; padding: 6px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+        .preview-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
         .preview-item:last-child { border-bottom: none; }
-        .del-img { color: #ef4444; background: none; border: none; font-weight: 700; cursor: pointer; }
+        .del-img { color: #ef4444; background: none; border: none; font-weight: 700; cursor: pointer; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="converter-card">
         <div class="title-container">
-            <div class="title-meta"><span style="font-size:24px;">📸</span><h1>Images to PDF</h1></div>
+            <div class="title-meta">
+                <span style="font-size:26px;">📸</span>
+                <h1>Images to PDF</h1>
+            </div>
             <a href="../index.html" class="back-btn">&larr; Home</a>
         </div>
         <p class="description">Convert JPG, PNG or WebP image streams into clean structured layout documents instantly.</p>
         
         <div class="upload-box" id="uploadBox">
-            <div style="font-size:30px; margin-bottom:6px;">🖼️</div>
+            <div style="font-size:40px; margin-bottom:10px;">🖼️</div>
             <div class="upload-text">Upload Multiple Images</div>
             <input type="file" id="fileInput" style="display:none;" multiple accept="image/*">
         </div>
 
         <div class="preview-list" id="previewList"></div>
-        <button class="action-btn" id="actionBtn">Generate PDF</button>
+        <button class="action-btn" id="actionBtn" style="display:none;">Generate PDF</button>
     </div>
 
     <script>
@@ -53,7 +56,7 @@
                 previewList.style.display = 'block'; actionBtn.style.display = 'block';
                 trackingImages.forEach((img, idx) => {
                     const row = document.createElement('div'); row.classList.add('preview-item');
-                    row.innerHTML = `<span>${idx+1}. ${img.file.name}</span><button class="del-img" onclick="dropImg(${img.id})">✕</button>`;
+                    row.innerHTML = `<span>📂 Image ${idx+1}: ${img.file.name.layout=15 ? img.file.name.substring(0,20)+'...' : img.file.name}</span><button class="del-img" onclick="dropImg(${img.id})">✕</button>`;
                     previewList.appendChild(row);
                 });
             } else { previewList.style.display = 'none'; actionBtn.style.display = 'none'; }
@@ -63,7 +66,7 @@
 
         actionBtn.addEventListener('click', async () => {
             if(trackingImages.length === 0) return;
-            actionBtn.disabled = true; actionBtn.textContent = 'Baking Assets...';
+            actionBtn.disabled = true; actionBtn.textContent = 'Baking Premium PDF Assets...';
             try {
                 const doc = await PDFLib.PDFDocument.create();
                 for(let item of trackingImages) {
