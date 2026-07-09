@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyKitBox - Free Online Tools for Daily Use</title>
+    <title>DailyKitBox - Premium Tool Suite</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -15,163 +15,129 @@
             --border-color: #e2e8f0;
             --radius-lg: 12px;
             --radius-md: 8px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        [data-theme="dark"] {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
         }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 5%;
-            background-color: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .navbar .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        .hero {
-            background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.05) 0%, rgba(248, 250, 252, 0) 100%);
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .hero h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 25px;
-        }
-        .container {
-            max-width: 1140px;
-            margin: 40px auto;
-            padding: 0 24px;
-            flex: 1;
-        }
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .tool-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: var(--shadow-sm);
-        }
-        .tool-icon {
-            font-size: 30px;
-            margin-bottom: 12px;
-        }
-        .tool-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .tool-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        .tool-btn {
-            display: block;
-            text-align: center;
-            background-color: var(--primary);
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 14px;
-        }
-        footer {
-            background-color: var(--bg-card);
-            color: var(--text-muted);
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: background-color 0.2s, border-color 0.2s; }
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding: 24px; display: flex; flex-direction: column; align-items: center; }
+        
+        .header { width: 100%; max-width: 800px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        
+        /* Global Settings Panel */
+        .global-controls { display: flex; gap: 16px; background: var(--bg-card); padding: 10px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
+        .control-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+        /* Search Bar Improvement */
+        .search-container { width: 100%; max-width: 800px; margin-bottom: 24px; }
+        .search-container input { width: 100%; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-main); font-size: 15px; outline: none; box-shadow: var(--shadow-md); }
+        .search-container input:focus { border-color: var(--primary); }
+
+        /* Grid Framework */
+        .tools-grid { width: 100%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; text-decoration: none; color: inherit; box-shadow: var(--shadow-md); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; gap: 8px; }
+        .tool-card:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
+        .tool-card.hidden { display: none; }
+        .tool-icon { font-size: 28px; }
+        .tool-name { font-size: 16px; font-weight: 700; }
+        .tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+        @media (max-width: 600px) {
+            .header { flex-direction: column; gap: 16px; text-align: center; }
+            .global-controls { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">DailyKitBox</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <h1>Simplify Your Daily Tasks</h1>
-        <p>Free, fast, and 100% browser-based tools. Privacy focused.</p>
-    </section>
-    <main class="container">
-        <h2 class="section-title">Available Tools</h2>        
-        <div class="tools-grid">            
-            <div class="tool-card">
-                <div class="tool-icon">📄</div>
-                <h3>JPG to PDF Converter</h3>
-                <p>Convert your JPEG images into a single professional PDF document securely.</p>
-                <a href="jpg-to-pdf/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">🏠</div>
-                <h3>Mortgage Calculator</h3>
-                <p>Calculate your monthly mortgage payments, interest, and loan timeline easily.</p>
-                <a href="mortgage-calculator/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">💰</div>
-                <h3>Tip Calculator</h3>
-                <p>Quickly calculate tips and split restaurant or services bills with friends.</p>
-                <a href="tip-calculator/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">📝</div>
-                <h3>Word Counter</h3>
-                <p>Count words, characters, and sentences in real-time for your text or essays.</p>
-                <a href="word-counter/index.html" class="tool-btn">Open Tool</a>
-            </div>
-            <div class="tool-card">
-                <div class="tool-icon">🌤️</div>
-                <h3>Weather App</h3>
-                <p>Check the real-time weather and temperature of any city around the world.</p>
-                <a href="weather/index.html" class="tool-btn">Open Tool</a>
-            </div>
+
+    <div class="header">
+        <div class="logo">🛠️ <span>DailyKitBox</span></div>
+        <div class="global-controls">
+            <label class="control-item"><input type="checkbox" id="globalDark"> 🌓 Dark Mode</label>
+            <label class="control-item"><input type="checkbox" id="globalStorage" checked> 💾 Save Config</label>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 DailyKitBox. All processing happens in your browser.</p>
-    </footer>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="toolSearch" placeholder="Search premium utility tools...">
+    </div>
+
+    <div class="tools-grid" id="toolsGrid">
+        <!-- JPG to PDF -->
+        <a href="jpg-to-pdf/index.html" class="tool-card">
+            <div class="tool-icon">📸</div>
+            <div class="tool-name">Images to PDF</div>
+            <div class="tool-desc">Convert multiple images to custom structured PDF documents with workbench editor.</div>
+        </a>
+        <!-- Merge PDF -->
+        <a href="merge-pdf/index.html" class="tool-card">
+            <div class="tool-icon">🗂️</div>
+            <div class="tool-name">Merge PDF</div>
+            <div class="tool-desc">Combine multiple PDF documents into a single production asset quickly.</div>
+        </a>
+        <!-- Split PDF -->
+        <a href="split-pdf/index.html" class="tool-card">
+            <div class="tool-icon">✂️</div>
+            <div class="tool-name">Split PDF</div>
+            <div class="tool-desc">Extract specific page segments or split documents into separate items.</div>
+        </a>
+        <!-- Delete Pages -->
+        <a href="delete-pdf-pages/index.html" class="tool-card">
+            <div class="tool-icon">🗑️</div>
+            <div class="tool-name">Delete PDF Pages</div>
+            <div class="tool-desc">Clean up and remove unwanted pages from any document stream instantly.</div>
+        </a>
+        <!-- Document Converter -->
+        <a href="document-converter/index.html" class="tool-card">
+            <div class="tool-icon">🔄</div>
+            <div class="tool-name">Office Converter</div>
+            <div class="tool-desc">Convert files flawlessly between PDF, Word, and PowerPoint layouts.</div>
+        </a>
+        <!-- Weather App -->
+        <a href="weather-app/index.html" class="tool-card">
+            <div class="tool-icon">🌤️</div>
+            <div class="tool-name">Weather Station</div>
+            <div class="tool-desc">Check live global weather forecasts with zero security error blocks.</div>
+        </a>
+    </div>
+
+    <script>
+        const globalDark = document.getElementById('globalDark');
+        const globalStorage = document.getElementById('globalStorage');
+        const toolSearch = document.getElementById('toolSearch');
+        const cards = document.querySelectorAll('.tool-card');
+
+        // Dark Mode Logic synchronized with LocalStorage
+        globalDark.addEventListener('change', () => {
+            const theme = globalDark.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            if(globalStorage.checked) localStorage.setItem('global-theme', theme);
+        });
+
+        if(localStorage.getItem('global-theme') === 'dark') {
+            globalDark.checked = true;
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // Live Search Optimization
+        toolSearch.addEventListener('input', () => {
+            const query = toolSearch.value.toLowerCase();
+            cards.forEach(card => {
+                const name = card.querySelector('.tool-name').textContent.toLowerCase();
+                const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
+                if(name.includes(query) || desc.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
