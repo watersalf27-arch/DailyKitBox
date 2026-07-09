@@ -94,7 +94,6 @@ body {
 
 .upload-box:hover {
     border-color: var(--primary);
-    transform: scale(0.01);
 }
 
 .upload-text { 
