@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App - DailyKitBox</title>
+    <title>Weather Dashboard - DailyKitBox</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -17,201 +17,89 @@
             --radius-md: 8px;
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .weather-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: var(--shadow-md);
-            text-align: center;
-        }
-        .title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .title-container .icon {
-            font-size: 32px;
-        }
-        .title-container h1 {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .search-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .search-group input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-group input:focus {
-            border-color: var(--primary);
-        }
-        .search-group button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .search-group button:hover {
-            background-color: var(--primary-hover);
-        }
-        .weather-display {
-            display: none;
-            margin-top: 20px;
-        }
-        .city-name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .temp {
-            font-size: 54px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        .condition {
-            font-size: 18px;
-            color: var(--text-muted);
-            text-transform: capitalize;
-            margin-bottom: 24px;
-        }
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 16px;
-        }
-        .detail-box {
-            text-align: center;
-        }
-        .detail-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            font-weight: 500;
-        }
-        .detail-value {
-            font-size: 16px;
-            font-weight: 700;
-        }
-        .error-message {
-            display: none;
-            color: #ef4444;
-            font-weight: 500;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 14px;
-            text-align: left;
-            width: 100%;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .weather-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 450px; box-shadow: var(--shadow-md); }
+        .title-container { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .title-container .icon { font-size: 32px; }
+        .title-container h1 { font-size: 26px; font-weight: 700; }
+        .search-group { display: flex; gap: 8px; margin-bottom: 24px; }
+        .search-group input { flex: 1; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 15px; outline: none; }
+        .search-group input:focus { border-color: var(--primary); }
+        .search-btn { background-color: var(--primary); color: white; border: none; padding: 0 20px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
+        .search-btn:hover { background-color: var(--primary-hover); }
+        .weather-info { display: none; text-align: center; background: #f8fafc; border: 1px solid var(--border-color); padding: 24px; border-radius: var(--radius-lg); }
+        .city-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; text-transform: capitalize; }
+        .temp { font-size: 48px; font-weight: 800; color: var(--primary); margin: 12px 0; }
+        .desc { font-size: 16px; font-weight: 600; color: var(--text-main); text-transform: capitalize; margin-bottom: 12px; }
+        .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px; font-size: 14px; text-align: left; }
+        .details-item { color: var(--text-muted); font-weight: 500; }
+        .details-item span { color: var(--text-main); font-weight: 600; display: block; margin-top: 2px; }
+        .error-msg { display: none; color: #ef4444; text-align: center; font-weight: 500; margin-bottom: 16px; font-size: 14px; }
+        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="weather-card">
-        <a href="../index.html" class="back-btn">&larr; Back to Home</a>        
+        <a href="../index.html" class="back-btn">&larr; Back to Home</a>
         <div class="title-container">
             <span class="icon">🌤️</span>
-            <h1>Weather App</h1>
+            <h1>Weather Status</h1>
         </div>
         <div class="search-group">
             <input type="text" id="cityInput" placeholder="Enter city name (e.g., London)">
-            <button id="searchBtn">Search</button>
+            <button class="search-btn" id="searchBtn">Search</button>
         </div>
-        <div class="error-message" id="errorMsg">City not found. Please check spelling!</div>
-        <div class="weather-display" id="weatherDisplay">
-            <div class="city-name" id="cityName">London, GB</div>
-            <div class="temp" id="temperature">24°C</div>
-            <div class="condition" id="condition">Clear Sky</div>            
-            <div class="details-grid">
-                <div class="detail-box">
-                    <div class="detail-label">Humidity</div>
-                    <div class="detail-value" id="humidity">60%</div>
-                </div>
-                <div class="detail-box">
-                    <div class="detail-label">Wind Speed</div>
-                    <div class="detail-value" id="windSpeed">5.1 m/s</div>
-                </div>
+        <div class="error-msg" id="errorMsg">Could not fetch data. Please try another city!</div>
+        <div class="weather-info" id="weatherInfo">
+            <div class="city-name" id="cityName">City Name</div>
+            <div class="temp" id="tempValue">--°C</div>
+            <div class="desc" id="weatherDesc">Condition</div>
+            <div class="details">
+                <div class="details-item">Humidity<span id="humidityValue">--%</span></div>
+                <div class="details-item">Wind Speed<span id="windValue">-- km/h</span></div>
             </div>
         </div>
     </div>
     <script>
         const cityInput = document.getElementById('cityInput');
         const searchBtn = document.getElementById('searchBtn');
-        const weatherDisplay = document.getElementById('weatherDisplay');
         const errorMsg = document.getElementById('errorMsg');
+        const weatherInfo = document.getElementById('weatherInfo');
         const cityName = document.getElementById('cityName');
-        const temperature = document.getElementById('temperature');
-        const condition = document.getElementById('condition');
-        const humidity = document.getElementById('humidity');
-        const windSpeed = document.getElementById('windSpeed');
-        const apiKey = 'b1b15e88fa797225412429c1c50c122a';
-        async function checkWeather(city) {
-            const cleanCity = city.trim();
-            if (!cleanCity) return;            
-            errorMsg.style.display = 'none';            
+        const tempValue = document.getElementById('tempValue');
+        const weatherDesc = document.getElementById('weatherDesc');
+        const humidityValue = document.getElementById('humidityValue');
+        const windValue = document.getElementById('windValue');
+
+        searchBtn.addEventListener('click', fetchWeather);
+        cityInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') fetchWeather(); });
+
+        async do fetchWeather() {
+            const city = cityInput.value.trim();
+            if (!city) return;
+            searchBtn.disabled = true;
+            searchBtn.textContent = '...';
+            errorMsg.style.display = 'none';
             try {
-                // HTTPS dynamically safe URL template
-                const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(cleanCity)}&appid=${apiKey}&units=metric`;
-                const response = await fetch(url);                
-                if (!response.ok) {
-                    throw new Error('City not found');
-                }
-                const data = await response.json();
-                cityName.textContent = `${data.name}, ${data.sys.country}`;                temperature.textContent = `${Math.round(data.main.temp)}°C`;                condition.textContent = data.weather[0].description;
-                humidity.textContent = `${data.main.humidity}%`;                windSpeed.textContent = `${data.wind.speed} m/s`;                weatherDisplay.style.display = 'block';                errorMsg.style.display = 'none';
-            } catch (error) {
-                errorMsg.textContent = "City not found. Please check spelling (e.g., London)!";                errorMsg.style.display = 'block';                weatherDisplay.style.display = 'none';
+                const res = await fetch(`https://wttr.in/${city}?format=j1`);
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                const current = data.current_condition[0];
+                const area = data.nearest_area[0];
+                cityName.textContent = `${area.areaName[0].value}, ${area.country[0].value}`;
+                tempValue.textContent = `${current.temp_C}°C`;
+                weatherDesc.textContent = current.weatherDesc[0].value;
+                humidityValue.textContent = `${current.humidity}%`;
+                windValue.textContent = `${current.windspeedKmph} km/h`;
+                weatherInfo.style.display = 'block';
+            } catch (err) {
+                errorMsg.style.display = 'block';
+                weatherInfo.style.display = 'none';
             }
-        }        searchBtn.addEventListener('click', () => {
-            checkWeather(cityInput.value);
-        });        cityInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                checkWeather(cityInput.value);
-            }
-        });
+            searchBtn.disabled = false;
+            searchBtn.textContent = 'Search';
+        }
     </script>
 </body>
 </html>
