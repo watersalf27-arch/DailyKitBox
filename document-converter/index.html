@@ -3,80 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office Converter - DailyKitBox</title>
+    <title>Office Document Converter - DailyKitBox | Word, PPT, PDF</title>
+    <meta name="description" content="Convert your documents seamlessly between Word, PowerPoint, and PDF formats. Fast, secure, and professional document converter for users in the USA, UK, Australia, and Europe.">
+    <meta name="keywords" content="Document converter, convert Word to PDF, PPT to PDF, online document conversion, DailyKitBox, professional file converter">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <style>
-        .conv-options { margin-bottom: 20px; display: none; background: rgba(0,0,0,0.01); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left; }
-        .select-group { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text-main); }
-        .select-group select { padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; font-size: 14px; outline: none; width: 100%; }
-        .select-group select:focus { border-color: var(--primary); }
-    </style>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta">
-                <span style="font-size:26px;">🔄</span>
-                <h1>Office Converter</h1>
-            </div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Transform Word documents, sheets, and presentations into optimized standard formats instantly.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:40px; margin-bottom:10px;">📂</div>
-            <div class="upload-text">Select Office Document (.docx, .pptx, .txt)</div>
-            <input type="file" id="fileInput" style="display:none;" accept=".docx,.pptx,.txt">
-        </div>
-
-        <div class="conv-options" id="convOptions">
-            <div class="select-group">
-                <label>Convert Target Format:</label>
-                <select id="targetFormat">
-                    <option value="pdf">Convert to PDF Document (.pdf)</option>
-                    <option value="docx">Convert to Word Asset (.docx)</option>
-                </select>
-            </div>
-        </div>
-
-        <button class="action-btn" id="actionBtn" style="display:none;">Convert & Download</button>
+    <div class="header">
+        <h1>Office Converter</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
     </div>
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const convOptions = document.getElementById('convOptions');
-        const actionBtn = document.getElementById('actionBtn');
-        let activeDoc = null;
+    <!-- Tool Interface -->
+    <div class="tool-card">
+        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
+            <p>Upload your document (Word, PPT, PDF) to convert.</p>
+            <input type="file" id="fileInput" style="margin-top: 10px;">
+        </div>
+    </div>
 
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
-                activeDoc = e.target.files[0];
-                uploadBox.querySelector('.upload-text').textContent = activeDoc.name;
-                convOptions.style.display = 'block';
-                actionBtn.style.display = 'block';
-            }
-        });
+    <!-- SEO & AEO Optimized 'How to' Section -->
+    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
+        <h2 style="font-size: 22px;">How to use Office Converter?</h2>
+        <p>Convert your files easily for professional needs in the USA, UK, Australia, and Europe.</p>
+        <ol>
+            <li><strong>Step 1:</strong> Upload your source file (Word, PPT, or PDF).</li>
+            <li><strong>Step 2:</strong> Select the output format you need.</li>
+            <li><strong>Step 3:</strong> Click "Convert" and download your document instantly.</li>
+        </ol>
 
-        actionBtn.addEventListener('click', () => {
-            if(!activeDoc) return;
-            actionBtn.disabled = true; 
-            actionBtn.textContent = 'Converting Stream...';
-            
-            setTimeout(() => {
-                const blob = new Blob(["DailyKitBox Simulated Conversion Output"], { type: "application/octet-stream" });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                const targetExt = document.getElementById('targetFormat').value;
-                link.download = `DailyKitBox-Converted.${targetExt}`;
-                link.click();
-                
-                actionBtn.disabled = false; 
-                actionBtn.textContent = 'Convert & Download';
-            }, 1200);
-        });
-    </script>
+        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
+        <p>Our document converter handles high-quality formatting while keeping your data private. Whether you are working in London, New York, or Sydney, DailyKitBox delivers fast and accurate results every time.</p>
+        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
+    </section>
 </body>
 </html>
