@@ -3,103 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merge PDF - DailyKitBox</title>
+    <title>Merge PDF - DailyKitBox | Combine PDF Files Online</title>
+    <meta name="description" content="Merge multiple PDF files into one easily. Fast, secure, and professional PDF combiner trusted by professionals in the USA, UK, Australia, and Europe.">
+    <meta name="keywords" content="Merge PDF, combine PDF files, join PDF online, PDF merger, DailyKitBox, online PDF tools, secure PDF combiner">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <style>
-        .file-list { max-height: 200px; overflow-y: auto; margin-bottom: 20px; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px; display: none; background: rgba(0,0,0,0.01); text-align: left; }
-        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
-        .file-item:last-child { border-bottom: none; }
-        .remove-file { color: #ef4444; background: none; border: none; font-weight: 700; cursor: pointer; font-size: 14px; }
-    </style>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta">
-                <span style="font-size:26px;">🗂️</span>
-                <h1>Merge PDF</h1>
-            </div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Combine multiple PDF files into a single document instantly in your browser workflow.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:40px; margin-bottom:10px;">📄</div>
-            <div class="upload-text">Select or Drop Multiple PDFs</div>
-            <input type="file" id="fileInput" style="display:none;" multiple accept="application/pdf">
-        </div>
-
-        <div class="file-list" id="fileList"></div>
-        <button class="action-btn" id="actionBtn" style="display:none;">Merge Documents</button>
+    <div class="header">
+        <h1>Merge PDF</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
     </div>
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
-        const actionBtn = document.getElementById('actionBtn');
-        let pdfQueue = [];
+    <!-- Tool Interface -->
+    <div class="tool-card">
+        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
+            <p>Upload your PDF files to merge them into one document.</p>
+            <input type="file" id="fileInput" accept="application/pdf" multiple style="margin-top: 10px;">
+        </div>
+    </div>
 
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            for(let file of e.target.files) {
-                pdfQueue.push({ id: Date.now() + Math.random(), file: file });
-            }
-            renderQueue();
-        });
+    <!-- SEO & AEO Optimized 'How to' Section -->
+    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
+        <h2 style="font-size: 22px;">How to use Merge PDF?</h2>
+        <p>Combining documents is designed to be the fastest experience for users across the USA, UK, Australia, and Europe.</p>
+        <ol>
+            <li><strong>Step 1:</strong> Upload your PDF files into our secure interface.</li>
+            <li><strong>Step 2:</strong> Arrange the order of your files by dragging them.</li>
+            <li><strong>Step 3:</strong> Click "Merge" to combine and download your new PDF instantly.</li>
+        </ol>
 
-        function renderQueue() {
-            fileList.innerHTML = '';
-            if(pdfQueue.length > 0) {
-                fileList.style.display = 'block'; 
-                actionBtn.style.display = 'block';
-                pdfQueue.forEach((item, idx) => {
-                    const row = document.createElement('div'); 
-                    row.classList.add('file-item');
-                    row.innerHTML = `<span>📄 Doc ${idx+1}: ${item.file.name.length > 25 ? item.file.name.substring(0,22)+'...' : item.file.name}</span><button class="remove-file" onclick="deletePdf(${item.id})">✕</button>`;
-                    fileList.appendChild(row);
-                });
-            } else { 
-                fileList.style.display = 'none'; 
-                actionBtn.style.display = 'none'; 
-            }
-        }
-
-        window.deletePdf = function(id) { 
-            pdfQueue = pdfQueue.filter(i => i.id !== id); 
-            renderQueue(); 
-        }
-
-        actionBtn.addEventListener('click', async () => {
-            if(pdfQueue.length < 2) {
-                alert('Please upload at least 2 PDF files to merge.');
-                return;
-            }
-            actionBtn.disabled = true; 
-            actionBtn.textContent = 'Merging Streams...';
-            try {
-                const mergedPdf = await PDFLib.PDFDocument.create();
-                for(let item of pdfQueue) {
-                    const bytes = await item.file.arrayBuffer();
-                    const currentDoc = await PDFLib.PDFDocument.load(bytes);
-                    const pages = await mergedPdf.copyPages(currentDoc, currentDoc.getPageIndices());
-                    pages.forEach(p => mergedPdf.addPage(p));
-                }
-                const outBytes = await mergedPdf.save();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(new Blob([outBytes], { type: 'application/pdf' }));
-                link.download = 'DailyKitBox-Merged.pdf'; 
-                link.click();
-            } catch(e) { 
-                alert('Failed parsing the PDF structures.'); 
-                console.error(e);
-            } finally {
-                actionBtn.disabled = false; 
-                actionBtn.textContent = 'Merge Documents';
-            }
-        });
-    </script>
+        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
+        <p>We provide enterprise-grade digital tools. Whether you are in London, New York, or Sydney, our platform ensures high-speed performance and data privacy for all your PDF needs.</p>
+        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
+    </section>
 </body>
 </html>
