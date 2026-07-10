@@ -3,103 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Branding & Security - DailyKitBox</title>
+    <title>PDF Branding & Security - DailyKitBox | Watermark & Encrypt</title>
+    <meta name="description" content="Add watermarks, brand your PDFs, and enforce security settings. Professional PDF protection for businesses in the USA, UK, Australia, and Europe. Fast and secure by DailyKitBox.">
+    <meta name="keywords" content="PDF branding, watermark PDF, PDF security, encrypt PDF, secure PDF online, DailyKitBox, PDF protection tool">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <style>
-        .secure-options { margin-bottom: 20px; display: none; background: rgba(0,0,0,0.01); padding: 18px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); text-align: left; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-        .form-group:last-child { margin-bottom: 0; }
-        .form-group label { font-size: 13px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
-        .form-group input { padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 14px; outline: none; }
-        .form-group input:focus { border-color: var(--primary); }
-    </style>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta">
-                <span style="font-size:26px;">🛡️</span>
-                <h1>Branding & Security</h1>
-            </div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Protect assets by injecting encrypted layout configurations and watermark branding tags.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:40px; margin-bottom:10px;">📄</div>
-            <div class="upload-text">Select PDF File</div>
-            <input type="file" id="fileInput" style="display:none;" accept="application/pdf">
-        </div>
-
-        <div class="secure-options" id="secureOptions">
-            <div class="form-group">
-                <label>🏷️ Watermark Branding Name:</label>
-                <input type="text" id="watermarkText" placeholder="e.g., DailyKitBox Protection">
-            </div>
-            <div class="form-group">
-                <label>🔒 Open Protection Password:</label>
-                <input type="password" id="pdfPassword" placeholder="Enter secure password...">
-            </div>
-        </div>
-
-        <button class="action-btn" id="actionBtn" style="display:none;">Apply Rules & Download</button>
+    <div class="header">
+        <h1>PDF Branding & Security</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
     </div>
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const secureOptions = document.getElementById('secureOptions');
-        const actionBtn = document.getElementById('actionBtn');
-        let rawFile = null;
-
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
-                rawFile = e.target.files[0];
-                uploadBox.querySelector('.upload-text').textContent = rawFile.name;
-                secureOptions.style.display = 'block';
-                actionBtn.style.display = 'block';
-            }
-        });
-
-        actionBtn.addEventListener('click', async () => {
-            if(!rawFile) return;
-            const wmText = document.getElementById('watermarkText').value.trim();
-            
-            actionBtn.disabled = true;
-            actionBtn.textContent = 'Enforcing Rules...';
-
-            try {
-                const fileBytes = await rawFile.arrayBuffer();
-                let pdfDoc = await PDFLib.PDFDocument.load(fileBytes);
-                
-                if(wmText) {
-                    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
-                    const pages = pdfDoc.getPages();
-                    pages.forEach(page => {
-                        const { width, height } = page.getSize();
-                        page.drawText(wmText, {
-                            x: width / 4, y: height / 2, size: 42,
-                            font: font, color: PDFLib.rgb(0.85, 0.24, 0.24),
-                            opacity: 0.15, rotate: PDFLib.degrees(45)
-                        });
-                    });
-                }
-
-                const outBytes = await pdfDoc.save();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(new Blob([outBytes], { type: 'application/pdf' }));
-                link.download = 'DailyKitBox-Secured.pdf';
-                link.click();
-            } catch (e) {
-                alert('Parsing error occurred.');
-            } finally {
-                actionBtn.disabled = false;
-                actionBtn.textContent = 'Apply Rules & Download';
-            }
-        });
-    </script>
-</body>
-</html>
+    <div class="tool-card">
+        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
+            <p>Upload your PDF
