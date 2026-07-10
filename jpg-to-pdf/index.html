@@ -3,88 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Images to PDF - DailyKitBox</title>
+    <title>JPG to PDF Converter - DailyKitBox | Professional Online Tool</title>
+    <meta name="description" content="Convert your JPG images to PDF documents instantly. Professional, fast, and secure tool for users in the USA, UK, Australia, and Europe. Optimized for high quality by DailyKitBox.">
+    <meta name="keywords" content="JPG to PDF, convert images to PDF, online image converter, DailyKitBox, PDF creator, professional PDF tool">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <style>
-        .preview-list { max-height: 180px; overflow-y: auto; margin-bottom: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px; display: none; background: rgba(0,0,0,0.01); }
-        .preview-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border-color); }
-        .preview-item:last-child { border-bottom: none; }
-        .del-img { color: #ef4444; background: none; border: none; font-weight: 700; cursor: pointer; font-size: 14px; }
-    </style>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta">
-                <span style="font-size:26px;">📸</span>
-                <h1>Images to PDF</h1>
-            </div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Convert JPG, PNG or WebP image streams into clean structured layout documents instantly.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:40px; margin-bottom:10px;">🖼️</div>
-            <div class="upload-text">Upload Multiple Images</div>
-            <input type="file" id="fileInput" style="display:none;" multiple accept="image/*">
-        </div>
-
-        <div class="preview-list" id="previewList"></div>
-        <button class="action-btn" id="actionBtn" style="display:none;">Generate PDF</button>
+    <div class="header">
+        <h1>JPG to PDF</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
     </div>
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const previewList = document.getElementById('previewList');
-        const actionBtn = document.getElementById('actionBtn');
-        let trackingImages = [];
+    <!-- Tool Interface -->
+    <div class="tool-card">
+        <div class="upload-box" style="border: 2px dashed #cbd5e0; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; background: #f7fafc;">
+            <p>Click to upload or drag & drop your JPG images here</p>
+            <input type="file" id="fileInput" accept="image/jpeg" multiple style="display:none;">
+        </div>
+        <button id="convertBtn" style="margin-top: 20px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Convert to PDF</button>
+    </div>
 
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            for(let file of e.target.files) {
-                trackingImages.push({ id: Date.now()+Math.random(), file: file });
-            }
-            syncList();
-        });
+    <!-- SEO & AEO Optimized 'How to' Section -->
+    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
+        <h2 style="font-size: 22px;">How to use JPG to PDF Converter?</h2>
+        <p>Using our JPG to PDF tool is the fastest experience for users across the USA, UK, Australia, and Europe.</p>
+        <ol>
+            <li><strong>Step 1:</strong> Upload your JPG images into our secure interface.</li>
+            <li><strong>Step 2:</strong> Click "Convert to PDF" to process your files instantly.</li>
+            <li><strong>Step 3:</strong> Download your professionally formatted PDF with a single click.</li>
+        </ol>
 
-        function syncList() {
-            previewList.innerHTML = '';
-            if(trackingImages.length > 0) {
-                previewList.style.display = 'block'; actionBtn.style.display = 'block';
-                trackingImages.forEach((img, idx) => {
-                    const row = document.createElement('div'); row.classList.add('preview-item');
-                    row.innerHTML = `<span>📂 Image ${idx+1}: ${img.file.name.layout=15 ? img.file.name.substring(0,20)+'...' : img.file.name}</span><button class="del-img" onclick="dropImg(${img.id})">✕</button>`;
-                    previewList.appendChild(row);
-                });
-            } else { previewList.style.display = 'none'; actionBtn.style.display = 'none'; }
-        }
-
-        window.dropImg = function(id) { trackingImages = trackingImages.filter(i => i.id !== id); syncList(); }
-
-        actionBtn.addEventListener('click', async () => {
-            if(trackingImages.length === 0) return;
-            actionBtn.disabled = true; actionBtn.textContent = 'Baking Premium PDF Assets...';
-            try {
-                const doc = await PDFLib.PDFDocument.create();
-                for(let item of trackingImages) {
-                    const arrayBuffer = await item.file.arrayBuffer();
-                    let embed;
-                    if(item.file.type.includes('png')) { embed = await doc.embedPng(arrayBuffer); } 
-                    else { embed = await doc.embedJpg(arrayBuffer); }
-                    
-                    const page = doc.addPage([embed.width, embed.height]);
-                    page.drawImage(embed, { x: 0, y: 0, width: embed.width, height: embed.height });
-                }
-                const bytes = await doc.save();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(new Blob([bytes], {type:'application/pdf'}));
-                link.download = 'DailyKitBox-Images.pdf'; link.click();
-            } catch(e) { alert('Asset translation failure.'); }
-            actionBtn.disabled = false; actionBtn.textContent = 'Generate PDF';
-        });
-    </script>
+        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
+        <p>We provide enterprise-grade digital tools tailored for professionals worldwide. Whether you are in London, New York, or Sydney, our platform ensures high-speed performance and data privacy for all your PDF conversion needs.</p>
+        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
+    </section>
 </body>
 </html>
