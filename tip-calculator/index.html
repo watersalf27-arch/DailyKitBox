@@ -3,190 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tip Calculator - DailyKitBox</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --radius-lg: 12px;
-            --radius-md: 8px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .calculator-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            width: 100%;
-            max-width: 480px;
-            box-shadow: var(--shadow-md);
-        }
-        .title-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .title-container .icon {
-            font-size: 32px;
-        }
-        .title-container h1 {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .description {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.5;
-            margin-bottom: 28px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            color: var(--text-main);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--primary);
-        }
-        .results-box {
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            margin-top: 28px;
-        }
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .result-row:last-child {
-            margin-bottom: 0;
-            padding-top: 12px;
-            border-top: 1px dashed var(--border-color);
-        }
-        .result-label {
-            font-weight: 500;
-            font-size: 15px;
-            color: var(--text-main);
-        }
-        .result-value {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-        .result-row.total .result-label {
-            color: #10b981;
-            font-weight: 700;
-        }
-        .result-row.total .result-value {
-            color: #10b981;
-            font-size: 24px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 14px;
-        }
-    </style>
+    <title>Tip Calculator - DailyKitBox | Easy Bill Splitting</title>
+    <meta name="description" content="Calculate your tips and split bills instantly. A fast, accurate, and easy-to-use tip calculator for travelers and diners in the USA, UK, and Europe.">
+    <meta name="keywords" content="Tip Calculator, calculate tips, bill splitter, dining tip calculator, DailyKitBox, restaurant tip tool">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <div class="calculator-card">
-        <a href="../index.html" class="back-btn">&larr; Back to Home</a>        
-        <div class="title-container">
-            <span class="icon">💰</span>
-            <h1>Tip Calculator</h1>
-        </div>        
-        <p class="description">Split bills and calculate tips instantly with friends.</p>
-        <div class="input-group">
-            <label for="billAmount">Bill Amount ($)</label>
-            <input type="number" id="billAmount" placeholder="0.00" min="0" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="tipPercentage">Tip Percentage</label>
-            <select id="tipPercentage">
-                <option value="0.10">10% (Service OK)</option>
-                <option value="0.15" selected>15% (Standard)</option>
-                <option value="0.18">18% (Good)</option>
-                <option value="0.20">20% (Excellent)</option>
-                <option value="0.25">25% (Exceptional)</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <label for="numberOfPeople">Number of People</label>
-            <input type="number" id="numberOfPeople" value="1" min="1">
-        </div>
-        <div class="results-box">
-            <div class="result-row">
-                <span class="result-label">Tip Amount (Per Person):</span>
-                <span class="result-value" id="tipAmount">$0.00</span>
-            </div>
-            <div class="result-row total">
-                <span class="result-label">Total Bill (Per Person):</span>
-                <span class="result-value" id="totalBill">$0.00</span>
-            </div>
+    <div class="header">
+        <h1>Tip Calculator</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+    </div>
+
+    <!-- Tool Interface -->
+    <div class="tool-card">
+        <div style="padding: 30px; text-align: center; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
+            <label>Bill Amount:</label><br>
+            <input type="number" id="bill" placeholder="Enter total bill"><br><br>
+            <label>Tip Percentage:</label><br>
+            <input type="number" id="tip" placeholder="e.g., 15"><br><br>
+            <button onclick="calculateTip()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate Tip</button>
+            <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
         </div>
     </div>
-    <script>
-        const billInput = document.getElementById('billAmount');
-        const tipInput = document.getElementById('tipPercentage');
-        const peopleInput = document.getElementById('numberOfPeople');
-        const tipAmountResult = document.getElementById('tipAmount');
-        const totalBillResult = document.getElementById('totalBill');
-        function calculateTip() {
-            const bill = parseFloat(billInput.value) || 0;
-            const tipPercent = parseFloat(tipInput.value) || 0;
-            const people = parseInt(peopleInput.value) || 1;
 
-            if (bill <= 0) {
-                tipAmountResult.textContent = '$0.00';                totalBillResult.textContent = '$0.00';
-                return;
-            }
-            const totalTip = bill * tipPercent;
-            const totalBill = bill + totalTip;
-            const tipPerPerson = totalTip / people;
-            const totalPerPerson = totalBill / people;            tipAmountResult.textContent = `$${tipPerPerson.toFixed(2)}`;            totalBillResult.textContent = `$${totalPerPerson.toFixed(2)}`;
-        }        billInput.addEventListener('input', calculateTip);       tipInput.addEventListener('change', calculateTip);        peopleInput.addEventListener('input', calculateTip);
+    <!-- SEO & AEO Optimized 'How to' Section -->
+    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
+        <h2 style="font-size: 22px;">How to use Tip Calculator at DailyKitBox?</h2>
+        <p>Calculating the perfect tip is designed to be the fastest experience for users across the USA, UK, Australia, and Europe.</p>
+        <ol>
+            <li><strong>Step 1:</strong> Enter your total bill amount in the provided field.</li>
+            <li><strong>Step 2:</strong> Input the tip percentage you wish to leave.</li>
+            <li><strong>Step 3:</strong> Click "Calculate Tip" to see the tip amount and total cost instantly.</li>
+        </ol>
+
+        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
+        <p>Our tip calculator is built for precision and speed. Whether you are dining in New York, London, or Sydney, our platform ensures you get accurate results for your bill management instantly.</p>
+        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
+    </section>
+
+    <script>
+        function calculateTip() {
+            const bill = document.getElementById('bill').value;
+            const tip = document.getElementById('tip').value;
+            const tipAmount = (bill * tip) / 100;
+            const total = parseFloat(bill) + parseFloat(tipAmount);
+            document.getElementById('result').innerText = "Tip: $" + tipAmount.toFixed(2) + " | Total: $" + total.toFixed(2);
+        }
     </script>
 </body>
 </html>
