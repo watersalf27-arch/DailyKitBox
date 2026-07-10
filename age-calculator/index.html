@@ -5,34 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Age Calculator - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .premium-btn { background: linear-gradient(135deg, #FF9F1C, #FFBF69); color: #fff; padding: 18px 35px; border: none; border-radius: 50px; font-size: 20px; font-weight: bold; cursor: pointer; }
-        .spacer { margin-bottom: 3rem; }
-        .tool-container { display: flex; flex-direction: column; align-items: center; padding: 40px; }
-        .how-to-section { width: 100%; max-width: 600px; margin-top: 50px; border-top: 2px solid #eee; }
-    </style>
 </head>
 <body>
-    <div class="header"><h1>Age Calculator</h1><a href="../index.html">Back Home</a></div>
+
+    <div class="header">
+        <h1>Age Calculator</h1>
+        <a href="../index.html">← Back to DailyKitBox</a>
+    </div>
+
     <div class="tool-container">
-        <div style="text-align: center;">
-            <label>Enter your Date of Birth:</label><br>
-            <input type="date" id="dob" style="padding: 10px; margin: 10px;">
-            <br><br>
+        <div class="tool-card">
+            <label style="font-weight: bold;">Enter your Date of Birth:</label><br>
+            <input type="date" id="dob" style="padding: 10px; margin: 15px 0; width: 80%;">
+            
+            <br>
+            
             <button class="premium-btn" onclick="calculateAge()">Calculate Age</button>
+            
+            <!-- 3-Enter Spacer -->
             <div class="spacer"></div>
-            <div id="ageResult" style="font-weight: bold; font-size: 20px;"></div>
+            
+            <div id="ageResult" style="font-size: 22px; color: #0a192f; font-weight: bold;"></div>
         </div>
+
         <section class="how-to-section">
-            <h2 style="font-size: 22px; text-align: center;">How to use?</h2>
-            <ol><li>Select your DOB.</li><li>Click the "Calculate Age" button.</li><li>See your results below.</li></ol>
+            <h2>How to use Age Calculator?</h2>
+            <ol>
+                <li><strong>Step 1:</strong> Date of Birth select karein.</li>
+                <li><strong>Step 2:</strong> "Calculate Age" button par click karein.</li>
+                <li><strong>Step 3:</strong> Aapki exact age screen par show ho jayegi.</li>
+            </ol>
         </section>
     </div>
+
     <script>
         function calculateAge() {
-            const dob = new Date(document.getElementById('dob').value);
+            const dobValue = document.getElementById('dob').value;
+            if (!dobValue) {
+                alert("Please select a date!");
+                return;
+            }
+            const dob = new Date(dobValue);
             const today = new Date();
+            
             let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            
             document.getElementById('ageResult').innerText = "You are " + age + " years old.";
         }
     </script>
