@@ -3,71 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator - DailyKitBox | Accurate Age Finder</title>
-    <meta name="description" content="Calculate your exact age in years, months, and days. A fast and easy-to-use age calculator for everyone by DailyKitBox.">
+    <title>Age Calculator - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        /* Premium Button Style */
-        .premium-btn {
-            background: linear-gradient(135deg, #FF9F1C, #FFBF69);
-            color: #fff;
-            padding: 18px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-            transition: transform 0.2s;
-        }
-        .premium-btn:hover { transform: scale(1.05); }
+        .premium-btn { background: linear-gradient(135deg, #FF9F1C, #FFBF69); color: #fff; padding: 18px 35px; border: none; border-radius: 50px; font-size: 20px; font-weight: bold; cursor: pointer; }
         .spacer { margin-bottom: 3rem; }
+        .tool-container { display: flex; flex-direction: column; align-items: center; padding: 40px; }
+        .how-to-section { width: 100%; max-width: 600px; margin-top: 50px; border-top: 2px solid #eee; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Age Calculator</h1>
-        <a href="../index.html">Back Home</a>
+    <div class="header"><h1>Age Calculator</h1><a href="../index.html">Back Home</a></div>
+    <div class="tool-container">
+        <div style="text-align: center;">
+            <label>Enter your Date of Birth:</label><br>
+            <input type="date" id="dob" style="padding: 10px; margin: 10px;">
+            <br><br>
+            <button class="premium-btn" onclick="calculateAge()">Calculate Age</button>
+            <div class="spacer"></div>
+            <div id="ageResult" style="font-weight: bold; font-size: 20px;"></div>
+        </div>
+        <section class="how-to-section">
+            <h2 style="font-size: 22px; text-align: center;">How to use?</h2>
+            <ol><li>Select your DOB.</li><li>Click the "Calculate Age" button.</li><li>See your results below.</li></ol>
+        </section>
     </div>
-
-    <!-- Tool Interface -->
-    <div class="tool-card" style="text-align: center; padding: 40px;">
-        <label>Enter your Date of Birth:</label><br>
-        <input type="date" id="dob" style="padding: 10px; margin: 10px;">
-        
-        <br><br>
-        
-        <!-- Premium Button -->
-        <button class="premium-btn" onclick="calculateAge()">
-            Calculate Age
-        </button>
-        
-        <!-- 3-Enter ka gap -->
-        <div class="spacer"></div>
-        
-        <div id="ageResult" style="font-weight: bold; font-size: 20px;"></div>
-    </div>
-
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Age Calculator?</h2>
-        <p>Finding your exact age is simple with DailyKitBox.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Select your date of birth from the calendar.</li>
-            <li><strong>Step 2:</strong> Click the "Calculate Age" button.</li>
-            <li><strong>Step 3:</strong> View your exact age in years, months, and days instantly.</li>
-        </ol>
-    </section>
-
     <script>
         function calculateAge() {
             const dob = new Date(document.getElementById('dob').value);
             const today = new Date();
             let age = today.getFullYear() - dob.getFullYear();
-            const monthDiff = today.getMonth() - dob.getMonth();
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-                age--;
-            }
             document.getElementById('ageResult').innerText = "You are " + age + " years old.";
         }
     </script>
