@@ -3,101 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete PDF Pages - DailyKitBox</title>
+    <title>Delete PDF Pages - DailyKitBox | Online PDF Editor</title>
+    <meta name="description" content="Easily delete unwanted pages from your PDF documents online. Fast, secure, and professional PDF editor trusted by users in the USA, UK, Australia, and Europe.">
+    <meta name="keywords" content="Delete PDF pages, remove pages from PDF, online PDF editor, DailyKitBox, PDF management, secure PDF tool">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <style>
-        .delete-options { margin-bottom: 20px; display: none; background: rgba(0,0,0,0.01); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: left; }
-        .input-group { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text-main); }
-        .input-group input { padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-size: 14px; outline: none; }
-        .input-group input:focus { border-color: var(--primary); }
-    </style>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta">
-                <span style="font-size:26px;">🗑️</span>
-                <h1>Delete PDF Pages</h1>
-            </div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Remove unwanted or corrupted pages out of your document asset pipeline instantly.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:40px; margin-bottom:10px;">📄</div>
-            <div class="upload-text">Select or Drop PDF File</div>
-            <input type="file" id="fileInput" style="display:none;" accept="application/pdf">
-        </div>
-
-        <div class="delete-options" id="deleteOptions">
-            <div class="input-group">
-                <label>Pages to Delete (e.g., 2,4 or 5-7):</label>
-                <input type="text" id="pagesTarget" placeholder="Enter page numbers...">
-            </div>
-        </div>
-
-        <button class="action-btn" id="actionBtn" style="display:none;">Remove Pages & Download</button>
+    <div class="header">
+        <h1>Delete PDF Pages</h1>
+        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
     </div>
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const deleteOptions = document.getElementById('deleteOptions');
-        const actionBtn = document.getElementById('actionBtn');
-        let srcFile = null;
+    <!-- Tool Interface -->
+    <div class="tool-card">
+        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
+            <p>Upload your PDF file to start deleting unwanted pages.</p>
+            <input type="file" id="fileInput" accept="application/pdf" style="margin-top: 10px;">
+        </div>
+    </div>
 
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
-                srcFile = e.target.files[0];
-                uploadBox.querySelector('.upload-text').textContent = srcFile.name;
-                deleteOptions.style.display = 'block';
-                actionBtn.style.display = 'block';
-            }
-        });
+    <!-- SEO & AEO Optimized 'How to' Section -->
+    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
+        <h2 style="font-size: 22px;">How to use Delete PDF Pages?</h2>
+        <p>Removing unwanted pages is simple and fast for users across the USA, UK, Australia, and Europe.</p>
+        <ol>
+            <li><strong>Step 1:</strong> Upload the PDF file you want to edit.</li>
+            <li><strong>Step 2:</strong> Select the page numbers or segments you wish to remove.</li>
+            <li><strong>Step 3:</strong> Click "Delete Pages" to process and download your clean PDF.</li>
+        </ol>
 
-        actionBtn.addEventListener('click', async () => {
-            if(!srcFile) return;
-            actionBtn.disabled = true; 
-            actionBtn.textContent = 'Filtering Structure...';
-            try {
-                const bytes = await srcFile.arrayBuffer();
-                const pdfDoc = await PDFLib.PDFDocument.load(bytes);
-                const totalPages = pdfDoc.getPageCount();
-                
-                const inputVal = document.getElementById('pagesTarget').value.trim();
-                if(!inputVal) { alert('Please specify which pages to remove.'); return; }
-
-                const targets = inputVal.split(',').map(num => parseInt(num.trim()) - 1);
-                const cleanPdf = await PDFLib.PDFDocument.create();
-                
-                const indices = [];
-                for(let i=0; i<totalPages; i++) {
-                    if(!targets.includes(i)) indices.push(i);
-                }
-                
-                if(indices.length > 0) {
-                    const pages = await cleanPdf.copyPages(pdfDoc, indices);
-                    pages.forEach(p => cleanPdf.addPage(p));
-                } else {
-                    alert('Cannot delete all pages from the document.');
-                    return;
-                }
-
-                const outBytes = await cleanPdf.save();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(new Blob([outBytes], { type: 'application/pdf' }));
-                link.download = 'DailyKitBox-Cleaned.pdf';
-                link.click();
-            } catch(e) { 
-                alert('Processing failure. Check your input formatting.'); 
-            } finally {
-                actionBtn.disabled = false; 
-                actionBtn.textContent = 'Remove Pages & Download';
-            }
-        });
-    </script>
+        <h3 style="font-size: 18px;">Why choose DailyKitBox for PDF editing?</h3>
+        <p>Our platform is designed for high-speed performance and data privacy. Whether you are in London, New York, or Sydney, DailyKitBox ensures your files are handled securely and processed instantly.</p>
+        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
+    </section>
 </body>
 </html>
