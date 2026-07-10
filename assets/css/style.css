@@ -1,68 +1,69 @@
-/* DailyKitBox - Modern & Professional Stylesheet */
+/* DailyKitBox - Modern Professional Theme */
 
 :root {
-    --primary-color: #FF9F1C;
-    --secondary-color: #FFBF69;
-    --bg-color: #f4f7f6;
+    --navy: #0a192f;
+    --yellow: #ffc107;
+    --white: #ffffff;
+    --light-grey: #f4f7f6;
     --text-color: #333;
-    --card-bg: #ffffff;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    background-color: var(--light-grey);
     color: var(--text-color);
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
-/* Header Styling */
+/* Header */
 .header {
+    background-color: var(--navy);
+    color: var(--white);
     text-align: center;
-    padding: 40px 20px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
+    padding: 50px 20px;
 }
 
-/* Main Container for Tools */
+.header h1 { margin: 0; font-size: 32px; }
+.header a { color: var(--yellow); text-decoration: none; font-weight: bold; font-size: 16px; }
+
+/* Tool Container */
 .tool-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    max-width: 800px;
-    margin: auto;
 }
 
-/* Tool Card (The White Box) */
 .tool-card {
-    background: var(--card-bg);
+    background: var(--white);
     padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
+    max-width: 600px;
     text-align: center;
 }
 
-/* Premium Button Design */
+/* Premium Button - Sydney Theme Style */
 .premium-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: #fff;
+    background-color: var(--yellow);
+    color: var(--navy);
     padding: 18px 40px;
     border: none;
-    border-radius: 50px;
-    font-size: 20px;
+    border-radius: 5px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin: 10px 0;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .premium-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #e0a800;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* 3-Enter Spacer */
@@ -70,7 +71,7 @@ body {
     margin-bottom: 3rem;
 }
 
-/* Bottom Instructions Section */
+/* How-to Section - Bottom Shifted */
 .how-to-section {
     width: 100%;
     max-width: 600px;
@@ -82,10 +83,10 @@ body {
 
 .how-to-section h2 {
     text-align: center;
-    color: var(--primary-color);
+    color: var(--navy);
 }
 
-/* Responsive Mobile Fix */
+/* Mobile Responsive */
 @media (max-width: 600px) {
     .tool-card { padding: 20px; }
     .premium-btn { width: 100%; }
