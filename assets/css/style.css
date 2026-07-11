@@ -4,7 +4,7 @@
     --white: #ffffff;
     --light-grey: #f0f2f5;
 }
-body { font-family: 'Segoe UI', sans-serif; background-color: var(--light-grey); margin: 0; }
+body { font-family: 'Segoe UI', sans-serif; background-color: var(--light-grey); margin: 0; padding: 0; }
 .header { background: var(--navy-grad); color: var(--white); text-align: center; padding: 60px 20px; }
 .header h1 { margin: 0; font-size: 36px; }
 .header a { color: var(--accent); text-decoration: none; font-weight: bold; }
@@ -22,4 +22,5 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--light-grey);
     transition: 0.3s;
 }
 .premium-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+input, textarea { width: 100%; padding: 15px; margin-top: 10px; border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; }
 .how-to-section { width: 100%; max-width: 650px; margin-top: 50px; padding: 30px; background: #fff; border-radius: 15px; }
