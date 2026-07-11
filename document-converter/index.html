@@ -2,39 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office Document Converter - DailyKitBox | Word, PPT, PDF</title>
-    <meta name="description" content="Convert your documents seamlessly between Word, PowerPoint, and PDF formats. Fast, secure, and professional document converter for users in the USA, UK, Australia, and Europe.">
-    <meta name="keywords" content="Document converter, convert Word to PDF, PPT to PDF, online document conversion, DailyKitBox, professional file converter">
+    <title>Document Converter - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+
     <div class="header">
-        <h1>Office Converter</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+        <h1>Document Converter</h1>
+        <a href="../index.html">← Back to Home</a>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
-            <p>Upload your document (Word, PPT, PDF) to convert.</p>
-            <input type="file" id="fileInput" style="margin-top: 10px;">
+    <div class="tool-container">
+        <div class="tool-card">
+            <p>Convert your files to any format instantly.</p>
+            <input type="file" id="fileInput">
+            
+            <select id="formatSelect" style="width: 100%; padding: 15px; margin-top: 15px; border-radius: 10px;">
+                <option value="pdf">Convert to PDF</option>
+                <option value="docx">Convert to DOCX</option>
+                <option value="txt">Convert to TXT</option>
+            </select>
+            
+            <button class="premium-btn" onclick="convertDocument()">Convert Now</button>
+            
+            <div id="convResult" style="margin-top: 20px; font-weight: bold;"></div>
         </div>
+
+        <section class="how-to-section">
+            <h2>How to use Document Converter?</h2>
+            <ol>
+                <li>Upload your document.</li>
+                <li>Choose your desired output format from the list.</li>
+                <li>Click "Convert Now" and wait for the download link.</li>
+            </ol>
+        </section>
     </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Office Converter?</h2>
-        <p>Convert your files easily for professional needs in the USA, UK, Australia, and Europe.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Upload your source file (Word, PPT, or PDF).</li>
-            <li><strong>Step 2:</strong> Select the output format you need.</li>
-            <li><strong>Step 3:</strong> Click "Convert" and download your document instantly.</li>
-        </ol>
-
-        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
-        <p>Our document converter handles high-quality formatting while keeping your data private. Whether you are working in London, New York, or Sydney, DailyKitBox delivers fast and accurate results every time.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
-    </section>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
