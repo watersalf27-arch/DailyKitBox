@@ -2,61 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Age Calculator - DailyKitBox</title>
+    <!-- Centralized CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
     <div class="header">
         <h1>Age Calculator</h1>
-        <a href="../index.html">← Back to DailyKitBox</a>
+        <a href="../index.html">← Back to Home</a>
     </div>
 
     <div class="tool-container">
         <div class="tool-card">
-            <label style="font-weight: bold;">Enter your Date of Birth:</label><br>
-            <input type="date" id="dob" style="padding: 10px; margin: 15px 0; width: 80%;">
-            
-            <br>
+            <label>Enter your Date of Birth:</label>
+            <input type="date" id="dob">
             
             <button class="premium-btn" onclick="calculateAge()">Calculate Age</button>
             
-            <!-- 3-Enter Spacer -->
-            <div class="spacer"></div>
-            
-            <div id="ageResult" style="font-size: 22px; color: #0a192f; font-weight: bold;"></div>
+            <div id="ageResult" style="margin-top: 20px; font-size: 22px; font-weight: bold; color: #0a192f;"></div>
         </div>
 
         <section class="how-to-section">
             <h2>How to use Age Calculator?</h2>
             <ol>
-                <li><strong>Step 1:</strong> Date of Birth select karein.</li>
-                <li><strong>Step 2:</strong> "Calculate Age" button par click karein.</li>
-                <li><strong>Step 3:</strong> Aapki exact age screen par show ho jayegi.</li>
+                <li>Select your date of birth from the calendar.</li>
+                <li>Click on "Calculate Age".</li>
+                <li>Your exact age will be displayed instantly.</li>
             </ol>
         </section>
     </div>
 
-    <script>
-        function calculateAge() {
-            const dobValue = document.getElementById('dob').value;
-            if (!dobValue) {
-                alert("Please select a date!");
-                return;
-            }
-            const dob = new Date(dobValue);
-            const today = new Date();
-            
-            let age = today.getFullYear() - dob.getFullYear();
-            const monthDiff = today.getMonth() - dob.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-                age--;
-            }
-            
-            document.getElementById('ageResult').innerText = "You are " + age + " years old.";
-        }
-    </script>
+    <!-- Centralized JS -->
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
