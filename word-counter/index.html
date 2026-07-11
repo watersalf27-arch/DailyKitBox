@@ -2,50 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Counter - DailyKitBox | Professional Text Analysis</title>
-    <meta name="description" content="Count words, characters, and analyze your text instantly. A professional, free, and fast word counter for writers, students, and businesses globally.">
-    <meta name="keywords" content="Word Counter, online word count, character counter, text analyzer, DailyKitBox, word count tool, writing assistant">
+    <title>Word Counter Tool | DailyKitBox - Accurate Text Analysis</title>
+    <meta name="description" content="Use DailyKitBox's free Word Counter tool to count words and characters in your text instantly. Perfect for SEO and content writers.">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+
     <div class="header">
         <h1>Word Counter</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+        <a href="../index.html">← Back to Home</a>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div style="padding: 30px; text-align: center; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
-            <textarea id="textInput" rows="10" placeholder="Paste or type your text here..." style="width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
-            <div id="stats" style="margin-top: 15px; font-weight: bold; font-size: 18px;">
-                Words: 0 | Characters: 0
-            </div>
+    <div class="tool-container">
+        <div class="tool-card">
+            <textarea id="textInput" rows="8" placeholder="Type or paste your text here..." style="width: 100%; border: 1px solid #ccc; border-radius: 10px; padding: 15px;"></textarea>
+            <div class="spacer"></div>
+            <div id="stats" style="font-size: 20px; font-weight: bold; color: #0a192f; margin-bottom: 20px;">Words: 0 | Characters: 0</div>
+            <button class="premium-btn" onclick="clearText()">Clear Text</button>
         </div>
+
+        <section class="how-to-section">
+            <h2>How to use Word Counter?</h2>
+            <p>Our tool helps you analyze your text in seconds:</p>
+            <ul>
+                <li><strong>Step 1:</strong> Simply paste your content in the box above.</li>
+                <li><strong>Step 2:</strong> Our algorithm instantly counts words and characters.</li>
+                <li><strong>Step 3:</strong> Use these insights to optimize your content for SEO.</li>
+            </ul>
+        </section>
     </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Word Counter at DailyKitBox?</h2>
-        <p>Analyzing your text is quick and simple for writers and professionals everywhere.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Paste your document or type your text into the box above.</li>
-            <li><strong>Step 2:</strong> Our tool instantly calculates the number of words and characters as you type.</li>
-            <li><strong>Step 3:</strong> Use these real-time stats to meet your essay or blog post requirements perfectly.</li>
-        </ol>
-
-        <h3 style="font-size: 18px;">Why choose DailyKitBox for text analysis?</h3>
-        <p>Whether you are in the USA, UK, or Australia, our Word Counter provides lightning-fast results without any lag. It is the perfect tool for ensuring your content stays within your limits.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
-    </section>
-
-    <script>
-        document.getElementById('textInput').addEventListener('input', function() {
-            const text = this.value.trim();
-            const words = text ? text.split(/\s+/).length : 0;
-            const chars = text.length;
-            document.getElementById('stats').innerText = "Words: " + words + " | Characters: " + chars;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
