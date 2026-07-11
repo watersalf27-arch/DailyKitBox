@@ -1,93 +1,32 @@
-/* DailyKitBox - Modern Professional Theme */
-
 :root {
-    --navy: #0a192f;
-    --yellow: #ffc107;
+    --navy-grad: linear-gradient(135deg, #0a192f 0%, #172a45 100%);
+    --accent: #ffc107;
     --white: #ffffff;
-    --light-grey: #f4f7f6;
-    --text-color: #333;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-grey);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; color: #333; margin: 0; }
+
+.header { background: var(--navy-grad); color: var(--white); text-align: center; padding: 60px 20px; }
+.header h1 { margin: 0; font-size: 36px; }
+.header a { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+.tool-container { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+
+.tool-card { 
+    background: var(--white); 
+    padding: 40px; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    width: 100%; max-width: 650px; 
+    border-top: 5px solid var(--accent);
 }
 
-/* Header */
-.header {
-    background-color: var(--navy);
-    color: var(--white);
-    text-align: center;
-    padding: 50px 20px;
+.premium-btn { 
+    background: var(--navy-grad); color: var(--white); 
+    padding: 18px 40px; border: none; border-radius: 50px; 
+    font-size: 18px; font-weight: bold; cursor: pointer; 
+    transition: 0.3s; width: 100%;
 }
+.premium-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-.header h1 { margin: 0; font-size: 32px; }
-.header a { color: var(--yellow); text-decoration: none; font-weight: bold; font-size: 16px; }
-
-/* Tool Container */
-.tool-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-}
-
-.tool-card {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-}
-
-/* Premium Button - Sydney Theme Style */
-.premium-btn {
-    background-color: var(--yellow);
-    color: var(--navy);
-    padding: 18px 40px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.premium-btn:hover {
-    background-color: #e0a800;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* 3-Enter Spacer */
-.spacer {
-    margin-bottom: 3rem;
-}
-
-/* How-to Section - Bottom Shifted */
-.how-to-section {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 50px;
-    padding: 20px;
-    border-top: 2px solid #ddd;
-    text-align: left;
-}
-
-.how-to-section h2 {
-    text-align: center;
-    color: var(--navy);
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-    .tool-card { padding: 20px; }
-    .premium-btn { width: 100%; }
-}
+.how-to-section { width: 100%; max-width: 650px; margin-top: 50px; padding: 30px; background: #fff; border-radius: 15px; }
