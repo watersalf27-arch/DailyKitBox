@@ -1,4 +1,4 @@
-// Word Counter Logic
+// --- WORD COUNTER ---
 const textInput = document.getElementById('textInput');
 if (textInput) {
     textInput.addEventListener('input', () => {
@@ -9,14 +9,7 @@ if (textInput) {
     });
 }
 
-function clearText() {
-    if (textInput) {
-        textInput.value = '';
-        document.getElementById('stats').innerText = "Words: 0 | Characters: 0";
-    }
-}
-
-// Age Calculator Logic
+// --- AGE CALCULATOR ---
 function calculateAge() {
     const dob = document.getElementById('dob').value;
     if (dob) {
@@ -25,9 +18,27 @@ function calculateAge() {
     }
 }
 
-// Tip Calculator Logic
+// --- TIP CALCULATOR ---
 function calculateTip() {
-    const bill = document.getElementById('bill').value;
-    const tip = bill * 0.15; // 15% default tip
-    document.getElementById('tipResult').innerText = "Tip Amount: $" + tip.toFixed(2);
+    const bill = parseFloat(document.getElementById('bill').value);
+    if (bill) {
+        const tip = (bill * 0.15).toFixed(2);
+        document.getElementById('tipResult').innerText = "Tip Amount: $" + tip;
+    }
+}
+
+// --- MORTGAGE CALCULATOR ---
+function calculateMortgage() {
+    const p = parseFloat(document.getElementById('principal').value);
+    const r = parseFloat(document.getElementById('interest').value) / 100 / 12;
+    const n = parseFloat(document.getElementById('years').value) * 12;
+    if (p && r && n) {
+        const m = p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        document.getElementById('mortgageResult').innerText = "Monthly Payment: $" + m.toFixed(2);
+    }
+}
+
+// --- CLEAR FUNCTION ---
+function clearFields(ids) {
+    ids.forEach(id => document.getElementById(id).value = '');
 }
