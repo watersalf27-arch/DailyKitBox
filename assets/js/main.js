@@ -18,12 +18,14 @@ function calculateAge() {
     }
 }
 
-// --- TIP CALCULATOR ---
-function calculateTip() {
-    const bill = parseFloat(document.getElementById('bill').value);
-    if (bill) {
-        const tip = (bill * 0.15).toFixed(2);
-        document.getElementById('tipResult').innerText = "Tip Amount: $" + tip;
+// --- DOCUMENT CONVERTER ---
+function convertDocument() {
+    const file = document.getElementById('fileInput').files[0];
+    const format = document.getElementById('formatSelect').value;
+    if (file) {
+        document.getElementById('convResult').innerText = "Converting to " + format.toUpperCase() + "...";
+    } else {
+        alert("Please upload a file first.");
     }
 }
 
@@ -38,7 +40,7 @@ function calculateMortgage() {
     }
 }
 
-// --- CLEAR FUNCTION ---
+// --- CLEAR FIELDS ---
 function clearFields(ids) {
     ids.forEach(id => document.getElementById(id).value = '');
 }
