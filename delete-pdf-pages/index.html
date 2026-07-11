@@ -2,39 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete PDF Pages - DailyKitBox | Online PDF Editor</title>
-    <meta name="description" content="Easily delete unwanted pages from your PDF documents online. Fast, secure, and professional PDF editor trusted by users in the USA, UK, Australia, and Europe.">
-    <meta name="keywords" content="Delete PDF pages, remove pages from PDF, online PDF editor, DailyKitBox, PDF management, secure PDF tool">
+    <title>Delete PDF Pages - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+
     <div class="header">
         <h1>Delete PDF Pages</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+        <a href="../index.html">← Back to Home</a>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div style="padding: 40px; text-align: center; border: 2px dashed #cbd5e0; border-radius: 12px; background: #f7fafc;">
-            <p>Upload your PDF file to start deleting unwanted pages.</p>
-            <input type="file" id="fileInput" accept="application/pdf" style="margin-top: 10px;">
+    <div class="tool-container">
+        <div class="tool-card">
+            <p>Upload your PDF and enter the page numbers you want to remove.</p>
+            <input type="file" id="pdfInput">
+            <input type="text" id="pageNumbers" placeholder="e.g., 2, 5, 8">
+            
+            <button class="premium-btn" onclick="deletePages()">Delete Pages</button>
+            
+            <div id="deleteResult" style="margin-top: 20px; font-weight: bold;"></div>
         </div>
+
+        <section class="how-to-section">
+            <h2>How to use?</h2>
+            <ol>
+                <li>Upload your PDF file.</li>
+                <li>Enter the page numbers you wish to delete (separated by commas).</li>
+                <li>Click "Delete Pages" to process your document.</li>
+            </ol>
+        </section>
     </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Delete PDF Pages?</h2>
-        <p>Removing unwanted pages is simple and fast for users across the USA, UK, Australia, and Europe.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Upload the PDF file you want to edit.</li>
-            <li><strong>Step 2:</strong> Select the page numbers or segments you wish to remove.</li>
-            <li><strong>Step 3:</strong> Click "Delete Pages" to process and download your clean PDF.</li>
-        </ol>
-
-        <h3 style="font-size: 18px;">Why choose DailyKitBox for PDF editing?</h3>
-        <p>Our platform is designed for high-speed performance and data privacy. Whether you are in London, New York, or Sydney, DailyKitBox ensures your files are handled securely and processed instantly.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
-    </section>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
