@@ -1,26 +1,25 @@
-:root { --navy-grad: linear-gradient(135deg, #0a192f 0%, #172a45 100%); --accent: #ffc107; --white: #ffffff; }
+:root { --navy-grad: linear-gradient(135deg, #0a192f 0%, #172a45 100%); --accent: #ffc107; }
 
-body { font-family: sans-serif; background: #f4f7f6; margin: 0; }
-.header { background: var(--navy-grad); color: white; text-align: center; padding: 40px 20px; }
+body { font-family: sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
 
 .tool-container { 
-    display: flex; 
-    flex-direction: column; /* Yahi layout fix karta hai */
-    gap: 20px; 
-    max-width: 800px; 
-    margin: 30px auto; 
-    padding: 0 20px; 
+    display: flex; flex-direction: column; gap: 20px; 
+    max-width: 600px; margin: 0 auto; 
 }
 
 .tool-card, #how-to-use { 
-    background: white; 
-    padding: 30px; 
-    border-radius: 20px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    background: white; padding: 30px; border-radius: 20px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box;
+}
+
+.upload-box { 
+    border: 2px dashed #cbd5e0; padding: 50px 20px; text-align: center; 
+    cursor: pointer; border-radius: 15px; margin-bottom: 20px;
+}
+
+.premium-btn { 
+    background: #0a192f; color: white; padding: 15px; width: 100%; 
+    border: none; border-radius: 10px; cursor: pointer; font-size: 16px;
 }
 
 #how-to-use { border-left: 5px solid var(--accent); }
-.upload-box { border: 2px dashed #cbd5e0; padding: 40px; text-align: center; cursor: pointer; }
-.premium-btn { background: #0a192f; color: white; padding: 15px; width: 100%; border: none; cursor: pointer; margin-top: 20px; }
-.progress-container { width: 100%; height: 10px; background: #eee; display: none; margin: 20px 0; }
-#progressBar { width: 0%; height: 100%; background: var(--accent); }
