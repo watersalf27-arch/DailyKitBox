@@ -1,80 +1,69 @@
-// Initialization
+// --- Initial Setup ---
 const uploadBox = document.querySelector('.upload-box');
 const fileInput = document.getElementById('fileInput');
 const previewArea = document.getElementById('previewArea');
 const convertBtn = document.getElementById('convertBtn');
+const progressBar = document.getElementById('progressBar'); // HTML mein ye div hona chahiye
+
 let selectedFiles = [];
 
-// Event: Click to Upload
+// --- Events ---
 uploadBox.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
 
-// Event: Drag & Drop
-uploadBox.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadBox.style.borderColor = '#ffc107';
-});
-
-uploadBox.addEventListener('drop', (e) => {
-    e.preventDefault();
-    handleFiles(e.dataTransfer.files);
-});
-
-// Event: File Selection
-fileInput.addEventListener('change', (e) => {
-    handleFiles(e.target.files);
-});
-
-// Function: Handle Files
 function handleFiles(files) {
     selectedFiles = Array.from(files);
     renderPreview();
 }
 
-// Function: Render Preview
+// --- Preview & Management ---
 function renderPreview() {
-    previewArea.innerHTML = `<h3>Selected Images: ${selectedFiles.length}</h3>`;
+    previewArea.innerHTML = `<h4>Images: ${selectedFiles.length} | Total Size: ${calculateTotalSize()}</h4>`;
     selectedFiles.forEach((file, index) => {
         const item = document.createElement('div');
         item.className = 'image-item';
         item.innerHTML = `
-            <span>${file.name}</span>
+            <span>${file.name} (${(file.size / 1024).toFixed(1)} KB)</span>
             <button onclick="removeImage(${index})">Delete</button>
         `;
         previewArea.appendChild(item);
     });
 }
 
-// Function: Remove Image
+function calculateTotalSize() {
+    let size = selectedFiles.reduce((total, file) => total + file.size, 0);
+    return (size / 1024 / 1024).toFixed(2) + " MB";
+}
+
 function removeImage(index) {
     selectedFiles.splice(index, 1);
     renderPreview();
 }
 
-// Function: Convert to PDF
+// --- Core Conversion Engine ---
 convertBtn.addEventListener('click', async () => {
-    if (selectedFiles.length === 0) {
-        alert("Please upload at least one image first!");
-        return;
-    }
-
-    alert("Processing " + selectedFiles.length + " files... The download will start automatically.");
+    if (selectedFiles.length === 0) return;
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
     for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i];
-        const imgData = await readFileAsDataURL(file);
+        // Update Progress Bar
+        let progress = ((i + 1) / selectedFiles.length) * 100;
+        if(progressBar) progressBar.style.width = progress + "%";
+
+        const imgData = await readFileAsDataURL(selectedFiles[i]);
         
         if (i > 0) doc.addPage();
-        // Adjusting image to fit A4 page
-        doc.addImage(imgData, 'JPEG', 10, 10, 190, 277);
+        
+        // Compression & Memory Optimization
+        // 0.5 quality means 50% compression for faster PDF generation
+        doc.addImage(imgData, 'JPEG', 10, 10, 190, 277, undefined, 'FAST'); 
     }
 
-    doc.save("converted-document.pdf");
+    doc.save("DailyKitBox_Document.pdf");
 });
 
-// Helper: Convert file to Base64
 function readFileAsDataURL(file) {
     return new Promise((resolve) => {
         const reader = new FileReader();
