@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPG to PDF Converter - DailyKitBox</title>
+    <title>Professional JPG to PDF - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        /* Chhota sa CSS styling preview list ke liye */
-        .image-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
-        .image-item button { background: #ff4d4d; color: white; border: none; cursor: pointer; padding: 5px 10px; border-radius: 5px; }
+        /* UI Enhancements */
+        .progress-container { width: 100%; background: #e2e8f0; height: 12px; border-radius: 6px; margin: 20px 0; overflow: hidden; display: none; }
+        #progressBar { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
+        .image-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #edf2f7; }
+        .image-item button { background: #e53e3e; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>JPG to PDF</h1>
-        <a href="../index.html">Back Home</a>
+        <h1>JPG to PDF Converter</h1>
+        <p>Professional, Fast & Secure</p>
     </div>
 
     <div class="tool-container">
         <div class="tool-card">
-            <div class="upload-box" style="border: 2px dashed #cbd5e0; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; background: #f7fafc;">
-                <p>Click to upload or drag & drop your JPG images here</p>
+            <div class="upload-box" style="border: 2px dashed #cbd5e0; padding: 40px; cursor: pointer; background: #f7fafc;">
+                <p>Click or Drag & Drop Images Here</p>
                 <input type="file" id="fileInput" accept="image/jpeg" multiple style="display:none;">
+            </div>
+
+            <div class="progress-container" id="progressContainer">
+                <div id="progressBar"></div>
             </div>
 
             <div id="previewArea" style="margin-top: 20px; text-align: left;"></div>
@@ -31,15 +37,7 @@
         </div>
     </div>
 
-    <section class="how-to-section">
-        <h2>How to use JPG to PDF Converter?</h2>
-        <ol>
-            <li>Upload your images.</li>
-            <li>Use delete button if needed.</li>
-            <li>Click "Convert to PDF" and download.</li>
-        </ol>
-    </section>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="../assets/js/jpg-to-pdf.js"></script>
 </body>
 </html>
