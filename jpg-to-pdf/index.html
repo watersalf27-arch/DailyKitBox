@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPG to PDF Converter - DailyKitBox | Professional Online Tool</title>
-    <meta name="description" content="Convert your JPG images to PDF documents instantly. Professional, fast, and secure tool for users in the USA, UK, Australia, and Europe. Optimized for high quality by DailyKitBox.">
-    <meta name="keywords" content="JPG to PDF, convert images to PDF, online image converter, DailyKitBox, PDF creator, professional PDF tool">
+    <title>JPG to PDF Converter - DailyKitBox</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Chhota sa CSS styling preview list ke liye */
+        .image-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .image-item button { background: #ff4d4d; color: white; border: none; cursor: pointer; padding: 5px 10px; border-radius: 5px; }
+    </style>
 </head>
 <body>
+
     <div class="header">
         <h1>JPG to PDF</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+        <a href="../index.html">Back Home</a>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div class="upload-box" style="border: 2px dashed #cbd5e0; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; background: #f7fafc;">
-            <p>Click to upload or drag & drop your JPG images here</p>
-            <input type="file" id="fileInput" accept="image/jpeg" multiple style="display:none;">
+    <div class="tool-container">
+        <div class="tool-card">
+            <div class="upload-box" style="border: 2px dashed #cbd5e0; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; background: #f7fafc;">
+                <p>Click to upload or drag & drop your JPG images here</p>
+                <input type="file" id="fileInput" accept="image/jpeg" multiple style="display:none;">
+            </div>
+
+            <div id="previewArea" style="margin-top: 20px; text-align: left;"></div>
+
+            <button id="convertBtn" class="premium-btn">Convert to PDF</button>
         </div>
-        <button id="convertBtn" style="margin-top: 20px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Convert to PDF</button>
     </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use JPG to PDF Converter?</h2>
-        <p>Using our JPG to PDF tool is the fastest experience for users across the USA, UK, Australia, and Europe.</p>
+    <section class="how-to-section">
+        <h2>How to use JPG to PDF Converter?</h2>
         <ol>
-            <li><strong>Step 1:</strong> Upload your JPG images into our secure interface.</li>
-            <li><strong>Step 2:</strong> Click "Convert to PDF" to process your files instantly.</li>
-            <li><strong>Step 3:</strong> Download your professionally formatted PDF with a single click.</li>
+            <li>Upload your images.</li>
+            <li>Use delete button if needed.</li>
+            <li>Click "Convert to PDF" and download.</li>
         </ol>
-
-        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
-        <p>We provide enterprise-grade digital tools tailored for professionals worldwide. Whether you are in London, New York, or Sydney, our platform ensures high-speed performance and data privacy for all your PDF conversion needs.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
     </section>
+
+    <script src="../assets/js/jpg-to-pdf.js"></script>
 </body>
 </html>
