@@ -259,7 +259,6 @@ input:focus, select:focus {
     max-height: 80vh;
     overflow-y: auto;
 }
-
 .footer {
     text-align: center;
     padding: 3rem 1rem;
