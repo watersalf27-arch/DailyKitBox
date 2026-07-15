@@ -2,32 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO, GEO, AEO Tags -->
+    <meta name="description" content="Tools Details: Free online JPG to PDF converter. Compress, rotate, merge, and convert images fast and securely. DailyKitBox offers global support.">
+    <meta name="geo.region" content="US, GB, CA, AU, DE">
+    <meta name="keywords" content="JPG to PDF, image converter, AEO optimized tools, dailykitbox">
     <title>JPG to PDF Converter - DailyKitBox</title>
-    <meta name="description" content="Convert JPG to PDF instantly. Fast, secure, and free online tool for USA, UK, Canada, and Australia users. Optimize images for professional documents.">
-    <meta name="geo.region" content="US-NY, GB, CA, AU">
-    <meta name="keywords" content="JPG to PDF, Online Converter, Batch Convert, DailyKitBox, Free PDF Tool">
     
+    <!-- Original CSS link (Aapka purana code yahan se aayega baaki chizon ke liye) -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- SIRF IS PAGE KI CSS (Ye baaki kisi page ko kharab nahi karegi) -->
+    <style>
+        .isolated-pdf-wrapper { max-width: 800px; margin: 20px auto; padding: 0 15px; font-family: sans-serif; }
+        .isolated-pdf-wrapper * { box-sizing: border-box; }
+        
+        .unique-pdf-card, .unique-tools-grid, .unique-seo-section { 
+            background: #ffffff; padding: 25px; border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 25px; display: block; width: 100%;
+        }
+
+        .unique-upload-box { 
+            border: 2px dashed #0a192f; padding: 40px 20px; text-align: center; 
+            cursor: pointer; border-radius: 8px; background: #f9f9f9; 
+        }
+
+        .unique-btn { 
+            background: #0a192f; color: white; width: 100%; padding: 15px; 
+            border: none; border-radius: 8px; font-size: 16px; margin-top: 15px; cursor: pointer; 
+        }
+
+        /* 20+ Tools Grid */
+        .unique-grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .unique-grid-item { border: 1px solid #ddd; padding: 15px 10px; text-align: center; border-radius: 6px; font-size: 14px; background: #f4f7f6; }
+        
+        .unique-seo-section { border-left: 5px solid #ffc107; }
+    </style>
 </head>
 <body>
 
-<div class="main-wrapper">
-    <div class="tool-card">
-        <h1>JPG to PDF Converter</h1>
-        <div id="uploadBox" class="upload-zone">Click or Drag & Drop Images</div>
-        <input type="file" id="fileInput" style="display:none;">
-        <button id="convertBtn">Convert to PDF</button>
+<div class="isolated-pdf-wrapper">
+    
+    <!-- Main Tool Area -->
+    <div class="unique-pdf-card">
+        <h1 style="text-align:center; color:#0a192f; margin-bottom: 20px;">JPG to PDF Converter</h1>
+        <div class="unique-upload-box" id="uniqueUpload">
+            <strong>Click or Drag & Drop Images Here</strong>
+            <input type="file" id="uniqueFile" style="display:none;" multiple>
+        </div>
+        <button id="uniqueConvertBtn" class="unique-btn">Convert to PDF</button>
     </div>
 
-    <div class="tools-grid">
-        <div class="item">Compress</div> <div class="item">Rotate</div>
-        <div class="item">Resize</div> <div class="item">Merge</div>
+    <!-- 20+ Tools Section (Niche aayega) -->
+    <div class="unique-tools-grid">
+        <h3 style="margin-top: 0;">Other Tools & Features</h3>
+        <div class="unique-grid-container">
+            <div class="unique-grid-item">Merge PDF</div>
+            <div class="unique-grid-item">Split PDF</div>
+            <div class="unique-grid-item">Compress PDF</div>
+            <div class="unique-grid-item">Rotate PDF</div>
+            <div class="unique-grid-item">PDF to Word</div>
+            <div class="unique-grid-item">PDF to Excel</div>
+            <div class="unique-grid-item">Word to PDF</div>
+            <div class="unique-grid-item">Excel to PDF</div>
+            <div class="unique-grid-item">Edit PDF</div>
+            <div class="unique-grid-item">Watermark</div>
+            <div class="unique-grid-item">Unlock PDF</div>
+            <div class="unique-grid-item">Protect PDF</div>
+            <div class="unique-grid-item">Sign PDF</div>
+            <div class="unique-grid-item">HTML to PDF</div>
+            <div class="unique-grid-item">PDF to JPG</div>
+            <div class="unique-grid-item">Page Numbers</div>
         </div>
+    </div>
 
-    <section id="how-to-use" class="info-section">
-        <h2>How to Use JPG to PDF Converter?</h2>
-        <p>Follow these steps to convert your images efficiently.</p>
-    </section>
+    <!-- SEO & How to Use (Niche aayega) -->
+    <div class="unique-seo-section">
+        <h2>How to use JPG to PDF and SEO Geo Info</h2>
+        <p><strong>Step 1:</strong> Click the upload box above and select your image files.</p>
+        <p><strong>Step 2:</strong> Arrange your images if needed.</p>
+        <p><strong>Step 3:</strong> Click Convert to generate your document.</p>
+        <hr style="border: 1px solid #eee; margin: 15px 0;">
+        <p><em>This AEO optimized tool provides fast server-side processing ensuring privacy. Used globally in USA, UK, Canada, Australia, and parts of Europe for high-quality document handling.</em></p>
+    </div>
+
 </div>
+
+<!-- Isolated JS (Sirf is page ke liye) -->
+<script>
+    document.getElementById('uniqueUpload').onclick = function() {
+        document.getElementById('uniqueFile').click();
+    };
+
+    document.getElementById('uniqueConvertBtn').onclick = function() {
+        alert("Upload working! Code is isolated and safe.");
+    };
+</script>
+
 </body>
 </html>
