@@ -4,51 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free online Age Calculator by DailyKitBox. Calculate exact human age, animal ages, birthday countdowns, age differences, and more.">
-    <meta name="keywords" content="age calculator, birthday calculator, animal age calculator, dog age, cat age, age difference">
+    <meta name="keywords" content="age calculator, birthday calculator, animal age calculator, dog age, cat age, age difference, zodiac">
     <title>Age Calculator - DailyKitBox</title>
-    
-    <link rel="stylesheet" href="assets/css/age-calculater.css">
-    <link rel="stylesheet" href="assets/css/agecalculator.css"> <!-- if you have separate file -->
+
+    <link rel="stylesheet" href="assets/css/age-calculator.css">
 
     <style>
-        /* Quick fixes for better UX */
-        .notification-toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10000;
-            padding: 14px 28px;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-            animation: fadeInOut 3s forwards;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, 20px); }
-            10% { opacity: 1; transform: translate(-50%, 0); }
-            90% { opacity: 1; transform: translate(-50%, 0); }
-            100% { opacity: 0; transform: translate(-50%, 20px); }
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
+        /* Small additional fixes */
+        .history-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
         }
-        .modal-content {
-            background: var(--card-bg);
-            max-width: 520px;
-            width: 90%;
-            border-radius: 20px;
-            padding: 2rem;
-            max-height: 85vh;
-            overflow-y: auto;
+        .delete-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ef4444;
         }
     </style>
 </head>
@@ -64,10 +39,10 @@
                     <h2>Age Calculator</h2>
                 </div>
                 <div class="controls">
-                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
                         <span id="theme-icon">🌙</span>
                     </button>
-                    <button id="history-btn" class="icon-btn" aria-label="History">📖</button>
+                    <button id="history-btn" class="icon-btn" aria-label="View history">📖</button>
                 </div>
             </div>
         </div>
@@ -82,12 +57,12 @@
                 <button class="tab-btn" data-tab="tools">Tools</button>
             </div>
 
-            <!-- Human Age Tab -->
+            <!-- ==================== HUMAN AGE TAB ==================== -->
             <div id="human-tab" class="tab-content active">
                 <div class="calculator-grid">
-                    <!-- Input -->
-                    <div class="card input-card">
-                        <h3>Enter Your Birth Date</h3>
+                    <!-- Input Card -->
+                    <div class="card">
+                        <h3>Enter Birth Date</h3>
                         <div class="form-group">
                             <label for="birth-date">Birth Date</label>
                             <input type="date" id="birth-date" required>
@@ -99,8 +74,8 @@
                         <button id="calculate-human" class="btn-primary">Calculate Age</button>
                     </div>
 
-                    <!-- Results -->
-                    <div class="card results-card">
+                    <!-- Results Card -->
+                    <div class="card">
                         <h3>Your Age</h3>
                         <div id="human-results" class="results"></div>
 
@@ -112,7 +87,7 @@
                     </div>
                 </div>
 
-                <!-- Extra Info -->
+                <!-- Additional Info -->
                 <div class="info-grid">
                     <div class="card">
                         <h4>Zodiac Signs</h4>
@@ -125,13 +100,13 @@
                 </div>
             </div>
 
-            <!-- Animal Age Tab -->
+            <!-- ==================== ANIMAL AGE TAB ==================== -->
             <div id="animal-tab" class="tab-content">
                 <div class="calculator-grid">
-                    <div class="card input-card">
+                    <div class="card">
                         <h3>Pet Age Calculator</h3>
                         <div class="form-group">
-                            <label for="animal-type">Animal Type</label>
+                            <label for="animal-type">Select Animal</label>
                             <select id="animal-type"></select>
                         </div>
                         <div class="form-group">
@@ -141,34 +116,34 @@
                         <button id="calculate-animal" class="btn-primary">Convert to Human Years</button>
                     </div>
 
-                    <div class="card results-card">
+                    <div class="card">
                         <h3>Equivalent Human Age</h3>
                         <div id="animal-results" class="results"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tools Tab -->
+            <!-- ==================== TOOLS TAB ==================== -->
             <div id="tools-tab" class="tab-content">
                 <div class="tools-grid">
                     <div class="tool-card">
                         <h4>Age Difference</h4>
-                        <input type="date" id="date1" placeholder="Date 1">
-                        <input type="date" id="date2" placeholder="Date 2" style="margin-top:8px;">
-                        <button id="calc-diff" class="btn-primary" style="margin-top:12px;">Calculate Difference</button>
+                        <input type="date" id="date1" style="margin-bottom:10px;">
+                        <input type="date" id="date2">
+                        <button id="calc-diff" class="btn-primary" style="margin-top:15px;">Calculate Difference</button>
                         <div id="diff-result" style="margin-top:1rem; font-weight:600;"></div>
                     </div>
 
                     <div class="tool-card">
-                        <h4>Next Birthday Countdown</h4>
+                        <h4>Birthday Countdown</h4>
                         <input type="date" id="next-birthday">
                         <div id="countdown-result" style="margin-top:1rem;"></div>
                     </div>
 
                     <div class="tool-card">
-                        <h4>Retirement Planner</h4>
-                        <input type="number" id="retire-age" value="65" placeholder="Retirement Age">
-                        <button id="calc-retirement" class="btn-primary" style="margin-top:12px;">Calculate</button>
+                        <h4>Retirement Age</h4>
+                        <input type="number" id="retire-age" value="65" style="margin-bottom:12px;">
+                        <button id="calc-retirement" class="btn-primary">Calculate Years Left</button>
                         <div id="retire-result" style="margin-top:1rem;"></div>
                     </div>
                 </div>
@@ -180,14 +155,15 @@
     <div id="history-modal" class="modal">
         <div class="modal-content">
             <h3>Calculation History</h3>
-            <div id="history-list" style="margin:1.5rem 0;"></div>
-            <button id="clear-history" class="btn-secondary">Clear All History</button>
+            <div id="history-list"></div>
+            <button id="clear-history" class="btn-secondary" style="margin-top:1.5rem; width:100%;">Clear All History</button>
         </div>
     </div>
 
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 DailyKitBox. All Rights Reserved.</p>
+            <p>Made with ❤️ for accurate calculations worldwide.</p>
         </div>
     </footer>
 
