@@ -3,73 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online Age Calculator by DailyKitBox. Calculate exact human age, animal ages, birthday countdowns, age differences, and more. Premium, accurate &amp; fast.">
-    <meta name="keywords" content="age calculator, birthday calculator, animal age calculator, dog age, cat age, age difference, retirement calculator, chinese zodiac, western zodiac">
-    <meta name="author" content="DailyKitBox">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#2563eb">
-    <link rel="canonical" href="https://dailykitbox.com/age-calculator">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="DailyKitBox Age Calculator - Human &amp; Animal Ages">
-    <meta property="og:description" content="Calculate precise ages, birthdays, zodiac signs, and more with our beautiful age calculator tool.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dailykitbox.com/age-calculator">
-    <meta property="og:image" content="https://dailykitbox.com/og-image-age-calculator.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DailyKitBox Age Calculator">
-    <meta name="twitter:description" content="Accurate age calculations for humans and pets.">
-    
+    <meta name="description" content="Free online Age Calculator by DailyKitBox. Calculate exact human age, animal ages, birthday countdowns, age differences, and more.">
+    <meta name="keywords" content="age calculator, birthday calculator, animal age calculator, dog age, cat age, age difference">
     <title>Age Calculator - DailyKitBox</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
-    
-    <link rel="stylesheet" href="assets/css/agecalculator.css">
-    
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "DailyKitBox Age Calculator",
-      "url": "https://dailykitbox.com/age-calculator",
-      "description": "Free online tool to calculate human age, animal ages, zodiac signs, birthday countdowns and more.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do you calculate exact age?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Enter your birth date and the calculator instantly computes years, months, days, hours, and even seconds."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What animals are supported in the pet age calculator?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We support dogs, cats, horses, rabbits, birds, and many more animals with accurate conversion formulas."
-          }
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/agecalculator.css"> <!-- if you have separate file -->
+
+    <style>
+        /* Quick fixes for better UX */
+        .notification-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            padding: 14px 28px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            animation: fadeInOut 3s forwards;
         }
-      ]
-    }
-    </script>
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
+            10% { opacity: 1; transform: translate(-50%, 0); }
+            90% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, 20px); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 520px;
+            width: 90%;
+            border-radius: 20px;
+            padding: 2rem;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -83,10 +64,10 @@
                     <h2>Age Calculator</h2>
                 </div>
                 <div class="controls">
-                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">
-                        <span id="theme-icon">☀️</span>
+                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                        <span id="theme-icon">🌙</span>
                     </button>
-                    <button id="history-btn" class="icon-btn" aria-label="View history">📖</button>
+                    <button id="history-btn" class="icon-btn" aria-label="History">📖</button>
                 </div>
             </div>
         </div>
@@ -104,15 +85,15 @@
             <!-- Human Age Tab -->
             <div id="human-tab" class="tab-content active">
                 <div class="calculator-grid">
-                    <!-- Input Card -->
+                    <!-- Input -->
                     <div class="card input-card">
-                        <h3>Enter Birth Date</h3>
+                        <h3>Enter Your Birth Date</h3>
                         <div class="form-group">
                             <label for="birth-date">Birth Date</label>
                             <input type="date" id="birth-date" required>
                         </div>
                         <div class="form-group">
-                            <label for="birth-time">Birth Time (optional)</label>
+                            <label for="birth-time">Birth Time (Optional)</label>
                             <input type="time" id="birth-time" value="12:00">
                         </div>
                         <button id="calculate-human" class="btn-primary">Calculate Age</button>
@@ -121,10 +102,8 @@
                     <!-- Results -->
                     <div class="card results-card">
                         <h3>Your Age</h3>
-                        <div id="human-results" class="results">
-                            <!-- Populated by JS -->
-                        </div>
-                        
+                        <div id="human-results" class="results"></div>
+
                         <div class="result-actions">
                             <button id="copy-human" class="btn-secondary">Copy</button>
                             <button id="share-human" class="btn-secondary">Share</button>
@@ -133,14 +112,14 @@
                     </div>
                 </div>
 
-                <!-- Additional Human Info -->
+                <!-- Extra Info -->
                 <div class="info-grid">
                     <div class="card">
                         <h4>Zodiac Signs</h4>
                         <div id="zodiac-info"></div>
                     </div>
                     <div class="card">
-                        <h4>Life Stats</h4>
+                        <h4>Life Statistics</h4>
                         <div id="life-stats"></div>
                     </div>
                 </div>
@@ -153,21 +132,15 @@
                         <h3>Pet Age Calculator</h3>
                         <div class="form-group">
                             <label for="animal-type">Animal Type</label>
-                            <select id="animal-type">
-                                <option value="dog">Dog</option>
-                                <option value="cat">Cat</option>
-                                <option value="horse">Horse</option>
-                                <option value="rabbit">Rabbit</option>
-                                <!-- More populated by JS -->
-                            </select>
+                            <select id="animal-type"></select>
                         </div>
                         <div class="form-group">
                             <label for="pet-age">Age in Animal Years</label>
-                            <input type="number" id="pet-age" min="0" step="0.1" value="5">
+                            <input type="number" id="pet-age" value="5" min="0" step="0.1">
                         </div>
                         <button id="calculate-animal" class="btn-primary">Convert to Human Years</button>
                     </div>
-                    
+
                     <div class="card results-card">
                         <h3>Equivalent Human Age</h3>
                         <div id="animal-results" class="results"></div>
@@ -180,22 +153,23 @@
                 <div class="tools-grid">
                     <div class="tool-card">
                         <h4>Age Difference</h4>
-                        <input type="date" id="date1" placeholder="Person 1">
-                        <input type="date" id="date2" placeholder="Person 2">
-                        <button id="calc-diff">Calculate Difference</button>
-                        <div id="diff-result"></div>
+                        <input type="date" id="date1" placeholder="Date 1">
+                        <input type="date" id="date2" placeholder="Date 2" style="margin-top:8px;">
+                        <button id="calc-diff" class="btn-primary" style="margin-top:12px;">Calculate Difference</button>
+                        <div id="diff-result" style="margin-top:1rem; font-weight:600;"></div>
                     </div>
-                    
+
                     <div class="tool-card">
-                        <h4>Birthday Countdown</h4>
+                        <h4>Next Birthday Countdown</h4>
                         <input type="date" id="next-birthday">
-                        <div id="countdown-result"></div>
+                        <div id="countdown-result" style="margin-top:1rem;"></div>
                     </div>
-                    
+
                     <div class="tool-card">
-                        <h4>Retirement Countdown</h4>
-                        <input type="number" id="retire-age" value="65" placeholder="Retirement age">
-                        <div id="retire-result"></div>
+                        <h4>Retirement Planner</h4>
+                        <input type="number" id="retire-age" value="65" placeholder="Retirement Age">
+                        <button id="calc-retirement" class="btn-primary" style="margin-top:12px;">Calculate</button>
+                        <div id="retire-result" style="margin-top:1rem;"></div>
                     </div>
                 </div>
             </div>
@@ -206,15 +180,14 @@
     <div id="history-modal" class="modal">
         <div class="modal-content">
             <h3>Calculation History</h3>
-            <div id="history-list"></div>
-            <button class="btn-secondary" id="clear-history">Clear History</button>
+            <div id="history-list" style="margin:1.5rem 0;"></div>
+            <button id="clear-history" class="btn-secondary">Clear All History</button>
         </div>
     </div>
 
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 DailyKitBox. All Rights Reserved.</p>
-            <p>Made with ❤️ for accurate age calculations worldwide.</p>
         </div>
     </footer>
 
