@@ -2,48 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert JPG to PDF online for free with DailyKitBox. Fast, secure, and professional image to PDF converter. Trusted by users in the USA, UK, Canada, Australia, and Europe.">
-    <meta name="geo.region" content="US, GB, AU, CA, DE">
-    <title>JPG to PDF Converter | DailyKitBox</title>
+    <title>JPG to PDF Converter - DailyKitBox</title>
+    <meta name="description" content="Convert JPG to PDF instantly. Fast, secure, and free online tool for USA, UK, Canada, and Australia users. Optimize images for professional documents.">
+    <meta name="geo.region" content="US-NY, GB, CA, AU">
+    <meta name="keywords" content="JPG to PDF, Online Converter, Batch Convert, DailyKitBox, Free PDF Tool">
+    
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-    <div class="header">
+<div class="main-wrapper">
+    <div class="tool-card">
         <h1>JPG to PDF Converter</h1>
-        <p>Professional, Fast & Secure Document Conversion</p>
+        <div id="uploadBox" class="upload-zone">Click or Drag & Drop Images</div>
+        <input type="file" id="fileInput" style="display:none;">
+        <button id="convertBtn">Convert to PDF</button>
     </div>
 
-    <div class="tool-container">
-        <div class="tool-card">
-            <div class="upload-box" id="uploadBox">
-                <p>Click or Drag & Drop Images Here</p>
-                <input type="file" id="fileInput" accept="image/jpeg" multiple style="display:none;">
-            </div>
-            
-            <div id="progressContainer" style="display: none; width: 100%; background: #eee; height: 12px; margin: 20px 0; border-radius: 6px; overflow: hidden;">
-                <div id="progressBar" style="width: 0%; height: 100%; background: #ffc107; transition: width 0.3s;"></div>
-            </div>
-            
-            <button id="convertBtn" class="premium-btn">Convert to PDF</button>
+    <div class="tools-grid">
+        <div class="item">Compress</div> <div class="item">Rotate</div>
+        <div class="item">Resize</div> <div class="item">Merge</div>
         </div>
 
-        <section id="how-to-use">
-            <h2>How to Use JPG to PDF Converter?</h2>
-            <ol>
-                <li><strong>Upload:</strong> Click the "Upload" box or drag & drop your JPG images.</li>
-                <li><strong>Manage:</strong> Use the preview list to sort or remove unwanted images.</li>
-                <li><strong>Convert:</strong> Click the "Convert to PDF" button.</li>
-                <li><strong>Download:</strong> Your PDF will be generated and downloaded automatically.</li>
-            </ol>
-            <div class="tool-details">
-                <p><strong>Service Availability:</strong> Global (USA, UK, Canada, Australia, Europe).</p>
-            </div>
-        </section>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="assets/js/jpg-to-pdf.js"></script>
+    <section id="how-to-use" class="info-section">
+        <h2>How to Use JPG to PDF Converter?</h2>
+        <p>Follow these steps to convert your images efficiently.</p>
+    </section>
+</div>
 </body>
 </html>
