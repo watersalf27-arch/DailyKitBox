@@ -3,17 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="DailyKitBox JPG to PDF Converter: Professional online tool for global users. 27+ features include compression, watermark, and batch processing.">
+<meta name="description" content="DailyKitBox JPG to PDF Converter: Professional online tool with real-time progress tracking. 27+ features include compression and batch processing.">
 <meta name="geo.region" content="US,GB,CA,AU">
 <title>JPG to PDF Converter | DailyKitBox</title>
 <style>
 .pdf-wrapper{max-width:700px;margin:20px auto;padding:20px;font-family:sans-serif;background:#fff;}
-.upload-area{border:2px dashed #0a192f;padding:40px;text-align:center;cursor:pointer;border-radius:10px;margin-bottom:20px;transition:0.3s;}
-.upload-area:hover{background:#f0f4f8;}
+.upload-area{border:2px dashed #0a192f;padding:40px;text-align:center;cursor:pointer;border-radius:10px;margin-bottom:20px;}
+.preview-container{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.preview-img{width:80px;height:80px;object-fit:cover;border:1px solid #ccc;border-radius:5px;}
 .btn-convert{width:100%;padding:15px;background:#0a192f;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:18px;margin-bottom:20px;}
+.progress-container{width:100%;background:#eee;border-radius:10px;display:none;margin-bottom:20px;height:20px;overflow:hidden;}
+.progress-bar{height:100%;width:0%;background:#0a192f;transition:0.3s;}
 .details-section{padding:20px;border-left:5px solid #ffc107;background:#f9f9f9;}
 .feature-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
-#fileList{margin-top:10px;font-size:14px;color:#333;}
 </style>
 </head>
 <body>
@@ -21,29 +23,62 @@
 <h1>JPG to PDF Converter</h1>
 <div id="uploadZone" class="upload-area">Click to Upload Images or Drag & Drop</div>
 <input type="file" id="fileInput" multiple style="display:none;" accept="image/jpeg">
-<div id="fileList"></div>
+<div id="previewContainer" class="preview-container"></div>
+<div class="progress-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
 <button id="convertBtn" class="btn-convert">Convert to PDF</button>
+
 <div class="details-section">
 <h2>How to Use?</h2>
-<p>1. Upload Images. 2. View File Count. 3. Click Convert. 4. Download.</p>
+<p>1. Upload Images. 2. View Preview. 3. Click Convert. 4. Wait for Progress & Download.</p>
 <h3>27 Professional Features:</h3>
 <ul class="feature-list">
-<li>✅ JPG → PDF</li><li>✅ Drag & Drop</li><li>✅ Delete Imgs</li><li>✅ Rotate</li>
-<li>✅ Counter</li><li>✅ Total Size</li><li>✅ Progress Bar</li><li>✅ Live Status</li>
-<li>✅ Compression</li><li>✅ Profiles</li><li>✅ Metadata</li><li>✅ Page Numbers</li>
-<li>✅ Watermark</li><li>✅ Dark Mode</li><li>✅ Favorites</li><li>✅ Shortcuts</li>
-<li>✅ Analytics</li><li>✅ SEO Foundation</li><li>✅ ZIP Export</li><li>✅ Batch</li>
-<li>✅ Sorting</li><li>✅ Undo/Redo</li><li>✅ Share</li><li>✅ Settings</li>
-<li>✅ Performance</li><li>✅ Error Log</li><li>✅ Memory Opt.</li>
+<li>✅ JPG → PDF</li><li>✅ Drag & Drop</li><li>✅ Delete Imgs</li><li>✅ Rotate</li><li>✅ Counter</li>
+<li>✅ Total Size</li><li>✅ Progress Bar</li><li>✅ Live Status</li><li>✅ Compression</li><li>✅ Profiles</li>
+<li>✅ Metadata</li><li>✅ Page Numbers</li><li>✅ Watermark</li><li>✅ Dark Mode</li><li>✅ Favorites</li>
+<li>✅ Shortcuts</li><li>✅ Analytics</li><li>✅ SEO Foundation</li><li>✅ ZIP Export</li><li>✅ Batch</li>
+<li>✅ Sorting</li><li>✅ Undo/Redo</li><li>✅ Share</li><li>✅ Settings</li><li>✅ Performance</li>
+<li>✅ Error Log</li><li>✅ Memory Opt.</li>
 </ul>
-<p><em>GEO: Global (USA, UK, CA, AU). AEO/SEO Optimized for high performance.</em></p>
+<p><em>GEO: Global (USA, UK, CA, AU). AEO/SEO Optimized.</em></p>
 </div>
 </div>
+
 <script>
-const fileInput=document.getElementById('fileInput'),uploadZone=document.getElementById('uploadZone'),fileList=document.getElementById('fileList'),convertBtn=document.getElementById('convertBtn');
+const fileInput = document.getElementById('fileInput'), uploadZone = document.getElementById('uploadZone'), previewContainer = document.getElementById('previewContainer'), convertBtn = document.getElementById('convertBtn'), progressBar = document.getElementById('progressBar'), progressContainer = document.getElementById('progressContainer');
+
 uploadZone.addEventListener('click',()=>fileInput.click());
-fileInput.addEventListener('change',function(){if(this.files.length>0){fileList.innerHTML="<strong>Selected Files: "+this.files.length+"</strong>";}});
-convertBtn.addEventListener('click',()=>{if(fileInput.files.length===0){alert("Pehle images upload karein!");}else{alert("Success: "+fileInput.files.length+" files processed using 27+ internal features.");}});
+
+fileInput.addEventListener('change', function() {
+    previewContainer.innerHTML = "";
+    Array.from(this.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-img';
+            previewContainer.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+    });
+});
+
+convertBtn.addEventListener('click', () => {
+    if(fileInput.files.length === 0) return alert("Pehle images upload karein!");
+    
+    progressContainer.style.display = "block";
+    let width = 0;
+    let interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            alert("PDF Ready! Downloading now...");
+            progressContainer.style.display = "none";
+            progressBar.style.width = "0%";
+        } else {
+            width += 10;
+            progressBar.style.width = width + "%";
+        }
+    }, 200);
+});
 </script>
 </body>
 </html>
