@@ -1,39 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Age Calculator - DailyKitBox</title>
-    <!-- Centralized CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to PDF Converter | Free Online Image to PDF Tool | DailyKitBox</title>
+<meta name="description" content="Convert JPG, JPEG and PNG images into high quality PDF files online for free. Fast, secure, mobile friendly JPG to PDF Converter with batch processing. DailyKitBox.">
+<meta name="keywords" content="jpg to pdf, jpeg to pdf, png to pdf, image to pdf, online pdf converter, free pdf tool, batch image to pdf, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0A192F">
+<meta name="application-name" content="DailyKitBox">
+<meta name="generator" content="DailyKitBox">
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+<meta name="ICBM" content="37.0902,-95.7129">
+<meta http-equiv="content-language" content="en-US">
+<link rel="canonical" href="https://dailykitbox.com/tools/jpg-to-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="JPG to PDF Converter">
+<meta property="og:description" content="Convert JPG, JPEG and PNG images into PDF instantly with our free online converter.">
+<meta property="og:url" content="https://dailykitbox.com/tools/jpg-to-pdf/">
+<meta property="og:image" content="/assets/images/jpg-to-pdf-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JPG to PDF Converter">
+<meta name="twitter:description" content="Fast and free online JPG to PDF converter for desktop and mobile devices.">
+<meta name="twitter:image" content="/assets/images/jpg-to-pdf-cover.webp">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"JPG to PDF Converter","url":"https://dailykitbox.com/tools/jpg-to-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online JPG to PDF converter with batch processing, image sorting, compression and professional PDF output.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailykitbox.com/tools/"},{"@type":"ListItem","position":3,"name":"JPG to PDF Converter","item":"https://dailykitbox.com/tools/jpg-to-pdf/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this JPG to PDF converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. DailyKitBox JPG to PDF Converter is completely free to use."}},{"@type":"Question","name":"Are my files secure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your files are processed inside your browser and are not permanently stored on our servers."}}]}
+</script>
 </head>
 <body>
+<header class="dkb-header">
+<div class="dkb-container">
+<h1 class="dkb-title">JPG to PDF Converter</h1>
+<p class="dkb-subtitle">Convert JPG, JPEG and PNG images into professional PDF documents quickly, securely and free. Optimized for desktop, tablet and mobile users worldwide.</p>
+</div>
+</header>
+<main class="dkb-main">
+<section class="dkb-tool-section">
+<div class="dkb-container">
+<div class="dkb-upload-section">
+<input type="file" id="fileInput" class="dkb-file-input" accept=".jpg,.jpeg,.png" multiple hidden aria-label="Upload Images">
+<div id="uploadArea" class="dkb-upload-area" tabindex="0" role="button" aria-label="Upload or Drag and Drop Images">
+<div class="dkb-upload-icon">📁</div>
+<h2>Upload JPG Images</h2>
+<p>Drag & Drop your JPG, JPEG or PNG files here or click to browse.</p>
+<p class="dkb-upload-note">Maximum recommended file size: 50 MB per image.</p>
+<button type="button" id="browseBtn" class="dkb-btn dkb-btn-primary">Choose Images</button>
+</div>
+</div>
 
-    <div class="header">
-        <h1>Age Calculator</h1>
-        <a href="../index.html">← Back to Home</a>
-    </div>
+<section class="dkb-preview-section">
+<div class="dkb-toolbar">
+<div class="dkb-toolbar-item"><span>Images</span><strong id="imageCounter">0</strong></div>
+<div class="dkb-toolbar-item"><span>Total Size</span><strong id="totalSize">0 MB</strong></div>
+<div class="dkb-toolbar-item"><span>Status</span><strong id="statusText">Ready</strong></div>
+</div>
 
-    <div class="tool-container">
-        <div class="tool-card">
-            <label>Enter your Date of Birth:</label>
-            <input type="date" id="dob">
-            
-            <button class="premium-btn" onclick="calculateAge()">Calculate Age</button>
-            
-            <div id="ageResult" style="margin-top: 20px; font-size: 22px; font-weight: bold; color: #0a192f;"></div>
-        </div>
+<div id="imagePreview" class="dkb-image-preview" aria-live="polite"></div>
 
-        <section class="how-to-section">
-            <h2>How to use Age Calculator?</h2>
-            <ol>
-                <li>Select your date of birth from the calendar.</li>
-                <li>Click on "Calculate Age".</li>
-                <li>Your exact age will be displayed instantly.</li>
-            </ol>
-        </section>
-    </div>
+<div class="dkb-action-grid">
+<button type="button" id="rotateBtn" class="dkb-btn">Rotate</button>
+<button type="button" id="deleteBtn" class="dkb-btn">Delete Selected</button>
+<button type="button" id="sortBtn" class="dkb-btn">Sort Images</button>
+<button type="button" id="undoBtn" class="dkb-btn">Undo</button>
+<button type="button" id="redoBtn" class="dkb-btn">Redo</button>
+<button type="button" id="favoriteBtn" class="dkb-btn">Favorites</button>
+</div>
+</section>
 
-    <!-- Centralized JS -->
-    <script src="../assets/js/main.js"></script>
+<section class="dkb-progress-section">
+<h2>Conversion Progress</h2>
+<div class="dkb-progress">
+<div id="progressBar" class="dkb-progress-bar"></div>
+</div>
+<p id="progressText">0%</p>
+<p id="liveStatus">Waiting for images...</p>
+</section>
+
+<section class="dkb-convert-section">
+<button type="button" id="convertBtn" class="dkb-btn dkb-btn-primary">Convert to PDF</button>
+<button type="button" id="downloadBtn" class="dkb-btn dkb-btn-success" hidden>Download PDF</button>
+</section>
+
+<section class="dkb-info-section">
+<h2>Conversion Settings</h2>
+<div class="dkb-settings-grid">
+<label>Compression<select id="compressionLevel"><option value="none">None</option><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+<label>Page Size<select id="pageSize"><option>A4</option><option>Letter</option><option>Legal</option></select></label>
+<label>Orientation<select id="orientation"><option>Portrait</option><option>Landscape</option></select></label>
+<label>Page Margin<select id="pageMargin"><option>None</option><option selected>Normal</option><option>Wide</option></select></label>
+<label>Page Numbers<select id="pageNumbers"><option selected>Off</option><option>On</option></select></label>
+<label>Watermark<input type="text" id="watermarkText" placeholder="Optional"></label>
+</div>
+</section>
+<section class="dkb-features-section">
+<h2>Professional Features</h2>
+<div class="dkb-features-grid">
+<div class="dkb-feature-card">✅ JPG to PDF Conversion</div>
+<div class="dkb-feature-card">✅ Drag & Drop Upload</div>
+<div class="dkb-feature-card">✅ Delete Images</div>
+<div class="dkb-feature-card">✅ Rotate Images</div>
+<div class="dkb-feature-card">✅ Image Counter</div>
+<div class="dkb-feature-card">✅ Total File Size</div>
+<div class="dkb-feature-card">✅ Progress Bar</div>
+<div class="dkb-feature-card">✅ Live Status</div>
+<div class="dkb-feature-card">✅ Compression</div>
+<div class="dkb-feature-card">✅ Export Profiles</div>
+<div class="dkb-feature-card">✅ PDF Metadata</div>
+<div class="dkb-feature-card">✅ Page Numbers</div>
+<div class="dkb-feature-card">✅ Watermark</div>
+<div class="dkb-feature-card">✅ Dark Mode</div>
+<div class="dkb-feature-card">✅ Favorites</div>
+<div class="dkb-feature-card">✅ Keyboard Shortcuts</div>
+<div class="dkb-feature-card">✅ Analytics Ready</div>
+<div class="dkb-feature-card">✅ SEO Foundation</div>
+<div class="dkb-feature-card">✅ ZIP Export Ready</div>
+<div class="dkb-feature-card">✅ Batch Processing</div>
+<div class="dkb-feature-card">✅ Image Sorting</div>
+<div class="dkb-feature-card">✅ Undo / Redo</div>
+<div class="dkb-feature-card">✅ Share PDF</div>
+<div class="dkb-feature-card">✅ Settings Manager</div>
+<div class="dkb-feature-card">✅ Performance Monitor</div>
+<div class="dkb-feature-card">✅ Error Logger</div>
+<div class="dkb-feature-card">✅ Memory Optimization</div>
+</div>
+</section>
+
+<section class="dkb-howto-section">
+<h2>How to Use</h2>
+<ol>
+<li>Upload one or more JPG, JPEG or PNG images.</li>
+<li>Arrange, rotate or remove images if needed.</li>
+<li>Choose your preferred PDF settings.</li>
+<li>Click Convert to PDF.</li>
+<li>Download your finished PDF instantly.</li>
+</ol>
+</section>
+
+<section class="dkb-seo-section">
+<h2>About This JPG to PDF Converter</h2>
+<p>DailyKitBox JPG to PDF Converter is a fast, secure and browser-based online tool that converts JPG, JPEG and PNG images into high-quality PDF documents without requiring installation. It is optimized for users in the USA, United Kingdom, Canada, Australia and worldwide with SEO, GEO and AEO friendly architecture, responsive design, accessibility support and fast loading performance.</p>
+</section>
+
+<section class="dkb-faq-section">
+<h2>Frequently Asked Questions</h2>
+<div class="dkb-faq-item">
+<h3>Is this JPG to PDF Converter free?</h3>
+<p>Yes. It is completely free to use.</p>
+</div>
+<div class="dkb-faq-item">
+<h3>Are my images secure?</h3>
+<p>Your images are processed securely and are not permanently stored.</p>
+</div>
+<div class="dkb-faq-item">
+<h3>Does it work on mobile devices?</h3>
+<p>Yes. It works on Android, iPhone, tablets and desktop browsers.</p>
+</div>
+</section>
+
+<footer class="dkb-footer">
+<p>© 2026 DailyKitBox. All Rights Reserved.</p>
+</footer>
+</div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/assets/js/jpg-to-pdf.js" defer></script>
+
 </body>
 </html>
