@@ -527,3 +527,53 @@ class AgeCalculator {
             this.showNotification('Copied to clipboard!', 'success');
         });
     }
+shareResults() {
+        const text = "Check my age calculation on DailyKitBox!";
+        if (navigator.share) {
+            navigator.share({
+                title: 'My Age - DailyKitBox',
+                text: text
+            });
+        } else {
+            this.copyResults();
+        }
+    }
+
+    showNotification(message, type = 'success') {
+        const existing = document.querySelector('.notification-toast');
+        if (existing) existing.remove();
+        
+        const toast = document.createElement('div');
+        toast.className = `notification-toast ${type}`;
+        toast.style.cssText = `
+            position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+            background:#10b981; color:white; padding:12px 24px; border-radius:9999px;
+            box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.2); z-index:9999;
+            font-weight:500; white-space:nowrap;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.transition = 'all 0.3s';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2800);
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    window.ageCalculator = new AgeCalculator();
+    
+    // Global helpers for inline HTML if needed
+    window.calculateHumanAge = () => window.ageCalculator.calculateHumanAge();
+});
+
+// Make modal closable by clicking outside
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('history-modal');
+    if (modal && e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
