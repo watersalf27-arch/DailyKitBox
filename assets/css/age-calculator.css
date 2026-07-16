@@ -431,6 +431,7 @@ select {
   --ac-shadow: 0 10px 30px rgba(0,0,0,0.45);
   --ac-shadow-lg: 0 20px 45px rgba(0,0,0,0.55);
 }
+
 [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #F1F5F9; }
 [data-theme="dark"] .ac-note { background: #0F1B2E; border-color: var(--ac-border); color: var(--ac-text); }
 [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea {
