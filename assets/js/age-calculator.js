@@ -12,7 +12,7 @@ class AgeCalculator {
         this.history = [];
         this.isDarkMode = true;
         this.animationsEnabled = true;
-        
+
         this.init();
     }
 
@@ -29,47 +29,32 @@ class AgeCalculator {
 
     cacheDOM() {
         this.elements = {
-            // Tabs
             tabButtons: document.querySelectorAll('.tab-btn'),
             tabContents: document.querySelectorAll('.tab-content'),
-            
-            // Human Age
             birthDateInput: document.getElementById('birth-date'),
             birthTimeInput: document.getElementById('birth-time'),
             calculateHumanBtn: document.getElementById('calculate-human'),
             humanResults: document.getElementById('human-results'),
             zodiacInfo: document.getElementById('zodiac-info'),
             lifeStats: document.getElementById('life-stats'),
-            
-            // Animal Age
             animalTypeSelect: document.getElementById('animal-type'),
             petAgeInput: document.getElementById('pet-age'),
             calculateAnimalBtn: document.getElementById('calculate-animal'),
             animalResults: document.getElementById('animal-results'),
-            
-            // Tools
             date1: document.getElementById('date1'),
             date2: document.getElementById('date2'),
             calcDiffBtn: document.getElementById('calc-diff'),
             diffResult: document.getElementById('diff-result'),
-            
             nextBirthdayInput: document.getElementById('next-birthday'),
             countdownResult: document.getElementById('countdown-result'),
-            
             retireAgeInput: document.getElementById('retire-age'),
             retireResult: document.getElementById('retire-result'),
-            
-            // Controls
             themeToggle: document.getElementById('theme-toggle'),
             themeIcon: document.getElementById('theme-icon'),
             historyBtn: document.getElementById('history-btn'),
-            
-            // History Modal
             historyModal: document.getElementById('history-modal'),
             historyList: document.getElementById('history-list'),
             clearHistoryBtn: document.getElementById('clear-history'),
-            
-            // Result actions
             copyHumanBtn: document.getElementById('copy-human'),
             shareHumanBtn: document.getElementById('share-human'),
             printHumanBtn: document.getElementById('print-human')
@@ -82,7 +67,6 @@ class AgeCalculator {
             this.isDarkMode = savedTheme === 'dark';
         }
         this.applyTheme();
-        
         const savedTab = localStorage.getItem('lastTab');
         if (savedTab) {
             this.currentTab = savedTab;
@@ -105,14 +89,7 @@ class AgeCalculator {
 
     populateAnimalSelect() {
         if (!this.elements.animalTypeSelect) return;
-        
-        const animals = [
-            "Dog", "Cat", "Horse", "Rabbit", "Cow", "Buffalo", "Goat", "Sheep",
-            "Pig", "Camel", "Donkey", "Elephant", "Lion", "Tiger", "Wolf",
-            "Fox", "Monkey", "Bird", "Parrot", "Chicken", "Duck", "Turkey",
-            "Hamster", "Guinea Pig", "Mouse", "Rat", "Snake", "Turtle", "Lizard"
-        ];
-        
+        const animals = ["Dog", "Cat", "Horse", "Rabbit", "Cow", "Buffalo", "Goat", "Sheep", "Pig", "Camel", "Donkey", "Elephant", "Lion", "Tiger", "Wolf", "Fox", "Monkey", "Bird", "Parrot", "Chicken", "Duck", "Turkey", "Hamster", "Guinea Pig", "Mouse", "Rat", "Snake", "Turtle", "Lizard"];
         animals.forEach(animal => {
             const option = document.createElement('option');
             option.value = animal.toLowerCase().replace(/\s+/g, '');
@@ -122,53 +99,23 @@ class AgeCalculator {
     }
 
     bindEvents() {
-        // Human Age
-        if (this.elements.calculateHumanBtn) {
-            this.elements.calculateHumanBtn.addEventListener('click', () => this.calculateHumanAge());
-        }
-        
-        // Animal Age
-        if (this.elements.calculateAnimalBtn) {
-            this.elements.calculateAnimalBtn.addEventListener('click', () => this.calculateAnimalAge());
-        }
-        
-        // Tools
-        if (this.elements.calcDiffBtn) {
-            this.elements.calcDiffBtn.addEventListener('click', () => this.calculateAgeDifference());
-        }
-        
-        // History
-        if (this.elements.historyBtn) {
-            this.elements.historyBtn.addEventListener('click', () => this.showHistory());
-        }
-        if (this.elements.clearHistoryBtn) {
-            this.elements.clearHistoryBtn.addEventListener('click', () => this.clearAllHistory());
-        }
-        
-        // Theme
-        if (this.elements.themeToggle) {
-            this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
-        }
-        
-        // Result actions
+        if (this.elements.calculateHumanBtn) this.elements.calculateHumanBtn.addEventListener('click', () => this.calculateHumanAge());
+        if (this.elements.calculateAnimalBtn) this.elements.calculateAnimalBtn.addEventListener('click', () => this.calculateAnimalAge());
+        if (this.elements.calcDiffBtn) this.elements.calcDiffBtn.addEventListener('click', () => this.calculateAgeDifference());
+        if (this.elements.historyBtn) this.elements.historyBtn.addEventListener('click', () => this.showHistory());
+        if (this.elements.clearHistoryBtn) this.elements.clearHistoryBtn.addEventListener('click', () => this.clearAllHistory());
+        if (this.elements.themeToggle) this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
         if (this.elements.copyHumanBtn) this.elements.copyHumanBtn.addEventListener('click', () => this.copyResults());
         if (this.elements.shareHumanBtn) this.elements.shareHumanBtn.addEventListener('click', () => this.shareResults());
         if (this.elements.printHumanBtn) this.elements.printHumanBtn.addEventListener('click', () => window.print());
-        
-        // Tab switching
         this.elements.tabButtons.forEach(btn => {
             btn.addEventListener('click', (e) => this.switchTab(e.currentTarget.dataset.tab));
         });
-        
-        // Keyboard
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.elements.historyModal && 
-                this.elements.historyModal.style.display === 'flex') {
+            if (e.key === 'Escape' && this.elements.historyModal && this.elements.historyModal.style.display === 'flex') {
                 this.hideHistory();
             }
         });
-        
-        // Auto calculate on date change
         if (this.elements.birthDateInput) {
             this.elements.birthDateInput.addEventListener('change', () => {
                 if (this.elements.birthDateInput.value) this.calculateHumanAge();
@@ -183,11 +130,9 @@ class AgeCalculator {
     switchTab(tabId) {
         this.currentTab = tabId;
         localStorage.setItem('lastTab', tabId);
-        
         this.elements.tabButtons.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.tab === tabId);
         });
-        
         this.elements.tabContents.forEach(content => {
             content.classList.toggle('active', content.id === `${tabId}-tab`);
         });
@@ -195,7 +140,6 @@ class AgeCalculator {
 
     setInitialDate() {
         if (!this.elements.birthDateInput) return;
-        
         const eighteenYearsAgo = new Date();
         eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
         this.elements.birthDateInput.value = eighteenYearsAgo.toISOString().split('T')[0];
@@ -205,7 +149,6 @@ class AgeCalculator {
         const date = new Date(dateStr);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        
         if (date > today) {
             this.showNotification('Date cannot be in the future', 'error');
             return false;
@@ -219,20 +162,14 @@ class AgeCalculator {
             this.showNotification('Please select birth date', 'error');
             return;
         }
-        
         if (!this.validateDateInput(birthDateStr)) return;
-        
         const birthDate = new Date(birthDateStr);
         const today = new Date();
-        
         const ageData = this.computeAgeDetails(birthDate, today);
-        
         this.renderHumanResults(ageData, birthDate);
         this.renderZodiac(birthDate);
         this.renderLifeStats(birthDate);
-        
         this.saveToHistory(ageData, birthDate);
-        
         this.showNotification('Age calculated successfully!', 'success');
     }
 
@@ -240,26 +177,19 @@ class AgeCalculator {
         let years = today.getFullYear() - birthDate.getFullYear();
         let months = today.getMonth() - birthDate.getMonth();
         let days = today.getDate() - birthDate.getDate();
-        
         if (days < 0) {
             months--;
             const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
             days += lastMonth.getDate();
         }
-        
         if (months < 0) {
             years--;
             months += 12;
         }
-        
         const totalMs = today.getTime() - birthDate.getTime();
         const totalDays = Math.floor(totalMs / (1000 * 60 * 60 * 24));
-        
         return {
-            years,
-            months,
-            days,
-            totalDays,
+            years, months, days, totalDays,
             totalWeeks: Math.floor(totalDays / 7),
             totalMonths: years * 12 + months,
             totalHours: Math.floor(totalMs / (1000 * 60 * 60)),
@@ -271,7 +201,6 @@ class AgeCalculator {
     renderHumanResults(data, birthDate) {
         const container = this.elements.humanResults;
         if (!container) return;
-        
         container.innerHTML = `
             <div style="text-align:center; margin-bottom:1.5rem;">
                 <div style="font-size:4rem; font-weight:700; line-height:1;">${data.years}</div>
@@ -292,11 +221,7 @@ class AgeCalculator {
     getDaysToNextBirthday(birthDate) {
         const today = new Date();
         let nextBD = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-        
-        if (nextBD < today) {
-            nextBD.setFullYear(nextBD.getFullYear() + 1);
-        }
-        
+        if (nextBD < today) nextBD.setFullYear(nextBD.getFullYear() + 1);
         const diff = nextBD.getTime() - today.getTime();
         return Math.ceil(diff / (1000 * 60 * 60 * 24));
     }
@@ -304,14 +229,11 @@ class AgeCalculator {
     renderZodiac(birthDate) {
         const container = this.elements.zodiacInfo;
         if (!container) return;
-        
         const month = birthDate.getMonth();
         const day = birthDate.getDate();
         const year = birthDate.getFullYear();
-        
         const western = this.getWesternZodiac(month, day);
         const chinese = this.getChineseZodiac(year);
-        
         container.innerHTML = `
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
                 <div><strong>Western:</strong> ${western}</div>
@@ -324,26 +246,15 @@ class AgeCalculator {
 
     getWesternZodiac(month, day) {
         const signs = [
-            {name:"Capricorn", sm:12, sd:22, em:1, ed:19},
-            {name:"Aquarius", sm:1, sd:20, em:2, ed:18},
-            {name:"Pisces", sm:2, sd:19, em:3, ed:20},
-            {name:"Aries", sm:3, sd:21, em:4, ed:19},
-            {name:"Taurus", sm:4, sd:20, em:5, ed:20},
-            {name:"Gemini", sm:5, sd:21, em:6, ed:20},
-            {name:"Cancer", sm:6, sd:21, em:7, ed:22},
-            {name:"Leo", sm:7, sd:23, em:8, ed:22},
-            {name:"Virgo", sm:8, sd:23, em:9, ed:22},
-            {name:"Libra", sm:9, sd:23, em:10, ed:22},
-            {name:"Scorpio", sm:10, sd:23, em:11, ed:21},
-            {name:"Sagittarius", sm:11, sd:22, em:12, ed:21}
+            {name:"Capricorn", sm:12, sd:22, em:1, ed:19}, {name:"Aquarius", sm:1, sd:20, em:2, ed:18},
+            {name:"Pisces", sm:2, sd:19, em:3, ed:20}, {name:"Aries", sm:3, sd:21, em:4, ed:19},
+            {name:"Taurus", sm:4, sd:20, em:5, ed:20}, {name:"Gemini", sm:5, sd:21, em:6, ed:20},
+            {name:"Cancer", sm:6, sd:21, em:7, ed:22}, {name:"Leo", sm:7, sd:23, em:8, ed:22},
+            {name:"Virgo", sm:8, sd:23, em:9, ed:22}, {name:"Libra", sm:9, sd:23, em:10, ed:22},
+            {name:"Scorpio", sm:10, sd:23, em:11, ed:21}, {name:"Sagittarius", sm:11, sd:22, em:12, ed:21}
         ];
-        
         for (let s of signs) {
-            if ((month + 1 === s.sm && day >= s.sd) || 
-                (month + 1 === s.em && day <= s.ed) ||
-                (month + 1 > s.sm && month + 1 < s.em)) {
-                return s.name;
-            }
+            if ((month + 1 === s.sm && day >= s.sd) || (month + 1 === s.em && day <= s.ed) || (month + 1 > s.sm && month + 1 < s.em)) return s.name;
         }
         return "Capricorn";
     }
@@ -366,10 +277,8 @@ class AgeCalculator {
     renderLifeStats(birthDate) {
         const container = this.elements.lifeStats;
         if (!container) return;
-        
         const today = new Date();
         const totalDays = Math.floor((today.getTime() - birthDate.getTime()) / 86400000);
-        
         container.innerHTML = `
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:1rem; font-size:0.95rem;">
                 <div>❤️ ${Math.floor(totalDays * 72 * 24).toLocaleString()} heartbeats</div>
@@ -383,14 +292,11 @@ class AgeCalculator {
     calculateAnimalAge() {
         const type = this.elements.animalTypeSelect ? this.elements.animalTypeSelect.value : 'dog';
         const animalYears = parseFloat(this.elements.petAgeInput ? this.elements.petAgeInput.value : 5);
-        
         if (isNaN(animalYears) || animalYears < 0) {
             this.showNotification('Please enter valid age', 'error');
             return;
         }
-        
         let humanEquivalent = animalYears;
-        
         switch(type) {
             case 'dog': humanEquivalent = Math.round(animalYears * 7); break;
             case 'cat': humanEquivalent = Math.round(animalYears * 6.5); break;
@@ -398,40 +304,26 @@ class AgeCalculator {
             case 'rabbit': humanEquivalent = Math.round(animalYears * 8); break;
             default: humanEquivalent = Math.round(animalYears * 5);
         }
-        
         const container = this.elements.animalResults;
         if (container) {
-            container.innerHTML = `
-                <div style="text-align:center; padding:2rem 0;">
-                    <div style="font-size:3rem; font-weight:700;">${humanEquivalent}</div>
-                    <div style="font-size:1.2rem;">Human Years</div>
-                    <div style="margin-top:1rem; font-size:0.95rem; opacity:0.8;">for a ${type}</div>
-                </div>
-            `;
+            container.innerHTML = `<div style="text-align:center; padding:2rem 0;"><div style="font-size:3rem; font-weight:700;">${humanEquivalent}</div><div style="font-size:1.2rem;">Human Years</div><div style="margin-top:1rem; font-size:0.95rem; opacity:0.8;">for a ${type}</div></div>`;
         }
-        
         this.showNotification('Animal age converted!', 'success');
     }
 
     calculateAgeDifference() {
         const d1 = this.elements.date1 ? this.elements.date1.value : '';
         const d2 = this.elements.date2 ? this.elements.date2.value : '';
-        
         if (!d1 || !d2) {
             this.showNotification('Please select both dates', 'error');
             return;
         }
-        
         const date1 = new Date(d1);
         const date2 = new Date(d2);
-        
         const diffMs = Math.abs(date2 - date1);
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        
         if (this.elements.diffResult) {
-            this.elements.diffResult.innerHTML = `
-                <strong>${diffDays.toLocaleString()}</strong> days difference
-            `;
+            this.elements.diffResult.innerHTML = `<strong>${diffDays.toLocaleString()}</strong> days difference`;
         }
     }
 
@@ -443,10 +335,8 @@ class AgeCalculator {
             age: `${ageData.years} years, ${ageData.months} months`,
             timestamp: Date.now()
         };
-        
         this.history.unshift(entry);
         if (this.history.length > 30) this.history.pop();
-        
         localStorage.setItem('ageCalculatorHistory', JSON.stringify(this.history));
     }
 
@@ -458,41 +348,26 @@ class AgeCalculator {
     showHistory() {
         const modal = this.elements.historyModal;
         const list = this.elements.historyList;
-        
         if (!modal || !list) return;
-        
         modal.style.display = 'flex';
         list.innerHTML = '';
-        
         if (this.history.length === 0) {
             list.innerHTML = '<p style="text-align:center; padding:2rem; opacity:0.6;">No history yet</p>';
             return;
         }
-        
         this.history.forEach(entry => {
             const item = document.createElement('div');
             item.style.cssText = 'padding:1rem; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;';
-            item.innerHTML = `
-                <div>
-                    <div style="font-weight:500;">${entry.birthDate}</div>
-                    <div style="font-size:0.9rem; opacity:0.8;">${entry.age}</div>
-                </div>
-                <button class="delete-btn" data-id="${entry.id}" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">×</button>
-            `;
+            item.innerHTML = `<div><div style="font-weight:500;">${entry.birthDate}</div><div style="font-size:0.9rem; opacity:0.8;">${entry.age}</div></div><button class="delete-btn" data-id="${entry.id}" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">×</button>`;
             list.appendChild(item);
         });
-        
         list.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                this.deleteHistoryItem(parseInt(e.target.dataset.id));
-            });
+            btn.addEventListener('click', (e) => this.deleteHistoryItem(parseInt(e.target.dataset.id)));
         });
     }
 
     hideHistory() {
-        if (this.elements.historyModal) {
-            this.elements.historyModal.style.display = 'none';
-        }
+        if (this.elements.historyModal) this.elements.historyModal.style.display = 'none';
     }
 
     deleteHistoryItem(id) {
@@ -518,22 +393,15 @@ class AgeCalculator {
 
     copyResults() {
         let text = "DailyKitBox Age Calculator\n";
-        if (this.elements.birthDateInput && this.elements.birthDateInput.value) {
-            text += `Birth Date: ${this.elements.birthDateInput.value}\n`;
-        }
+        if (this.elements.birthDateInput && this.elements.birthDateInput.value) text += `Birth Date: ${this.elements.birthDateInput.value}\n`;
         text += "Calculated accurately with ❤️";
-        
-        navigator.clipboard.writeText(text).then(() => {
-            this.showNotification('Copied to clipboard!', 'success');
-        });
+        navigator.clipboard.writeText(text).then(() => this.showNotification('Copied to clipboard!', 'success'));
     }
-shareResults() {
+
+    shareResults() {
         const text = "Check my age calculation on DailyKitBox!";
         if (navigator.share) {
-            navigator.share({
-                title: 'My Age - DailyKitBox',
-                text: text
-            });
+            navigator.share({ title: 'My Age - DailyKitBox', text: text });
         } else {
             this.copyResults();
         }
@@ -542,38 +410,14 @@ shareResults() {
     showNotification(message, type = 'success') {
         const existing = document.querySelector('.notification-toast');
         if (existing) existing.remove();
-        
         const toast = document.createElement('div');
         toast.className = `notification-toast ${type}`;
-        toast.style.cssText = `
-            position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-            background:#10b981; color:white; padding:12px 24px; border-radius:9999px;
-            box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.2); z-index:9999;
-            font-weight:500; white-space:nowrap;
-        `;
+        toast.style.cssText = 'position:fixed; bottom:20px; right:20px; padding:1rem; background:#333; color:#fff; border-radius:5px; z-index:9999;';
         toast.textContent = message;
         document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.style.transition = 'all 0.3s';
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 300);
-        }, 2800);
+        setTimeout(() => toast.remove(), 3000);
     }
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    window.ageCalculator = new AgeCalculator();
-    
-    // Global helpers for inline HTML if needed
-    window.calculateHumanAge = () => window.ageCalculator.calculateHumanAge();
-});
-
-// Make modal closable by clicking outside
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('history-modal');
-    if (modal && e.target === modal) {
-        modal.style.display = 'none';
-    }
-});
+// Initialize application
+document.addEventListener('DOMContentLoaded', () => new AgeCalculator());
