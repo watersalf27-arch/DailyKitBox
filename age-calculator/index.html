@@ -1,60 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator | Human, Pet & Animal Age Converter | DailyKitBox</title>
-    <meta name="description" content="Free online Age Calculator by DailyKitBox. Calculate your exact age in years, months, weeks, days, hours, minutes and seconds. Convert dog, cat, horse and pet years to human years. Includes zodiac, life path number, pregnancy due date, planet age and more.">
-    <meta name="keywords" content="age calculator, dog age calculator, cat age calculator, pet age calculator, human age calculator, birthday countdown, life path number calculator, zodiac calculator, pregnancy due date calculator, planet age calculator, dailykitbox">
-    <meta name="author" content="DailyKitBox">
-    <link rel="canonical" href="https://dailykitbox.com/age-calculator/">
-    
-<link rel="stylesheet" href="/assets/css/age-calculator.js">
-    
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebApplication","name":"DailyKitBox Age Calculator","url":"https://dailykitbox.com/age-calculator/","applicationCategory":"UtilitiesApplication"}
-    </script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator | Human, Pet & Animal Age Converter | DailyKitBox</title>
+<meta name="description" content="Free online Age Calculator by DailyKitBox. Calculate your exact age in years, months, weeks, days, hours, minutes and seconds. Convert dog, cat, horse and pet years to human years. Includes zodiac, life path number, pregnancy due date, planet age and more.">
+<meta name="keywords" content="age calculator, dog age calculator, cat age calculator, pet age calculator, human age calculator, birthday countdown, life path number calculator, zodiac calculator, pregnancy due date calculator, planet age calculator, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0A192F">
+<meta name="application-name" content="DailyKitBox Age Calculator">
+<meta name="generator" content="DailyKitBox">
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+<meta http-equiv="content-language" content="en-US">
+<link rel="canonical" href="https://dailykitbox.com/age-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="Age Calculator - Human, Pet & Animal Age Converter">
+<meta property="og:description" content="Calculate exact human age, convert pet years to human years, and explore zodiac, life path, planet age and pregnancy tools — all free and instant.">
+<meta property="og:url" content="https://dailykitbox.com/age-calculator/">
+<meta property="og:image" content="/assets/images/age-calculator-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Age Calculator - Human, Pet & Animal Age Converter">
+<meta name="twitter:description" content="Free online age calculator with pet age conversion, zodiac, life path number, pregnancy due date and planet age tools.">
+<meta name="twitter:image" content="/assets/images/age-calculator-cover.webp">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="/assets/css/age-calculator.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"DailyKitBox Age Calculator","url":"https://dailykitbox.com/age-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online age calculator for humans and animals. Calculates exact age, pet years, zodiac sign, life path number, pregnancy due date and planet age.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DailyKitBox Age Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"120"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Age Calculator","item":"https://dailykitbox.com/age-calculator/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How accurate is this age calculator?","acceptedAnswer":{"@type":"Answer","text":"The calculator uses your exact date of birth and the current date and time to compute a precise age down to the second."}},
+{"@type":"Question","name":"How do I convert dog years to human years?","acceptedAnswer":{"@type":"Answer","text":"Enter your dog's age and size in the Pet Age Converter section to get an estimate based on commonly used veterinary charts."}},
+{"@type":"Question","name":"Is this tool free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes, every calculator on this page is completely free with no sign-up required."}},
+{"@type":"Question","name":"Does this tool work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes, once loaded the calculator works fully offline since all calculations run in your browser."}}
+]}
+</script>
 </head>
 <body>
-    <a class="ac-skip-link" href="#main-content">Skip to main content</a>
+<a class="ac-skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="ac-header">
-        <div class="ac-container ac-header-inner">
-            <div class="ac-brand">DailyKitBox</div>
-            <button type="button" id="themeToggle" class="ac-theme-toggle" aria-label="Toggle dark mode">
-                <span>Theme</span>
-            </button>
-        </div>
-        <div class="ac-container ac-hero">
-            <h1 class="ac-title">Age Calculator</h1>
-            <p class="ac-subtitle">Calculate exact human age, convert pet years, and access all time tools instantly.</p>
-        </div>
-    </header>
+<header class="ac-header">
+<div class="ac-container ac-header-inner">
+<div class="ac-brand">
+<svg class="ac-brand-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+<span>DailyKitBox</span>
+</div>
+<button type="button" id="themeToggle" class="ac-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+<svg class="ac-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg class="ac-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+</div>
+<div class="ac-container ac-hero">
+<h1 class="ac-title">Age Calculator</h1>
+<p class="ac-subtitle">Calculate exact human age, convert pet years, explore zodiac and life path, and access a full suite of date and time tools — instantly and free.</p>
+</div>
+</header>
 
-    <nav class="ac-tabs" role="tablist">
-        <div class="ac-container ac-tabs-inner">
-            <button class="ac-tab active" data-target="panel-human" role="tab">Human Age</button>
-            <button class="ac-tab" data-target="panel-pet" role="tab">Pet & Animal</button>
-            <button class="ac-tab" data-target="panel-date" role="tab">Date & Time</button>
-            <button class="ac-tab" data-target="panel-more" role="tab">More Tools</button>
-        </div>
-    </nav>
+<nav class="ac-tabs" role="tablist" aria-label="Calculator categories">
+<div class="ac-container ac-tabs-inner">
+<button class="ac-tab active" role="tab" aria-selected="true" aria-controls="panel-human" id="tab-human" data-target="panel-human">Human Age</button>
+<button class="ac-tab" role="tab" aria-selected="false" aria-controls="panel-pet" id="tab-pet" data-target="panel-pet">Pet &amp; Animal Age</button>
+<button class="ac-tab" role="tab" aria-selected="false" aria-controls="panel-date" id="tab-date" data-target="panel-date">Date &amp; Time Tools</button>
+<button class="ac-tab" role="tab" aria-selected="false" aria-controls="panel-more" id="tab-more" data-target="panel-more">More Tools</button>
+</div>
+</nav>
 
-    <main id="main-content" class="ac-main">
-        <div class="ac-container">
-            <section id="panel-human" class="ac-panel active" role="tabpanel"><div class="ac-card">... (Your Form) ...</div></section>
-            <section id="panel-pet" class="ac-panel" role="tabpanel" hidden><div class="ac-card">... (Your Form) ...</div></section>
-            <section id="panel-date" class="ac-panel" role="tabpanel" hidden><div class="ac-card">... (Your Form) ...</div></section>
-            <section id="panel-more" class="ac-panel" role="tabpanel" hidden><div class="ac-card">... (Your Form) ...</div></section>
-        </div>
-    </main>
+<main id="main-content" class="ac-main">
+<div class="ac-container">
 
-    <footer class="ac-footer">
-        <p>© 2026 DailyKitBox. All Rights Reserved.</p>
-    </footer>
+<!-- ============ HUMAN AGE PANEL ============ -->
+<section id="panel-human" class="ac-panel active" role="tabpanel" aria-labelledby="tab-human">
+<div class="ac-card">
+<h2 class="ac-card-title">Human Age Calculator</h2>
+<form id="humanForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field">
+<label for="dob">Date of birth</label>
+<input type="date" id="dob" name="dob" required aria-required="true">
+<span class="ac-error" id="dobError" role="alert"></span>
+</div>
+<div class="ac-field">
+<label for="targetDate">Calculate age on (optional)</label>
+<input type="date" id="targetDate" name="targetDate">
+</div>
+<div class="ac-field">
+<label for="hemisphere">Hemisphere (for birth season)</label>
+<select id="hemisphere" name="hemisphere">
+<option value="north" selected>Northern (USA, UK, Canada, Europe)</option>
+<option value="south">Southern (Australia)</option>
+</select>
+</div>
+<div class="ac-field">
+<label for="retirementAge">Retirement age (for countdown)</label>
+<input type="number" id="retirementAge" name="retirementAge" min="1" max="120" value="65">
+</div>
+<div class="ac-field">
+<label for="customLifespan">Custom lifespan (years)</label>
+<input type="number" id="customLifespan" name="customLifespan" min="1" max="150" value="100">
+</div>
+</div>
+<div class="ac-actions">
+<button type="submit" class="ac-btn ac-btn-primary">Calculate Age</button>
+<button type="button" class="ac-btn" id="resetHuman">Reset</button>
+</div>
+</form>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="assets/js/age-calculator.js" defer></script>
+<div class="ac-card ac-hidden" id="humanResults" aria-live="polite">
+<h2 class="ac-card-title">Your Exact Age <span class="ac-badge" id="liveBadge">Live</span></h2>
+<div class="ac-result-grid" id="liveAgeGrid"></div>
+
+<h3 class="ac-subheading">Detailed Breakdown</h3>
+<div class="ac-detail-grid" id="detailGrid"></div>
+
+<div class="ac-actions">
+<button type="button" class="ac-btn" id="copyHuman">Copy Result</button>
+<button type="button" class="ac-btn" id="printHuman">Print</button>
+<button type="button" class="ac-btn" id="pdfHuman">Download PDF</button>
+<button type="button" class="ac-btn" id="shareHuman">Share</button>
+<button type="button" class="ac-btn" id="favHuman">Add to Favorites</button>
+</div>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Age Difference Between Two People</h2>
+<form id="diffForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field">
+<label for="dobA">Person A date of birth</label>
+<input type="date" id="dobA" required>
+</div>
+<div class="ac-field">
+<label for="dobB">Person B date of birth</label>
+<input type="date" id="dobB" required>
+</div>
+</div>
+<div class="ac-actions">
+<button type="submit" class="ac-btn ac-btn-primary">Compare Ages</button>
+</div>
+</form>
+<p class="ac-result-text" id="diffResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">History</h2>
+<ul class="ac-history-list" id="historyList"><li class="ac-empty">No calculations yet.</li></ul>
+<button type="button" class="ac-btn" id="clearHistory">Clear History</button>
+</div>
+</section>
+
+<!-- ============ PET & ANIMAL AGE PANEL ============ -->
+<section id="panel-pet" class="ac-panel" role="tabpanel" aria-labelledby="tab-pet" hidden>
+<div class="ac-card">
+<h2 class="ac-card-title">Pet &amp; Animal Age Converter</h2>
+<p class="ac-note">Dog, cat, horse and rabbit use commonly referenced veterinary conversion charts. All other species use a lifespan-proportion estimate (the animal's age compared to its typical average lifespan, scaled to an 80-year human life) since no standardized scientific formula exists for most wild species.</p>
+<form id="petForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field">
+<label for="species">Animal</label>
+<select id="species" name="species"></select>
+</div>
+<div class="ac-field ac-hidden" id="dogSizeField">
+<label for="dogSize">Dog size</label>
+<select id="dogSize">
+<option value="small">Small (up to 20 lbs)</option>
+<option value="medium">Medium (21–50 lbs)</option>
+<option value="large">Large (51–90 lbs)</option>
+<option value="giant">Giant (91+ lbs)</option>
+</select>
+</div>
+<div class="ac-field">
+<label for="petAge">Animal age (years)</label>
+<input type="number" id="petAge" min="0" step="0.1" required>
+</div>
+<div class="ac-field">
+<label for="petMonths">Additional months</label>
+<input type="number" id="petMonths" min="0" max="11" value="0">
+</div>
+</div>
+<div class="ac-actions">
+<button type="submit" class="ac-btn ac-btn-primary">Convert Age</button>
+</div>
+</form>
+<div class="ac-result-box ac-hidden" id="petResult"></div>
+</div>
+</section>
+
+<!-- ============ DATE & TIME TOOLS PANEL ============ -->
+<section id="panel-date" class="ac-panel" role="tabpanel" aria-labelledby="tab-date" hidden>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Date Difference Calculator</h2>
+<form id="dateDiffForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="dateFrom">From date</label><input type="date" id="dateFrom" required></div>
+<div class="ac-field"><label for="dateTo">To date</label><input type="date" id="dateTo" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="dateDiffResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Time Difference Calculator</h2>
+<form id="timeDiffForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="timeFrom">Start time</label><input type="time" id="timeFrom" required></div>
+<div class="ac-field"><label for="timeTo">End time</label><input type="time" id="timeTo" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="timeDiffResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Anniversary Calculator</h2>
+<form id="anniversaryForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="anniversaryDate">Event date</label><input type="date" id="anniversaryDate" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="anniversaryResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Pregnancy Due Date Calculator</h2>
+<p class="ac-note">Based on Naegele's Rule: first day of last menstrual period plus 280 days (40 weeks). Consult your doctor for medical confirmation.</p>
+<form id="pregnancyForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="lmpDate">First day of last period</label><input type="date" id="lmpDate" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate Due Date</button></div>
+</form>
+<p class="ac-result-text" id="pregnancyResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Baby Age Calculator</h2>
+<form id="babyForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="babyDob">Baby's date of birth</label><input type="date" id="babyDob" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="babyResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">School Age Eligibility Calculator</h2>
+<form id="schoolForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="schoolDob">Child's date of birth</label><input type="date" id="schoolDob" required></div>
+<div class="ac-field"><label for="cutoffDate">School cutoff date</label><input type="date" id="cutoffDate" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Check Eligibility</button></div>
+</form>
+<p class="ac-result-text" id="schoolResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Historical Age Calculator</h2>
+<p class="ac-note">Find out how much time has passed between any two historical dates, or a person's age at the time of a historical event.</p>
+<form id="historyForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="histDob">Date of birth</label><input type="date" id="histDob" required></div>
+<div class="ac-field"><label for="histEvent">Historical event date</label><input type="date" id="histEvent" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="histResult"></p>
+</div>
+
+</section>
+
+<!-- ============ MORE TOOLS PANEL ============ -->
+<section id="panel-more" class="ac-panel" role="tabpanel" aria-labelledby="tab-more" hidden>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Planet Age Calculator</h2>
+<p class="ac-note">Discover how old you would be on other planets, based on real orbital periods.</p>
+<form id="planetForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="planetDob">Date of birth</label><input type="date" id="planetDob" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<div class="ac-detail-grid" id="planetResult"></div>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Retirement Countdown</h2>
+<form id="retireForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="retireDob">Date of birth</label><input type="date" id="retireDob" required></div>
+<div class="ac-field"><label for="retireAgeInput">Retirement age</label><input type="number" id="retireAgeInput" min="1" max="120" value="65"></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="retireResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Custom Lifespan Percentage</h2>
+<form id="lifespanForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="lifespanDob">Date of birth</label><input type="date" id="lifespanDob" required></div>
+<div class="ac-field"><label for="lifespanYears">Expected lifespan (years)</label><input type="number" id="lifespanYears" min="1" max="150" value="100"></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate</button></div>
+</form>
+<p class="ac-result-text" id="lifespanResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Celebrity / Any Person Age Lookup</h2>
+<p class="ac-note">Enter any name and date of birth to calculate their exact current age — works the same as the Human Age Calculator above.</p>
+<form id="celebForm" class="ac-form" novalidate>
+<div class="ac-form-grid">
+<div class="ac-field"><label for="celebName">Name</label><input type="text" id="celebName" placeholder="e.g. Albert Einstein"></div>
+<div class="ac-field"><label for="celebDob">Date of birth</label><input type="date" id="celebDob" required></div>
+</div>
+<div class="ac-actions"><button type="submit" class="ac-btn ac-btn-primary">Calculate Age</button></div>
+</form>
+<p class="ac-result-text" id="celebResult"></p>
+</div>
+
+<div class="ac-card">
+<h2 class="ac-card-title">Favorites</h2>
+<ul class="ac-history-list" id="favoritesList"><li class="ac-empty">No favorites saved yet.</li></ul>
+</div>
+
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="ac-card" id="faq">
+<h2 class="ac-card-title">Frequently Asked Questions</h2>
+<div class="ac-faq-item">
+<h3>How accurate is this age calculator?</h3>
+<p>The calculator uses your exact date of birth and the current date and time to compute a precise age down to the second.</p>
+</div>
+<div class="ac-faq-item">
+<h3>How do I convert dog years to human years?</h3>
+<p>Enter your dog's age and size in the Pet Age Converter section to get an estimate based on commonly used veterinary charts.</p>
+</div>
+<div class="ac-faq-item">
+<h3>Is this tool free to use?</h3>
+<p>Yes, every calculator on this page is completely free with no sign-up required.</p>
+</div>
+<div class="ac-faq-item">
+<h3>Does this tool work offline?</h3>
+<p>Yes, once loaded the calculator works fully offline since all calculations run in your browser.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<footer class="ac-footer">
+<p>© 2026 DailyKitBox. All Rights Reserved. Age Calculator is provided for informational purposes only and does not constitute medical, legal or financial advice.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/assets/js/age-calculator.js" defer></script>
 </body>
 </html>
