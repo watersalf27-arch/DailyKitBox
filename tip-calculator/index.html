@@ -1,54 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tip Calculator - DailyKitBox | Easy Bill Splitting</title>
-    <meta name="description" content="Calculate your tips and split bills instantly. A fast, accurate, and easy-to-use tip calculator for travelers and diners in the USA, UK, and Europe.">
-    <meta name="keywords" content="Tip Calculator, calculate tips, bill splitter, dining tip calculator, DailyKitBox, restaurant tip tool">
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tip Calculator | Split Bill & Calculate Tip Instantly | DailyKitBox</title>
+<meta name="description" content="Free online Tip Calculator by DailyKitBox. Calculate tip amount, total bill and split the cost per person instantly. Supports USD, EUR, GBP, CAD, AUD, INR and PKR.">
+<meta name="keywords" content="tip calculator, bill splitter, split bill calculator, gratuity calculator, restaurant tip calculator, how much to tip, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#2563EB">
+<meta name="application-name" content="DailyKitBox Tip Calculator">
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+<meta http-equiv="content-language" content="en-US">
+<link rel="canonical" href="https://dailykitbox.com/tip-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="Tip Calculator - Split Bill & Calculate Tip Instantly">
+<meta property="og:description" content="Calculate the perfect tip and split the bill with friends in seconds. Free, fast and works in USD, EUR, GBP, CAD, AUD, INR and PKR.">
+<meta property="og:url" content="https://dailykitbox.com/tip-calculator/">
+<meta property="og:image" content="/assets/images/tip-calculator-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tip Calculator - Split Bill & Calculate Tip Instantly">
+<meta name="twitter:description" content="Free online tip calculator with bill splitting, multi-currency support and instant results.">
+<meta name="twitter:image" content="/assets/images/tip-calculator-cover.webp">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="/assets/css/tip-calculator.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"DailyKitBox Tip Calculator","url":"https://dailykitbox.com/tip-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online tip calculator that computes tip amount, total bill and per-person split, with support for USD, EUR, GBP, CAD, AUD, INR and PKR.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"},"areaServed":["US","GB","CA","AU","Global"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Tip Calculator","item":"https://dailykitbox.com/tip-calculator/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much should I tip?","acceptedAnswer":{"@type":"Answer","text":"In the United States, a standard restaurant tip is 15 to 20 percent of the pre-tax bill for good service. In the UK, 10 to 12.5 percent is common and sometimes already included as a service charge. In Canada, 15 to 20 percent is typical, while tipping in Australia is optional since service staff are paid a full wage."}},
+{"@type":"Question","name":"What is the standard tip in the USA?","acceptedAnswer":{"@type":"Answer","text":"The standard tip in the USA is 15 to 20 percent of the total bill before tax, with 20 percent generally considered generous and 18 percent a common default at restaurants."}},
+{"@type":"Question","name":"How do I split a bill?","acceptedAnswer":{"@type":"Answer","text":"Enter the bill amount and tip percentage, then enter the number of people splitting the bill. The calculator divides the total bill including tip evenly and shows the exact amount each person owes."}},
+{"@type":"Question","name":"Is tipping required?","acceptedAnswer":{"@type":"Answer","text":"Tipping is customary but not legally required in most countries. In the United States it is strongly expected in restaurants since many servers rely on tips as part of their income, while in countries like Japan and Australia tipping is optional."}},
+{"@type":"Question","name":"How do I calculate a 20 percent tip?","acceptedAnswer":{"@type":"Answer","text":"Multiply the bill amount by 0.20. For example, a 50 dollar bill multiplied by 0.20 equals a 10 dollar tip, making the total bill 60 dollars."}}
+]}
+</script>
 </head>
 <body>
-    <div class="header">
-        <h1>Tip Calculator</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
-    </div>
+<a class="tc-skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div style="padding: 30px; text-align: center; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
-            <label>Bill Amount:</label><br>
-            <input type="number" id="bill" placeholder="Enter total bill"><br><br>
-            <label>Tip Percentage:</label><br>
-            <input type="number" id="tip" placeholder="e.g., 15"><br><br>
-            <button onclick="calculateTip()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate Tip</button>
-            <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
-        </div>
-    </div>
+<header class="tc-header">
+<div class="tc-container tc-header-inner">
+<a href="/" class="tc-logo">Daily<span>KitBox</span></a>
+<button type="button" id="themeToggle" class="tc-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+<svg class="tc-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg class="tc-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+</div>
+<div class="tc-container tc-hero">
+<nav class="tc-breadcrumb" aria-label="Breadcrumb">
+<a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Tip Calculator</span>
+</nav>
+<h1 class="tc-title">Tip Calculator</h1>
+<p class="tc-subtitle">Calculate the perfect tip, split the bill with friends and get an instant, accurate total — in USD, EUR, GBP, CAD, AUD, INR or PKR.</p>
+</div>
+</header>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Tip Calculator at DailyKitBox?</h2>
-        <p>Calculating the perfect tip is designed to be the fastest experience for users across the USA, UK, Australia, and Europe.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Enter your total bill amount in the provided field.</li>
-            <li><strong>Step 2:</strong> Input the tip percentage you wish to leave.</li>
-            <li><strong>Step 3:</strong> Click "Calculate Tip" to see the tip amount and total cost instantly.</li>
-        </ol>
+<main id="main-content" class="tc-main">
+<div class="tc-container tc-layout">
 
-        <h3 style="font-size: 18px;">Why choose DailyKitBox?</h3>
-        <p>Our tip calculator is built for precision and speed. Whether you are dining in New York, London, or Sydney, our platform ensures you get accurate results for your bill management instantly.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
-    </section>
+<!-- ================= CALCULATOR CARD ================= -->
+<section class="tc-card tc-calc-card" aria-labelledby="calcHeading">
+<h2 id="calcHeading" class="tc-sr-only">Tip Calculator Form</h2>
 
-    <script>
-        function calculateTip() {
-            const bill = document.getElementById('bill').value;
-            const tip = document.getElementById('tip').value;
-            const tipAmount = (bill * tip) / 100;
-            const total = parseFloat(bill) + parseFloat(tipAmount);
-            document.getElementById('result').innerText = "Tip: $" + tipAmount.toFixed(2) + " | Total: $" + total.toFixed(2);
-        }
-    </script>
+<form id="tipForm" class="tc-form" novalidate>
+
+<div class="tc-field">
+<label for="currency">Currency</label>
+<select id="currency">
+<option value="USD">USD – US Dollar ($)</option>
+<option value="EUR">EUR – Euro (€)</option>
+<option value="GBP">GBP – British Pound (£)</option>
+<option value="CAD">CAD – Canadian Dollar (C$)</option>
+<option value="AUD">AUD – Australian Dollar (A$)</option>
+<option value="INR">INR – Indian Rupee (₹)</option>
+<option value="PKR">PKR – Pakistani Rupee (Rs)</option>
+</select>
+</div>
+
+<div class="tc-field">
+<label for="billAmount">Bill amount</label>
+<div class="tc-input-prefix">
+<span id="currencySymbol" aria-hidden="true">$</span>
+<input type="number" id="billAmount" inputmode="decimal" min="0" step="0.01" placeholder="0.00" aria-describedby="billError">
+</div>
+<span class="tc-error" id="billError" role="alert"></span>
+</div>
+
+<div class="tc-field">
+<label for="tipSlider">Tip percentage: <output id="tipPercentLabel">15</output>%</label>
+<input type="range" id="tipSlider" min="0" max="100" step="1" value="15">
+<div class="tc-quick-tips" role="group" aria-label="Quick tip percentage">
+<button type="button" class="tc-chip" data-tip="10">10%</button>
+<button type="button" class="tc-chip" data-tip="15">15%</button>
+<button type="button" class="tc-chip active" data-tip="18">18%</button>
+<button type="button" class="tc-chip" data-tip="20">20%</button>
+<button type="button" class="tc-chip" data-tip="25">25%</button>
+<button type="button" class="tc-chip" id="customTipBtn" data-tip="custom">Custom</button>
+</div>
+<input type="number" id="customTipInput" class="tc-hidden" min="0" max="100" step="0.1" placeholder="Enter custom tip %" aria-label="Custom tip percentage">
+</div>
+
+<div class="tc-field">
+<label for="peopleCount">Number of people</label>
+<div class="tc-stepper">
+<button type="button" id="peopleMinus" aria-label="Decrease people count">−</button>
+<input type="number" id="peopleCount" min="1" max="100" value="1" inputmode="numeric">
+<button type="button" id="peoplePlus" aria-label="Increase people count">+</button>
+</div>
+<span class="tc-error" id="peopleError" role="alert"></span>
+</div>
+
+<div class="tc-field">
+<span class="tc-field-label">Rounding</span>
+<div class="tc-radio-row">
+<label class="tc-radio"><input type="radio" name="rounding" value="none" checked> No rounding</label>
+<label class="tc-radio"><input type="radio" name="rounding" value="up-total"> Round up total</label>
+<label class="tc-radio"><input type="radio" name="rounding" value="up-tip"> Round up tip</label>
+<label class="tc-radio"><input type="radio" name="rounding" value="down"> Round down</label>
+</div>
+</div>
+
+<div class="tc-actions">
+<button type="button" class="tc-btn" id="resetBtn">Reset</button>
+</div>
+</form>
+</section>
+
+<!-- ================= RESULTS CARD ================= -->
+<section class="tc-card tc-results-card" aria-live="polite">
+<h2 class="tc-card-title">Results</h2>
+
+<div class="tc-result-grid">
+<div class="tc-result-item tc-result-tip">
+<span>Tip Amount</span>
+<strong id="resTip">$0.00</strong>
+</div>
+<div class="tc-result-item tc-result-total">
+<span>Total Bill</span>
+<strong id="resTotal">$0.00</strong>
+</div>
+<div class="tc-result-item tc-result-perperson">
+<span>Total / Person</span>
+<strong id="resPerPerson">$0.00</strong>
+</div>
+<div class="tc-result-item tc-result-tipperperson">
+<span>Tip / Person</span>
+<strong id="resTipPerPerson">$0.00</strong>
+</div>
+</div>
+
+<div class="tc-actions">
+<button type="button" class="tc-btn" id="copyBtn">Copy Results</button>
+<button type="button" class="tc-btn" id="shareBtn">Share</button>
+<button type="button" class="tc-btn" id="printBtn">Print</button>
+</div>
+</section>
+
+</div>
+
+<!-- ================= HOW TO USE ================= -->
+<section class="tc-container tc-howto" aria-labelledby="howtoHeading">
+<div class="tc-card">
+<h2 id="howtoHeading" class="tc-card-title">How to Use the Tip Calculator</h2>
+<ol class="tc-steps">
+<li><strong>Select your currency</strong> — choose USD, EUR, GBP, CAD, AUD, INR or PKR from the dropdown.</li>
+<li><strong>Enter your bill amount</strong> — type the total shown on your receipt before tip.</li>
+<li><strong>Choose a tip percentage</strong> — tap a quick button (10%, 15%, 18%, 20%, 25%) or drag the slider for a custom amount.</li>
+<li><strong>Enter the number of people</strong> — use the + / − buttons to split the bill evenly.</li>
+<li><strong>View your results instantly</strong> — the tip amount, total bill, and per-person cost update live as you type.</li>
+<li><strong>Copy, share or print</strong> — use the action buttons to save or send your results.</li>
+</ol>
+</div>
+</section>
+
+<!-- ================= TIPPING GUIDE (GEO) ================= -->
+<section class="tc-container" aria-labelledby="geoHeading">
+<div class="tc-card">
+<h2 id="geoHeading" class="tc-card-title">Tipping Customs by Country</h2>
+<div class="tc-table-wrap">
+<table class="tc-table">
+<thead>
+<tr><th>Country</th><th>Typical Tip</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>United States</td><td>15% – 20%</td><td>Strongly expected in restaurants; often 18–20% is standard.</td></tr>
+<tr><td>United Kingdom</td><td>10% – 12.5%</td><td>Sometimes already included as a service charge — check your bill first.</td></tr>
+<tr><td>Canada</td><td>15% – 20%</td><td>Similar to US customs, expected at sit-down restaurants.</td></tr>
+<tr><td>Australia</td><td>Optional</td><td>Service staff are paid a full wage; tipping is a bonus, not required.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="tc-container" id="faq" aria-labelledby="faqHeading">
+<div class="tc-card">
+<h2 id="faqHeading" class="tc-card-title">Frequently Asked Questions</h2>
+<div class="tc-faq-item">
+<h3>How much should I tip?</h3>
+<p>In the United States, a standard restaurant tip is 15 to 20 percent of the pre-tax bill for good service. In the UK, 10 to 12.5 percent is common and sometimes already included as a service charge. In Canada, 15 to 20 percent is typical, while tipping in Australia is optional since service staff are paid a full wage.</p>
+</div>
+<div class="tc-faq-item">
+<h3>What is the standard tip in the USA?</h3>
+<p>The standard tip in the USA is 15 to 20 percent of the total bill before tax, with 20 percent generally considered generous and 18 percent a common default at restaurants.</p>
+</div>
+<div class="tc-faq-item">
+<h3>How do I split a bill?</h3>
+<p>Enter the bill amount and tip percentage, then enter the number of people splitting the bill. The calculator divides the total bill including tip evenly and shows the exact amount each person owes.</p>
+</div>
+<div class="tc-faq-item">
+<h3>Is tipping required?</h3>
+<p>Tipping is customary but not legally required in most countries. In the United States it is strongly expected in restaurants since many servers rely on tips as part of their income, while in countries like Japan and Australia tipping is optional.</p>
+</div>
+<div class="tc-faq-item">
+<h3>How do I calculate a 20% tip?</h3>
+<p>Multiply the bill amount by 0.20. For example, a 50 dollar bill multiplied by 0.20 equals a 10 dollar tip, making the total bill 60 dollars.</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="tc-footer">
+<p>© 2026 DailyKitBox. All Rights Reserved. Tip Calculator is provided for informational purposes only.</p>
+</footer>
+
+<script src="/assets/js/tip-calculator.js" defer></script>
 </body>
 </html>
