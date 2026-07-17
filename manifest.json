@@ -1,0 +1,25 @@
+{
+  "name": "DailyKitBox Tip Calculator",
+  "short_name": "Tip Calculator",
+  "description": "Calculate tips and split bills instantly with DailyKitBox's free online Tip Calculator.",
+  "start_url": "/tip-calculator/",
+  "scope": "/tip-calculator/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8FAFC",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
