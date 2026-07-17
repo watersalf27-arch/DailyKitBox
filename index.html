@@ -1,119 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyKitBox - Ultimate Tool Hub</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        /* (Aapka existing CSS code yahi rahega) */
-        body { flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 32px; }
-        .header { width: 100%; max-width: 700px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); }
-        .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .global-controls { display: flex; gap: 14px; background: var(--bg-card); padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-md); }
-        .control-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; cursor: pointer; user-select: none; }
-        
-        .search-container { width: 100%; max-width: 700px; margin-bottom: 20px; }
-        .search-container input { width: 100%; padding: 14px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-card); color: var(--text-main); font-size: 15px; outline: none; box-shadow: var(--shadow-md); transition: border-color 0.2s; }
-        .search-container input:focus { border-color: var(--primary); }
-        
-        .category-container { width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
-        .cat-pill { padding: 8px 16px; background-color: var(--border-color); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-main); cursor: pointer; user-select: none; }
-        .cat-pill.active { background-color: var(--primary); color: white; }
-        
-        .tools-grid { width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 12px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px 20px; text-decoration: none; color: inherit; box-shadow: var(--shadow-md); display: flex; align-items: flex-start; gap: 16px; }
-        .tool-card:hover { border-color: var(--primary); }
-        .tool-card.hidden { display: none !important; }
-        
-        .tool-icon { font-size: 32px; background: rgba(0,0,0,0.02); padding: 8px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; min-width: 50px; height: 50px; }
-        [data-theme="dark"] .tool-icon { background: rgba(255,255,255,0.05); }
-        .tool-content { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-        .tool-name { font-size: 16px; font-weight: 700; color: var(--text-main); }
-        .tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DailyKitBox | 50+ Free Online PDF & Utility Tools</title>
+<meta name="description" content="DailyKitBox is a free online toolbox with 50+ tools including Merge PDF, Split PDF, Images to PDF, Age Calculator, Tip Calculator, Mortgage Calculator and more. No sign up required.">
+<meta name="keywords" content="online tools, pdf tools, merge pdf, split pdf, age calculator, tip calculator, mortgage calculator, word counter, weather, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0A192F">
+<link rel="canonical" href="https://dailykitbox.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="DailyKitBox | 50+ Free Online PDF & Utility Tools">
+<meta property="og:description" content="Merge, split and convert PDFs, calculate age, tips and mortgages, check the weather and more — all free, fast and with no sign up.">
+<meta property="og:url" content="https://dailykitbox.com/">
+<meta property="og:image" content="/assets/images/dailykitbox-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyKitBox | 50+ Free Online PDF & Utility Tools">
+<meta name="twitter:description" content="Free online tools to convert, organize and calculate — no sign up required.">
+<meta name="twitter:image" content="/assets/images/dailykitbox-cover.webp">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"DailyKitBox","url":"https://dailykitbox.com/","potentialAction":{"@type":"SearchAction","target":"https://dailykitbox.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[
+{"@type":"SiteNavigationElement","position":1,"name":"Merge PDF","url":"https://dailykitbox.com/merge-pdf/"},
+{"@type":"SiteNavigationElement","position":2,"name":"Split PDF","url":"https://dailykitbox.com/split-pdf/"},
+{"@type":"SiteNavigationElement","position":3,"name":"Images to PDF","url":"https://dailykitbox.com/jpg-to-pdf/"},
+{"@type":"SiteNavigationElement","position":4,"name":"Age Calculator","url":"https://dailykitbox.com/age-calculator/"},
+{"@type":"SiteNavigationElement","position":5,"name":"Tip Calculator","url":"https://dailykitbox.com/tip-calculator/"},
+{"@type":"SiteNavigationElement","position":6,"name":"Mortgage Calculator","url":"https://dailykitbox.com/mortgage-calculator/"}
+]}
+</script>
+<style>
+/* ==========================================================================
+   Local design tokens — defined here so this page never depends on
+   undefined variables from the shared stylesheet.
+   ========================================================================== */
+:root {
+  --primary: #2563EB;
+  --primary-dark: #1D4ED8;
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+  --bg: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --border-color: #E2E8F0;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.14);
+  --transition: 0.25s ease;
+  --font: 'Inter', Arial, sans-serif;
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+[data-theme="dark"] {
+  --bg: #0A0F1C;
+  --bg-card: #111C2E;
+  --border-color: #223049;
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.45);
+  --shadow-lg: 0 18px 40px rgba(0,0,0,0.55);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 40px;
+  transition: background var(--transition), color var(--transition);
+}
+
+a { color: inherit; }
+::selection { background: var(--primary); color: #fff; }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; box-shadow: var(--focus-ring); border-radius: 6px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--primary); color: #fff; padding: 12px 20px; z-index: 999; border-radius: 0 0 8px 0;
+}
+.skip-link:focus { left: 0; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.header {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 22px 0 16px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 22px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.logo svg { color: var(--primary); flex-shrink: 0; }
+
+.global-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-select {
+  padding: 9px 30px 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='7'><path d='M1 1l4 4 4-4' stroke='%2364748B' stroke-width='1.6' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition);
+}
+.theme-toggle-btn:hover { transform: rotate(15deg); }
+.theme-toggle-btn .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle-btn .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle-btn .icon-moon { display: block; }
+
+/* ==========================================================================
+   HERO / SEARCH
+   ========================================================================== */
+.hero-tagline {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 22px;
+}
+.hero-tagline h1 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 8px; letter-spacing: -0.01em; }
+.hero-tagline p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+.search-container { width: 100%; max-width: 700px; margin-bottom: 18px; position: relative; }
+.search-container input {
+  width: 100%;
+  padding: 14px 18px 14px 46px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 15px;
+  outline: none;
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition);
+}
+.search-container input:focus { border-color: var(--primary); }
+.search-container svg {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   CATEGORY PILLS
+   ========================================================================== */
+.category-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+.cat-pill {
+  padding: 9px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.cat-pill:hover { border-color: var(--primary); }
+.cat-pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* ==========================================================================
+   TOOL GRID
+   ========================================================================== */
+.tools-grid {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  animation: fadeIn 0.4s ease both;
+}
+.tool-card:hover, .tool-card:focus-visible {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.tool-card.hidden { display: none !important; }
+
+.tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-content { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tool-name { font-size: 16px; font-weight: 700; color: var(--text-main); }
+.tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+
+.no-results {
+  text-align: center;
+  padding: 30px 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: none;
+}
+.no-results.show { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .tools-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
 </head>
 <body>
-    <div class="header">
-        <a href="#" class="logo">🗂️ <span>DailyKitBox</span></a>
-        <div class="global-controls">
-            <label class="control-item"><input type="checkbox" id="globalDark"> 🌓 Dark Mode</label>
-        </div>
-    </div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="search-container">
-        <input type="text" id="toolSearch" placeholder="Search for tools (e.g., merge, split, images)...">
-    </div>
+<header class="header">
+<a href="/" class="logo">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke="currentColor" stroke-width="2"/><path d="M3 12h18" stroke="currentColor" stroke-width="2"/></svg>
+<span>DailyKitBox</span>
+</a>
+<div class="global-controls">
+<label class="sr-only" for="langSelect">Select language</label>
+<select id="langSelect" class="lang-select">
+<option value="en">English</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+<option value="hi">हिन्दी</option>
+</select>
+<button type="button" id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode" aria-pressed="false">
+<svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+</div>
+</header>
 
-    <div class="category-container" id="categoryContainer">
-        <div class="cat-pill active" data-category="all">All Tools</div>
-        <div class="cat-pill" data-category="pdf">PDF Core</div>
-        <div class="cat-pill" data-category="utility">Utilities</div>
-    </div>
+<main id="main-content" style="width:100%; display:flex; flex-direction:column; align-items:center;">
 
-    <div class="tools-grid" id="toolsGrid">
-        <!-- PDF Tools -->
-        <a href="merge-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #f56565;">🗂️</div><div class="tool-content"><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDF files instantly.</div></div></a>
-        <a href="split-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #ed8936;">✂️</div><div class="tool-content"><div class="tool-name">Split PDF</div><div class="tool-desc">Separate specific pages from your PDFs.</div></div></a>
-        <a href="delete-pdf-pages/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #e53e3e;">🗑️</div><div class="tool-content"><div class="tool-name">Delete PDF Pages</div><div class="tool-desc">Drop unwanted pages from any PDF.</div></div></a>
-        <a href="jpg-to-pdf/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #4299e1;">📸</div><div class="tool-content"><div class="tool-name">Images to PDF</div><div class="tool-desc">Convert images to structured PDF.</div></div></a>
-        <a href="document-converter/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #48bb78;">🔄</div><div class="tool-content"><div class="tool-name">Office Converter</div><div class="tool-desc">Convert files between Word and PDF.</div></div></a>
-        <a href="pdf-branding-security/index.html" class="tool-card" data-cats="pdf"><div class="tool-icon" style="color: #4a5568;">🛡️</div><div class="tool-content"><div class="tool-name">Branding & Security</div><div class="tool-desc">Watermark and secure your PDF files.</div></div></a>
-        
-        <!-- Utilities -->
-        <a href="weather/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #ecc94b;">🌤️</div><div class="tool-content"><div class="tool-name">Weather Forecast</div><div class="tool-desc">Check live global weather forecasts.</div></div></a>
-        <a href="age-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #667eea;">🎂</div><div class="tool-content"><div class="tool-name">Age Calculator</div><div class="tool-desc">Calculate your exact age segments.</div></div></a>
-        <a href="tip-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #f6ad55;">💡</div><div class="tool-content"><div class="tool-name">Tip Calculator</div><div class="tool-desc">Calculate tips and split bills easily.</div></div></a>
-        <a href="mortgage-calculator/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #4fd1c5;">🏠</div><div class="tool-content"><div class="tool-name">Mortgage Calculator</div><div class="tool-desc">Plan your mortgage payments.</div></div></a>
-        <a href="word-counter/index.html" class="tool-card" data-cats="utility"><div class="tool-icon" style="color: #a0aec0;">📝</div><div class="tool-content"><div class="tool-name">Word Counter</div><div class="tool-desc">Analyze your text length in real-time.</div></div></a>
-    </div>
+<div class="hero-tagline">
+<h1 data-i18n="heroTitle">50+ Free Online Tools</h1>
+<p data-i18n="heroSubtitle">Merge PDFs, calculate age or tips, check the weather and more — 100% free, no sign up required.</p>
+</div>
 
-    <!-- Script wahi rahega... -->
-    <script>
-        const globalDark = document.getElementById('globalDark');
-        const toolSearch = document.getElementById('toolSearch');
-        const categoryContainer = document.getElementById('categoryContainer');
-        const cards = document.querySelectorAll('.tool-card');
-        let activeCategory = 'all';
+<div class="search-container">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<label class="sr-only" for="toolSearch">Search for tools</label>
+<input type="text" id="toolSearch" data-i18n-placeholder="searchPlaceholder" placeholder="Search for tools (e.g., merge, split, images)...">
+</div>
 
-        function filterDashboard() {
-            const query = toolSearch.value.toLowerCase().trim();
-            cards.forEach(card => {
-                const name = card.querySelector('.tool-name').textContent.toLowerCase();
-                const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
-                const categories = card.dataset.cats.split(',');
-                
-                const matchesSearch = name.includes(query) || desc.includes(query);
-                const matchesTab = activeCategory === 'all' || categories.includes(activeCategory);
+<div class="category-container" id="categoryContainer" role="group" aria-label="Filter tools by category">
+<button type="button" class="cat-pill active" data-category="all" data-i18n="catAll">All Tools</button>
+<button type="button" class="cat-pill" data-category="pdf" data-i18n="catPdf">PDF Core</button>
+<button type="button" class="cat-pill" data-category="calc" data-i18n="catCalc">Calculators</button>
+<button type="button" class="cat-pill" data-category="utility" data-i18n="catUtility">Utilities</button>
+</div>
 
-                if (matchesSearch && matchesTab) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
+<div class="tools-grid" id="toolsGrid">
 
-        categoryContainer.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('cat-pill')) return;
-            document.querySelectorAll('.cat-pill').forEach(pill => pill.classList.remove('active'));
-            e.target.classList.add('active');
-            activeCategory = e.target.dataset.category;
-            filterDashboard();
-        });
+<a href="merge-pdf/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(245,101,101,0.14); color:#F56565;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3v18M17 3v18M3 8h4M17 8h4M3 16h4M17 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="mergeName">Merge PDF</span><span class="tool-desc" data-i18n="mergeDesc">Combine multiple PDF files instantly.</span></span>
+</a>
 
-        toolSearch.addEventListener('input', filterDashboard);
+<a href="split-pdf/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(237,137,54,0.14); color:#ED8936;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 3l12 18M18 3L6 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="splitName">Split PDF</span><span class="tool-desc" data-i18n="splitDesc">Separate specific pages from your PDFs.</span></span>
+</a>
 
-        globalDark.addEventListener('change', () => {
-            const theme = globalDark.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('global-theme', theme);
-        });
+<a href="delete-pdf-pages/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(229,62,62,0.14); color:#E53E3E;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0l-1 14a2 2 0 01-2 2H7a2 2 0 01-2-2L4 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="deleteName">Delete PDF Pages</span><span class="tool-desc" data-i18n="deleteDesc">Drop unwanted pages from any PDF.</span></span>
+</a>
 
-        if(localStorage.getItem('global-theme') === 'dark') {
-            globalDark.checked = true;
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    </script>
+<a href="jpg-to-pdf/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(66,153,225,0.14); color:#4299E1;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="9" r="1.5" fill="currentColor"/><path d="M3 15l5-4 4 3 4-5 5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="jpgName">Images to PDF</span><span class="tool-desc" data-i18n="jpgDesc">Convert images to structured PDF.</span></span>
+</a>
+
+<a href="document-converter/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(72,187,120,0.14); color:#48BB78;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="convertName">Office Converter</span><span class="tool-desc" data-i18n="convertDesc">Convert files between Word and PDF.</span></span>
+</a>
+
+<a href="pdf-branding-security/index.html" class="tool-card" data-cats="pdf">
+<span class="tool-icon" style="background:rgba(74,85,104,0.14); color:#4A5568;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5l8-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="brandName">Branding &amp; Security</span><span class="tool-desc" data-i18n="brandDesc">Watermark and secure your PDF files.</span></span>
+</a>
+
+<a href="age-calculator/index.html" class="tool-card" data-cats="calc">
+<span class="tool-icon" style="background:rgba(102,126,234,0.14); color:#667EEA;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="ageName">Age Calculator</span><span class="tool-desc" data-i18n="ageDesc">Calculate your exact age segments.</span></span>
+</a>
+
+<a href="tip-calculator/index.html" class="tool-card" data-cats="calc">
+<span class="tool-icon" style="background:rgba(246,173,85,0.14); color:#F6AD55;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 010 3h-3a1.5 1.5 0 000 3h4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="tipName">Tip Calculator</span><span class="tool-desc" data-i18n="tipDesc">Calculate tips and split bills easily.</span></span>
+</a>
+
+<a href="mortgage-calculator/index.html" class="tool-card" data-cats="calc">
+<span class="tool-icon" style="background:rgba(79,209,197,0.14); color:#4FD1C5;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="mortgageName">Mortgage Calculator</span><span class="tool-desc" data-i18n="mortgageDesc">Plan your mortgage payments.</span></span>
+</a>
+
+<a href="weather/index.html" class="tool-card" data-cats="utility">
+<span class="tool-icon" style="background:rgba(236,201,75,0.14); color:#ECC94B;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="2"/><path d="M16 18H8a4 4 0 010-8 5 5 0 019.6 1.5A3.5 3.5 0 0116 18z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="weatherName">Weather Forecast</span><span class="tool-desc" data-i18n="weatherDesc">Check live global weather forecasts.</span></span>
+</a>
+
+<a href="word-counter/index.html" class="tool-card" data-cats="utility">
+<span class="tool-icon" style="background:rgba(160,174,192,0.14); color:#A0AEC0;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+<span class="tool-content"><span class="tool-name" data-i18n="wordName">Word Counter</span><span class="tool-desc" data-i18n="wordDesc">Analyze your text length in real-time.</span></span>
+</a>
+
+</div>
+
+<p class="no-results" id="noResults" data-i18n="noResults">No tools match your search.</p>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2026 DailyKitBox. <span data-i18n="footerRights">All Rights Reserved.</span></p>
+</footer>
+
+<script>
+'use strict';
+/* ==========================================================================
+   THEME (auto system detect + manual toggle, persisted)
+   ========================================================================== */
+const themeToggle = document.getElementById('themeToggle');
+
+function applyTheme(mode) {
+  if (mode === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.setAttribute('aria-pressed', 'true');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    themeToggle.setAttribute('aria-pressed', 'false');
+  }
+}
+
+const savedTheme = localStorage.getItem('global-theme');
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else {
+  applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+}
+
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem('global-theme', next);
+});
+
+/* ==========================================================================
+   SEARCH + CATEGORY FILTER
+   ========================================================================== */
+const toolSearch = document.getElementById('toolSearch');
+const categoryContainer = document.getElementById('categoryContainer');
+const cards = document.querySelectorAll('.tool-card');
+const noResults = document.getElementById('noResults');
+let activeCategory = 'all';
+
+function filterDashboard() {
+  const query = toolSearch.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const name = card.querySelector('.tool-name').textContent.toLowerCase();
+    const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
+    const categories = card.dataset.cats.split(',');
+
+    const matchesSearch = name.includes(query) || desc.includes(query);
+    const matchesTab = activeCategory === 'all' || categories.includes(activeCategory);
+
+    if (matchesSearch && matchesTab) {
+      card.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  noResults.classList.toggle('show', visibleCount === 0);
+}
+
+categoryContainer.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('cat-pill')) return;
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.classList.remove('active');
+    pill.setAttribute('aria-pressed', 'false');
+  });
+  e.target.classList.add('active');
+  e.target.setAttribute('aria-pressed', 'true');
+  activeCategory = e.target.dataset.category;
+  filterDashboard();
+});
+
+toolSearch.addEventListener('input', filterDashboard);
+
+/* ==========================================================================
+   MULTI-LANGUAGE SUPPORT
+   ========================================================================== */
+const translations = {
+  en: {
+    heroTitle: "50+ Free Online Tools",
+    heroSubtitle: "Merge PDFs, calculate age or tips, check the weather and more — 100% free, no sign up required.",
+    searchPlaceholder: "Search for tools (e.g., merge, split, images)...",
+    catAll: "All Tools", catPdf: "PDF Core", catCalc: "Calculators", catUtility: "Utilities",
+    mergeName: "Merge PDF", mergeDesc: "Combine multiple PDF files instantly.",
+    splitName: "Split PDF", splitDesc: "Separate specific pages from your PDFs.",
+    deleteName: "Delete PDF Pages", deleteDesc: "Drop unwanted pages from any PDF.",
+    jpgName: "Images to PDF", jpgDesc: "Convert images to structured PDF.",
+    convertName: "Office Converter", convertDesc: "Convert files between Word and PDF.",
+    brandName: "Branding & Security", brandDesc: "Watermark and secure your PDF files.",
+    ageName: "Age Calculator", ageDesc: "Calculate your exact age segments.",
+    tipName: "Tip Calculator", tipDesc: "Calculate tips and split bills easily.",
+    mortgageName: "Mortgage Calculator", mortgageDesc: "Plan your mortgage payments.",
+    weatherName: "Weather Forecast", weatherDesc: "Check live global weather forecasts.",
+    wordName: "Word Counter", wordDesc: "Analyze your text length in real-time.",
+    noResults: "No tools match your search.",
+    footerRights: "All Rights Reserved."
+  },
+  es: {
+    heroTitle: "Más de 50 herramientas gratuitas",
+    heroSubtitle: "Combina PDFs, calcula edad o propinas, consulta el clima y más — 100% gratis, sin registro.",
+    searchPlaceholder: "Buscar herramientas (ej. combinar, dividir, imágenes)...",
+    catAll: "Todas", catPdf: "PDF Principal", catCalc: "Calculadoras", catUtility: "Utilidades",
+    mergeName: "Combinar PDF", mergeDesc: "Combina varios archivos PDF al instante.",
+    splitName: "Dividir PDF", splitDesc: "Separa páginas específicas de tus PDF.",
+    deleteName: "Eliminar Páginas", deleteDesc: "Quita páginas no deseadas de cualquier PDF.",
+    jpgName: "Imágenes a PDF", jpgDesc: "Convierte imágenes en un PDF estructurado.",
+    convertName: "Conversor de Office", convertDesc: "Convierte archivos entre Word y PDF.",
+    brandName: "Marca y Seguridad", brandDesc: "Añade marca de agua y protege tus PDF.",
+    ageName: "Calculadora de Edad", ageDesc: "Calcula tu edad exacta en detalle.",
+    tipName: "Calculadora de Propinas", tipDesc: "Calcula propinas y divide la cuenta fácilmente.",
+    mortgageName: "Calculadora Hipotecaria", mortgageDesc: "Planifica los pagos de tu hipoteca.",
+    weatherName: "Pronóstico del Clima", weatherDesc: "Consulta el clima en vivo en todo el mundo.",
+    wordName: "Contador de Palabras", wordDesc: "Analiza la longitud de tu texto en tiempo real.",
+    noResults: "Ninguna herramienta coincide con tu búsqueda.",
+    footerRights: "Todos los derechos reservados."
+  },
+  fr: {
+    heroTitle: "Plus de 50 outils gratuits",
+    heroSubtitle: "Fusionnez des PDF, calculez l'âge ou les pourboires, consultez la météo et plus — 100 % gratuit, sans inscription.",
+    searchPlaceholder: "Rechercher un outil (ex. fusionner, diviser, images)...",
+    catAll: "Tous les outils", catPdf: "PDF Essentiel", catCalc: "Calculatrices", catUtility: "Utilitaires",
+    mergeName: "Fusionner PDF", mergeDesc: "Combinez plusieurs fichiers PDF instantanément.",
+    splitName: "Diviser PDF", splitDesc: "Séparez des pages spécifiques de vos PDF.",
+    deleteName: "Supprimer des Pages", deleteDesc: "Retirez les pages indésirables d'un PDF.",
+    jpgName: "Images en PDF", jpgDesc: "Convertissez des images en PDF structuré.",
+    convertName: "Convertisseur Office", convertDesc: "Convertissez entre Word et PDF.",
+    brandName: "Marque & Sécurité", brandDesc: "Filigranez et sécurisez vos fichiers PDF.",
+    ageName: "Calculateur d'Âge", ageDesc: "Calculez votre âge exact en détail.",
+    tipName: "Calculateur de Pourboire", tipDesc: "Calculez le pourboire et partagez l'addition facilement.",
+    mortgageName: "Calculateur Hypothécaire", mortgageDesc: "Planifiez vos paiements hypothécaires.",
+    weatherName: "Prévisions Météo", weatherDesc: "Consultez la météo en direct dans le monde entier.",
+    wordName: "Compteur de Mots", wordDesc: "Analysez la longueur de votre texte en temps réel.",
+    noResults: "Aucun outil ne correspond à votre recherche.",
+    footerRights: "Tous droits réservés."
+  },
+  de: {
+    heroTitle: "Über 50 kostenlose Online-Tools",
+    heroSubtitle: "PDFs zusammenführen, Alter oder Trinkgeld berechnen, Wetter prüfen und mehr — 100 % kostenlos, keine Anmeldung.",
+    searchPlaceholder: "Tools suchen (z. B. zusammenführen, teilen, Bilder)...",
+    catAll: "Alle Tools", catPdf: "PDF-Kern", catCalc: "Rechner", catUtility: "Dienstprogramme",
+    mergeName: "PDF zusammenführen", mergeDesc: "Kombinieren Sie mehrere PDF-Dateien sofort.",
+    splitName: "PDF teilen", splitDesc: "Trennen Sie bestimmte Seiten aus Ihren PDFs.",
+    deleteName: "PDF-Seiten löschen", deleteDesc: "Entfernen Sie unerwünschte Seiten aus jedem PDF.",
+    jpgName: "Bilder zu PDF", jpgDesc: "Konvertieren Sie Bilder in ein strukturiertes PDF.",
+    convertName: "Office-Konverter", convertDesc: "Konvertieren Sie zwischen Word und PDF.",
+    brandName: "Branding & Sicherheit", brandDesc: "Versehen Sie Ihre PDFs mit Wasserzeichen und schützen Sie sie.",
+    ageName: "Altersrechner", ageDesc: "Berechnen Sie Ihr genaues Alter im Detail.",
+    tipName: "Trinkgeldrechner", tipDesc: "Berechnen Sie Trinkgeld und teilen Sie die Rechnung einfach.",
+    mortgageName: "Hypothekenrechner", mortgageDesc: "Planen Sie Ihre Hypothekenzahlungen.",
+    weatherName: "Wettervorhersage", weatherDesc: "Prüfen Sie das aktuelle Wetter weltweit.",
+    wordName: "Wortzähler", wordDesc: "Analysieren Sie Ihre Textlänge in Echtzeit.",
+    noResults: "Keine Tools entsprechen Ihrer Suche.",
+    footerRights: "Alle Rechte vorbehalten."
+  },
+  hi: {
+    heroTitle: "50+ मुफ्त ऑनलाइन टूल्स",
+    heroSubtitle: "PDF मर्ज करें, उम्र या टिप कैलकुलेट करें, मौसम देखें और भी बहुत कुछ — 100% मुफ्त, कोई साइनअप नहीं।",
+    searchPlaceholder: "टूल खोजें (जैसे मर्ज, स्प्लिट, इमेज)...",
+    catAll: "सभी टूल्स", catPdf: "PDF टूल्स", catCalc: "कैलकुलेटर", catUtility: "उपयोगिताएं",
+    mergeName: "PDF मर्ज करें", mergeDesc: "कई PDF फाइलों को तुरंत जोड़ें।",
+    splitName: "PDF स्प्लिट करें", splitDesc: "अपनी PDF से खास पेज अलग करें।",
+    deleteName: "PDF पेज हटाएं", deleteDesc: "किसी भी PDF से अनचाहे पेज हटाएं।",
+    jpgName: "इमेज से PDF", jpgDesc: "इमेज को व्यवस्थित PDF में बदलें।",
+    convertName: "ऑफिस कन्वर्टर", convertDesc: "Word और PDF के बीच फाइलें बदलें।",
+    brandName: "ब्रांडिंग और सुरक्षा", brandDesc: "अपनी PDF फाइलों को वॉटरमार्क और सुरक्षित करें।",
+    ageName: "उम्र कैलकुलेटर", ageDesc: "अपनी सटीक उम्र का विवरण जानें।",
+    tipName: "टिप कैलकुलेटर", tipDesc: "आसानी से टिप कैलकुलेट करें और बिल बांटें।",
+    mortgageName: "मॉर्गेज कैलकुलेटर", mortgageDesc: "अपनी मॉर्गेज पेमेंट प्लान करें।",
+    weatherName: "मौसम पूर्वानुमान", weatherDesc: "दुनिया भर का लाइव मौसम देखें।",
+    wordName: "वर्ड काउंटर", wordDesc: "रियल-टाइम में अपने टेक्स्ट की लंबाई जानें।",
+    noResults: "आपकी खोज से कोई टूल मेल नहीं खाता।",
+    footerRights: "सर्वाधिकार सुरक्षित।"
+  }
+};
+
+const langSelect = document.getElementById('langSelect');
+
+function applyLanguage(lang) {
+  const dict = translations[lang] || translations.en;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key]) el.setAttribute('placeholder', dict[key]);
+  });
+
+  document.documentElement.lang = lang;
+  localStorage.setItem('global-lang', lang);
+}
+
+const savedLang = localStorage.getItem('global-lang');
+if (savedLang && translations[savedLang]) {
+  langSelect.value = savedLang;
+  applyLanguage(savedLang);
+}
+
+langSelect.addEventListener('change', () => applyLanguage(langSelect.value));
+</script>
 </body>
 </html>
