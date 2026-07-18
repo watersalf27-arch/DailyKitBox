@@ -1,0 +1,25 @@
+{
+  "name": "DailyKitBox Merge PDF",
+  "short_name": "Merge PDF",
+  "description": "Merge multiple PDF files into one instantly and privately with DailyKitBox's free online Merge PDF tool.",
+  "start_url": "/merge-pdf/",
+  "scope": "/merge-pdf/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0A192F",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
