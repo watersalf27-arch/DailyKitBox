@@ -1,0 +1,25 @@
+{
+  "name": "DailyKitBox Split PDF",
+  "short_name": "Split PDF",
+  "description": "Split a PDF into separate files, extract pages or use custom ranges — free and private, with DailyKitBox's Split PDF tool.",
+  "start_url": "/split-pdf/",
+  "scope": "/split-pdf/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0A192F",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
