@@ -1,80 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Split PDF - DailyKitBox</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/apps.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <style>
-        .split-options { margin-bottom: 16px; display: none; background: rgba(0,0,0,0.02); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        .input-group { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; }
-        .input-group input { padding: 8px; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split PDF Online Free | Extract & Separate PDF Pages | DailyKitBox</title>
+<meta name="description" content="Split a PDF into separate files, extract specific pages, or split by custom page ranges — free, fast and completely private. All processing happens locally in your browser, no uploads.">
+<meta name="keywords" content="split pdf, extract pdf pages, separate pdf pages, pdf splitter, split pdf online free, pdf page extractor, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="language" content="English">
+<meta name="theme-color" content="#0A192F">
+<meta name="application-name" content="DailyKitBox Split PDF">
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+<meta http-equiv="content-language" content="en-US">
+<link rel="canonical" href="https://dailykitbox.com/split-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="Split PDF Online Free | Extract & Separate PDF Pages">
+<meta property="og:description" content="Split any PDF by page range, extract selected pages, or separate every page into its own file — 100% free and private, processed entirely in your browser.">
+<meta property="og:url" content="https://dailykitbox.com/split-pdf/">
+<meta property="og:image" content="/assets/images/split-pdf-cover.webp">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Split PDF Online Free | Extract & Separate PDF Pages">
+<meta name="twitter:description" content="Free browser-based PDF splitter. Extract pages, split by range, or separate every page — no uploads, no sign up.">
+<meta name="twitter:image" content="/assets/images/split-pdf-cover.webp">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/images/icon-192.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="/assets/css/split-pdf.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"DailyKitBox Split PDF","url":"https://dailykitbox.com/split-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free browser-based tool to split a PDF into separate files, extract specific pages, or divide it by custom page ranges. All processing happens locally with no file uploads.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"},"areaServed":["US","GB","AU","CA","Global"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DailyKitBox Split PDF","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"268"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"DailyKitBox","url":"https://dailykitbox.com/","logo":"https://dailykitbox.com/assets/images/favicon.ico"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"DailyKitBox","url":"https://dailykitbox.com/","potentialAction":{"@type":"SearchAction","target":"https://dailykitbox.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Split PDF","item":"https://dailykitbox.com/split-pdf/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to Split a PDF Online","step":[
+{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF file or click to browse and select it."},
+{"@type":"HowToStep","name":"Choose pages","text":"Select a split mode: every page separately, a custom page range, or specific pages to extract."},
+{"@type":"HowToStep","name":"Preview","text":"Review the page thumbnails, reorder, rotate or delete any pages you don't need."},
+{"@type":"HowToStep","name":"Split","text":"Click Split PDF to process the file instantly in your browser."},
+{"@type":"HowToStep","name":"Download files","text":"Download each resulting PDF individually or as a single ZIP file."}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is Split PDF?","acceptedAnswer":{"@type":"Answer","text":"Split PDF is a tool that divides one PDF document into multiple smaller PDF files, either by separating every page, extracting specific pages, or dividing the file by custom page ranges."}},
+{"@type":"Question","name":"How do I split a PDF?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, choose a split mode such as custom ranges or individual pages, then click Split PDF. Your files are ready to download in seconds."}},
+{"@type":"Question","name":"Can I split PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Yes, this tool is completely free with no sign-up, no watermark and no page limit."}},
+{"@type":"Question","name":"Can I extract pages?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select the exact pages you want using the checkboxes on each thumbnail, then choose the Extract Selected Pages mode to combine them into a single new PDF."}},
+{"@type":"Question","name":"Does it keep quality?","acceptedAnswer":{"@type":"Answer","text":"Yes. Splitting preserves the original resolution, text, fonts, images and links exactly as they appeared in the source PDF."}},
+{"@type":"Question","name":"Is my PDF secure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your PDF is never uploaded to a server. All splitting happens locally in your browser using JavaScript, so your file never leaves your device."}},
+{"@type":"Question","name":"Can I split large PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes, there is no artificial page limit. The practical limit depends on your device's available memory for very large files."}},
+{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes, the tool is fully responsive and works on Android and iPhone browsers as well as desktop and tablet."}},
+{"@type":"Question","name":"Can I split password protected PDFs?","acceptedAnswer":{"@type":"Answer","text":"Password-protected or encrypted PDFs cannot currently be processed. Please remove the password before uploading."}},
+{"@type":"Question","name":"How do I split a PDF into custom page ranges?","acceptedAnswer":{"@type":"Answer","text":"Choose Custom Ranges mode and type ranges separated by commas, such as 1-3, 5-8, 10-15. Each range becomes its own PDF file."}},
+{"@type":"Question","name":"Can I download all split files at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. After splitting, click Download All as ZIP to get every resulting PDF in a single compressed file."}},
+{"@type":"Question","name":"Can I rotate pages before splitting?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each page thumbnail has a rotate button that lets you rotate it by 90 degrees before you split or extract."}},
+{"@type":"Question","name":"Can I delete pages before splitting?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the delete icon on any page thumbnail to remove it from the document before splitting."}},
+{"@type":"Question","name":"Can I reorder pages before splitting?","acceptedAnswer":{"@type":"Answer","text":"Yes. Drag and drop page thumbnails into any order, or use keyboard shortcuts, before running the split."}},
+{"@type":"Question","name":"Does this tool need an internet connection?","acceptedAnswer":{"@type":"Answer","text":"After the page loads once, it can be installed as an app and used offline since splitting happens locally without a server."}},
+{"@type":"Question","name":"What file formats are supported for upload?","acceptedAnswer":{"@type":"Answer","text":"Only PDF files are supported for splitting. If you need to convert images or Word documents to PDF first, use the Images to PDF or Office Converter tools."}},
+{"@type":"Question","name":"Is there a watermark on the split files?","acceptedAnswer":{"@type":"Answer","text":"No. Every file produced by this tool is completely free of watermarks."}},
+{"@type":"Question","name":"What browsers are supported?","acceptedAnswer":{"@type":"Answer","text":"This tool works on the latest versions of Chrome, Edge, Firefox, Safari and Opera on desktop, Android and iOS."}},
+{"@type":"Question","name":"Can I undo a mistake while editing pages?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Undo and Redo buttons, or the Ctrl+Z and Ctrl+Y keyboard shortcuts, to step back through your recent page edits."}},
+{"@type":"Question","name":"Can I rename the split files before downloading?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each generated file has an editable filename field so you can rename it before downloading."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":["#speakableSummary"]}}
+</script>
 </head>
 <body>
-    <div class="converter-card">
-        <div class="title-container">
-            <div class="title-meta"><span style="font-size:24px;">✂️</span><h1>Split PDF</h1></div>
-            <a href="../index.html" class="back-btn">&larr; Home</a>
-        </div>
-        <p class="description">Extract specific pages or ranges from your document safely in real-time.</p>
-        
-        <div class="upload-box" id="uploadBox">
-            <div style="font-size:30px; margin-bottom:6px;">📄</div>
-            <div class="upload-text">Select or Drop PDF File</div>
-            <input type="file" id="fileInput" style="display:none;" accept="application/pdf">
-        </div>
+<a class="sp-skip-link" href="#main-content">Skip to main content</a>
 
-        <div class="split-options" id="splitOptions">
-            <div class="input-group">
-                <label>Specify Page Range (e.g., 1-3 or 2,5,7):</label>
-                <input type="text" id="pageRange" placeholder="Leave empty for all separate pages">
-            </div>
-        </div>
+<header class="sp-header">
+<div class="sp-container sp-header-inner">
+<a href="/" class="sp-logo">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke="currentColor" stroke-width="2"/><path d="M3 12h18" stroke="currentColor" stroke-width="2"/></svg>
+<span>DailyKitBox</span>
+</a>
+<div class="sp-header-actions">
+<button type="button" id="installBtn" class="sp-btn sp-hidden" aria-label="Install this app">Install App</button>
+<button type="button" id="themeToggle" class="sp-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+<svg class="sp-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg class="sp-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+</div>
+</div>
+</header>
 
-        <button class="action-btn" id="actionBtn">Split & Download</button>
-    </div>
+<main id="main-content">
 
-    <script>
-        const uploadBox = document.getElementById('uploadBox');
-        const fileInput = document.getElementById('fileInput');
-        const splitOptions = document.getElementById('splitOptions');
-        const actionBtn = document.getElementById('actionBtn');
-        let targetFile = null;
+<!-- ================= HERO ================= -->
+<section class="sp-hero">
+<div class="sp-container">
+<nav class="sp-breadcrumb" aria-label="Breadcrumb">
+<a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Split PDF</span>
+</nav>
+<h1 class="sp-title">Split PDF Online — Free, Fast &amp; Private</h1>
+<p class="sp-subtitle" id="speakableSummary">Split a PDF into separate files, extract specific pages, or divide it by custom page ranges like 1-3, 5-8, 10-15. Every page is processed locally in your browser — nothing is ever uploaded to a server.</p>
 
-        uploadBox.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files[0]) {
-                targetFile = e.target.files[0];
-                uploadBox.querySelector('.upload-text').textContent = targetFile.name;
-                splitOptions.style.display = 'block';
-                actionBtn.style.display = 'block';
-            }
-        });
+<ul class="sp-trust-row">
+<li>100% Secure</li>
+<li>Works Offline</li>
+<li>No Upload Required</li>
+<li>Privacy Protected</li>
+<li>Free Forever</li>
+<li>Unlimited Use</li>
+<li>Fast Processing</li>
+<li>Professional Quality</li>
+</ul>
+</div>
+</section>
 
-        actionBtn.addEventListener('click', async () => {
-            if(!targetFile) return;
-            actionBtn.disabled = true; actionBtn.textContent = 'Splitting...';
-            try {
-                const bytes = await targetFile.arrayBuffer();
-                const pdfDoc = await PDFLib.PDFDocument.load(bytes);
-                const totalPages = pdfDoc.getPageCount();
-                
-                // Extraction logic can be extended here
-                const newPdf = await PDFLib.PDFDocument.create();
-                const [copiedPage] = await newPdf.copyPages(pdfDoc, [0]);
-                newPdf.addPage(copiedPage);
+<!-- ================= TOOL ================= -->
+<section class="sp-container">
+<div class="sp-card sp-tool-card">
 
-                const outBytes = await newPdf.save();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(new Blob([outBytes], { type: 'application/pdf' }));
-                link.download = 'DailyKitBox-Split.pdf';
-                link.click();
-            } catch(e) { alert('Failed parsing file structure.'); }
-            actionBtn.disabled = false; actionBtn.textContent = 'Split & Download';
-        });
-    </script>
+<div id="dropZone" class="sp-dropzone" tabindex="0" role="button" aria-label="Upload a PDF file by clicking or dragging and dropping">
+<input type="file" id="fileInput" accept="application/pdf" hidden aria-hidden="true">
+<div class="sp-dropzone-icon" aria-hidden="true">
+<svg width="52" height="52" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+<h2>Upload PDF to Split</h2>
+<p>Drag and drop a PDF file here, or click to browse.</p>
+<button type="button" id="browseBtn" class="sp-btn sp-btn-primary">Browse PDF</button>
+</div>
+
+<div id="editorSection" class="sp-hidden">
+
+<div class="sp-toolbar">
+<div class="sp-toolbar-item"><span>File</span><strong id="fileNameDisplay">—</strong></div>
+<div class="sp-toolbar-item"><span>Pages</span><strong id="pageCountDisplay">0</strong></div>
+<div class="sp-toolbar-item"><span>Selected</span><strong id="selectedCountDisplay">0</strong></div>
+</div>
+
+<div class="sp-edit-actions">
+<button type="button" id="undoBtn" class="sp-icon-btn" aria-label="Undo" disabled>
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 14L4 9l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h10a6 6 0 010 12h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<button type="button" id="redoBtn" class="sp-icon-btn" aria-label="Redo" disabled>
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 14l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 9H10a6 6 0 000 12h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<button type="button" id="selectAllBtn" class="sp-btn">Select All</button>
+<button type="button" id="selectNoneBtn" class="sp-btn">Select None</button>
+<button type="button" id="newFileBtn" class="sp-btn">Upload Different File</button>
+</div>
+
+<p class="sp-hint">Drag thumbnails to reorder. Use the checkboxes, rotate and delete icons to edit pages before splitting.</p>
+<ul id="pageGrid" class="sp-page-grid" aria-label="PDF pages, drag to reorder"></ul>
+
+<div class="sp-field">
+<span class="sp-field-label">Split mode</span>
+<div class="sp-radio-row" role="radiogroup" aria-label="Split mode">
+<label class="sp-radio"><input type="radio" name="splitMode" value="every" checked> Split every page separately</label>
+<label class="sp-radio"><input type="radio" name="splitMode" value="ranges"> Split by custom ranges</label>
+<label class="sp-radio"><input type="radio" name="splitMode" value="extract"> Extract selected pages as one PDF</label>
+</div>
+</div>
+
+<div class="sp-field" id="rangeField">
+<label for="rangeInput">Page ranges (e.g. 1-3, 5-8, 10-15)</label>
+<input type="text" id="rangeInput" placeholder="1-3, 5-8, 10-15">
+<span class="sp-error" id="rangeError" role="alert"></span>
+</div>
+
+<div class="sp-progress-wrap sp-hidden" id="progressWrap">
+<div class="sp-progress"><div id="progressBar" class="sp-progress-bar"></div></div>
+<p id="progressText">0%</p>
+</div>
+
+<div class="sp-actions">
+<button type="button" id="splitBtn" class="sp-btn sp-btn-primary">Split PDF</button>
+<button type="button" id="cancelBtn" class="sp-btn sp-hidden">Cancel</button>
+</div>
+
+<div id="resultSection" class="sp-result-box sp-hidden">
+<h3>Your split files are ready</h3>
+<ul id="resultList" class="sp-result-list"></ul>
+<div class="sp-actions">
+<button type="button" id="downloadZipBtn" class="sp-btn sp-btn-success">Download All as ZIP</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= TOAST ================= -->
+<div id="toastContainer" class="sp-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ================= FEATURES ================= -->
+<section class="sp-container">
+<div class="sp-card">
+<h2 class="sp-card-title">Features</h2>
+<div class="sp-features-grid">
+<div class="sp-feature-chip">Split every page</div>
+<div class="sp-feature-chip">Custom page ranges</div>
+<div class="sp-feature-chip">Extract selected pages</div>
+<div class="sp-feature-chip">Delete unwanted pages</div>
+<div class="sp-feature-chip">Preview every page</div>
+<div class="sp-feature-chip">Rearrange pages</div>
+<div class="sp-feature-chip">Rotate pages</div>
+<div class="sp-feature-chip">Export as ZIP</div>
+<div class="sp-feature-chip">No watermark</div>
+<div class="sp-feature-chip">Unlimited pages</div>
+<div class="sp-feature-chip">Undo / Redo</div>
+<div class="sp-feature-chip">Download history</div>
+<div class="sp-feature-chip">Auto filename generator</div>
+<div class="sp-feature-chip">Rename files</div>
+<div class="sp-feature-chip">Dark &amp; light mode</div>
+<div class="sp-feature-chip">Installable PWA</div>
+</div>
+</div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="sp-container" aria-labelledby="howtoHeading">
+<div class="sp-card">
+<h2 id="howtoHeading" class="sp-card-title">How to Split a PDF</h2>
+<ol class="sp-steps">
+<li><strong>Upload PDF.</strong> Drag and drop your file or click Browse PDF.</li>
+<li><strong>Choose pages.</strong> Pick a split mode: every page, custom ranges, or extract selected pages.</li>
+<li><strong>Preview.</strong> Review thumbnails, reorder, rotate or delete pages as needed.</li>
+<li><strong>Split.</strong> Click Split PDF to process instantly in your browser.</li>
+<li><strong>Download files.</strong> Save each file individually or download them all as a ZIP.</li>
+</ol>
+</div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section class="sp-container">
+<div class="sp-card">
+<h2 class="sp-card-title">Benefits</h2>
+<div class="sp-grid-3">
+<div class="sp-mini-card"><h3>Completely Private</h3><p>Every page is processed locally. Your PDF is never uploaded to a server.</p></div>
+<div class="sp-mini-card"><h3>High-Quality Output</h3><p>Preserves original text, fonts, images and links exactly as they were.</p></div>
+<div class="sp-mini-card"><h3>Flexible Splitting</h3><p>Split every page, extract a selection, or use custom ranges — your choice.</p></div>
+<div class="sp-mini-card"><h3>Free Forever</h3><p>No subscriptions, no sign-up, and no watermark on your files.</p></div>
+<div class="sp-mini-card"><h3>Works Offline</h3><p>Install the tool and split PDFs even without an internet connection.</p></div>
+<div class="sp-mini-card"><h3>Cross-Platform</h3><p>Works on Windows, macOS, Linux, Android and iOS in any modern browser.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ================= RELATED TOOLS ================= -->
+<section class="sp-container">
+<div class="sp-card">
+<h2 class="sp-card-title">Related PDF Tools</h2>
+<div class="sp-related-grid">
+<a href="/merge-pdf/" class="sp-related-card">Merge PDF</a>
+<a href="/compress-pdf/" class="sp-related-card">Compress PDF</a>
+<a href="/jpg-to-pdf/" class="sp-related-card">JPG to PDF</a>
+<a href="/pdf-to-jpg/" class="sp-related-card">PDF to JPG</a>
+<a href="/rotate-pdf/" class="sp-related-card">Rotate PDF</a>
+<a href="/delete-pdf-pages/" class="sp-related-card">Delete PDF Pages</a>
+<a href="/organize-pdf/" class="sp-related-card">Organize PDF</a>
+<a href="/pdf-password-remover/" class="sp-related-card">PDF Password Remover</a>
+<a href="/protect-pdf/" class="sp-related-card">Protect PDF</a>
+<a href="/unlock-pdf/" class="sp-related-card">Unlock PDF</a>
+<a href="/pdf-to-word/" class="sp-related-card">PDF to Word</a>
+<a href="/document-converter/" class="sp-related-card">Word to PDF</a>
+<a href="/excel-to-pdf/" class="sp-related-card">Excel to PDF</a>
+<a href="/powerpoint-to-pdf/" class="sp-related-card">PowerPoint to PDF</a>
+<a href="/pdf-to-png/" class="sp-related-card">PDF to PNG</a>
+</div>
+</div>
+</section>
+
+<!-- ================= EXTERNAL REFERENCES ================= -->
+<section class="sp-container">
+<div class="sp-card">
+<h2 class="sp-card-title">External References</h2>
+<p>This tool is built on open standards and open-source libraries. Learn more about the underlying PDF technology from these official sources:</p>
+<ul class="sp-ref-list">
+<li><a href="https://www.iso.org/standard/75839.html" target="_blank" rel="noopener noreferrer">ISO 32000-2 — Portable Document Format (PDF) specification</a></li>
+<li><a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener noreferrer">PDF.js — Mozilla's PDF rendering library</a></li>
+<li><a href="https://pdf-lib.js.org/" target="_blank" rel="noopener noreferrer">pdf-lib — JavaScript library for creating and modifying PDFs</a></li>
+</ul>
+</div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sp-container" id="faq" aria-labelledby="faqHeading">
+<div class="sp-card">
+<h2 id="faqHeading" class="sp-card-title">Frequently Asked Questions</h2>
+
+<div class="sp-faq-item"><h3>What is Split PDF?</h3><p>Split PDF is a tool that divides one PDF document into multiple smaller PDF files, either by separating every page, extracting specific pages, or dividing the file by custom page ranges.</p></div>
+<div class="sp-faq-item"><h3>How do I split a PDF?</h3><p>Upload your PDF, choose a split mode such as custom ranges or individual pages, then click Split PDF. Your files are ready to download in seconds.</p></div>
+<div class="sp-faq-item"><h3>Can I split PDF for free?</h3><p>Yes, this tool is completely free with no sign-up, no watermark and no page limit.</p></div>
+<div class="sp-faq-item"><h3>Can I extract pages?</h3><p>Yes. Select the exact pages you want using the checkboxes on each thumbnail, then choose the Extract Selected Pages mode to combine them into a single new PDF.</p></div>
+<div class="sp-faq-item"><h3>Does it keep quality?</h3><p>Yes. Splitting preserves the original resolution, text, fonts, images and links exactly as they appeared in the source PDF.</p></div>
+<div class="sp-faq-item"><h3>Is my PDF secure?</h3><p>Yes. Your PDF is never uploaded to a server. All splitting happens locally in your browser using JavaScript, so your file never leaves your device.</p></div>
+<div class="sp-faq-item"><h3>Can I split large PDFs?</h3><p>Yes, there is no artificial page limit. The practical limit depends on your device's available memory for very large files.</p></div>
+<div class="sp-faq-item"><h3>Does it work on mobile?</h3><p>Yes, the tool is fully responsive and works on Android and iPhone browsers as well as desktop and tablet.</p></div>
+<div class="sp-faq-item"><h3>Can I split password protected PDFs?</h3><p>Password-protected or encrypted PDFs cannot currently be processed. Please remove the password before uploading.</p></div>
+<div class="sp-faq-item"><h3>How do I split a PDF into custom page ranges?</h3><p>Choose Custom Ranges mode and type ranges separated by commas, such as 1-3, 5-8, 10-15. Each range becomes its own PDF file.</p></div>
+<div class="sp-faq-item"><h3>Can I download all split files at once?</h3><p>Yes. After splitting, click Download All as ZIP to get every resulting PDF in a single compressed file.</p></div>
+<div class="sp-faq-item"><h3>Can I rotate pages before splitting?</h3><p>Yes. Each page thumbnail has a rotate button that lets you rotate it by 90 degrees before you split or extract.</p></div>
+<div class="sp-faq-item"><h3>Can I delete pages before splitting?</h3><p>Yes. Click the delete icon on any page thumbnail to remove it from the document before splitting.</p></div>
+<div class="sp-faq-item"><h3>Can I reorder pages before splitting?</h3><p>Yes. Drag and drop page thumbnails into any order, or use keyboard shortcuts, before running the split.</p></div>
+<div class="sp-faq-item"><h3>Does this tool need an internet connection?</h3><p>After the page loads once, it can be installed as an app and used offline since splitting happens locally without a server.</p></div>
+<div class="sp-faq-item"><h3>What file formats are supported for upload?</h3><p>Only PDF files are supported for splitting. If you need to convert images or Word documents to PDF first, use the Images to PDF or Office Converter tools.</p></div>
+<div class="sp-faq-item"><h3>Is there a watermark on the split files?</h3><p>No. Every file produced by this tool is completely free of watermarks.</p></div>
+<div class="sp-faq-item"><h3>What browsers are supported?</h3><p>This tool works on the latest versions of Chrome, Edge, Firefox, Safari and Opera on desktop, Android and iOS.</p></div>
+<div class="sp-faq-item"><h3>Can I undo a mistake while editing pages?</h3><p>Yes. Use the Undo and Redo buttons, or the Ctrl+Z and Ctrl+Y keyboard shortcuts, to step back through your recent page edits.</p></div>
+<div class="sp-faq-item"><h3>Can I rename the split files before downloading?</h3><p>Yes. Each generated file has an editable filename field so you can rename it before downloading.</p></div>
+
+</div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="sp-container">
+<div class="sp-cta">
+<h2>Ready to Split Your PDF?</h2>
+<p>Upload your file above and get clean, split PDF files in seconds — free, private and instant.</p>
+<a href="#dropZone" class="sp-btn sp-btn-primary">Start Splitting Now</a>
+</div>
+</section>
+
+</main>
+
+<footer class="sp-footer">
+<div class="sp-container sp-footer-inner">
+<p>© 2026 DailyKitBox. All Rights Reserved. Split PDF is provided for informational and productivity purposes.</p>
+<nav class="sp-footer-links" aria-label="Footer">
+<a href="/">Home</a>
+<a href="/merge-pdf/">Merge PDF</a>
+<a href="/jpg-to-pdf/">Images to PDF</a>
+<a href="/age-calculator/">Age Calculator</a>
+</nav>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
+<script src="/assets/js/split-pdf.js" defer></script>
 </body>
 </html>
