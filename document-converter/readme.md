@@ -38,7 +38,7 @@ Wrangler will print a URL like:
 
 ## 3. Wire it into the front-end
 
-Open `assets/js/tools/document-converter.js` and set:
+Open `assets/js/document-converter.js` and set:
 
 ```js
 var CONFIG = {
