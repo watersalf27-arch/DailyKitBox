@@ -1,0 +1,17 @@
+{
+  "name": "DailyKitBox - Password Generator & Checker",
+  "short_name": "Password Tool",
+  "description": "Generate strong random passwords and check password strength, entirely in your browser.",
+  "start_url": "/tools/password-generator-checker",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#1447E6",
+  "icons": [
+    {
+      "src": "/password-generator-checker/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
