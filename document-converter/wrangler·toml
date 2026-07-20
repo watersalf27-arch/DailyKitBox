@@ -1,9 +1,0 @@
-name = "dkb-convert-proxy"
-main = "worker.js"
-compatibility_date = "2026-01-01"
-
-[vars]
-ALLOWED_ORIGIN = "https://dailykitbox.com"
-
-# Set the secret separately (do NOT put the real key in this file or in git):
-#   wrangler secret put CLOUDCONVERT_API_KEY
