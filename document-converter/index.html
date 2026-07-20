@@ -47,7 +47,7 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"DailyKitBox Document Converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"89"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"DailyKitBox","url":"https://dailykitbox.com/","logo":"https://dailykitbox.com/assets/images/logo.png"}
+{"@context":"https://schema.org","@type":"Organization","name":"DailyKitBox","url":"https://dailykitbox.com/","logo":"https://dailykitbox.com/assets/images/favicon.ico"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"DailyKitBox","url":"https://dailykitbox.com/","potentialAction":{"@type":"SearchAction","target":"https://dailykitbox.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}
@@ -144,6 +144,7 @@
 <div class="dc-card">
 <h2 class="dc-card-title">Upload Files</h2>
 <p class="dc-card-note">Drag and drop, or click to browse. Add as many files as you like — they'll queue up below. Drag a queued file, or focus it and press Alt+Arrow Up/Down, to reorder.</p>
+
 <div class="dc-dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload files by clicking or dropping them here">
 <input type="file" id="fileInput" multiple aria-label="Choose files to convert" accept=".pdf,.docx,.txt,.html,.htm,.jpg,.jpeg,.png,.webp,.csv,.xlsx,.odt,.rtf,.pptx">
 <div class="dc-dropzone-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4l-4 4M12 4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -229,7 +230,9 @@
 </div>
 </section>
 
+
 <!-- ============ SHEETS & SLIDES ============ -->
+
 <section id="panel-sheets" class="dc-panel" role="tabpanel" aria-labelledby="tab-sheets" hidden>
 <div class="dc-card">
 <h2 class="dc-card-title">Spreadsheets &amp; Presentations</h2>
@@ -345,14 +348,14 @@
 
 <div id="toastContainer" aria-live="polite"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js" defer></script>
 <script src="/assets/js/document-converter.js" defer></script>
 </body>
 </html>
