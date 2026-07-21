@@ -1,0 +1,17 @@
+{
+  "name": "DailyKitBox - PDF Branding Toolkit",
+  "short_name": "PDF Branding",
+  "description": "Add a watermark, header, footer, page numbers and metadata to a PDF entirely in your browser.",
+  "start_url": "/tools/pdf-branding-toolkit",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#1447E6",
+  "icons": [
+    {
+      "src": "/pdf-branding-toolkit/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
