@@ -1,52 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forecast - DailyKitBox | Live Global Updates</title>
-    <meta name="description" content="Check live local and global weather forecasts instantly. Accurate temperature, humidity, and condition updates for users in the USA, UK, Australia, and Europe by DailyKitBox.">
-    <meta name="keywords" content="Weather Forecast, live weather, check weather, local weather updates, temperature checker, DailyKitBox, global weather">
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- ================= PRIMARY SEO ================= -->
+<title>Free Weather Forecast & Air Quality Tool | DailyKitBox Weather</title>
+<meta name="description" content="Search weather for any city worldwide with DailyKitBox Weather. Current conditions, hourly and 7-day forecast, sunrise/sunset, UV index and live air quality (AQI). Free, fast, no signup.">
+<meta name="keywords" content="weather forecast, live weather, hourly forecast, 7 day forecast, air quality index, aqi checker, weather by city, worldwide weather, free weather app, dailykitbox weather, current weather, uv index, sunrise sunset times">
+<meta name="author" content="DailyKitBox">
+<meta name="language" content="English">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#1447E6">
+<link rel="canonical" href="https://www.dailykitbox.com/tools/weather-forecast-tool">
+
+<!-- ================= OPEN GRAPH ================= -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="DailyKitBox Weather | Free Worldwide Forecast & Air Quality">
+<meta property="og:description" content="Search any city on Earth for live weather, hourly and 7-day forecasts, and real-time air quality. Free and fast.">
+<meta property="og:url" content="https://www.dailykitbox.com/tools/weather-forecast-tool">
+<meta property="og:image" content="https://www.dailykitbox.com/assets/og/weather-forecast-tool.png">
+<meta property="og:locale" content="en_US">
+
+<!-- ================= TWITTER CARD ================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DailyKitBox Weather | Free Worldwide Forecast & Air Quality">
+<meta name="twitter:description" content="Live weather, hourly and 7-day forecasts, and air quality for any city worldwide.">
+<meta name="twitter:image" content="https://www.dailykitbox.com/assets/og/weather-forecast-tool.png">
+
+<!-- ================= PWA ================= -->
+<link rel="manifest" href="/weather-forecast-tool/manifest.json">
+<link rel="icon" href="/weather-forecast-tool/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/weather-forecast-tool/icon.svg">
+
+<!-- ================= FONTS ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ================= JSON-LD STRUCTURED DATA ================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "DailyKitBox Weather",
+      "url": "https://www.dailykitbox.com/tools/weather-forecast-tool",
+      "applicationCategory": "Utility",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Search weather for any city worldwide: current conditions, hourly and 7-day forecast, sunrise and sunset, UV index and live air quality.",
+      "browserRequirements": "Requires JavaScript. Works on Chrome, Edge, Firefox, Safari and Brave.",
+      "publisher": { "@type": "Organization", "name": "DailyKitBox" }
+    },
+    {
+      "@type": "Organization",
+      "name": "DailyKitBox",
+      "url": "https://www.dailykitbox.com",
+      "logo": "https://www.dailykitbox.com/assets/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "name": "DailyKitBox",
+      "url": "https://www.dailykitbox.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.dailykitbox.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dailykitbox.com" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.dailykitbox.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Weather Forecast Tool", "item": "https://www.dailykitbox.com/tools/weather-forecast-tool" }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to check the weather and air quality for any city",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Search", "text": "Type a city name into the search bar and pick it from the list." },
+        { "@type": "HowToStep", "position": 2, "name": "Or use your location", "text": "Tap Use my location and allow GPS access for local weather." },
+        { "@type": "HowToStep", "position": 3, "name": "Review current conditions", "text": "See temperature, feels like, humidity, wind, UV index and air quality." },
+        { "@type": "HowToStep", "position": 4, "name": "Check the hourly forecast", "text": "Scroll the next 24 hours for temperature and rain chance." },
+        { "@type": "HowToStep", "position": 5, "name": "Check the 7 day forecast", "text": "Review highs, lows and conditions for the week ahead." },
+        { "@type": "HowToStep", "position": 6, "name": "Save a favorite", "text": "Star a city to quickly switch back to it later." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this weather tool free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, it is completely free with no signup, no limits and no account required." } },
+        { "@type": "Question", "name": "Can I search any city in the world?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the search covers cities worldwide, not just a fixed list of countries." } },
+        { "@type": "Question", "name": "How often is the weather data updated?", "acceptedAnswer": { "@type": "Answer", "text": "Forecasts are pulled live from a national weather model network each time you search or refresh a location." } },
+        { "@type": "Question", "name": "Does it use my GPS location?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you tap Use my location and grant permission in your browser. Your location is never stored on a server." } },
+        { "@type": "Question", "name": "Can I switch between Celsius and Fahrenheit?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, use the unit toggle in the top bar to switch between metric and imperial units." } },
+        { "@type": "Question", "name": "Does it show air quality?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, current US AQI and European AQI along with PM2.5 and PM10 levels are shown for the selected city." } },
+        { "@type": "Question", "name": "Can I save favorite cities?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, star any city you search to add it to your favorites bar for quick access later." } },
+        { "@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the layout is fully responsive and works well with touch." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/css/weather-forecast-tool.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Weather Forecast</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="4" stroke="#fff" stroke-width="1.6"/><path d="M9 2v1.4M9 14.6V16M2 9h1.4M14.6 9H16M4 4l1 1M13 13l1 1M14 4l-1 1M5 13l-1 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><path d="M9.5 20a4.5 4.5 0 0 0 .8-8.93A6 6 0 0 0 4.2 15.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><path d="M8 20h9a3.2 3.2 0 0 0 0-6.4c-.2 0-.4 0-.6.05" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span>DailyKitBox<small>Weather</small></span>
+    </div>
+    <div class="nav-actions">
+      <button class="unit-btn" id="unitToggle" title="Switch units">&deg;C / mph</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark / light mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none"><path d="M12 3v1.5M12 19.5V21M4.2 4.2l1.1 1.1M18.7 18.7l1.1 1.1M3 12h1.5M19.5 12H21M4.2 19.8l1.1-1.1M18.7 5.3l1.1-1.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SEARCH HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span> Any city on Earth &middot; No signup</span>
+    <h1>Weather &amp; air quality,<br><em>anywhere you search.</em></h1>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="text" id="citySearchInput" placeholder="Search any city worldwide&hellip;" autocomplete="off">
+        <button class="btn btn-primary btn-sm" id="useLocationBtn" title="Use my location">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span class="hide-mobile">My location</span>
+        </button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card">
-        <div style="padding: 30px; text-align: center; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
-            <input type="text" id="city" placeholder="Enter city name" style="padding: 10px; width: 60%; border: 1px solid #ccc; border-radius: 5px;">
-            <button onclick="getWeather()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Check Weather</button>
-            <div id="weatherResult" style="margin-top: 20px; font-weight: bold;"></div>
+    <div class="popular-chips" id="popularChips">
+      <span class="chip-label">Popular:</span>
+      <button class="chip" data-lat="40.7128" data-lon="-74.006" data-name="New York" data-country="United States">New York</button>
+      <button class="chip" data-lat="51.5072" data-lon="-0.1276" data-name="London" data-country="United Kingdom">London</button>
+      <button class="chip" data-lat="28.6139" data-lon="77.209" data-name="Delhi" data-country="India">Delhi</button>
+      <button class="chip" data-lat="24.8607" data-lon="67.0011" data-name="Karachi" data-country="Pakistan">Karachi</button>
+      <button class="chip" data-lat="35.6762" data-lon="139.6503" data-name="Tokyo" data-country="Japan">Tokyo</button>
+      <button class="chip" data-lat="-33.8688" data-lon="151.2093" data-name="Sydney" data-country="Australia">Sydney</button>
+    </div>
+
+    <div class="favorites-bar" id="favoritesBar" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DASHBOARD
+     ============================================================ -->
+<main>
+<section class="container" id="dashboard" style="display:none;">
+
+  <!-- Loading -->
+  <div class="card center-state" id="loadingState" style="display:none;">
+    <div class="spinner" role="status" aria-label="Loading"></div>
+    <p>Fetching live weather&hellip;</p>
+  </div>
+
+  <div id="weatherContent" style="display:none;">
+
+    <!-- Current weather -->
+    <div class="card current-card" id="currentCard">
+      <div class="current-top">
+        <div>
+          <div class="current-place">
+            <h2 id="placeName">&mdash;</h2>
+            <button class="star-btn" id="favStarBtn" aria-label="Save to favorites" title="Save to favorites">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 6.2 20.6l1.1-6.5L2.6 9.7l6.6-1L12 2.8l2.8 5.9 6.6 1-4.7 4.4 1.1 6.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <p id="placeMeta">&mdash;</p>
         </div>
+        <div class="current-icon" id="currentIcon"></div>
+      </div>
+      <div class="current-temp-row">
+        <span class="current-temp" id="currentTemp">&mdash;</span>
+        <div class="current-desc">
+          <span id="currentDesc">&mdash;</span>
+          <span id="currentFeels">Feels like &mdash;</span>
+        </div>
+      </div>
+      <div class="current-stats" id="currentStats"></div>
     </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Weather Forecast at DailyKitBox?</h2>
-        <p>Stay updated with the latest weather conditions in your area or anywhere around the world.</p>
-        <ol>
-            <li><strong>Step 1:</strong> Type the name of the city you want to check.</li>
-            <li><strong>Step 2:</strong> Click the "Check Weather" button.</li>
-            <li><strong>Step 3:</strong> View real-time temperature, humidity, and weather status instantly.</li>
-        </ol>
+    <!-- Air Quality -->
+    <div class="card aqi-card" id="aqiCard">
+      <div class="aqi-head">
+        <h3>Air Quality</h3>
+        <span class="aqi-badge" id="aqiBadge">&mdash;</span>
+      </div>
+      <div class="aqi-body">
+        <div class="aqi-value">
+          <span id="aqiValue">&mdash;</span>
+          <small>US AQI</small>
+        </div>
+        <div class="aqi-mini-stats" id="aqiMiniStats"></div>
+      </div>
+      <p class="aqi-note" id="aqiNote"></p>
+    </div>
 
-        <h3 style="font-size: 18px;">Why choose DailyKitBox for Weather?</h3>
-        <p>Our weather tool provides fast and accurate data. Whether you are traveling in the USA, UK, Australia, or Europe, you can rely on DailyKitBox to give you the weather update you need at a glance.</p>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals and users from the USA, UK, Australia, Europe, and beyond.</p>
-    </section>
+    <!-- Hourly forecast -->
+    <div class="card">
+      <div class="section-title">Next 24 hours</div>
+      <div class="hourly-scroll" id="hourlyScroll"></div>
+    </div>
 
-    <script>
-        function getWeather() {
-            const city = document.getElementById('city').value;
-            if (city) {
-                document.getElementById('weatherResult').innerText = "Fetching weather for " + city + "...";
-            } else {
-                alert("Please enter a city name.");
-            }
-        }
-    </script>
+    <!-- 7 day forecast -->
+    <div class="card">
+      <div class="section-title">7-day forecast</div>
+      <div class="daily-list" id="dailyList"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Empty / intro state -->
+<section class="container" id="introState">
+  <div class="card intro-card">
+    <svg viewBox="0 0 24 24" fill="none" width="40" height="40"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <h3>Search a city or use your location to get started</h3>
+    <p>Live weather, hourly and 7-day forecasts, and real-time air quality for any place on Earth.</p>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================
+     HOW TO USE
+     ============================================================ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How to use</span>
+      <h2>Six steps to any forecast</h2>
+      <p>Live data from a global weather model network, refreshed on every search.</p>
+    </div>
+    <div class="steps">
+      <div class="card step-card"><div class="step-num">01</div><h3>Search</h3><p>Type a city name and pick it from the list.</p></div>
+      <div class="card step-card"><div class="step-num">02</div><h3>Or use your location</h3><p>Tap Use my location and allow GPS access.</p></div>
+      <div class="card step-card"><div class="step-num">03</div><h3>Current conditions</h3><p>Temperature, feels like, humidity, wind, UV and AQI.</p></div>
+      <div class="card step-card"><div class="step-num">04</div><h3>Hourly forecast</h3><p>Scroll the next 24 hours for temperature and rain chance.</p></div>
+      <div class="card step-card"><div class="step-num">05</div><h3>7-day forecast</h3><p>Review highs, lows and conditions for the week ahead.</p></div>
+      <div class="card step-card"><div class="step-num">06</div><h3>Save a favorite</h3><p>Star a city to quickly switch back to it later.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES
+     ============================================================ -->
+<section class="section" id="features" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Built in</span>
+      <h2>Everything a daily forecast needs</h2>
+    </div>
+    <div class="features-grid">
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h4>Worldwide search</h4><p>Not limited to a fixed country list &mdash; search any city on Earth.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.7"/></svg><h4>GPS location</h4><p>One tap for instant local weather, with your permission.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><h4>Live air quality</h4><p>US and European AQI plus PM2.5 and PM10 for every city.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/></svg><h4>Hourly &amp; 7-day</h4><p>Next 24 hours plus a full week ahead, at a glance.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 6.2 20.6l1.1-6.5L2.6 9.7l6.6-1L12 2.8l2.8 5.9 6.6 1-4.7 4.4 1.1 6.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><h4>Favorite cities</h4><p>Star any city to keep it one tap away.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14.6-4.6M20 12a8 8 0 0 1-14.6 4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18.6 3.4v4h-4M5.4 20.6v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Unit switching</h4><p>Toggle Celsius/Fahrenheit and km/h/mph anytime.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><h4>UV &amp; sun times</h4><p>Daily UV index alongside sunrise and sunset.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M4.2 4.2l2.9 2.9M16.9 16.9l2.9 2.9M3 12h4M17 12h4M4.2 19.8l2.9-2.9M16.9 7.1l2.9-2.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><h4>Installable app</h4><p>Add it to your home screen for quick access.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Is this weather tool free?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, it is completely free with no signup, no limits and no account required.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Can I search any city in the world?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, the search covers cities worldwide, not just a fixed list of countries.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">How often is the weather data updated?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Forecasts are pulled live from a global weather model network each time you search or refresh a location.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Does it use my GPS location?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Only if you tap Use my location and grant permission in your browser. Your location is never stored on a server.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Can I switch between Celsius and Fahrenheit?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, use the unit toggle in the top bar to switch between metric and imperial units.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Does it show air quality?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, current US AQI and European AQI along with PM2.5 and PM10 levels are shown for the selected city.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Can I save favorite cities?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, star any city you search to add it to your favorites bar for quick access later.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Does it work on mobile?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, the layout is fully responsive and works well with touch.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Built by <a href="https://www.dailykitbox.com">DailyKitBox</a> &middot; Weather data via Open-Meteo, used under CC BY 4.0.</p>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<script src="/assets/js/weather-forecast-tool.js" defer></script>
 </body>
 </html>
