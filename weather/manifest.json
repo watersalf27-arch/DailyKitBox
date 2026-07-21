@@ -1,0 +1,17 @@
+{
+  "name": "DailyKitBox Weather",
+  "short_name": "DKB Weather",
+  "description": "Live weather, hourly and 7-day forecasts, and air quality for any city worldwide.",
+  "start_url": "/tools/weather-forecast-tool",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#1447E6",
+  "icons": [
+    {
+      "src": "/weather-forecast-tool/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
