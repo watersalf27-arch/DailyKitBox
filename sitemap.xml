@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dailykitbox.com/</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url><loc>https://www.dailykitbox.com/</loc></url>
+
+<url><loc>https://www.dailykitbox.com/age-calculator/</loc></url>
+<url><loc>https://www.dailykitbox.com/brand-name-slogan-generator/</loc></url>
+<url><loc>https://www.dailykitbox.com/delete-pdf-pages/</loc></url>
+<url><loc>https://www.dailykitbox.com/document-converter/</loc></url>
+<url><loc>https://www.dailykitbox.com/jpg-to-pdf/</loc></url>
+<url><loc>https://www.dailykitbox.com/merge-pdf/</loc></url>
+<url><loc>https://www.dailykitbox.com/mortgage-calculator/</loc></url>
+<url><loc>https://www.dailykitbox.com/passwor-generator-cheker/</loc></url>
+<url><loc>https://www.dailykitbox.com/pdf-branding-toolkit/</loc></url>
+<url><loc>https://www.dailykitbox.com/split-pdf/</loc></url>
+<url><loc>https://www.dailykitbox.com/tip-calculator/</loc></url>
+<url><loc>https://www.dailykitbox.com/weather/</loc></url>
+<url><loc>https://www.dailykitbox.com/word-counter/</loc></url>
+
 </urlset>
