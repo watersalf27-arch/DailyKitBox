@@ -1,0 +1,17 @@
+{
+  "name": "DailyKitBox - Tip Calculator",
+  "short_name": "Tip Calculator",
+  "description": "Calculate tip amount, total bill and per-person split instantly, entirely in your browser.",
+  "start_url": "/tools/tip-calculator",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#1447E6",
+  "icons": [
+    {
+      "src": "/tip-calculator/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
