@@ -1,0 +1,17 @@
+{
+  "name": "DailyKitBox - Mortgage Calculator",
+  "short_name": "Mortgage Calc",
+  "description": "Calculate mortgage payments, amortization, affordability and refinance comparisons in any currency.",
+  "start_url": "/tools/mortgage-calculator",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#1447E6",
+  "icons": [
+    {
+      "src": "/mortgage-calculator/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
