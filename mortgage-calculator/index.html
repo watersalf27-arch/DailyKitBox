@@ -1,61 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortgage Calculator - DailyKitBox | Interest Rate Comparison</title>
-    <meta name="description" content="Calculate your mortgage payments and compare bank interest rates across the USA, UK, Australia, and Europe. Fast, accurate, and professional financial tool by DailyKitBox.">
-    <meta name="keywords" content="Mortgage Calculator, home loan calculator, bank interest rates USA UK Australia, mortgage rates, DailyKitBox, financial tool">
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- ================= PRIMARY SEO ================= -->
+<title>Free Mortgage Calculator: Payments, Amortization & Affordability | DailyKitBox</title>
+<meta name="description" content="Calculate your mortgage payment, full amortization schedule, extra-payment savings, affordability and refinance comparison for free with DailyKitBox. Works with any currency. No signup.">
+<meta name="keywords" content="mortgage calculator, home loan calculator, amortization schedule, mortgage affordability calculator, refinance calculator, extra payment calculator, monthly mortgage payment, mortgage payoff calculator, free mortgage calculator, dailykitbox mortgage tool">
+<meta name="author" content="DailyKitBox">
+<meta name="language" content="English">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#1447E6">
+<link rel="canonical" href="https://www.dailykitbox.com/tools/mortgage-calculator">
+
+<!-- ================= OPEN GRAPH ================= -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="Free Mortgage Calculator | DailyKitBox">
+<meta property="og:description" content="Monthly payment, amortization schedule, affordability and refinance comparison, in any currency. Free and private.">
+<meta property="og:url" content="https://www.dailykitbox.com/tools/mortgage-calculator">
+<meta property="og:image" content="https://www.dailykitbox.com/assets/og/mortgage-calculator.png">
+<meta property="og:locale" content="en_US">
+
+<!-- ================= TWITTER CARD ================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Mortgage Calculator | DailyKitBox">
+<meta name="twitter:description" content="Monthly payment, amortization schedule, affordability and refinance comparison, right in your browser.">
+<meta name="twitter:image" content="https://www.dailykitbox.com/assets/og/mortgage-calculator.png">
+
+<!-- ================= PWA ================= -->
+<link rel="manifest" href="/mortgage-calculator/manifest.json">
+<link rel="icon" href="/mortgage-calculator/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/mortgage-calculator/icon.svg">
+
+<!-- ================= FONTS ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ================= JSON-LD STRUCTURED DATA ================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Mortgage Calculator - DailyKitBox",
+      "url": "https://www.dailykitbox.com/tools/mortgage-calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculate monthly mortgage payments, a full amortization schedule, extra-payment savings, affordability and refinance comparisons in any currency, entirely in your browser.",
+      "browserRequirements": "Requires JavaScript. Works on Chrome, Edge, Firefox, Safari and Brave.",
+      "publisher": { "@type": "Organization", "name": "DailyKitBox" }
+    },
+    {
+      "@type": "Organization",
+      "name": "DailyKitBox",
+      "url": "https://www.dailykitbox.com",
+      "logo": "https://www.dailykitbox.com/assets/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "name": "DailyKitBox",
+      "url": "https://www.dailykitbox.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.dailykitbox.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dailykitbox.com" },
+        { "@type": "ListItem", "position": 2, "name": "Finance Tools", "item": "https://www.dailykitbox.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Mortgage Calculator", "item": "https://www.dailykitbox.com/tools/mortgage-calculator" }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to calculate your mortgage payment and amortization schedule",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Enter loan details", "text": "Enter home price, down payment, interest rate and loan term." },
+        { "@type": "HowToStep", "position": 2, "name": "Add extra costs", "text": "Optionally add property tax, insurance, HOA fees and PMI." },
+        { "@type": "HowToStep", "position": 3, "name": "Add extra payments", "text": "Optionally add extra monthly, yearly or one-time payments." },
+        { "@type": "HowToStep", "position": 4, "name": "Calculate", "text": "Click Calculate to see your monthly payment and schedule." },
+        { "@type": "HowToStep", "position": 5, "name": "Review the schedule", "text": "Check the amortization table and interest-saved chart." },
+        { "@type": "HowToStep", "position": 6, "name": "Export", "text": "Download a PDF summary or a full CSV amortization schedule." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How is a mortgage payment calculated?", "acceptedAnswer": { "@type": "Answer", "text": "The standard formula spreads the loan amount across equal monthly payments using the loan's interest rate and term, so each payment covers accrued interest first and reduces principal with the remainder." } },
+        { "@type": "Question", "name": "What is amortization?", "acceptedAnswer": { "@type": "Answer", "text": "Amortization is the process of paying off a loan through scheduled payments, where the interest portion shrinks and the principal portion grows over time." } },
+        { "@type": "Question", "name": "How do extra payments save interest?", "acceptedAnswer": { "@type": "Answer", "text": "Extra payments reduce the outstanding balance faster, which lowers the interest charged on future payments and can shorten the loan term significantly." } },
+        { "@type": "Question", "name": "What is PMI?", "acceptedAnswer": { "@type": "Answer", "text": "Private Mortgage Insurance is typically required when the down payment is below a lender's threshold, and it protects the lender rather than the borrower." } },
+        { "@type": "Question", "name": "Does this tool provide real interest rates for my country?", "acceptedAnswer": { "@type": "Answer", "text": "No. Interest rates change daily and vary by lender, so you should enter the rate quoted to you or a current rate from your bank or a trusted rate source." } },
+        { "@type": "Question", "name": "Is this financial advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. This calculator provides estimates for informational purposes only and is not financial, legal or tax advice." } },
+        { "@type": "Question", "name": "Can I use any currency?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, choose your currency from the selector and all figures will be formatted accordingly." } },
+        { "@type": "Question", "name": "Can I compare refinancing options?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the Refinance tab compares your current loan to a new loan and estimates your break-even period." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/css/mortgage-calculator.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Mortgage Calculator</h1>
-        <a href="../index.html" style="text-decoration:none; color: var(--primary);">Back Home</a>
+
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 11 12 4l9 7" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </span>
+      <span>DailyKitBox<small>Mortgage Calculator</small></span>
+    </div>
+    <div class="nav-actions">
+      <select class="currency-select" id="currencySelect" aria-label="Currency"></select>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark / light mode">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v1.5M12 19.5V21M4.2 4.2l1.1 1.1M18.7 18.7l1.1 1.1M3 12h1.5M19.5 12H21M4.2 19.8l1.1-1.1M18.7 5.3l1.1-1.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Any currency &middot; No signup</span>
+      <h1>Know your mortgage,<br><em>down to the last payment.</em></h1>
+      <p class="hero-sub">Monthly payment, full amortization schedule, extra-payment savings, affordability and refinance comparison &mdash; calculated instantly in your browser, in any currency.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" id="heroCalcBtn">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Start calculating
+        </button>
+        <button class="btn btn-ghost" id="learnMoreBtn">See how it works</button>
+      </div>
+      <div class="hero-points">
+        <span><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Free, no signup</span>
+        <span><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> PDF &amp; CSV export</span>
+        <span><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Not financial advice</span>
+      </div>
+    </div>
+    <div class="deck" aria-hidden="true">
+      <div class="deck-row"><span>Monthly payment</span><b>$2,146</b></div>
+      <div class="deck-row"><span>Total interest</span><b>$187,340</b></div>
+      <div class="deck-row"><span>Payoff date</span><b>Mar 2056</b></div>
+      <span class="deck-badge">Interest saved: $34,210</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WORKSPACE
+     ============================================================ -->
+<main>
+<section class="workspace container" id="workspace">
+
+  <div class="card tabs">
+    <button class="tab-btn active" data-tab="payment">Payment Calculator</button>
+    <button class="tab-btn" data-tab="afford">Affordability</button>
+    <button class="tab-btn" data-tab="refi">Refinance</button>
+  </div>
+
+  <!-- ===================== PAYMENT TAB ===================== -->
+  <div class="tab-panel" id="panel-payment">
+    <div class="grid-2">
+      <div class="card form-card">
+        <div class="field-row">
+          <div class="field"><label for="homePrice">Home price</label><input type="number" id="homePrice" value="350000" min="0"></div>
+          <div class="field"><label for="downPayment">Down payment</label><input type="number" id="downPayment" value="70000" min="0"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="downPct">Down payment %</label><input type="number" id="downPct" value="20" min="0" max="100" step="0.1"></div>
+          <div class="field"><label for="interestRate">Interest rate (% / year)</label><input type="number" id="interestRate" value="6.5" min="0" step="0.01"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="loanTerm">Loan term (years)</label>
+            <select id="loanTerm"><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30" selected>30</option></select>
+          </div>
+          <div class="field"><label for="startDate">First payment date</label><input type="month" id="startDate"></div>
+        </div>
+
+        <hr class="divider-h">
+        <label class="switch-row"><input type="checkbox" id="advToggle"><span>Include taxes, insurance, HOA &amp; PMI</span></label>
+        <div id="advFields" style="display:none;">
+          <div class="field-row">
+            <div class="field"><label for="propertyTax">Property tax (% / year)</label><input type="number" id="propertyTax" value="1.1" min="0" step="0.01"></div>
+            <div class="field"><label for="homeInsurance">Home insurance (/ year)</label><input type="number" id="homeInsurance" value="1200" min="0"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="hoaFee">HOA fee (/ month)</label><input type="number" id="hoaFee" value="0" min="0"></div>
+            <div class="field"><label for="pmiRate">PMI (% / year, if down &lt; 20%)</label><input type="number" id="pmiRate" value="0.6" min="0" step="0.01"></div>
+          </div>
+        </div>
+
+        <hr class="divider-h">
+        <label class="switch-row"><input type="checkbox" id="extraToggle"><span>Add extra payments</span></label>
+        <div id="extraFields" style="display:none;">
+          <div class="field-row">
+            <div class="field"><label for="extraMonthly">Extra per month</label><input type="number" id="extraMonthly" value="100" min="0"></div>
+            <div class="field"><label for="extraYearly">Extra per year (lump sum)</label><input type="number" id="extraYearly" value="0" min="0"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="extraOnce">One-time extra payment</label><input type="number" id="extraOnce" value="0" min="0"></div>
+            <div class="field"><label for="extraOnceMonth">Applied in month #</label><input type="number" id="extraOnceMonth" value="12" min="1"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="calcBtn" style="width:100%; justify-content:center; margin-top:6px;">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Calculate
+        </button>
+      </div>
+
+      <div class="results-col">
+        <div class="card result-card">
+          <div class="result-main">
+            <span>Monthly payment</span>
+            <b id="resMonthly">&mdash;</b>
+          </div>
+          <div class="result-grid">
+            <div><span>Principal &amp; interest</span><b id="resPI">&mdash;</b></div>
+            <div><span>Taxes, ins. &amp; fees</span><b id="resExtras">&mdash;</b></div>
+            <div><span>Total interest paid</span><b id="resTotalInterest">&mdash;</b></div>
+            <div><span>Total cost of loan</span><b id="resTotalCost">&mdash;</b></div>
+            <div><span>Payoff date</span><b id="resPayoff">&mdash;</b></div>
+            <div><span>Loan amount</span><b id="resLoanAmount">&mdash;</b></div>
+          </div>
+          <div class="savings-banner" id="savingsBanner" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="savingsText">&mdash;</span>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-tabs">
+            <button class="chip active" data-chart="split">Principal vs interest</button>
+            <button class="chip" data-chart="balance">Balance over time</button>
+          </div>
+          <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Tool Interface -->
-    <div class="tool-card" style="padding: 20px; text-align: center;">
-        <input type="number" id="price" placeholder="Property Price" style="padding: 8px; margin: 5px;"><br>
-        <input type="number" id="rate" placeholder="Interest Rate (%)" style="padding: 8px; margin: 5px;"><br>
-        <button onclick="calcMortgage()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate</button>
-        <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
-    </div>
-
-    <!-- Interest Rate Comparison Table -->
-    <section style="margin-top: 40px; padding: 20px; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 20px;">Average Bank Interest Rates (2026)</h2>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-            <tr style="background: #f1f1f1;">
-                <th style="border: 1px solid #ccc; padding: 10px;">Region</th>
-                <th style="border: 1px solid #ccc; padding: 10px;">Avg. Rate</th>
-            </tr>
-            <tr><td style="border: 1px solid #ccc; padding: 10px;">USA (Major Banks)</td><td style="border: 1px solid #ccc; padding: 10px;">6.2% - 7.1%</td></tr>
-            <tr><td style="border: 1px solid #ccc; padding: 10px;">UK (High Street)</td><td style="border: 1px solid #ccc; padding: 10px;">4.5% - 5.8%</td></tr>
-            <tr><td style="border: 1px solid #ccc; padding: 10px;">Australia (Big 4)</td><td style="border: 1px solid #ccc; padding: 10px;">5.9% - 6.8%</td></tr>
-            <tr><td style="border: 1px solid #ccc; padding: 10px;">Europe (Avg)</td><td style="border: 1px solid #ccc; padding: 10px;">3.8% - 5.2%</td></tr>
+    <div class="card schedule-card">
+      <div class="schedule-head">
+        <span>Amortization schedule</span>
+        <div class="schedule-actions">
+          <div class="seg" id="scheduleViewSeg">
+            <button class="seg-btn active" data-view="annual">Annual</button>
+            <button class="seg-btn" data-view="monthly">Monthly</button>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="downloadCsvBtn">CSV</button>
+          <button class="btn btn-ghost btn-sm" id="downloadPdfBtn">PDF report</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="scheduleTable">
+          <thead><tr><th>Period</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+          <tbody id="scheduleBody"></tbody>
         </table>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- SEO & AEO Optimized 'How to' Section -->
-    <section style="margin-top: 40px; padding: 20px; border-top: 1px solid #ddd; max-width: 700px; margin: auto;">
-        <h2 style="font-size: 22px;">How to use Mortgage Calculator?</h2>
-        <ol>
-            <li><strong>Step 1:</strong> Input your property purchase price.</li>
-            <li><strong>Step 2:</strong> Enter the interest rate based on your region (see table above).</li>
-            <li><strong>Step 3:</strong> Click "Calculate" to view your estimated monthly mortgage payments instantly.</li>
-        </ol>
-        <p style="font-size: 12px; color: #718096; margin-top: 20px;">Serving professionals from the USA, UK, Australia, and Europe.</p>
-    </section>
+  <!-- ===================== AFFORDABILITY TAB ===================== -->
+<div class="tab-panel" id="panel-afford" style="display:none;">
+    <div class="grid-2">
+      <div class="card form-card">
+        <div class="field-row">
+          <div class="field"><label for="afIncome">Gross annual income</label><input type="number" id="afIncome" value="90000" min="0"></div>
+          <div class="field"><label for="afDebts">Other monthly debts</label><input type="number" id="afDebts" value="300" min="0"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="afDown">Down payment available</label><input type="number" id="afDown" value="40000" min="0"></div>
+          <div class="field"><label for="afRate">Interest rate (% / year)</label><input type="number" id="afRate" value="6.5" min="0" step="0.01"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="afTerm">Loan term (years)</label>
+            <select id="afTerm"><option value="15">15</option><option value="20">20</option><option value="30" selected>30</option></select>
+          </div>
+          <div class="field"><label for="afDti">Target max DTI</label>
+            <select id="afDti"><option value="28">28% (conservative)</option><option value="36" selected>36% (standard)</option><option value="43">43% (upper limit)</option></select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="afTax">Property tax (% / year)</label><input type="number" id="afTax" value="1.1" min="0" step="0.01"></div>
+          <div class="field"><label for="afInsurance">Insurance (/ year)</label><input type="number" id="afInsurance" value="1200" min="0"></div>
+        </div>
+        <button class="btn btn-primary" id="afCalcBtn" style="width:100%; justify-content:center;">Calculate affordability</button>
+      </div>
+      <div class="card result-card">
+        <div class="result-main"><span>Estimated home price you can afford</span><b id="afHomePrice">&mdash;</b></div>
+        <div class="result-grid">
+          <div><span>Max loan amount</span><b id="afLoanAmount">&mdash;</b></div>
+          <div><span>Est. monthly payment</span><b id="afMonthly">&mdash;</b></div>
+          <div><span>Max monthly housing cost</span><b id="afMaxHousing">&mdash;</b></div>
+          <div><span>Debt-to-income used</span><b id="afDtiUsed">&mdash;</b></div>
+        </div>
+        <p class="note-text">Based on the DTI ratio you selected. Lenders also weigh credit score, employment history and reserves, so treat this as a starting estimate.</p>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        function calcMortgage() {
-            const p = document.getElementById('price').value;
-            const r = document.getElementById('rate').value / 100 / 12;
-            const n = 360; // 30 years
-            const payment = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            document.getElementById('result').innerText = "Estimated Monthly Payment: $" + payment.toFixed(2);
-        }
-    </script>
+  <!-- ===================== REFINANCE TAB ===================== -->
+  <div class="tab-panel" id="panel-refi" style="display:none;">
+    <div class="grid-2">
+      <div class="card form-card">
+        <div class="section-label">Current loan</div>
+        <div class="field-row">
+          <div class="field"><label for="rfBalance">Remaining balance</label><input type="number" id="rfBalance" value="280000" min="0"></div>
+          <div class="field"><label for="rfRate">Current rate (%)</label><input type="number" id="rfRate" value="7.2" min="0" step="0.01"></div>
+        </div>
+        <div class="field"><label for="rfRemaining">Remaining term (years)</label><input type="number" id="rfRemaining" value="27" min="1"></div>
+
+        <hr class="divider-h">
+        <div class="section-label">New loan</div>
+        <div class="field-row">
+          <div class="field"><label for="rfNewRate">New rate (%)</label><input type="number" id="rfNewRate" value="6.0" min="0" step="0.01"></div>
+          <div class="field"><label for="rfNewTerm">New term (years)</label><input type="number" id="rfNewTerm" value="30" min="1"></div>
+        </div>
+        <div class="field"><label for="rfClosingCosts">Closing costs</label><input type="number" id="rfClosingCosts" value="5000" min="0"></div>
+
+        <button class="btn btn-primary" id="rfCalcBtn" style="width:100%; justify-content:center;">Compare refinance</button>
+      </div>
+      <div class="card result-card">
+        <div class="result-grid">
+          <div><span>Current payment</span><b id="rfCurrentPayment">&mdash;</b></div>
+          <div><span>New payment</span><b id="rfNewPayment">&mdash;</b></div>
+          <div><span>Monthly savings</span><b id="rfMonthlySavings">&mdash;</b></div>
+          <div><span>Break-even period</span><b id="rfBreakeven">&mdash;</b></div>
+          <div><span>Interest remaining (current)</span><b id="rfInterestCurrent">&mdash;</b></div>
+          <div><span>Interest remaining (new)</span><b id="rfInterestNew">&mdash;</b></div>
+        </div>
+        <p class="note-text">Break-even is when monthly savings recoup the closing costs. If you plan to move sooner, refinancing may not pay off.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="disclaimer">Estimates only, not financial advice. Enter the actual rate and fees quoted to you by your lender &mdash; interest rates change daily and vary by country, lender and borrower profile.</p>
+
+</section>
+</main>
+
+<!-- ============================================================
+     HOW TO USE
+     ============================================================ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How to use</span>
+      <h2>Six steps to a full picture</h2>
+      <p>All math runs locally in your browser &mdash; nothing is uploaded.</p>
+    </div>
+    <div class="steps">
+      <div class="card step-card"><div class="step-num">01</div><h3>Enter loan details</h3><p>Home price, down payment, rate and term.</p></div>
+      <div class="card step-card"><div class="step-num">02</div><h3>Add extra costs</h3><p>Property tax, insurance, HOA and PMI if you want them included.</p></div>
+      <div class="card step-card"><div class="step-num">03</div><h3>Add extra payments</h3><p>See how monthly, yearly or one-time extra payments change things.</p></div>
+      <div class="card step-card"><div class="step-num">04</div><h3>Calculate</h3><p>Get your monthly payment and full breakdown instantly.</p></div>
+      <div class="card step-card"><div class="step-num">05</div><h3>Review the schedule</h3><p>Check the amortization table and interest-saved chart.</p></div>
+      <div class="card step-card"><div class="step-num">06</div><h3>Export</h3><p>Download a PDF summary or a full CSV schedule.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES
+     ============================================================ -->
+<section class="section" id="features" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Built in</span>
+      <h2>Everything a mortgage decision needs</h2>
+    </div>
+    <div class="features-grid">
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><h4>Full amortization</h4><p>Every payment, principal, interest and remaining balance.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14.6-4.6M20 12a8 8 0 0 1-14.6 4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M18.6 3.4v4h-4M5.4 20.6v-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Extra payment savings</h4><p>See exactly how much interest and time you save.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4v16h16M8 15l3-4 3 3 4-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Visual charts</h4><p>Principal vs interest split and balance-over-time.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M8 7h5.5a2.5 2.5 0 1 1 0 5H8m0 0h6a2.5 2.5 0 1 1 0 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Any currency</h4><p>Choose your currency and every figure formats to match.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><h4>Affordability check</h4><p>Estimate what you can afford based on income and debts.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M17 3v4M7 3v4M4 8h16M12 12v6M9 15h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Refinance compare</h4><p>Break-even period and lifetime interest side by side.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v12M7 12l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><h4>PDF &amp; CSV export</h4><p>A printable summary report or the full monthly schedule.</p></div>
+      <div class="card feature-card"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><h4>Private by design</h4><p>Every calculation happens on-device, nothing is uploaded.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">How is a mortgage payment calculated?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>The standard formula spreads the loan amount across equal monthly payments using the interest rate and term, so each payment covers accrued interest first and reduces principal with the remainder.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">What is amortization?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>It is the process of paying off a loan through scheduled payments, where the interest portion shrinks and the principal portion grows over time.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">How do extra payments save interest?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Extra payments reduce the outstanding balance faster, which lowers interest on future payments and can shorten the loan term significantly.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">What is PMI?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Private Mortgage Insurance is typically required when the down payment is below a lender's threshold, and it protects the lender rather than the borrower.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Does this tool provide real interest rates for my country?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>No. Rates change daily and vary by lender, so enter the rate quoted to you or a current rate from your bank or a trusted rate source.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Is this financial advice?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>No. This calculator provides estimates for informational purposes only and is not financial, legal or tax advice.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Can I use any currency?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, choose your currency from the selector in the top bar and every figure updates to match.</p></div>
+      </div>
+      <div class="card faq-item">
+        <button class="faq-q" aria-expanded="false">Can I compare refinancing options?<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div class="faq-a"><p>Yes, the Refinance tab compares your current loan to a new loan and estimates your break-even period.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Built by <a href="https://www.dailykitbox.com">DailyKitBox</a> &middot; Estimates only. Not financial, legal or tax advice.</p>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<!-- ================= LIBRARIES ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<script src="/assets/js/mortgage-calculator.js" defer></script>
 </body>
 </html>
