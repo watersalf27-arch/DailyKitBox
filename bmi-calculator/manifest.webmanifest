@@ -1,0 +1,32 @@
+{
+  "name": "BMI Calculator by DailyKitBox",
+  "short_name": "BMI Calculator",
+  "description": "Free BMI, BMR, TDEE and healthy weight range calculator. Instant results, no signup, fully private — everything runs in your browser.",
+  "id": "/bmi-calculator/",
+  "start_url": "/bmi-calculator/index.html?utm_source=pwa",
+  "scope": "/bmi-calculator/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["health", "fitness", "utilities", "lifestyle"],
+  "icons": [
+    {
+      "src": "/assets/images/icons/bmi-calculator.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Calculate BMI",
+      "short_name": "BMI",
+      "url": "/bmi-calculator/index.html#bmiForm",
+      "description": "Jump straight to the calculator form"
+    }
+  ]
+}
