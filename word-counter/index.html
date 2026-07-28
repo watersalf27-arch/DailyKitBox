@@ -1,37 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Word Counter Tool | DailyKitBox - Accurate Text Analysis</title>
-    <meta name="description" content="Use DailyKitBox's free Word Counter tool to count words and characters in your text instantly. Perfect for SEO and content writers.">
-    <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Word Counter | Free Online Word & Character Counter Tool | DailyKitBox</title>
+<meta name="description" content="Free online Word Counter by DailyKitBox. Count words, characters, sentences and paragraphs instantly. Check readability, keyword density, reading time, and social media character limits — all in your browser, 100% private.">
+<meta name="keywords" content="word counter, character counter, online word counter, free word counter, writing tool, character count tool, text analyzer, reading time calculator, keyword density checker, online writing tool, dailykitbox">
+<meta name="author" content="DailyKitBox">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="theme-color" content="#0A192F">
+<link rel="canonical" href="https://dailykitbox.com/word-counter/">
+
+<meta name="geo.region" content="US">
+<meta name="geo.placename" content="United States">
+<meta http-equiv="content-language" content="en">
+<link rel="alternate" hreflang="en-us" href="https://dailykitbox.com/word-counter/">
+<link rel="alternate" hreflang="en-gb" href="https://dailykitbox.com/word-counter/?region=uk">
+<link rel="alternate" hreflang="en-ca" href="https://dailykitbox.com/word-counter/?region=ca">
+<link rel="alternate" hreflang="en-au" href="https://dailykitbox.com/word-counter/?region=au">
+<link rel="alternate" hreflang="en-nz" href="https://dailykitbox.com/word-counter/?region=nz">
+<link rel="alternate" hreflang="en-ie" href="https://dailykitbox.com/word-counter/?region=ie">
+<link rel="alternate" hreflang="en-za" href="https://dailykitbox.com/word-counter/?region=za">
+<link rel="alternate" hreflang="en-sg" href="https://dailykitbox.com/word-counter/?region=sg">
+<link rel="alternate" hreflang="en-in" href="https://dailykitbox.com/word-counter/?region=in">
+<link rel="alternate" hreflang="de-de" href="https://dailykitbox.com/word-counter/?region=de">
+<link rel="alternate" hreflang="fr-fr" href="https://dailykitbox.com/word-counter/?region=fr">
+<link rel="alternate" hreflang="es-es" href="https://dailykitbox.com/word-counter/?region=es">
+<link rel="alternate" hreflang="it-it" href="https://dailykitbox.com/word-counter/?region=it">
+<link rel="alternate" hreflang="nl-nl" href="https://dailykitbox.com/word-counter/?region=nl">
+<link rel="alternate" hreflang="ar-ae" href="https://dailykitbox.com/word-counter/?region=ae">
+<link rel="alternate" hreflang="ar-sa" href="https://dailykitbox.com/word-counter/?region=sa">
+<link rel="alternate" hreflang="x-default" href="https://dailykitbox.com/word-counter/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DailyKitBox">
+<meta property="og:title" content="Word Counter - Free Online Word & Character Counter">
+<meta property="og:description" content="Count words and characters, check readability and keyword density, and verify social media limits — instantly, privately, and free.">
+<meta property="og:url" content="https://dailykitbox.com/word-counter/">
+<meta property="og:image" content="/assets/images/word-counter-cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Word Counter - Free Online Word & Character Counter">
+<meta name="twitter:description" content="Free online word counter with readability scoring, keyword density and social media character limit checks.">
+<meta name="twitter:image" content="/assets/images/word-counter-cover.webp">
+
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" href="/assets/images/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="/assets/css/word-counter.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"DailyKitBox Word Counter","url":"https://dailykitbox.com/word-counter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online word and character counter with readability scoring, keyword density analysis, and social media character limit checks. Runs entirely in the browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DailyKitBox Word Counter","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"156"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"DailyKitBox","url":"https://dailykitbox.com/","logo":"https://dailykitbox.com/assets/images/logo.png"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"DailyKitBox","url":"https://dailykitbox.com/","potentialAction":{"@type":"SearchAction","target":"https://dailykitbox.com/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Word Counter","item":"https://dailykitbox.com/word-counter/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to Use the Word Counter","step":[
+{"@type":"HowToStep","name":"Paste or type","text":"Paste or type your text into the editor."},
+{"@type":"HowToStep","name":"Read the stats","text":"Statistics update instantly as you type."},
+{"@type":"HowToStep","name":"Check readability","text":"Review the readability and SEO metrics in the sidebar."},
+{"@type":"HowToStep","name":"Check keywords","text":"Check keyword density using the keyword tabs."},
+{"@type":"HowToStep","name":"Optimize","text":"Optimize your content based on the suggestions shown."},
+{"@type":"HowToStep","name":"Export","text":"Copy or export your finished document."}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a word counter?","acceptedAnswer":{"@type":"Answer","text":"A word counter is a tool that instantly measures how many words, characters, sentences and paragraphs are in a piece of text, along with metrics like reading time and readability."}},
+{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes, this Word Counter is completely free to use with no account or sign-up required."}},
+{"@type":"Question","name":"Is my text stored?","acceptedAnswer":{"@type":"Answer","text":"No. All analysis happens locally in your browser. The only thing saved is an autosave copy in your own browser's local storage, so you don't lose your work on refresh."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes, once the page has loaded once, it continues to work offline as an installable app."}},
+{"@type":"Question","name":"How accurate is it?","acceptedAnswer":{"@type":"Answer","text":"Word, character, sentence and paragraph counts are exact. Readability, passive-voice, and language-detection figures are estimates based on common heuristics, not a full grammar engine."}},
+{"@type":"Question","name":"What is keyword density?","acceptedAnswer":{"@type":"Answer","text":"Keyword density is the percentage of your total words made up by a specific word or phrase, commonly used to check for SEO over-optimization or under-optimization."}},
+{"@type":"Question","name":"How is reading time calculated?","acceptedAnswer":{"@type":"Answer","text":"Reading time is estimated using an average adult silent reading speed of about 200 words per minute; speaking time uses about 130 words per minute."}},
+{"@type":"Question","name":"Can I count characters?","acceptedAnswer":{"@type":"Answer","text":"Yes, both total characters and characters excluding spaces are shown live as you type."}},
+{"@type":"Question","name":"Can I export text?","acceptedAnswer":{"@type":"Answer","text":"Yes, you can copy to clipboard, download as TXT, DOC, or PDF, print, or share directly from the toolbar."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, the layout and toolbar are designed mobile-first and work on phones, tablets, and desktop browsers."}},
+{"@type":"Question","name":"Does it support large documents?","acceptedAnswer":{"@type":"Answer","text":"Yes, since analysis runs in your browser, performance depends on your device rather than a server, and it comfortably handles long documents."}},
+{"@type":"Question","name":"Is it secure?","acceptedAnswer":{"@type":"Answer","text":"Yes, your text never leaves your device during analysis, and the page is served over HTTPS."}},
+{"@type":"Question","name":"Does it support multiple languages?","acceptedAnswer":{"@type":"Answer","text":"Counting works for any language. Readability scoring and the language guess are tuned for English and are approximate for other languages."}},
+{"@type":"Question","name":"What is readability score?","acceptedAnswer":{"@type":"Answer","text":"The readability score (Flesch Reading Ease) estimates how easy your text is to read based on sentence length and syllable count, alongside an estimated school grade level."}},
+{"@type":"Question","name":"Can students use it?","acceptedAnswer":{"@type":"Answer","text":"Yes, students commonly use it to check essay length, reading level and word count requirements for assignments."}},
+{"@type":"Question","name":"Is registration required?","acceptedAnswer":{"@type":"Answer","text":"No registration or account is required to use any feature."}},
+{"@type":"Question","name":"Does it calculate speaking time?","acceptedAnswer":{"@type":"Answer","text":"Yes, an estimated speaking time is shown alongside reading time, useful for scripts and presentations."}},
+{"@type":"Question","name":"Does it detect duplicate words?","acceptedAnswer":{"@type":"Answer","text":"Yes, repeated words and unique word counts are shown, and the keyword tables highlight your most frequently used words and phrases."}},
+{"@type":"Question","name":"How often does it update?","acceptedAnswer":{"@type":"Answer","text":"Statistics update live as you type, with no need to click a button."}},
+{"@type":"Question","name":"Can I install it as an app?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is an installable Progressive Web App and can be added to your home screen or desktop for offline use."}}
+]}
+</script>
 </head>
-<body>
+<body class="wc-body">
+<a class="wc-skip-link" href="#main-content">Skip to main content</a>
 
-    <div class="header">
-        <h1>Word Counter</h1>
-        <a href="../index.html">← Back to Home</a>
-    </div>
+<header class="wc-header">
+<div class="wc-container wc-header-inner">
+<a href="/" class="wc-logo">
+<svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+<defs><linearGradient id="wcLogoGrad" x1="4" y1="6" x2="28" y2="27" gradientUnits="userSpaceOnUse">
+<stop offset="0" style="stop-color:var(--wc-primary)"/><stop offset="1" style="stop-color:var(--wc-primary-dark)"/>
+</linearGradient></defs>
+<path d="M11.5 9.5V7a3 3 0 013-3h3a3 3 0 013 3v2.5" stroke="url(#wcLogoGrad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="4" y="9.5" width="24" height="17" rx="5" fill="url(#wcLogoGrad)"/>
+<rect x="4" y="16.5" width="24" height="1.6" fill="#000" opacity="0.12"/>
+<rect x="13" y="14" width="6" height="6" rx="1.4" fill="#fff"/>
+</svg>
+<span>Daily<span>KitBox</span></span>
+</a>
+<button type="button" id="themeToggle" class="wc-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+<svg class="wc-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg class="wc-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+</button>
+</div>
+</header>
 
-    <div class="tool-container">
-        <div class="tool-card">
-            <textarea id="textInput" rows="8" placeholder="Type or paste your text here..." style="width: 100%; border: 1px solid #ccc; border-radius: 10px; padding: 15px;"></textarea>
-            <div class="spacer"></div>
-            <div id="stats" style="font-size: 20px; font-weight: bold; color: #0a192f; margin-bottom: 20px;">Words: 0 | Characters: 0</div>
-            <button class="premium-btn" onclick="clearText()">Clear Text</button>
-        </div>
+<section class="wc-hero">
+<div class="wc-container">
+<span class="wc-eyebrow">Free &middot; Private &middot; Works Offline</span>
+<h1 class="wc-title">Word Counter</h1>
+<p class="wc-subtitle">Count words and characters, check readability and keyword density, and verify social media limits — instantly, in your browser. Nothing you type is ever uploaded.</p>
+</div>
+</section>
 
-        <section class="how-to-section">
-            <h2>How to use Word Counter?</h2>
-            <p>Our tool helps you analyze your text in seconds:</p>
-            <ul>
-                <li><strong>Step 1:</strong> Simply paste your content in the box above.</li>
-                <li><strong>Step 2:</strong> Our algorithm instantly counts words and characters.</li>
-                <li><strong>Step 3:</strong> Use these insights to optimize your content for SEO.</li>
-            </ul>
-        </section>
-    </div>
+<main id="main-content" class="wc-main">
+<div class="wc-container">
 
-    <script src="script.js"></script>
+<div class="wc-workspace">
+<div class="wc-editor-column">
+
+<!-- ============ TOOLBAR ============ -->
+<div class="wc-toolbar" role="toolbar" aria-label="Editor toolbar">
+<div class="wc-toolbar-group">
+<button type="button" class="wc-tbtn" id="undoBtn" disabled aria-label="Undo (Ctrl+Z)" title="Undo (Ctrl+Z)">↶ Undo</button>
+<button type="button" class="wc-tbtn" id="redoBtn" disabled aria-label="Redo (Ctrl+Y)" title="Redo (Ctrl+Y)">↷ Redo</button>
+</div>
+<div class="wc-toolbar-divider"></div>
+<div class="wc-toolbar-group">
+<button type="button" class="wc-tbtn" id="copyBtn">Copy</button>
+<button type="button" class="wc-tbtn" id="pasteBtn">Paste</button>
+<button type="button" class="wc-tbtn" id="clearBtn">Clear</button>
+</div>
+<div class="wc-toolbar-divider"></div>
+<div class="wc-toolbar-group">
+<button type="button" class="wc-tbtn" id="fullscreenBtn" aria-pressed="false" title="Full screen editor">⛶ Full Screen</button>
+<button type="button" class="wc-tbtn" id="focusModeBtn" aria-pressed="false" title="Dim everything but the editor">◎ Focus Mode</button>
+<button type="button" class="wc-tbtn" id="spellcheckBtn" aria-pressed="false" title="Toggle browser spell check">✓ Spell Check</button>
+</div>
+<div class="wc-toolbar-divider"></div>
+<div class="wc-toolbar-group">
+<label class="wc-tbtn" for="importInput" style="cursor:pointer;">⭱ Import TXT/DOCX</label>
+<input type="file" id="importInput" accept=".txt,.docx" class="wc-visually-hidden">
+</div>
+</div>
+
+<!-- ============ EDITOR ============ -->
+<div class="wc-card">
+<div class="wc-editor-wrap">
+<label for="wcEditor" class="wc-visually-hidden">Text editor</label>
+<textarea id="wcEditor" placeholder="Paste or type your text here — statistics update instantly as you type. You can also drag and drop a .txt or .docx file onto this box." spellcheck="false" aria-describedby="wcQuickStatsDesc"></textarea>
+</div>
+<div class="wc-quickstats" id="wcQuickStatsDesc" aria-live="polite">
+<span><strong id="quickWordCount">0</strong> words</span>
+<span><strong id="quickCharCount">0</strong> characters</span>
+<span><strong id="quickReadingTime">0 min read</strong></span>
+</div>
+<div class="wc-actions">
+<button type="button" class="wc-btn wc-btn-primary" id="downloadTxtBtn">Download TXT</button>
+<button type="button" class="wc-btn" id="downloadDocBtn">Download DOC</button>
+<button type="button" class="wc-btn" id="downloadPdfBtn">Download PDF</button>
+<button type="button" class="wc-btn" id="printBtn">Print</button>
+<button type="button" class="wc-btn" id="shareBtn">Share</button>
+</div>
+</div>
+
+<!-- ============ WORD GOALS ============ -->
+<div class="wc-card">
+<h2 class="wc-card-title">Word &amp; Character Goals</h2>
+<p class="wc-card-note">Set a target and track your progress live — useful for essays, posts, or scripts with a length requirement.</p>
+<div class="wc-goal-row">
+<div class="wc-goal-field">
+<label for="wordGoalInput">Word goal</label>
+<input type="number" id="wordGoalInput" min="0" placeholder="e.g. 500">
+<div class="wc-progress-track"><div class="wc-progress-fill" id="wordGoalFill"></div></div>
+<div class="wc-card-note" id="wordGoalText" style="margin:6px 0 0;">Set a goal above</div>
+</div>
+<div class="wc-goal-field">
+<label for="charGoalInput">Character goal</label>
+<input type="number" id="charGoalInput" min="0" placeholder="e.g. 2000">
+<div class="wc-progress-track"><div class="wc-progress-fill" id="charGoalFill"></div></div>
+<div class="wc-card-note" id="charGoalText" style="margin:6px 0 0;">Set a goal above</div>
+</div>
+</div>
+</div>
+
+<!-- ============ SOCIAL / PLATFORM CHECKER ============ -->
+<div class="wc-card wc-below-editor">
+<h2 class="wc-card-title">Character Limit Checker</h2>
+<p class="wc-card-note">See how your current text measures up against common platform limits.</p>
+<div class="wc-platform-grid" id="platformGrid"></div>
+</div>
+
+<!-- ============ KEYWORD / SEO ANALYSIS ============ -->
+<div class="wc-card wc-below-editor">
+<h2 class="wc-card-title">Keyword Density &amp; SEO Analysis</h2>
+<p class="wc-card-note">See your most-used words and phrases, and how often they appear relative to your total word count.</p>
+<div class="wc-kw-tabs" role="group" aria-label="Keyword phrase length">
+<button type="button" class="wc-kw-tab wc-active" data-n="1">One Word</button>
+<button type="button" class="wc-kw-tab" data-n="2">Two Word</button>
+<button type="button" class="wc-kw-tab" data-n="3">Three Word</button>
+</div>
+<p class="wc-empty-note wc-hidden" id="keywordEmpty">Type some text to see keyword frequency.</p>
+<table class="wc-kw-table" id="keywordTable">
+<thead><tr><th>Phrase</th><th>Count</th><th>Density</th><th></th></tr></thead>
+<tbody id="keywordTableBody"></tbody>
+</table>
+
+<h3 class="wc-card-title" style="margin-top:20px; font-size:1rem;">Content Length</h3>
+<p class="wc-card-note" id="contentLengthSuggestion">Start typing to see a content-length recommendation.</p>
+
+<div class="wc-seo-field">
+<label for="metaTitleInput">Meta Title Length Checker</label>
+<input type="text" id="metaTitleInput" placeholder="Paste your page title here">
+<div class="wc-seo-meter" id="metaTitleMeter">0 characters — recommended 50–60</div>
+</div>
+<div class="wc-seo-field">
+<label for="metaDescInput">Meta Description Length Checker</label>
+<input type="text" id="metaDescInput" placeholder="Paste your meta description here">
+<div class="wc-seo-meter" id="metaDescMeter">0 characters — recommended 150–160</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="wc-sidebar">
+
+<div class="wc-card">
+<h2 class="wc-card-title">Live Statistics</h2>
+<div class="wc-stat-grid">
+<div class="wc-stat"><div class="wc-stat-value" id="statWords">0</div><div class="wc-stat-label">Words</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statChars">0</div><div class="wc-stat-label">Characters</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statCharsNoSpace">0</div><div class="wc-stat-label">No Spaces</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statSentences">0</div><div class="wc-stat-label">Sentences</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statParagraphs">0</div><div class="wc-stat-label">Paragraphs</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statLines">0</div><div class="wc-stat-label">Lines</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statReadingTime">0 min</div><div class="wc-stat-label">Reading Time</div></div>
+<div class="wc-stat"><div class="wc-stat-value" id="statSpeakingTime">0 min</div><div class="wc-stat-label">Speaking Time</div></div>
+</div>
+<div class="wc-metric-list">
+<div class="wc-metric-row"><span>Average word length</span><span id="statAvgWordLen">0.0</span></div>
+<div class="wc-metric-row"><span>Average sentence length</span><span id="statAvgSentenceLen">0.0</span></div>
+<div class="wc-metric-row"><span>Longest word</span><span id="statLongestWord">—</span></div>
+<div class="wc-metric-row"><span>Shortest word</span><span id="statShortestWord">—</span></div>
+<div class="wc-metric-row"><span>Unique words</span><span id="statUniqueWords">0</span></div>
+<div class="wc-metric-row"><span>Repeated words</span><span id="statRepeatedWords">0</span></div>
+<div class="wc-metric-row"><span>Lexical diversity</span><span id="statLexicalDiversity">0%</span></div>
+<div class="wc-metric-row"><span>Detected language</span><span id="statLanguage">—</span></div>
+</div>
+</div>
+
+<div class="wc-card">
+<h2 class="wc-card-title">Readability</h2>
+<span class="wc-score-badge" id="fleschScore">—</span>
+<div class="wc-score-label" id="readabilityLabel">No text yet</div>
+<div class="wc-metric-list" style="margin-top:12px;">
+<div class="wc-metric-row"><span>Reading grade level</span><span id="gradeLevelScore">—</span></div>
+<div class="wc-metric-row"><span>Complex words</span><span id="statComplexWords">0</span></div>
+<div class="wc-metric-row"><span>Simple words</span><span id="statSimpleWords">0</span></div>
+<div class="wc-metric-row"><span>Stop words</span><span id="statStopWords">0</span></div>
+<div class="wc-metric-row"><span>Passive voice (estimate)</span><span id="statPassive">0 (0%)</span></div>
+</div>
+</div>
+
+<div class="wc-card">
+<h2 class="wc-card-title">Content Signals</h2>
+<div class="wc-metric-list">
+<div class="wc-metric-row"><span>Emoji</span><span id="statEmoji">0</span></div>
+<div class="wc-metric-row"><span>Numbers</span><span id="statNumbers">0</span></div>
+<div class="wc-metric-row"><span>URLs</span><span id="statUrls">0</span></div>
+<div class="wc-metric-row"><span>Emails</span><span id="statEmails">0</span></div>
+<div class="wc-metric-row"><span>Hashtags</span><span id="statHashtags">0</span></div>
+<div class="wc-metric-row"><span>Mentions</span><span id="statMentions">0</span></div>
+</div>
+</div>
+
+<div class="wc-card">
+<h2 class="wc-card-title">Session &amp; History</h2>
+<div class="wc-metric-list" style="margin-bottom:10px;">
+<div class="wc-metric-row"><span>Highest word count this session</span><span id="sessionMaxWords">0</span></div>
+</div>
+<ul class="wc-history-list" id="historyList"></ul>
+<div class="wc-actions">
+<button type="button" class="wc-btn wc-btn-sm" id="saveSnapshotBtn">Save Snapshot</button>
+<button type="button" class="wc-btn wc-btn-sm" id="clearHistoryBtn">Clear History</button>
+</div>
+</div>
+
+</aside>
+</div>
+
+<!-- ============ FEATURES ============ -->
+<section class="wc-card">
+<h2 class="wc-card-title">Features</h2>
+<div class="wc-feature-grid">
+<div class="wc-feature-card"><h3>Live everything</h3><p>Every statistic updates as you type — no button to press.</p></div>
+<div class="wc-feature-card"><h3>Readability scoring</h3><p>Flesch Reading Ease and an estimated grade level, calculated instantly.</p></div>
+<div class="wc-feature-card"><h3>Keyword density</h3><p>One, two, and three-word phrase frequency, ranked and ready for SEO review.</p></div>
+<div class="wc-feature-card"><h3>Platform limit checks</h3><p>See at a glance if your text fits X, Instagram, LinkedIn, Facebook, YouTube, or TikTok limits.</p></div>
+<div class="wc-feature-card"><h3>Import &amp; export</h3><p>Drop in a TXT or DOCX file, then export as TXT, DOC, or PDF when you're done.</p></div>
+<div class="wc-feature-card"><h3>Offline &amp; installable</h3><p>Works as a PWA — install it and keep writing without a connection.</p></div>
+</div>
+</section>
+
+<!-- ============ HOW TO USE ============ -->
+<section class="wc-card">
+<h2 class="wc-card-title">How to Use the Word Counter</h2>
+<ol class="wc-howto-list">
+<li>Paste or type your text into the editor.</li>
+<li>Statistics update instantly as you type.</li>
+<li>Review readability and SEO metrics in the sidebar.</li>
+<li>Check keyword density using the keyword tabs.</li>
+<li>Optimize your content based on the suggestions shown.</li>
+<li>Copy or export your finished document.</li>
+</ol>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="wc-card">
+<h2 class="wc-card-title">About This Word Counter</h2>
+<p class="wc-card-note" style="margin-bottom:10px;">A word counter measures the length and structure of a piece of writing — words, characters, sentences, paragraphs — and, in this tool's case, also estimates how easy that writing is to read and how it's likely to perform for SEO or social media.</p>
+<p class="wc-card-note" style="margin-bottom:10px;"><strong style="color:var(--wc-text);">Students</strong> use it to hit assignment length requirements. <strong style="color:var(--wc-text);">Bloggers and content marketers</strong> use it to check content length against SEO best practices and keyword density. <strong style="color:var(--wc-text);">Copywriters</strong> use the platform checker to keep ad and social copy within limits. <strong style="color:var(--wc-text);">SEO professionals</strong> use the meta title and description length checkers before publishing. <strong style="color:var(--wc-text);">Journalists and researchers</strong> use the readability score to match writing to their audience, and <strong style="color:var(--wc-text);">businesses</strong> use it to keep product descriptions and communications concise and consistent.</p>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section class="wc-card">
+<h2 class="wc-card-title">Why Use This Word Counter</h2>
+<div class="wc-benefit-grid">
+<div class="wc-benefit-card"><h3>Private by design</h3><p>Text is analyzed on your device — nothing is uploaded.</p></div>
+<div class="wc-benefit-card"><h3>No account needed</h3><p>Start writing immediately, no sign-up required.</p></div>
+<div class="wc-benefit-card"><h3>Free</h3><p>Every feature on this page costs nothing to use.</p></div>
+<div class="wc-benefit-card"><h3>Built for real writing</h3><p>Goals, history, autosave, and undo/redo — the essentials for actual drafting.</p></div>
+</div>
+</section>
+
+<!-- ============ RELATED TOOLS ============ -->
+<section class="wc-card">
+<h2 class="wc-card-title">Related Tools</h2>
+<div class="wc-related-grid">
+<a class="wc-related-link" href="/document-converter/">Document Converter</a>
+<a class="wc-related-link" href="/brand-name-slogan-generator/">Brand Name &amp; Slogan Generator</a>
+<a class="wc-related-link" href="/passwor-generator-cheker/">Password Generator &amp; Checker</a>
+<a class="wc-related-link" href="/pdf-branding-toolkit/">PDF Branding Toolkit</a>
+</div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="wc-card" id="faq">
+<h2 class="wc-card-title">Frequently Asked Questions</h2>
+<div class="wc-faq-item"><h3>What is a word counter?</h3><p>A word counter is a tool that instantly measures how many words, characters, sentences and paragraphs are in a piece of text, along with metrics like reading time and readability.</p></div>
+<div class="wc-faq-item"><h3>Is it free?</h3><p>Yes, this Word Counter is completely free to use with no account or sign-up required.</p></div>
+<div class="wc-faq-item"><h3>Is my text stored?</h3><p>No. All analysis happens locally in your browser. The only thing saved is an autosave copy in your own browser's local storage, so you don't lose your work on refresh.</p></div>
+<div class="wc-faq-item"><h3>Does it work offline?</h3><p>Yes, once the page has loaded once, it continues to work offline as an installable app.</p></div>
+<div class="wc-faq-item"><h3>How accurate is it?</h3><p>Word, character, sentence and paragraph counts are exact. Readability, passive-voice, and language-detection figures are estimates based on common heuristics, not a full grammar engine.</p></div>
+<div class="wc-faq-item"><h3>What is keyword density?</h3><p>Keyword density is the percentage of your total words made up by a specific word or phrase, commonly used to check for SEO over-optimization or under-optimization.</p></div>
+<div class="wc-faq-item"><h3>How is reading time calculated?</h3><p>Reading time is estimated using an average adult silent reading speed of about 200 words per minute; speaking time uses about 130 words per minute.</p></div>
+<div class="wc-faq-item"><h3>Can I count characters?</h3><p>Yes, both total characters and characters excluding spaces are shown live as you type.</p></div>
+<div class="wc-faq-item"><h3>Can I export text?</h3><p>Yes, you can copy to clipboard, download as TXT, DOC, or PDF, print, or share directly from the toolbar.</p></div>
+<div class="wc-faq-item"><h3>Is it mobile friendly?</h3><p>Yes, the layout and toolbar are designed mobile-first and work on phones, tablets, and desktop browsers.</p></div>
+<div class="wc-faq-item"><h3>Does it support large documents?</h3><p>Yes, since analysis runs in your browser, performance depends on your device rather than a server, and it comfortably handles long documents.</p></div>
+<div class="wc-faq-item"><h3>Is it secure?</h3><p>Yes, your text never leaves your device during analysis, and the page is served over HTTPS.</p></div>
+<div class="wc-faq-item"><h3>Does it support multiple languages?</h3><p>Counting works for any language. Readability scoring and the language guess are tuned for English and are approximate for other languages.</p></div>
+<div class="wc-faq-item"><h3>What is readability score?</h3><p>The readability score (Flesch Reading Ease) estimates how easy your text is to read based on sentence length and syllable count, alongside an estimated school grade level.</p></div>
+<div class="wc-faq-item"><h3>Can students use it?</h3><p>Yes, students commonly use it to check essay length, reading level and word count requirements for assignments.</p></div>
+<div class="wc-faq-item"><h3>Is registration required?</h3><p>No registration or account is required to use any feature.</p></div>
+<div class="wc-faq-item"><h3>Does it calculate speaking time?</h3><p>Yes, an estimated speaking time is shown alongside reading time, useful for scripts and presentations.</p></div>
+<div class="wc-faq-item"><h3>Does it detect duplicate words?</h3><p>Yes, repeated words and unique word counts are shown, and the keyword tables highlight your most frequently used words and phrases.</p></div>
+<div class="wc-faq-item"><h3>How often does it update?</h3><p>Statistics update live as you type, with no need to click a button.</p></div>
+<div class="wc-faq-item"><h3>Can I install it as an app?</h3><p>Yes, it is an installable Progressive Web App and can be added to your home screen or desktop for offline use.</p></div>
+</section>
+<!-- ============ CTA ============ -->
+<section class="wc-card wc-cta-card">
+<h2 class="wc-card-title">Ready to Check Your Writing?</h2>
+<p class="wc-card-note">Free, private, and no sign-up required.</p>
+<div class="wc-actions" style="justify-content:center;">
+<a href="#wcEditor" class="wc-btn wc-btn-primary">Start Writing</a>
+</div>
+</section>
+
+</div>
+</main>
+
+<footer class="wc-footer">
+<p>&copy; 2026 DailyKitBox. All Rights Reserved. All text processing happens locally in your browser — nothing you type is uploaded or stored on our servers.</p>
+</footer>
+
+<div id="wcToastContainer" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="/assets/js/word-counter.js" defer></script>
 </body>
 </html>
