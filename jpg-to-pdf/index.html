@@ -16,12 +16,12 @@
 <meta name="geo.placename" content="United States">
 <meta name="ICBM" content="37.0902,-95.7129">
 <meta http-equiv="content-language" content="en-US">
-<link rel="canonical" href="https://dailykitbox.com/tools/jpg-to-pdf/">
+<link rel="canonical" href="https://dailykitbox.com/jpg-to-pdf/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DailyKitBox">
 <meta property="og:title" content="JPG to PDF Converter">
 <meta property="og:description" content="Convert JPG, JPEG and PNG images into PDF instantly with our free online converter.">
-<meta property="og:url" content="https://dailykitbox.com/tools/jpg-to-pdf/">
+<meta property="og:url" content="https://dailykitbox.com/jpg-to-pdf/">
 <meta property="og:image" content="/assets/images/jpg-to-pdf-cover.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JPG to PDF Converter">
@@ -29,14 +29,22 @@
 <meta name="twitter:image" content="/assets/images/jpg-to-pdf-cover.webp">
 <link rel="icon" href="/assets/images/favicon.ico">
 <link rel="stylesheet" href="/assets/css/style.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"JPG to PDF Converter","url":"https://dailykitbox.com/tools/jpg-to-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online JPG to PDF converter with batch processing, image sorting, compression and professional PDF output.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"}}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZECV8EZS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BZECV8EZS6');
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailykitbox.com/tools/"},{"@type":"ListItem","position":3,"name":"JPG to PDF Converter","item":"https://dailykitbox.com/tools/jpg-to-pdf/"}]}
+{"@context":"https://schema.org","@type":"WebApplication","name":"JPG to PDF Converter","url":"https://dailykitbox.com/jpg-to-pdf/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free online JPG to PDF converter with batch processing, image sorting, compression and professional PDF output.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DailyKitBox"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this JPG to PDF converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. DailyKitBox JPG to PDF Converter is completely free to use."}},{"@type":"Question","name":"Are my files secure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your files are processed inside your browser and are not permanently stored on our servers."}}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailykitbox.com/"},{"@type":"ListItem","position":2,"name":"JPG to PDF Converter","item":"https://dailykitbox.com/jpg-to-pdf/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this JPG to PDF converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. DailyKitBox JPG to PDF Converter is completely free to use."}},{"@type":"Question","name":"Are my files secure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your files are processed inside your browser and are not permanently stored on our servers."}},{"@type":"Question","name":"Can I set a custom target file size?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can enable Reduce File Size and set your own target size in KB or MB, or choose a custom image resolution before converting."}}]}
 </script>
 </head>
 <body>
@@ -103,7 +111,18 @@
 <label>Page Numbers<select id="pageNumbers"><option selected>Off</option><option>On</option></select></label>
 <label>Watermark<input type="text" id="watermarkText" placeholder="Optional"></label>
 </div>
+
+<h2>Reduce File Size</h2>
+<p class="dkb-upload-note">Turn this on to shrink your PDF to a size or resolution you choose, instead of the fixed Compression setting above.</p>
+<div class="dkb-settings-grid">
+<label>Reduce File Size<select id="reduceSizeToggle"><option value="off" selected>Off</option><option value="on">On</option></select></label>
+<label>Target File Size<span class="dkb-inline-group"><input type="number" id="targetSizeValue" min="1" step="1" placeholder="e.g. 500" disabled><select id="targetSizeUnit" disabled><option value="KB">KB</option><option value="MB" selected>MB</option></select></span></label>
+<label>Image Resolution<select id="resolutionPreset" disabled><option value="original">Original</option><option value="150">150 DPI (Web)</option><option value="300" selected>300 DPI (Print)</option><option value="600">600 DPI (High Quality)</option><option value="custom">Custom DPI</option></select></label>
+<label id="customDpiLabel" hidden>Custom DPI<input type="number" id="customDpiValue" min="36" max="1200" step="1" placeholder="e.g. 220" disabled></label>
+</div>
+<p id="reduceSizeHint" class="dkb-upload-note">Enable Reduce File Size to unlock these fields. We will scale image resolution down automatically, and re-compress in steps, until the PDF is at or under your target size.</p>
 </section>
+
 <section class="dkb-features-section">
 <h2>Professional Features</h2>
 <div class="dkb-features-grid">
@@ -116,6 +135,8 @@
 <div class="dkb-feature-card">✅ Progress Bar</div>
 <div class="dkb-feature-card">✅ Live Status</div>
 <div class="dkb-feature-card">✅ Compression</div>
+<div class="dkb-feature-card">✅ Reduce to Target Size</div>
+<div class="dkb-feature-card">✅ Custom Resolution (DPI)</div>
 <div class="dkb-feature-card">✅ Export Profiles</div>
 <div class="dkb-feature-card">✅ PDF Metadata</div>
 <div class="dkb-feature-card">✅ Page Numbers</div>
@@ -142,7 +163,7 @@
 <ol>
 <li>Upload one or more JPG, JPEG or PNG images.</li>
 <li>Arrange, rotate or remove images if needed.</li>
-<li>Choose your preferred PDF settings.</li>
+<li>Choose your preferred PDF settings, or turn on Reduce File Size to set your own target size or resolution.</li>
 <li>Click Convert to PDF.</li>
 <li>Download your finished PDF instantly.</li>
 </ol>
@@ -150,7 +171,7 @@
 
 <section class="dkb-seo-section">
 <h2>About This JPG to PDF Converter</h2>
-<p>DailyKitBox JPG to PDF Converter is a fast, secure and browser-based online tool that converts JPG, JPEG and PNG images into high-quality PDF documents without requiring installation. It is optimized for users in the USA, United Kingdom, Canada, Australia and worldwide with SEO, GEO and AEO friendly architecture, responsive design, accessibility support and fast loading performance.</p>
+<p>DailyKitBox JPG to PDF Converter is a fast, secure and browser-based online tool that converts JPG, JPEG and PNG images into high-quality PDF documents without requiring installation. It is optimized for users in the USA, United Kingdom, Canada, Australia and worldwide with SEO, GEO and AEO friendly architecture, responsive design, accessibility support and fast loading performance. The Reduce File Size option gives you direct control over the final PDF: set an exact target size in KB or MB, or pick the image resolution yourself, instead of relying only on a fixed compression level.</p>
 </section>
 
 <section class="dkb-faq-section">
@@ -167,10 +188,20 @@
 <h3>Does it work on mobile devices?</h3>
 <p>Yes. It works on Android, iPhone, tablets and desktop browsers.</p>
 </div>
+<div class="dkb-faq-item">
+<h3>Can I set a custom target file size?</h3>
+<p>Yes. Turn on Reduce File Size and enter your own target size in KB or MB, or pick an exact resolution in DPI.</p>
+</div>
 </section>
 
 <footer class="dkb-footer">
 <p>© 2026 DailyKitBox. All Rights Reserved.</p>
+<p class="dkb-footer-links">
+<a href="https://www.dailykitbox.com/about/">About</a> ·
+<a href="https://www.dailykitbox.com/contact/">Contact</a> ·
+<a href="https://www.dailykitbox.com/privacy-policy/">Privacy Policy</a> ·
+<a href="https://www.dailykitbox.com/terms/">Terms of Service</a>
+</p>
 </footer>
 </div>
 </section>
@@ -178,6 +209,38 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="/assets/js/jpg-to-pdf.js" defer></script>
+<script>
+(function(){
+  var toggle = document.getElementById('reduceSizeToggle');
+  var sizeValue = document.getElementById('targetSizeValue');
+  var sizeUnit = document.getElementById('targetSizeUnit');
+  var resolutionPreset = document.getElementById('resolutionPreset');
+  var customDpiLabel = document.getElementById('customDpiLabel');
+  var customDpiValue = document.getElementById('customDpiValue');
+  var hint = document.getElementById('reduceSizeHint');
+
+  function setReduceFields(enabled){
+    sizeValue.disabled = !enabled;
+    sizeUnit.disabled = !enabled;
+    resolutionPreset.disabled = !enabled;
+    customDpiValue.disabled = !enabled || resolutionPreset.value !== 'custom';
+    customDpiLabel.hidden = resolutionPreset.value !== 'custom';
+    hint.hidden = enabled;
+  }
+
+  toggle.addEventListener('change', function(){
+    setReduceFields(toggle.value === 'on');
+  });
+
+  resolutionPreset.addEventListener('change', function(){
+    var isCustom = resolutionPreset.value === 'custom';
+    customDpiLabel.hidden = !isCustom;
+    customDpiValue.disabled = toggle.value !== 'on' || !isCustom;
+  });
+
+  setReduceFields(false);
+})();
+</script>
 
 </body>
 </html>
