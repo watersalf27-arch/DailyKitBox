@@ -1,25 +1,43 @@
 {
-  "name": "DailyKitBox Tip Calculator",
-  "short_name": "Tip Calculator",
-  "description": "Calculate tips and split bills instantly with DailyKitBox's free online Tip Calculator.",
-  "start_url": "/tip-calculator/",
-  "scope": "/tip-calculator/",
+  "id": "/",
+  "name": "DailyKitBox",
+  "short_name": "DailyKitBox",
+  "description": "50+ free online PDF tools, calculators and utilities. No sign up required.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#F8FAFC",
-  "theme_color": "#2563EB",
+  "orientation": "any",
+  "background_color": "#0A192F",
+  "theme_color": "#0A192F",
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
   "icons": [
     {
-      "src": "/assets/images/icon-192.png",
+      "src": "/assets/images/logo-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/assets/images/icon-512.png",
+      "src": "/assets/images/logo-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/images/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
