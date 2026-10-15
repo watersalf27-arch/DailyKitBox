@@ -23,7 +23,7 @@ Free online PDF tools, calculators and utilities. No sign-up, and file tools run
 | Brand Name & Slogan Generator | `brand-name-slogan-generator/` |
 | Password Generator & Checker | `passwor-generator-cheker/` |
 
-Other pages: `about/`, `contact/`, `privacy-policy/`, `terms/`.
+Other pages: `about/`, `contact/`, `privacy-policy/`, `terms-of-service/`.
 
 ## Project structure
 
