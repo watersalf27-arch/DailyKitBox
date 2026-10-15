@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
 <url><loc>https://www.dailykitbox.com/</loc></url>
-
 <url><loc>https://www.dailykitbox.com/age-calculator/</loc></url>
+<url><loc>https://www.dailykitbox.com/bmi-calculator/</loc></url>
 <url><loc>https://www.dailykitbox.com/brand-name-slogan-generator/</loc></url>
 <url><loc>https://www.dailykitbox.com/delete-pdf-pages/</loc></url>
 <url><loc>https://www.dailykitbox.com/document-converter/</loc></url>
@@ -16,5 +15,8 @@
 <url><loc>https://www.dailykitbox.com/tip-calculator/</loc></url>
 <url><loc>https://www.dailykitbox.com/weather/</loc></url>
 <url><loc>https://www.dailykitbox.com/word-counter/</loc></url>
-
+<url><loc>https://www.dailykitbox.com/about/</loc></url>
+<url><loc>https://www.dailykitbox.com/contact/</loc></url>
+<url><loc>https://www.dailykitbox.com/privacy-policy/</loc></url>
+<url><loc>https://www.dailykitbox.com/terms/</loc></url>
 </urlset>
