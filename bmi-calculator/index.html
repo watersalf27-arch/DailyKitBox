@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BMI Calculator — Free Body Mass Index, BMR &amp; TDEE Tool | DailyKitBox</title>
-<meta name="description" content="Calculate your BMI instantly with metric or imperial units. Get your healthy weight range, BMI Prime, BMR, TDEE and personalized tips — free, private, no signup.">
+<meta name="description" content="Calculate your BMI instantly in metric or imperial units. Get your healthy weight range, BMR, TDEE and personalized tips. Free, private, no signup.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://www.dailykitbox.com/bmi-calculator/index.html">
+<link rel="canonical" href="https://www.dailykitbox.com/bmi-calculator/">
 <meta name="theme-color" content="#0B0F19">
 <meta name="color-scheme" content="dark light">
 <meta name="author" content="DailyKitBox">
@@ -22,31 +22,41 @@
 <meta property="og:site_name" content="DailyKitBox">
 <meta property="og:title" content="BMI Calculator — Free Body Mass Index, BMR &amp; TDEE Tool">
 <meta property="og:description" content="Calculate your BMI instantly with metric or imperial units. Get your healthy weight range, BMR, TDEE and personalized health tips — free and private.">
-<meta property="og:url" content="https://www.dailykitbox.com/bmi-calculator/index.html">
-<meta property="og:image" content="https://www.dailykitbox.com/assets/images/icons/bmi-calculator-512.png">
+<meta property="og:url" content="https://www.dailykitbox.com/bmi-calculator/">
+<meta property="og:image" content="https://www.dailykitbox.com/assets/images/logo-icon-512.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
-<meta property="og:image:alt" content="DailyKitBox BMI Calculator">
+<meta property="og:image:alt" content="DailyKitBox logo">
 <meta property="og:locale" content="en_US">
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BMI Calculator — Free Body Mass Index, BMR &amp; TDEE Tool">
 <meta name="twitter:description" content="Instant BMI, healthy weight range, BMR and TDEE. Free, private, works on any device.">
-<meta name="twitter:image" content="https://www.dailykitbox.com/assets/images/icons/bmi-calculator-512.png">
+<meta name="twitter:image" content="https://www.dailykitbox.com/assets/images/logo-icon-512.png">
 
 <!-- Pinterest -->
 <meta name="pinterest-rich-pin" content="true">
-<meta property="article:publisher" content="https://www.dailykitbox.com">
 
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/svg+xml" href="../assets/images/icons/bmi-calculator.svg">
-<link rel="apple-touch-icon" href="../assets/images/icons/bmi-calculator.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&amp;family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap">
-<link rel="stylesheet" href="../assets/css/bmi-calculator.css">
+<link rel="stylesheet" href="/assets/css/bmi-calculator.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BZECV8EZS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BZECV8EZS6');
+</script>
 
 <script type="application/ld+json">
 {
@@ -56,71 +66,193 @@
       "@type": "WebApplication",
       "@id": "https://www.dailykitbox.com/bmi-calculator/#webapp",
       "name": "BMI Calculator",
-      "url": "https://www.dailykitbox.com/bmi-calculator/index.html",
+      "url": "https://www.dailykitbox.com/bmi-calculator/",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "Any",
       "browserRequirements": "Requires JavaScript",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
       "description": "Free BMI, BMR and TDEE calculator with metric and imperial units, healthy weight range, and personalized recommendations.",
-      "publisher": { "@id": "https://www.dailykitbox.com/#organization" }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.dailykitbox.com/bmi-calculator/#software",
-      "name": "DailyKitBox BMI Calculator",
-      "applicationCategory": "HealthApplication",
-      "operatingSystem": "Web",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "publisher": {
+        "@id": "https://www.dailykitbox.com/#organization"
+      }
     },
     {
       "@type": "Organization",
       "@id": "https://www.dailykitbox.com/#organization",
       "name": "DailyKitBox",
-      "url": "https://www.dailykitbox.com",
-      "logo": "https://www.dailykitbox.com/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.dailykitbox.com/#website",
-      "name": "DailyKitBox",
-      "url": "https://www.dailykitbox.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.dailykitbox.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "url": "https://www.dailykitbox.com/",
+      "logo": "https://www.dailykitbox.com/assets/images/logo-icon-512.png"
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://www.dailykitbox.com/bmi-calculator/#breadcrumb",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dailykitbox.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Health Tools", "item": "https://www.dailykitbox.com/#health-tools" },
-        { "@type": "ListItem", "position": 3, "name": "BMI Calculator", "item": "https://www.dailykitbox.com/bmi-calculator/index.html" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.dailykitbox.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "BMI Calculator",
+          "item": "https://www.dailykitbox.com/bmi-calculator/"
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "@id": "https://www.dailykitbox.com/bmi-calculator/#faq",
       "mainEntity": [
-{ "@type": "Question", "name": "What is BMI?", "acceptedAnswer": { "@type": "Answer", "text": "Body Mass Index (BMI) is a screening number calculated from your height and weight. It estimates whether your weight falls into a range typically associated with underweight, healthy, overweight, or obese categories for adults." } },
-        { "@type": "Question", "name": "How is BMI calculated?", "acceptedAnswer": { "@type": "Answer", "text": "BMI equals weight in kilograms divided by height in meters squared (kg/m²). In imperial units, it's weight in pounds divided by height in inches squared, multiplied by 703." } },
-        { "@type": "Question", "name": "Is BMI accurate for everyone?", "acceptedAnswer": { "@type": "Answer", "text": "No. BMI does not distinguish muscle from fat, so it can misclassify muscular athletes as overweight and underestimate body fat in older adults with low muscle mass. It should be used alongside other health measures." } },
-        { "@type": "Question", "name": "What is a healthy BMI range?", "acceptedAnswer": { "@type": "Answer", "text": "For most adults, a BMI between 18.5 and 24.9 is considered within the healthy weight range by major health organizations, though individual healthy ranges can vary by build and ethnicity." } },
-        { "@type": "Question", "name": "Does BMI differ for men and women?", "acceptedAnswer": { "@type": "Answer", "text": "The BMI formula and category cutoffs are the same for adult men and women. However, women naturally carry a higher percentage of body fat than men at the same BMI, which the formula does not account for." } },
-        { "@type": "Question", "name": "How does BMI change with age?", "acceptedAnswer": { "@type": "Answer", "text": "Adult BMI categories apply from age 20 onward. For children and teens aged 2 to 19, BMI is plotted on age- and sex-specific growth percentile charts instead of fixed adult cutoffs." } },
-        { "@type": "Question", "name": "Is BMI reliable during pregnancy?", "acceptedAnswer": { "@type": "Answer", "text": "Standard adult BMI categories are not designed for pregnant women. Healthy weight gain during pregnancy should be tracked with a healthcare provider using pregnancy-specific guidelines." } },
-        { "@type": "Question", "name": "Is BMI accurate for athletes?", "acceptedAnswer": { "@type": "Answer", "text": "BMI often overestimates body fat in athletes and highly muscular individuals because muscle weighs more than fat. Body composition testing gives a more accurate picture for this group." } },
-        { "@type": "Question", "name": "What are the main limitations of BMI?", "acceptedAnswer": { "@type": "Answer", "text": "BMI does not measure body fat directly, ignores where fat is distributed on the body, and does not account for muscle mass, bone density, age, sex, or ethnicity." } },
-        { "@type": "Question", "name": "Can children and teens use this calculator?", "acceptedAnswer": { "@type": "Answer", "text": "This tool is built for adults aged 20 and above. For children and teens, BMI must be interpreted using CDC or WHO growth charts and should be reviewed with a pediatrician." } },
-{ "@type": "Question", "name": "How often should I check my BMI?", "acceptedAnswer": { "@type": "Answer", "text": "Checking every few months is usually enough to track meaningful trends. Daily weight and BMI fluctuations are normal and mostly reflect water balance rather than real changes in body fat." } },
-        { "@type": "Question", "name": "What is BMI Prime?", "acceptedAnswer": { "@type": "Answer", "text": "BMI Prime is your BMI divided by 25, the upper limit of the healthy range. A BMI Prime below 1.0 suggests you're under the healthy-weight ceiling, while above 1.0 suggests you're over it." } },
-        { "@type": "Question", "name": "What is the Ponderal Index and how is it different from BMI?", "acceptedAnswer": { "@type": "Answer", "text": "The Ponderal Index divides weight by height cubed instead of squared, which makes it less distorted for people who are very short or very tall compared to standard BMI." } },
-        { "@type": "Question", "name": "What is a healthy weight range for my height?", "acceptedAnswer": { "@type": "Answer", "text": "Your healthy weight range is the span of weights that produce a BMI between 18.5 and 24.9 at your specific height. This calculator computes that range automatically from your height." } },
-        { "@type": "Question", "name": "What is BMR and how is it different from TDEE?", "acceptedAnswer": { "@type": "Answer", "text": "BMR (Basal Metabolic Rate) is the energy your body needs at complete rest. TDEE (Total Daily Energy Expenditure) adds your activity level on top of BMR to estimate total daily calorie needs." } },
-        { "@type": "Question", "name": "Does this calculator store my data?", "acceptedAnswer": { "@type": "Answer", "text": "No. All calculations run entirely in your browser. Nothing you enter is uploaded, stored on a server, or tracked." } },
-        { "@type": "Question", "name": "Is a lower BMI always healthier?", "acceptedAnswer": { "@type": "Answer", "text": "No. Being underweight carries its own health risks, including nutrient deficiencies and weakened immunity. The goal is a range appropriate for your body, not the lowest possible number." } },
-        { "@type": "Question", "name": "Can I use this calculator if I'm elderly?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but interpret results with care. Muscle loss with age can make BMI appear healthy even when body fat percentage is high, so older adults should discuss results with a healthcare provider." } }
+        {
+          "@type": "Question",
+          "name": "What is BMI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Body Mass Index (BMI) is a screening number calculated from your height and weight. It estimates whether your weight falls into a range typically associated with underweight, healthy, overweight, or obese categories for adults."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is BMI calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI equals weight in kilograms divided by height in meters squared (kg/m²). In imperial units, it's weight in pounds divided by height in inches squared, multiplied by 703."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is BMI accurate for everyone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. BMI doesn't distinguish muscle from fat, so it can misclassify muscular athletes as overweight and underestimate body fat in older adults with low muscle mass. Use it alongside other health measures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a healthy BMI range?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most adults, a BMI between 18.5 and 24.9 is considered within the healthy weight range, though individual healthy ranges can vary by build and ethnic background."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does BMI differ for men and women?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The formula and category cutoffs are the same for adult men and women, but women naturally carry a higher body fat percentage than men at the same BMI — a difference the formula doesn't capture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does BMI change with age?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Adult categories apply from age 20 onward. For children and teens aged 2–19, BMI is plotted on age- and sex-specific growth percentile charts rather than fixed adult cutoffs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is BMI reliable during pregnancy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard adult BMI categories aren't designed for pregnant women. Healthy pregnancy weight gain should be tracked with a healthcare provider using pregnancy-specific guidelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is BMI accurate for athletes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI often overestimates body fat in athletes and highly muscular people, since muscle weighs more than fat. Body composition testing gives a more accurate picture for this group."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are BMI's main limitations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It doesn't measure body fat directly, ignores where fat is distributed, and doesn't account for muscle mass, bone density, age, sex, or ethnicity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can children and teens use this calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This tool is built for adults 20 and older. For children and teens, BMI must be read using CDC or WHO growth charts and reviewed with a pediatrician."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I check my BMI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every few months is usually enough to track meaningful trends. Day-to-day weight and BMI shifts are normal and mostly reflect water balance, not real fat changes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is BMI Prime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your BMI divided by 25, the upper edge of the healthy range. A BMI Prime below 1.0 means you're under that ceiling; above 1.0 means you're over it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Ponderal Index?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It divides weight by height cubed instead of squared, making it less distorted than BMI for people who are very short or very tall."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a healthy weight range for my height?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The span of weights that produce a BMI between 18.5 and 24.9 at your specific height — this calculator computes it automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is BMR vs. TDEE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMR is the energy your body needs at complete rest. TDEE adds your activity level on top of BMR to estimate total daily calorie needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is waist-to-height ratio, and should I track it too?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's your waist circumference divided by your height. A ratio below 0.5 is generally associated with lower cardiometabolic risk, and it's a useful companion to BMI because it reflects fat distribution, which BMI ignores entirely."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this calculator store my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. All calculations run entirely in your browser — nothing is uploaded, stored on a server, or tracked."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a lower BMI always healthier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Being underweight has its own risks, including nutrient deficiencies and weakened immunity. The goal is an appropriate range for your body, not the lowest possible number."
+          }
+        }
       ]
     }
   ]
@@ -132,19 +264,19 @@
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="../index.html" class="brand" aria-label="DailyKitBox home">
-      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"></rect><rect x="13" y="3" width="8" height="8" rx="2"></rect><rect x="3" y="13" width="8" height="8" rx="2"></rect><rect x="13" y="13" width="8" height="8" rx="2"></rect></svg>
+    <a href="/" class="brand" aria-label="DailyKitBox home">
+      <img class="brand-mark" src="/assets/images/dkb-logo-icon.webp" width="28" height="28" alt="" decoding="async" style="border-radius:8px">
       <span>DailyKitBox</span>
     </a>
     <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <ol>
-        <li><a href="../index.html">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li aria-hidden="true">/</li>
         <li aria-current="page">BMI Calculator</li>
       </ol>
     </nav>
     <div class="header-actions">
-      <a href="../index.html" class="all-tools-link">All Tools</a>
+      <a href="/" class="all-tools-link">All Tools</a>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" aria-pressed="false">
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg>
@@ -172,7 +304,7 @@
 
   <section class="calculator-section" aria-label="BMI calculator form and results">
     <div class="calculator-grid">
-<form class="calc-card" id="bmiForm" novalidate>
+      <form class="calc-card" id="bmiForm" novalidate>
         <div class="unit-switch" role="radiogroup" aria-label="Measurement units">
           <button type="button" class="unit-btn is-active" data-unit="metric" role="radio" aria-checked="true">Metric</button>
           <button type="button" class="unit-btn" data-unit="imperial" role="radio" aria-checked="false">Imperial</button>
@@ -281,7 +413,7 @@
             </div>
           </div>
 
-          <p class="category-badge" id="categoryBadge">—</p>
+          <     <p class="category-badge" id="categoryBadge">—</p>
 
           <div class="stats-grid">
             <div class="stat"><span class="stat-label">Healthy range</span><span class="stat-value" id="statHealthyRange">—</span></div>
@@ -299,7 +431,8 @@
       </div>
     </div>
   </section>
-<section class="bonus-tools is-hidden" id="bonusTools" aria-label="Additional health estimates">
+
+  <section class="bonus-tools is-hidden" id="bonusTools" aria-label="Additional health estimates">
     <div class="section-inner">
       <h2>More from your numbers</h2>
       <div class="bonus-grid">
@@ -343,7 +476,7 @@
       <div class="embed-row">
         <label for="embedInput" class="field-label">Embed link</label>
         <div class="copy-input-wrap">
-          <input type="text" id="embedInput" readonly value="https://www.dailykitbox.com/bmi-calculator/index.html">
+          <input type="text" id="embedInput" readonly value="https://www.dailykitbox.com/bmi-calculator/">
           <button type="button" class="btn-copy" id="copyLinkBtn">Copy</button>
         </div>
         <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
@@ -390,7 +523,7 @@
         <li><strong>35–39.9</strong> — Obesity Class II</li>
         <li><strong>40 and above</strong> — Obesity Class III (severe)</li>
       </ul>
-    <p>These cutoffs were set from population-level studies linking BMI to disease risk, not from any single person's body composition. They're a starting point for a conversation, not a diagnosis on their own.</p>
+      <p>These cutoffs were set from population-level studies linking BMI to disease risk, not from any single person's body composition. They're a starting point for a conversation, not a diagnosis on their own.</p>
 
       <h3>Two numbers that improve on plain BMI</h3>
       <p>This calculator also shows your <strong>BMI Prime</strong>, which is simply your BMI divided by 25 (the upper bound of the healthy range). A BMI Prime under 1.0 means you're below that threshold; over 1.0 means you're above it. It's a quick way to see, at a glance, how far a result sits from the healthy ceiling.</p>
@@ -443,7 +576,6 @@
       </div>
     </div>
   </section>
-
   <section class="disclaimers" id="disclaimers" aria-labelledby="disclaimersTitle">
     <div class="section-inner">
       <h2 id="disclaimersTitle">Important disclaimers</h2>
@@ -453,7 +585,7 @@
         <div class="disclaimer-card"><h3>Children &amp; teens</h3><p>This tool is designed for adults 20+. Younger ages need percentile-based growth charts reviewed by a pediatrician — informational only here.</p></div>
         <div class="disclaimer-card"><h3>Older adults</h3><p>Age-related muscle loss can make BMI look healthier than actual body fat levels suggest. Discuss results with a healthcare provider.</p></div>
       </div>
-      <p class="legal-note">This calculator is provided for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. It does not store, upload, or track any information you enter — everything is calculated locally in your browser. See our <a href="../privacy-policy.html">Privacy Policy</a> and <a href="../terms.html">Terms &amp; Conditions</a> for full details.</p>
+      <p class="legal-note">This calculator is provided for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. It does not store, upload, or track any information you enter — everything is calculated locally in your browser. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-of-service/">Terms &amp; Conditions</a> for full details.</p>
     </div>
   </section>
 
@@ -461,12 +593,12 @@
     <div class="section-inner">
       <h2 id="relatedTitle">More health &amp; utility tools</h2>
       <div class="related-grid">
-        <a class="related-card" href="../age-calculator/index.html"><span>Age Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
-        <a class="related-card" href="../mortgage-calculator/index.html"><span>Mortgage Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
-        <a class="related-card" href="../tip-calculator/index.html"><span>Tip Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
-        <a class="related-card" href="../word-counter/index.html"><span>Word Counter</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
-        <a class="related-card" href="../password-generator-checker/index.html"><span>Password Generator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
-        <a class="related-card" href="../index.html"><span>All Health Tools</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/age-calculator/"><span>Age Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/mortgage-calculator/"><span>Mortgage Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/tip-calculator/"><span>Tip Calculator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/word-counter/"><span>Word Counter</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/passwor-generator-cheker/"><span>Password Generator</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        <a class="related-card" href="/"><span>All Tools</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
       </div>
     </div>
   </section>
@@ -476,14 +608,16 @@
 <footer class="site-footer">
   <div class="section-inner footer-inner">
     <p>&copy; <span id="footerYear"></span> DailyKitBox. All calculations run locally in your browser — nothing is uploaded or stored.</p>
-    <nav class="footer-links" aria-label="Legal">
-      <a href="../privacy-policy.html">Privacy Policy</a>
-      <a href="../terms.html">Terms &amp; Conditions</a>
-      <a href="../index.html">All Tools</a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms &amp; Conditions</a>
+      <a href="/">All Tools</a>
     </nav>
   </div>
 </footer>
 
-<script src="../assets/js/bmi-calculator.js" defer></script>
+<script src="/assets/js/bmi-calculator.js" defer></script>
 </body>
 </html>
